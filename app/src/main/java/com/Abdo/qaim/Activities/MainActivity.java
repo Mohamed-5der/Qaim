@@ -1,4 +1,4 @@
-package com.Abdo.qaim;
+package com.Abdo.qaim.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

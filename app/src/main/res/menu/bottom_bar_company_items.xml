@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/main" android:title="Main" android:icon="@drawable/group9816"/>
+    <item android:id="@+id/team" android:title="Team" android:icon="@drawable/svgexport_88"/>
+    <item android:id="@+id/projects" android:title="Projects" android:icon="@drawable/svgexport_77"/>
+    <item android:id="@+id/more" android:title="More" android:icon="@drawable/group9814"/>
+</menu>

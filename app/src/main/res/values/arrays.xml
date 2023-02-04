@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerItems">
+        <item>+20</item>
+        <item>+20</item>
+        <item>+20</item>
+        <item>+20</item>
+        <item>+20</item>
+        <item>+20</item>
+    </string-array>
+
+    <string-array name="citySpinner">
+        <item>اختر المدينة</item>
+        <item>cairo</item>
+        <item>alex</item>
+        <item>aswan</item>
+        <item>luxor</item>
+    </string-array>
+    <string-array name="areaSpinner">
+
+    <item>اختر المنطقة</item>
+    <item></item>
+    <item></item>
+    <item></item>
+    <item></item>
+</string-array>
+    <string-array name="neighborhoodSpinner">
+    <item>اختر الحي</item>
+    <item>cairo</item>
+    <item>alex</item>
+    <item>aswan</item>
+    <item>luxor</item>
+</string-array>
+    <string-array name="chooseStateType">
+        <item>اختر نوع العقار</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string-array name="ld_activityScreenTitles">
+        <item>Dashboard</item>
+        <item>My Account</item>
+        <item>Messages</item>
+        <item>Cart</item>
+        <item />
+        <item>Log Out</item>
+    </string-array>
+
+    <array name="ld_activityScreenIcons">
+        <item>@drawable/group9834</item>
+        <item>@drawable/group9833</item>
+        <item>@drawable/group9832</item>
+        <item>@drawable/group9831</item>
+        <item>0</item>
+        <item>@drawable/polygon9</item>
+    </array>
+
+
+
+</resources>
