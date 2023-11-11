@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="20dp"
+    card_view:cardBackgroundColor="@color/cardViewBackgroundColor"
+    card_view:cardUseCompatPadding="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:scaleType="fitXY"
+            android:id="@+id/image"
+            android:background="#DDD"
+            >
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_sign_up_btn"
+                android:text="عرض تقرير المعاين"
+                android:textColor="#FFF"
+                android:id="@+id/showPrevReport"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:visibility="gone"
+                />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/nameOforder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:text="Name"
+                    android:layout_marginBottom="8dp"
+                    android:textDirection="rtl"
+                    />
+                <TextView
+                    android:id="@+id/descriptionOforder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textDirection="rtl"
+                    android:text="Description"
+                    android:maxLines="2"
+                    />
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/comments"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/comentIcon"
+                android:src="@drawable/group9906"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:text="@string/comments"
+                android:textColor="#000"
+                android:layout_toRightOf="@id/comentIcon" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/companyName1"
+                android:textColor="#585858"
+                android:text="@string/address"
+                android:layout_alignParentRight="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@id/companyName1"
+                android:id="@+id/companyName"
+                android:text="شركة الأحمدية"
+                android:textColor="#000"
+
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_sign_up_btn"
+                android:text="@string/showDetails"
+                android:textColor="#FFF"
+                android:id="@+id/showdetails"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                />
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/custom_sign_up_btn"-->
+<!--                android:text="عرض تقرير الشركة"-->
+<!--                android:textColor="#FFF"-->
+<!--                android:id="@+id/showCompanyReport"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                />-->
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

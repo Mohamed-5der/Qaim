@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "180847426995",
+    "project_id": "qaim-378716",
+    "storage_bucket": "qaim-378716.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180847426995:android:daeef002c1ce917f131fc6",
+        "android_client_info": {
+          "package_name": "com.qaim.qaim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180847426995-i3b12e5d7ccddlkl52iodtogoe8vc7b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP1ffrXNPOcHYAGJXKWaznU3QZ8haTAhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180847426995-i3b12e5d7ccddlkl52iodtogoe8vc7b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

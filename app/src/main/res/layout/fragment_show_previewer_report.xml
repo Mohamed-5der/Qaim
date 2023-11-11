@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.ShowPreviewerReportFragment"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/group8937"
+            android:layout_marginTop="-200dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/topView"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ratingReports"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="#FFF"
+                android:textSize="25sp"
+                />
+            <ImageButton
+                android:id="@+id/imageBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/group9810"
+                android:background="#00000000"
+                android:layout_marginRight="16dp"
+                />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topView"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bottom_sheet_dialog"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/Schemeandwidget"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/EditProfileNameEditText"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="16sp"-->
+                <!--                    android:hint="@string/Schemeandwidget"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"/>-->
+                <!--            </LinearLayout>-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                >-->
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="@string/chooseCity"-->
+                <!--                    android:gravity="right"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:layout_marginBottom="8dp"-->
+                <!--                    />-->
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="@string/chooseNeighborhood"-->
+                <!--                    android:gravity="right"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:layout_marginBottom="8dp"-->
+                <!--                    android:layout_marginLeft="8dp"-->
+
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:layout_marginLeft="8dp"-->
+                <!--                    android:layoutDirection="rtl">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_margin="12dp"-->
+                <!--                        android:id = "@+id/neiborhood"-->
+                <!--                        android:gravity="right"-->
+
+                <!--                        />-->
+
+                <!--                </LinearLayout>-->
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:layoutDirection="rtl">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_margin="12dp"-->
+                <!--                        android:id = "@+id/citySpinnerspinner"-->
+                <!--                        android:layout_gravity="center"-->
+                <!--                        />-->
+
+                <!--                </LinearLayout>-->
+
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/realStateLimits"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/addRealStateLimits"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="16sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"/>-->
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/generalRealStateLocation"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/generalRealStateLocation"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="16sp"-->
+                <!--                    android:hint="@string/addGeneralRealStateLocation"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"/>-->
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/attributed"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/attributed"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="16sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"/>-->
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/service"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/addService"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="16sp"-->
+                <!--                    android:hint="@string/addService"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"/>-->
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/theNameOfTheNearestCommercialStreet"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/addstreat"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:hint="@string/addtheNameOfTheNearestCommercialStreet"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/howFarRealstateRatting"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/howFarRealstateRation"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:hint="@string/addHowFarRealstateRation"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/howFarRealstateFromCityCenter"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/howFarRealstateFromCityCenter"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:hint="@string/addHowFarRealstateFromCityCenter"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/theViews"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/theViews"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:hint="@string/addTheViews"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                >-->
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="@string/chooseCity"-->
+                <!--                    android:gravity="right"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:layout_marginBottom="8dp"-->
+                <!--                    />-->
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="@string/chooseNeighborhood"-->
+                <!--                    android:gravity="right"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:layout_marginBottom="8dp"-->
+                <!--                    android:layout_marginLeft="8dp"-->
+
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:layout_marginLeft="8dp"-->
+                <!--                    android:layoutDirection="rtl">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_margin="12dp"-->
+                <!--                        android:id = "@+id/neiborhood2"-->
+                <!--                        android:gravity="right"-->
+                <!--                        />-->
+
+                <!--                </LinearLayout>-->
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:layoutDirection="rtl">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_margin="12dp"-->
+                <!--                        android:id = "@+id/citySpinnerspinner2"-->
+                <!--                        android:layout_gravity="center"-->
+                <!--                        />-->
+
+                <!--                </LinearLayout>-->
+
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:textSize="20sp"-->
+                <!--                android:text="@string/clientData"-->
+                <!--                android:textDirection="rtl"-->
+                <!--                android:textColor="#000"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                />-->
+                <!--            &lt;!&ndash;            client data&ndash;&gt;-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/theDirectionWhichReportDirected"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/theDirection"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/reportUser"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/reportUser"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/thePurposeOf"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/thePurposeOf"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            &lt;!&ndash;            real state data&ndash;&gt;-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:textSize="20sp"-->
+                <!--                android:text="@string/realStateData"-->
+                <!--                android:textDirection="rtl"-->
+                <!--                android:textColor="#000"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                >-->
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="@string/OwnershipType"-->
+                <!--                    android:gravity="left"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:layout_marginBottom="8dp"-->
+                <!--                    />-->
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="@string/realStateLocation"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:layout_marginBottom="8dp"-->
+                <!--                    android:layout_marginLeft="8dp"-->
+                <!--                    />-->
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="@string/realStateType"-->
+                <!--                    android:gravity="right"-->
+                <!--                    android:id="@+id/realStateType"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:layout_marginBottom="8dp"-->
+                <!--                    android:layout_marginLeft="8dp"-->
+
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:layout_marginLeft="8dp"-->
+                <!--                    android:layoutDirection="rtl">-->
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/realsStateType"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:layout_gravity="center" />-->
+
+                <!--                </LinearLayout>-->
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:layout_marginLeft="8dp"-->
+                <!--                    android:layoutDirection="rtl">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:id = "@+id/realStateLocation"-->
+                <!--                        android:layout_gravity="center"-->
+                <!--                        />-->
+
+                <!--                </LinearLayout>-->
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:layoutDirection="rtl">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:id = "@+id/ownerShipType"-->
+                <!--                        android:layout_gravity="center"-->
+                <!--                        />-->
+
+                <!--                </LinearLayout>-->
+
+                <!--            </LinearLayout>-->
+
+                <!--            &lt;!&ndash;            rate Data&ndash;&gt;-->
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:textSize="20sp"-->
+                <!--                android:text="@string/rateData"-->
+                <!--                android:textDirection="rtl"-->
+                <!--                android:textColor="#000"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                />-->
+
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/valueBasis"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/valueBasis"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/rateDate"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/rateDate"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/previewDate"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/previewDate"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/rateTechniques"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/rateTechniques"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/approvedStyleAndMethod"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/approvedStyleAndMethod"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/valueHypothesis"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/valueHypothesis"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/evaluationCriteria"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="85dp"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/evaluationCriteria"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/independentConflictOfInterest"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="85dp"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/independentConflictOfInterest"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/referenceNumber"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/referenceNumber"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/reportType"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/reportType"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="@string/reportDate"-->
+                <!--                android:gravity="right"-->
+                <!--                android:layout_marginTop="8dp"-->
+                <!--                android:layout_marginBottom="8dp"-->
+                <!--                />-->
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layoutDirection="rtl">-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/reportDate"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:padding="8dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:gravity="center_vertical"-->
+                <!--                    android:background="#00000000"-->
+                <!--                    android:textDirection="rtl"-->
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/addAttributed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00000000"
+                        android:gravity="center_vertical"
+                        android:textDirection="rtl" />
+                </RelativeLayout>
+
+
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:id="@+id/image_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    app:iss_auto_cycle="true"
+                    app:iss_period="3000"
+                    app:iss_delay="0"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reportVersion"
+                    android:gravity="right"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl"
+                    android:id="@+id/reportVersion"
+                    android:background="@drawable/custom_edittext_field"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svgexport_2"
+                            android:id="@+id/image"
+                            android:layout_gravity="center"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="4dp"
+                            android:textSize="16sp"
+                            android:textColor="#000"
+                            android:id="@+id/tvDocName"
+                            />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_sign_up_btn"
+                    android:text="اوافق على التقرير"
+                    android:textColor="#FFF"
+                    android:id="@+id/accept"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_edit_orders_btn"
+                    android:text="لا اوافق على التقرير"
+                    android:textColor="#FFF"
+                    android:id="@+id/reject"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="168dp"
+                    />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+</ScrollView>

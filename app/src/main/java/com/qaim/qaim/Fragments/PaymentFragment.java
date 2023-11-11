@@ -1,0 +1,111 @@
+package com.qaim.qaim.Fragments;
+
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
+
+import com.qaim.qaim.R;
+
+import java.util.Locale;
+
+
+public class PaymentFragment extends Fragment {
+
+
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "param3";
+
+    private String mParam1;
+    private int id;
+    private String companyName;
+    EditText costEditText ;
+    Button payBtn ;
+    TextView company ;
+
+    public PaymentFragment() {
+        // Required empty public constructor
+    }
+
+
+    public static PaymentFragment newInstance(String param1 , int id , String companyName) {
+        PaymentFragment fragment = new PaymentFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putInt(ARG_PARAM2, id);
+        args.putString(ARG_PARAM3, companyName);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            id = getArguments().getInt(ARG_PARAM2);
+            companyName = getArguments().getString(ARG_PARAM3);
+
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_payment, container, false);
+        company = v.findViewById(R.id.comp);
+        ImageButton imageButton = v.findViewById(R.id.imageBtn);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OrderDetailsFragment fragment =OrderDetailsFragment.newInstance(id);
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction().
+                        replace(R.id.frameLayout , fragment).commit();
+            }
+        });
+        Locale.setDefault(Locale.ENGLISH);
+        Resources res = getContext().getResources();
+
+        Locale locale = new Locale("en");
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+        company.setText( companyName+" المبلغ مقدم مقابل خدمات شركة ");
+
+        res.updateConfiguration(config, res.getDisplayMetrics());
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        costEditText = v.findViewById(R.id.emailEditText);
+        payBtn = v.findViewById(R.id.endOrderBtn);
+
+
+        return v ;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        costEditText.setText(mParam1 + " ريال ");
+        payBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PaymentLastStepFragment paymentLastStepFragment = PaymentLastStepFragment.newInstance(id ,mParam1 , companyName);
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout , paymentLastStepFragment).commit();
+            }
+        });
+    }
+}

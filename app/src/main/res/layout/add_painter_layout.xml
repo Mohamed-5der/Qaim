@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        card_view:cardBackgroundColor="@color/cardViewBackgroundColor"
+        card_view:cardCornerRadius="10dp"
+        android:id="@+id/artistCardView"
+        card_view:cardUseCompatPadding="true"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:id="@+id/relArtisiDetails"
+                >
+                <androidx.cardview.widget.CardView
+                    android:layout_width="64dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    card_view:cardCornerRadius="10dp"
+                    android:id="@+id/imageCard"
+                    >
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/icon"
+                        android:id="@+id/artistImage"
+                        android:scaleType="fitXY"
+                        />
+                </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_toLeftOf="@id/imageCard"
+                    android:layout_marginRight="8dp"
+                    android:layout_centerVertical="true"
+                    android:textDirection="rtl"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/artistName"
+                        android:textSize="14sp"
+                        android:textColor="#303030"
+                        android:text="Name"
+                        android:maxLines="1"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/artistDescription"
+                        android:textSize="12sp"
+                        android:textColor="#303030"
+                        android:layout_marginTop="8dp"
+                        android:text="Description"
+                        android:maxLines="2"
+                        />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/relArtisiDetails"
+                android:id="@+id/firstBtns"
+                >
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_end_orders_btn"
+                    android:text="@string/edit"
+                    android:id="@+id/editBtn"
+                    android:textColor="#FFF"
+                    android:layout_margin="8dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/firstBtns"
+                >
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_accept_btn"
+                    android:text="@string/sendFile"
+                    android:id="@+id/sendDataBtn"
+                    android:textColor="#FFF"
+                    android:layout_margin="8dp"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_edit_orders_btn"
+                    android:text="@string/delete"
+                    android:id="@+id/deletBtn"
+                    android:textColor="#FFF"
+                    android:layout_margin="8dp"
+                    android:layout_below="@id/relArtisiDetails"
+                    />
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

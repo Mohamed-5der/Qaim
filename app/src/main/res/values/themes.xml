@@ -18,6 +18,16 @@
     <style name="DialogAnimation" >
         <item name="android:windowEnterAnimation">@anim/bottom_sheet_out</item>
         <item name="android:windowExitAnimation">@anim/bottom_sheet_anim</item>
-
     </style>
+
+    <style name="ImageDialogAnimation" >
+        <item name="android:windowEnterAnimation">@anim/bottom_sheet_out</item>
+        <item name="android:windowExitAnimation">@anim/bottom_sheet_anim</item>
+    </style>
+
+    <style name="alertAnimation" >
+        <item name="android:windowEnterAnimation">@anim/alert_animation</item>
+        <item name="android:windowExitAnimation">@anim/alert_close_animation</item>
+    </style>
+
 </resources>

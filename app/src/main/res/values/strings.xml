@@ -1,14 +1,5 @@
 <resources>
     <string name="app_name">Qaim</string>
-    <string name="shared_prefrences">shared_prefrences</string>
-
-<!--    Shared Preferences Keys   -->
-    <string name="token">token</string>
-    <string name="user_type">user_type</string>
-
-
-
-
     <!--    <string name="LogIn">Log In</string>-->
     <!--    <string name="LogInAsClient">Log In Client</string>-->
     <!--    <string name="registerAsIndividual">Create new Account</string>-->
@@ -264,7 +255,7 @@
     <!--        <string name="showProfile">Show Profile</string>-->
 
     <string name="LogIn">تسجيل الدخول</string>
-    <string name="LogInAsClient">تسجيل دخول العميل</string>
+    <string name="LogInAsClient">انشاء حساب جديد</string>
     <string name="registerAsIndividual">إنشاء حساب جديد</string>
     <string name="registerAsCompany">إنشاء حساب جديد</string>
     <string name="registerAsPreviewer">إنشاء حساب جديد</string>
@@ -292,22 +283,25 @@
     <string name="showFile">عرض الملف</string>
     <string name="individual">فرد</string>
     <string name="licence">اضافة بطاقة ضريبية</string>
+    <string name="addNumLicence">اضافة الرقم الضريبي</string>
     <string name="client">عميل</string>
-    <string name="client_company_name">اسم المستخدم او الشركة</string>
+    <string name="client_company_name">اسم المستخدم</string>
     <string name="company_name">اسم الشركة</string>
     <string name="name">الاسم</string>
-    <string name="addId">اضافة بطاقة الهوية الشخصية</string>
+    <string name="addId">اضافة بطاقة الهوية الوطنية</string>
     <string name="client_company_email">البريد الالكتروني</string>
     <string name="chooseCity">اختر المدينة</string>
     <string name="chooseNeighborhood">اختر المنطقة</string>
     <string name="addEstatePhoto">اضافة صور العقار</string>
     <string name="addLocation">اضافة موقع</string>
-    <string name="client_company_phone">رقم التليفون</string>
+    <string name="client_company_phone">رقم الجوال</string>
     <string name="editeProfile">تعديل الملف الشخصي</string>
     <string name="myOrders">طلباتي</string>
+    <string name="allOrders">العقارات التي تم تقييمها</string>
     <string name="ordersDetails">تفاصيل الطلب</string>
     <string name="ordersDetailsAcceptable">تفاصيل طلب مقبول</string>
     <string name="myOffers">عروضي</string>
+    <string name="alloffers">عروض الأسعار المقدمة لشركات التقييم</string>
     <string name="busInProcess">الأعمال الجارية</string>
     <string name="addRealState">اضافة عقار</string>
     <string name="TypeRealState">نوع العقار</string>
@@ -318,6 +312,7 @@
     <string name="company">شركة</string>
     <string name="previewer">معاين</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mapKey">=</string>
     <!--    <string name="addInfo">Add Information</string>-->
     <!--    <string name="addFess">Add Fees</string>-->
     <!--    <string name="fess">Fess</string>-->
@@ -438,8 +433,8 @@
     <!--    <string name="pay">Pay</string>-->
     <!--    <string name="cardNumber">Number Of Card</string>-->
     <string name="addInfo">اضافة معلومات</string>
-    <string name="addFess">اضافة رسوم</string>
-    <string name="fess">رسوم</string>
+    <string name="addFess">اضافة رسوم المعاينة</string>
+    <string name="fess">رسوم المعاينة</string>
     <string name="chooseArea">اختار المنطقة</string>
     <string name="InfoAboutMe">معلومات اضافية عني </string>
     <string name="addInfoAboutMe">اضف معلومات تعريفية</string>
@@ -453,7 +448,7 @@
     <string name="submitReport">تقديم تقرير المعاينة</string>
     <string name="comments">التعليقات</string>
     <string name="companyName">اسم الشركة</string>
-    <string name="phone">الهاتف</string>
+    <string name="phone">رقم الجوال</string>
     <string name="whatsApp">الواتساب</string>
     <string name="Schemeandwidget">المخطط و القطعة</string>
     <string name="realStateLimits">حدود العقار</string>
@@ -461,6 +456,7 @@
     <string name="generalRealStateLocation">الموقع العالم للعقار</string>
     <string name="addGeneralRealStateLocation">اضافة الموقع العام للعقار</string>
     <string name="attributed">الخصائص</string>
+    <string name="attributes">المنسوب</string>
     <string name="addAttributed">اضافة خصائص</string>
     <string name="writingPreviewReports">كتابة تقارير المعاينة</string>
     <string name="writeReports">كتابة تقارير</string>
@@ -481,9 +477,11 @@
     <string name="addNotes">اضف ملاحظات</string>
     <string name="addNotesHere">اضف ملاحظات هنا</string>
     <string name="uploadRealstatePicture">رفع صور العقار</string>
-    <string name="uploadFile">رغع ملف</string>
+    <string name="uploadFile">رفع ملف</string>
+    <string name="endReport">التقرير النهائي</string>
     <string name="fileName">اسم الملف</string>
     <string name="myBalance">رصيدي</string>
+    <string name="termsAndConditions">شروط و أحكام</string>
     <string name="balanceDue">الرصيد المستحق</string>
     <string name="submitPreviewReports">إرسال تقارير المعاينة</string>
     <string name="pullBalance">سحب الرصيد</string>
@@ -493,7 +491,7 @@
     <string name="projects">المشاريع</string>
     <string name="showDetails">مشاهدة التفاصيل</string>
     <string name="realStateDetails">تفاصيل العقار</string>
-    <string name="cost">التكلفة</string>
+    <string name="cost">تكلفة التقييم</string>
     <string name="Notes">ملاحظات</string>
     <string name="realStateType">نوع العقار</string>
     <string name="neighborhood">المنطقة</string>
@@ -503,7 +501,7 @@
     <string name="writeRates">كتابة التقييم</string>
     <string name="sendFile">ارسال الملف</string>
     <string name="endProject">انهاء المشروع</string>
-    <string name="draft">المسودة</string>
+    <string name="draft">الملف التعريفي للشركة / ملحقات</string>
     <string name="sendRateDisplay">ارسال عرض تقييم</string>
     <string name="choosePreviewer">اختر المعاين</string>
     <string name="chooseArtist">اختر الرسام</string>
@@ -513,6 +511,7 @@
     <string name="sendData">إرسال بيانات</string>
     <string name="userName">اسم المستخدم</string>
     <string name="password">كلمة المرور</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
     <string name="addAddtionalData">اضافة بيانات اخرى</string>
     <string name="add">اضافة</string>
     <string name="AddArtist">اضافة رسام</string>
@@ -551,7 +550,7 @@
     <string name="youNotHaveAccount">ليس لديك حساب </string>
     <string name="Realstate">عقارات</string>
     <string name="description">وصف</string>
-    <string name="pound">جنية</string>
+    <string name="pound">ريال</string>
     <string name="offerDetails">تفاصيل العرض</string>
     <string name="UpdateRealeState">تعديل العقار</string>
     <string name="pay">دفع</string>
@@ -587,7 +586,7 @@
     <string name="Year">سنة</string>
     <string name="Month">شهر</string>
     <string name="chooseRegion">اختر المنطقة</string>
-    <string name="identity">بطاقة الهوية</string>
+    <string name="identity">الهوية الوطنية</string>
     <string name="address">العنوان</string>
     <string name="sendPassword">ارسال كلمة المرور</string>
     <string name="passwordReset">استرجاع كلمة المرور</string>
@@ -609,6 +608,57 @@
     <string name="choose">اختيار</string>
     <string name="showProfile">مشاهدة الحساب</string>
     <string name="showReport">عرض التقرير</string>
-    <string name="copyright">QAIM FOR REAL ESTATE APPRAISAL</string>
+    <string name="projectCompleted">اكتمال المشروع</string>
+    <string name="file">الملف</string>
+    <string name="chooseClientRegion">اختر منطقة العميل</string>
+    <string name="chooseClientCity">اختر مدينة العميل</string>
+    <string name="noData">عفوا لا يوجد بيانات لعرضها</string>
+    <string name="default_notification_channel_id">noti chanal id</string>
+    <string name="default_notification_channel_name">noti chanal name</string>
+    <string name="south">جنوبا</string>
+    <string name="tall">بطول</string>
+    <string name="east">شرق</string>
+    <string name="west">غرب</string>
+    <string name="building_condition">حالة المبنى</string>
+    <string name="general_description">وصف عام للتشطيب</string>
+    <string name="theNumberOfTurns">عدد الاأدوار</string>
+    <string name="landRate">تقييم الأرض</string>
+    <string name="buildingRate">تقييم المباني</string>
+    <string name="totalCost">اجمالي تكاليف العقار</string>
+    <string name="marketing_value">القيمة التسويقية</string>
+    <string name="realestate_comparing">مقارانات العقار</string>
+    <string name="conflict_interest">الافصاح في حالة تعارض المصالح</string>
+    <string name="measurement">القياس</string>
+    <string name="preview">المعاينة</string>
+    <string name="previewerNotes">ملاحظات المعاين العامة</string>
+    <string name="reportCurrency">عملة التقييم</string>
+    <string name="own_assumptions">الافتراضات و الافتراضيات الخاصة</string>
+    <string name="reliable_data">البيانات المعتمد عليها</string>
+    <string name="company_opinion">الرأي الخاص بالشركة</string>
+    <string name="in_range">داخل النطاق</string>
+    <string name="realeStateCode">كود العقار</string>
+    <string name="general_description_realestate">وصف عام للعقار</string>
+    <string name="description_location">وصف موقع العقار</string>
+    <string name="instrument_number">رقم الصك</string>
+    <string name="his_date">تاريخه</string>
+    <string name="infrastructure">البنية التحتية</string>
+    <string name="realState_age">عمر العقار</string>
+    <string name="readyForUse">جاهز للاستخدام</string>
+    <string name="ready">جاهز</string>
+    <string name="under_construction">تحت الانشاء</string>
+    <string name="space">فضاء</string>
+    <string name="number">رقم</string>
+    <string name="piece_number">رقم القطعة</string>
+    <string name="source">المصدر</string>
+    <string name="entry_type">نوع القيد</string>
+    <string name="distance">المساحة</string>
+    <string name="north">شمالا</string>
+    <string name="fcm_message">Qaim</string>
+    <string name="msg_subscribed">msg_subscribed</string>
+    <string name="msg_subscribe_failed">msg_subscribe_failed</string>
+    <string name="msg_token_fmt">msg_token_fmt</string>
+    <string name="licenceNum">الرقم الضريبي</string>
+    <string name="allRealstate">جميع العقارات</string>
+    <string name="add_location">اضف موقع</string>
 
 </resources>
