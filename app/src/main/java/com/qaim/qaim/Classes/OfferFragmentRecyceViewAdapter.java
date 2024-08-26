@@ -96,7 +96,7 @@ int id ;
         public void onBind(DataItem details){
             companyName = details.getCompany().getName() ;
             offerCompanyName.setText(companyName);
-            offerPrice.setText(cost + " ريال ");
+            offerPrice.setText( "التكلفه : "+cost);
             offerDescription.setText(details.getNotes());
             acceptedBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
