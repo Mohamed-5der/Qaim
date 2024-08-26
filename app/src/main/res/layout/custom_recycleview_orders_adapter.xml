@@ -33,6 +33,7 @@
                 android:background="@drawable/custom_text_view_status"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
+                android:drawableStart="@drawable/eye"
                 android:layout_marginTop="16dp"
                 android:id="@+id/status"
                 android:textColor="#FFF"

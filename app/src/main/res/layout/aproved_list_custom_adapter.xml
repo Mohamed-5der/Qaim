@@ -29,6 +29,7 @@
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_text_view_status"
+                            android:drawableStart="@drawable/eye"
                             android:layout_alignParentTop="true"
                             android:layout_alignParentLeft="true"
                             android:layout_marginTop="16dp"
