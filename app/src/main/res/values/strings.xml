@@ -260,7 +260,7 @@
     <string name="registerAsCompany">إنشاء حساب جديد</string>
     <string name="registerAsPreviewer">إنشاء حساب جديد</string>
     <string name="singIn">تسجيل الدخول</string>
-    <string name="end">إنهاء</string>
+    <string name="end">حذف</string>
     <string name="edit">تعديل</string>
     <string name="report">تقرير</string>
     <string name="payment">المدفوعات</string>
