@@ -292,16 +292,18 @@ public class AddRealStateFragment extends Fragment  implements GetRealestateLoca
                String addtional = String.valueOf(addAddtionalDetails.getText());
                String tittleText = String.valueOf(tittle.getText());
 
-//               if (tittleText.isEmpty()) {
-//                   Toast.makeText(getContext(), "ادخل الاسم", Toast.LENGTH_SHORT).show();
-//               } else if (area.isEmpty()) {
-//                   Toast.makeText(getContext(), "ادخل المساحه", Toast.LENGTH_SHORT).show();
-//               } else if (area.isEmpty()) {
-//                   Toast.makeText(getContext(), "ادخل البيانات الاضافية", Toast.LENGTH_SHORT).show();
-//               } else if (latitude == 0.0 || longitude == 0.0){
+               if (tittleText.isEmpty()) {
+                   Toast.makeText(getContext(), "ادخل الاسم", Toast.LENGTH_SHORT).show();
+               } else if (area.isEmpty()) {
+                   Toast.makeText(getContext(), "ادخل المساحه", Toast.LENGTH_SHORT).show();
+               } else if (area.isEmpty()) {
+                   Toast.makeText(getContext(), "ادخل البيانات الاضافية", Toast.LENGTH_SHORT).show();
+               }
+//               else if (latitude == 0.0 || longitude == 0.0){
 //                   Toast.makeText(getContext(), "ادخل الموقع", Toast.LENGTH_SHORT).show();
-//               } else
-//               {
+//               }
+               else
+               {
                    HashMap<String, RequestBody> map = new HashMap<>();
                    map.put("title", RequestBody.create(MultipartBody.FORM , tittle.getText().toString()));
                    map.put("description", RequestBody.create(MultipartBody.FORM , addAddtionalDetails.getText().toString()));
@@ -358,7 +360,7 @@ public class AddRealStateFragment extends Fragment  implements GetRealestateLoca
                            Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                        }
                    });
-//               }
+           }
 
            }
        });
