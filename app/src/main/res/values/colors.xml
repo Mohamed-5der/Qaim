@@ -13,5 +13,8 @@
     <color name="refusedBackgroundColor">#CE3B48</color>
     <color name="acceptedBackgroundColor">#1ED58E</color>
     <color name="red">#CE3B48</color>
+    <color name="color_background_box">#F5F5F5</color>
+    <color name="color_background_box_stroke">#DEDEDE</color>
+    <color name="color_background_box_stroke_active">#A5A5A5</color>
 
 </resources>

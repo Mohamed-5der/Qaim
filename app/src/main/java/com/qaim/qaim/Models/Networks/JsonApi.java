@@ -15,6 +15,7 @@ import com.qaim.qaim.Classes.DeleteRealstateUserParams;
 import com.qaim.qaim.Classes.FileIdParams;
 import com.qaim.qaim.Classes.InfoParams;
 import com.qaim.qaim.Classes.LoginParams;
+import com.qaim.qaim.Classes.OTPParams;
 import com.qaim.qaim.Classes.OrderListItemParams;
 import com.qaim.qaim.Classes.PaymentParams;
 import com.qaim.qaim.Classes.PrevListParams;
@@ -73,6 +74,7 @@ import com.qaim.qaim.Models.MyListTeamReports.MyListTeamReportResponse;
 import com.qaim.qaim.Models.MyRealstateCompanyList.MyRealstateCompanyResponse;
 import com.qaim.qaim.Models.Notification.NotiResponse;
 import com.qaim.qaim.Models.OrderListUserResponse.OrderListUserResponse;
+import com.qaim.qaim.Models.OtpResponse.OtpResponse;
 import com.qaim.qaim.Models.PreviewerMakeReport.PreviewerMakeReportResponse;
 import com.qaim.qaim.Models.PreviewerRegisterResponse.PreviewerRegisterResponse;
 import com.qaim.qaim.Models.PreviwerPayments.PreviewerPaymentsResponse;
@@ -126,7 +128,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 
-public interface JsonApi {
+public interface  JsonApi {
     //realstate
     @POST("/api/user/realestate-list")
     Call<RealstateListUserResponse> getAllRealstateList(@Header("Authorization") String token);
@@ -377,5 +379,10 @@ Call<RealstateStoreUserResponse> storeRealstate(@Header("Authorization") String 
     @POST("/api/notifications")
     Call<NotiResponse> notifications(@Header("Authorization") String token);
 
-
+    @POST("/api/user/verify-account")
+    Call<OtpResponse> verifyUser(@Header("Authorization") String token, @Body OTPParams params);
+    @POST("/api/company/verify-account")
+    Call<OtpResponse> verifyCompany(@Header("Authorization") String token, @Body OTPParams params);
+    @POST("/api/previewer/verify-account")
+    Call<OtpResponse> verifyPreviewer(@Header("Authorization") String token, @Body OTPParams params);
 }

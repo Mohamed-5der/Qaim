@@ -103,36 +103,40 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 String sign = spSignUp.getString("yes" , "");
 
-               switch (sign) {
-                   case "individualClient" :
-                       startActivity(new Intent(SplashScreen.this , MainActivity.class));
-                       finishAffinity();
-                       break;
-                   case "company" :
-                       startActivity(new Intent(SplashScreen.this , CompanyActivity.class));
-                       finishAffinity();
-                       break;
+                boolean verified = spSignUp.getBoolean("isVerified",false );
 
-                   case "previewer" :
-                       startActivity(new Intent(SplashScreen.this , PreviewerActivity.class));
-                       finishAffinity();
-                       break;
+                if(verified) {
+                    switch (sign) {
+                        case "individualClient":
+                            startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                            finishAffinity();
+                            break;
+                        case "company":
+                            startActivity(new Intent(SplashScreen.this, CompanyActivity.class));
+                            finishAffinity();
+                            break;
 
-                   case "painter" :
-                       startActivity(new Intent(SplashScreen.this , EmployeeActivity.class));
-                       Toast.makeText(getApplicationContext(), "splash painter error", Toast.LENGTH_LONG).show();
-                       finishAffinity();
-                       break;
+                        case "previewer":
+                            startActivity(new Intent(SplashScreen.this, PreviewerActivity.class));
+                            finishAffinity();
+                            break;
 
-                   case "reviewer" :
-                       startActivity(new Intent(SplashScreen.this , EmployeeActivity.class));
-                       Toast.makeText(getApplicationContext(), "splash reviewer error", Toast.LENGTH_LONG).show();
-                       finishAffinity();
-                       break;
+                        case "painter":
+                            startActivity(new Intent(SplashScreen.this, EmployeeActivity.class));
+                            Toast.makeText(getApplicationContext(), "splash painter error", Toast.LENGTH_LONG).show();
+                            finishAffinity();
+                            break;
 
-                   default:
-                       showLoginDialog();
-               }
+                        case "reviewer":
+                            startActivity(new Intent(SplashScreen.this, EmployeeActivity.class));
+                            Toast.makeText(getApplicationContext(), "splash reviewer error", Toast.LENGTH_LONG).show();
+                            finishAffinity();
+                            break;
+
+                        default:
+                            showLoginDialog();
+                    }
+                }
             }
         } , 0);
 

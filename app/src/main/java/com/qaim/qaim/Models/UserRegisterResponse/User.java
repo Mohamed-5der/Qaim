@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class User{
 
+	@SerializedName("is_verified")
+	private int isVerified;
+
 	@SerializedName("image")
 	private String image;
 
@@ -37,6 +40,14 @@ public class User{
 
 	public String getImage(){
 		return image;
+	}
+
+	public int getIsVerified() {
+		return isVerified;
+	}
+
+	public void setIsVerified(int isVerified) {
+		this.isVerified = isVerified;
 	}
 
 	public void setLicense(Object license){

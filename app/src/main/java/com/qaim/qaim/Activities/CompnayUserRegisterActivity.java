@@ -280,9 +280,9 @@ public class CompnayUserRegisterActivity extends AppCompatActivity {
                                         tokenEditor.commit();
                                         signUpEditor.putString("yes", "individualClient");
                                         signUpEditor.apply();
-                                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                        Intent i = new Intent(getApplicationContext(), OTPActivity.class);
                                         startActivity(i);
-                                        finishAffinity();
+//                                        finishAffinity();
                                     } else {
                                         Toast.makeText(getApplicationContext(), companyUserRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
@@ -323,7 +323,8 @@ public class CompnayUserRegisterActivity extends AppCompatActivity {
                                         tokenEditor.commit();
                                         signUpEditor.putString("yes", "company");
                                         signUpEditor.apply();
-                                        Intent i = new Intent(getApplicationContext(), CompanyActivity.class);
+                                        saveVerification(companyUserRegisterResponse.getData().getCompany().getIsVerified() == 1);
+                                        Intent i = new Intent(getApplicationContext(), OTPActivity.class);
                                         startActivity(i);
                                         finishAffinity();
                                     } else {
@@ -357,7 +358,10 @@ public class CompnayUserRegisterActivity extends AppCompatActivity {
         }
     }
 
-
+    private void saveVerification(boolean isVerified) {
+        SplashScreen.signUpEditor.putBoolean("isVerified", isVerified);
+        SplashScreen.signUpEditor.apply();
+    }
 
     public void uploadFile(Uri uri) throws IOException {
         if (uri != null) {

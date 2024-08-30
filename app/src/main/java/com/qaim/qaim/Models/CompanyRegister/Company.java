@@ -7,6 +7,9 @@ public class Company{
 	@SerializedName("image")
 	private String image;
 
+	@SerializedName("is_verified")
+	private int isVerified;
+
 	@SerializedName("phone")
 	private String phone;
 
@@ -40,6 +43,14 @@ public class Company{
 
 	public String getImage(){
 		return image;
+	}
+
+	public int getIsVerified() {
+		return isVerified;
+	}
+
+	public void setIsVerified(int isVerified) {
+		this.isVerified = isVerified;
 	}
 
 	public void setPhone(String phone){

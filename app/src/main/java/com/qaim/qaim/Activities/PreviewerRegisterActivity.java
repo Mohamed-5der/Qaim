@@ -321,10 +321,11 @@ public class PreviewerRegisterActivity extends AppCompatActivity {
                                 tokenEditor.commit();
                                 signUpEditor.putString("yes" , "previewer");
                                 signUpEditor.apply();
+                                saveVerification(userRegisterResponse.getData().getPreviewer().getIsVerified() == 1);
                                 Toast.makeText(getApplicationContext(),userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getApplicationContext() , PreviewerActivity.class);
+                                Intent i = new Intent(getApplicationContext() , OTPActivity.class);
                                 startActivity(i);
-                                finishAffinity();
+//                                finishAffinity();
                             }
                             else {
                                 Toast.makeText(getApplicationContext(),userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
@@ -352,6 +353,12 @@ public class PreviewerRegisterActivity extends AppCompatActivity {
 //        });
 
     }
+
+    private void saveVerification(boolean isVerified) {
+        SplashScreen.signUpEditor.putBoolean("isVerified", isVerified);
+        SplashScreen.signUpEditor.apply();
+    }
+
     public void uploadFile(Uri uri) throws IOException {
         if (uri != null) {
             File file =getFile(this,uri);

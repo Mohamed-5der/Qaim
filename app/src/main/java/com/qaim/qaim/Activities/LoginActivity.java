@@ -152,36 +152,57 @@ public class LoginActivity extends AppCompatActivity {
                             acountType = loginResponse.getData().getAccountType();
                             tokenEditor.putString("token_key" , token);
                             tokenEditor.commit();
+                            saveVerification(loginResponse.getData().getUser().getIsVerified() == 1);
                             switch (acountType){
                                 case "user_user" :
                                 case "user_company" :
-                                    Intent i = new Intent(getApplicationContext() , MainActivity.class);
                                     signUpEditor.putString("yes" , "individualClient");
                                     signUpEditor.apply();
-                                    startActivity(i);
-                                    finishAffinity();
-                                    if (!loginResponse.getMessage().isEmpty()){
-                                        Toast.makeText(getApplicationContext(), loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                    if (loginResponse.getData().getUser().getIsVerified() == 1) {
+                                        Intent i = new Intent(getApplicationContext() , MainActivity.class);
+                                        startActivity(i);
+                                        finishAffinity();
+                                        if (!loginResponse.getMessage().isEmpty()){
+                                            Toast.makeText(getApplicationContext(), loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Intent i = new Intent(getApplicationContext() , OTPActivity.class);
+                                        startActivity(i);
                                     }
                                     break;
                                 case "company" :
-                                    Intent i2 = new Intent(getApplicationContext() , CompanyActivity.class);
                                     signUpEditor.putString("yes" , "company");
                                     signUpEditor.apply();
-                                    startActivity(i2);
-                                    finishAffinity();
-                                    if (!loginResponse.getMessage().isEmpty()){
-                                        Toast.makeText(getApplicationContext(), loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }                                    break;
+
+                                    if (loginResponse.getData().getUser().getIsVerified() == 1) {
+                                        Intent i2 = new Intent(getApplicationContext(), CompanyActivity.class);
+                                        startActivity(i2);
+                                        finishAffinity();
+                                        if (!loginResponse.getMessage().isEmpty()) {
+                                            Toast.makeText(getApplicationContext(), loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Intent i2 = new Intent(getApplicationContext() , OTPActivity.class);
+                                        startActivity(i2);
+                                    }
+                                    break;
                                 case "previewer" :
-                                    Intent i3 = new Intent(getApplicationContext() , PreviewerActivity.class);
                                     signUpEditor.putString("yes" , "previewer");
                                     signUpEditor.apply();
-                                    startActivity(i3);
-                                    finishAffinity();
-                                    if (!loginResponse.getMessage().isEmpty()){
-                                        Toast.makeText(getApplicationContext(), loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }                                    break;
+
+                                    if (loginResponse.getData().getUser().getIsVerified() == 1) {
+                                        Intent i3 = new Intent(getApplicationContext(), PreviewerActivity.class);
+                                        startActivity(i3);
+                                        finishAffinity();
+                                        if (!loginResponse.getMessage().isEmpty()) {
+                                            Toast.makeText(getApplicationContext(), loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Intent i3 = new Intent(getApplicationContext() , OTPActivity.class);
+                                        startActivity(i3);
+                                    }
+                                    break;
                                 case "painter" :
                                     Intent i4 = new Intent(getApplicationContext() , EmployeeActivity.class);
                                     signUpEditor.putString("yes" , "painter");
@@ -231,9 +252,6 @@ public class LoginActivity extends AppCompatActivity {
                         spNotiTokenEditor.putString(NOTI_KEY ,notiToken);
                         spNotiTokenEditor.commit();
 
-                        // Log and toast
-                        String msg = getString(R.string.msg_token_fmt, notiToken);
-                        Log.d(TAG, msg);
 //                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -257,7 +275,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
+    private void saveVerification(boolean isVerified) {
+        SplashScreen.signUpEditor.putBoolean("isVerified", isVerified);
+        SplashScreen.signUpEditor.apply();
+    }
 
     public void getNotificationPermission(){
         try {

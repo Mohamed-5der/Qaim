@@ -180,10 +180,11 @@ public class ClientUserActivity extends AppCompatActivity {
                                 tokenEditor.commit();
                                 signUpEditor.putString("yes", "individualClient");
                                 signUpEditor.apply();
+                                saveVerification(userRegisterResponse.getData().getUser().getIsVerified() == 1);
                                 Toast.makeText(getApplicationContext(), userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent i = new Intent(getApplicationContext(), OTPActivity.class);
                                 startActivity(i);
-                                finishAffinity();
+//                                finishAffinity();
                             } else {
                                 Toast.makeText(getApplicationContext(), userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -199,5 +200,10 @@ public class ClientUserActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void saveVerification(boolean isVerified) {
+        SplashScreen.signUpEditor.putBoolean("isVerified", isVerified);
+        SplashScreen.signUpEditor.apply();
     }
 }

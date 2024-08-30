@@ -7,6 +7,9 @@ public class Previewer{
 	@SerializedName("image")
 	private String image;
 
+	@SerializedName("is_verified")
+	private int isVerified;
+
 	@SerializedName("cost")
 	private Object cost;
 
@@ -67,6 +70,14 @@ public class Previewer{
 
 	public String getImage(){
 		return image;
+	}
+
+	public int getIsVerified() {
+		return isVerified;
+	}
+
+	public void setIsVerified(int isVerified) {
+		this.isVerified = isVerified;
 	}
 
 	public void setCost(Object cost){
