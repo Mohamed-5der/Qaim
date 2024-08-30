@@ -1,27 +1,23 @@
 package com.qaim.qaim.Activities;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationRequest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -34,8 +30,6 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-import com.qaim.qaim.Fragments.AddRealStateFragment;
-import com.qaim.qaim.Helper.GetRealestateLocation;
 import com.qaim.qaim.R;
 
 
@@ -52,7 +46,6 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
     private LocationManager locationManager ;
     private GoogleMap googleMap;
 
-    private GetRealestateLocation getRealestateLocation ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +70,10 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext() , "تم اضافة موقع" , Toast.LENGTH_SHORT).show();
-                getRealestateLocation = new AddRealStateFragment();
-                getRealestateLocation.getRealestateLocation(latitude , longitude);
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("latitude", latitude);
+                resultIntent.putExtra("longitude", longitude);
+                setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }
         });

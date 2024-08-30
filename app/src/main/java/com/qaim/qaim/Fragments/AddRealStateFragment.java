@@ -3,19 +3,15 @@ package com.qaim.qaim.Fragments;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -38,6 +34,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Activities.MapViewActivity;
 import com.qaim.qaim.Classes.CustomCityAdapter;
@@ -45,7 +47,6 @@ import com.qaim.qaim.Classes.CustomRealstateTypeAdapter;
 import com.qaim.qaim.Classes.CustomRegionAdapter;
 import com.qaim.qaim.Classes.ImageAdapter;
 import com.qaim.qaim.Classes.RegionParams;
-import com.qaim.qaim.Helper.GetRealestateLocation;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RealstateStoreUserResponse.RealstateStoreUserResponse;
@@ -59,7 +60,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -70,7 +70,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AddRealStateFragment extends Fragment  implements GetRealestateLocation {
+public class AddRealStateFragment extends Fragment  implements OnMapReadyCallback {
 
     Retrofit retrofit;
     JsonApi jsonApi;
@@ -94,6 +94,10 @@ public class AddRealStateFragment extends Fragment  implements GetRealestateLoca
     List<Bitmap> bitmaps = new ArrayList<>();
     RecyclerView imageRecycleView ;
     ImageAdapter imageAdapter ;
+    MapView mapView ;
+    LatLng latLng ;
+    GoogleMap googleMap;
+    private static final int MAP_REQUEST_CODE = 111;
 
     public AddRealStateFragment() {
         // Required empty public constructor
@@ -123,12 +127,6 @@ public class AddRealStateFragment extends Fragment  implements GetRealestateLoca
             Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
         }
 
-    }
-
-    @Override
-    public void getRealestateLocation(double latitude, double longitude) {
-        this.latitude = latitude ;
-        this.longitude = longitude ;
     }
 
     @Override
@@ -185,7 +183,7 @@ public class AddRealStateFragment extends Fragment  implements GetRealestateLoca
         addLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity() , MapViewActivity.class));
+                startActivityForResult(new Intent(getActivity() , MapViewActivity.class), MAP_REQUEST_CODE);
             }
         });
         addEstatePhoto = v.findViewById(R.id.addEstatePhoto);
@@ -195,6 +193,8 @@ public class AddRealStateFragment extends Fragment  implements GetRealestateLoca
                 openGallory();
             }
         });
+        mapView =  v.findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
         realStateType = v.findViewById(R.id.spinner);
         neighborhoodSpinner = v.findViewById(R.id.neiborhood);
         realStateType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -279,10 +279,20 @@ public class AddRealStateFragment extends Fragment  implements GetRealestateLoca
 ////        builderSingle.show();
 //    }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mapView.onStart();
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       confirmBtn.setOnClickListener(new View.OnClickListener() {
+
+        mapView.getMapAsync(AddRealStateFragment.this);
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
 
@@ -436,7 +446,17 @@ public class AddRealStateFragment extends Fragment  implements GetRealestateLoca
     public void onActivityResult(int requestCode, int resultCode, @Nullable  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check condition
-        if (requestCode==100 && resultCode==RESULT_OK && data!=null)
+        if (requestCode == MAP_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                this.latitude = data.getDoubleExtra("latitude", 0);
+                this.longitude = data.getDoubleExtra("longitude", 0);
+                latLng = new LatLng(latitude, longitude);
+                googleMap.addMarker(new MarkerOptions().position(latLng));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng , 12));
+                mapView.setVisibility(View.VISIBLE);
+                // Use the latitude and longitude here
+            }
+        } else if (requestCode==100 && resultCode==RESULT_OK && data!=null)
         {
             // when result is ok
             // initialize uri
@@ -492,9 +512,8 @@ public class AddRealStateFragment extends Fragment  implements GetRealestateLoca
         return s;
     }
 
-
-
-
-
-
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        this.googleMap = googleMap;
+    }
 }
