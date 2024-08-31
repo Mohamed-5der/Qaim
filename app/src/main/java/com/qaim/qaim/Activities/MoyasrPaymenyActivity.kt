@@ -66,7 +66,7 @@ class MoyasrPaymenyActivity : AppCompatActivity() {
             amount = finalCost.toDouble().toInt() * 100,
             currency = "SAR",
             description = companyName.toString(),
-            apiKey = "pk_live_C5R7hyzmh24KBrUPSsAeFHFLZudqCbHqqRYzEW9E"
+            apiKey = "pk_live_ZkFcF2nLTYZqkLgwJ8w5gXBT9ee4QTsaHDFU9naC"
 //            metadata = mapOf(
 //                "order_id" to "order_id_123"
 //            )
