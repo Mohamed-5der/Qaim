@@ -662,5 +662,6 @@
     <string name="add_location">اضف موقع</string>
     <string name="previewer_notes">ملاحظات المعاين</string>
     <string name="send_feed">ارسال شكوى</string>
+    <string name="send_offer_note">في حالة انه لم يتم اضافة "معلومات الشركة" ويمكنه الذهاب للملف</string>
 
 </resources>
