@@ -39,6 +39,7 @@ public class UserPaymentAdapter extends RecyclerView.Adapter<UserPaymentAdapter.
         Picasso.get().load(details.getImage()).fit().into(holder.imageView);
         holder.status.setText(details.getStatusTxt());
         holder.orderNameTv.setText(details.getTitle());
+        holder.lblPaymentDescription.setText(details.getPaymentDescription());
         holder.orderDiscriptionTv.setText(details.getCost());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +56,7 @@ public class UserPaymentAdapter extends RecyclerView.Adapter<UserPaymentAdapter.
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView orderNameTv , orderDiscriptionTv , status ;
+        TextView orderNameTv , orderDiscriptionTv , status , lblPaymentDescription ;
         ImageView imageView ;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +64,7 @@ public class UserPaymentAdapter extends RecyclerView.Adapter<UserPaymentAdapter.
             orderDiscriptionTv = itemView.findViewById(R.id.descriptionOforder);
             imageView = itemView.findViewById(R.id.image);
             status = itemView.findViewById(R.id.status);
+            lblPaymentDescription = itemView.findViewById(R.id.lblPaymentDescription);
         }
 
     }

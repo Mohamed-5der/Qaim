@@ -28,6 +28,9 @@ public class DataItem{
 	@SerializedName("real_estate")
 	private RealEstate realEstate;
 
+	@SerializedName("payment_description")
+	private String paymentDescription;
+
 	public void setCost(String cost){
 		this.cost = cost;
 	}
@@ -90,6 +93,14 @@ public class DataItem{
 
 	public RealEstate getRealEstate(){
 		return realEstate;
+	}
+
+	public void setPaymentDescription(String paymentDescription){
+		this.paymentDescription = paymentDescription;
+	}
+
+	public String getPaymentDescription(){
+		return paymentDescription;
 	}
 
 	@Override

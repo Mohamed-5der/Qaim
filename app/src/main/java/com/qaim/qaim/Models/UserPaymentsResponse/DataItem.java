@@ -28,6 +28,9 @@ public class DataItem{
 	@SerializedName("status")
 	private String status;
 
+	@SerializedName("payment_description")
+	private String paymentDescription;
+
 	public void setImage(String image){
 		this.image = image;
 	}
@@ -90,6 +93,14 @@ public class DataItem{
 
 	public String getStatus(){
 		return status;
+	}
+
+	public void setPaymentDescription(String paymentDescription){
+		this.paymentDescription = paymentDescription;
+	}
+
+	public String getPaymentDescription(){
+		return paymentDescription;
 	}
 
 	@Override

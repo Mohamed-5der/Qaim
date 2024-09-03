@@ -46,6 +46,7 @@ public class CompanyPaymentRecycleViewAdapter extends RecyclerView.Adapter<Compa
 
         holder.status.setText(details.getStatusText());
         holder.orderNameTv.setText(details.getRealEstate().getTitle());
+        holder.lblPaymentDescription.setText(details.getPaymentDescription());
         holder.orderDiscriptionTv.setText(details.getCost());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +66,7 @@ public class CompanyPaymentRecycleViewAdapter extends RecyclerView.Adapter<Compa
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView orderNameTv , orderDiscriptionTv , status ;
+        TextView orderNameTv , orderDiscriptionTv , status , lblPaymentDescription ;
         ImageView imageView ;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +74,7 @@ public class CompanyPaymentRecycleViewAdapter extends RecyclerView.Adapter<Compa
             orderDiscriptionTv = itemView.findViewById(R.id.descriptionOforder);
             imageView = itemView.findViewById(R.id.image);
             status = itemView.findViewById(R.id.status);
+            lblPaymentDescription = itemView.findViewById(R.id.lblPaymentDescription);
         }
     }
 }

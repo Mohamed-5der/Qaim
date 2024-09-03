@@ -28,6 +28,9 @@ public class DataItem{
 	@SerializedName("info")
 	private Info info;
 
+	@SerializedName("payment_description")
+	private String paymentDescription;
+
 	public void setNotes(String notes){
 		this.notes = notes;
 	}
@@ -90,6 +93,14 @@ public class DataItem{
 
 	public Info getInfo(){
 		return info;
+	}
+
+	public void setPaymentDescription(String paymentDescription){
+		this.paymentDescription = paymentDescription;
+	}
+
+	public String getPaymentDescription(){
+		return paymentDescription;
 	}
 
 	@Override
