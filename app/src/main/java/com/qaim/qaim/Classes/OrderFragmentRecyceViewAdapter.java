@@ -61,7 +61,7 @@ public class OrderFragmentRecyceViewAdapter extends RecyclerView.Adapter<OrderFr
             }
             public void bind(com.qaim.qaim.Models.AprovedList.DataItem dataItem){
                 this.dataItem = dataItem ;
-                orderNameTv.setText(dataItem.getTitle());
+                orderNameTv.setText(dataItem.getOrderDescription());
                // orderDiscriptionTv.setText(dataItem.getDescription());
                 orderDiscriptionTv.setText("التكلفه : "+dataItem.getCost());
                 status.setText(dataItem.getStatusTxt());

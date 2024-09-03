@@ -38,6 +38,9 @@ public class DataItem{
 	@SerializedName("status")
 	private String status;
 
+	@SerializedName("order_description")
+	private String orderDescription;
+
 	public void setImage(String image){
 		this.image = image;
 	}
@@ -124,6 +127,14 @@ public class DataItem{
 
 	public String getStatus(){
 		return status;
+	}
+
+	public void setOrderDescription(String orderDescription){
+		this.orderDescription = orderDescription;
+	}
+
+	public String getOrderDescription(){
+		return orderDescription;
 	}
 
 	@Override

@@ -660,5 +660,7 @@
     <string name="licenceNum">الرقم الضريبي</string>
     <string name="allRealstate">جميع العقارات</string>
     <string name="add_location">اضف موقع</string>
+    <string name="previewer_notes">ملاحظات المعاين</string>
+    <string name="send_feed">ارسال شكوى</string>
 
 </resources>
