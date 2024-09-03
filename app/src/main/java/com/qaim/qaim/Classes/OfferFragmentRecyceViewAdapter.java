@@ -97,7 +97,7 @@ int id ;
             companyName = details.getCompany().getName() ;
             offerCompanyName.setText(companyName);
             offerPrice.setText( "التكلفه : "+cost);
-            offerDescription.setText(details.getNotes());
+            offerDescription.setText(details.getCompany().getAbout());
             acceptedBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

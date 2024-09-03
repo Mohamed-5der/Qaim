@@ -19,6 +19,9 @@ public class Company{
 	@SerializedName("email")
 	private String email;
 
+	@SerializedName("about")
+	private String about;
+
 	public void setImage(String image){
 		this.image = image;
 	}
@@ -57,6 +60,14 @@ public class Company{
 
 	public String getEmail(){
 		return email;
+	}
+
+	public void setAbout(String about){
+		this.about = about;
+	}
+
+	public String getAbout(){
+		return about;
 	}
 
 	@Override
