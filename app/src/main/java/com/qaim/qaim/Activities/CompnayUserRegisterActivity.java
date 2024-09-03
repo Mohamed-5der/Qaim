@@ -80,13 +80,14 @@ public class CompnayUserRegisterActivity extends AppCompatActivity {
     int cityId ;
     Spinner citySpinner ;
     CustomCityAdapter cityAdapter ;
-    EditText proflieName , proflieEmail , profliePhone ,proflieLicense , profliePassword  , confirmprofliePassword ;
+    EditText proflieName , proflieEmail , profliePhone ,proflieLicense , profliePassword  , confirmprofliePassword , addnotestxt;
+    LinearLayout notes_view;
     CountryCodePicker contryCod ;
     Button singUp ;
     public static PregressDialog dialog;
     RelativeLayout addPDF ;
     RelativeLayout pdfFile ;
-    TextView lblFileName ;
+    TextView lblFileName , lblcompany_info;
     private String pdfPath;
     ActivityResultLauncher<Intent> resultLauncher;
     String type ;
@@ -178,8 +179,17 @@ public class CompnayUserRegisterActivity extends AppCompatActivity {
         proflieName = findViewById(R.id.profileEditText);
         proflieEmail = findViewById(R.id.emailEditText);
         profliePhone = findViewById(R.id.phoneEditText);
+        lblcompany_info = findViewById(R.id.lblcompany_info);
+        notes_view = findViewById(R.id.notes_view);
+        addnotestxt = findViewById(R.id.addnotestxt);
         contryCod = findViewById(R.id.countryCode);
         contryCod.registerCarrierNumberEditText(profliePhone);
+
+        if (type.equals("user_company")) {
+            lblcompany_info.setVisibility(View.GONE);
+            notes_view.setVisibility(View.GONE);
+        }
+
         contryCod.setPhoneNumberValidityChangeListener(new CountryCodePicker.PhoneNumberValidityChangeListener() {
             @Override
             public void onValidityChanged(boolean isValidNumber) {
@@ -307,6 +317,7 @@ public class CompnayUserRegisterActivity extends AppCompatActivity {
                         map.put("license_doc", RequestBody.create(MultipartBody.FORM, proflieLicense.getText().toString()));
                         map.put("country_code", RequestBody.create(MultipartBody.FORM, String.valueOf(contryCod.getSelectedCountryNameCode())));
                         map.put("player_id", RequestBody.create(MultipartBody.FORM, spNotiToken.getString(NOTI_KEY , "")));
+                        map.put("about", RequestBody.create(MultipartBody.FORM, addnotestxt.getText().toString()));
 
                         dialog.show();
                         Call<CompanyRegisterResponse> companyUserRegisterParmsCall = jsonApi.registerCompany(map, body);
