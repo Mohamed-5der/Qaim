@@ -25,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,6 +67,7 @@ public class OrderDetailsAcceptableFragment extends Fragment {
     String cost ;
     TextView name , description , clientCode, clientName ;
     Button fileBtn , showReportBtn , projectCompletedBtn ;
+    AppCompatButton sendFeedBackBtn , previewerNotesBtn ;
     ImageView clientImage ;
     String files ;
     RecyclerView recyclerView ;
@@ -146,6 +148,8 @@ public class OrderDetailsAcceptableFragment extends Fragment {
         previewerView = v.findViewById(R.id.previewerView);
         arrayList = new ArrayList<>();
         parentRel = v.findViewById(R.id.parentRel);
+        sendFeedBackBtn = v.findViewById(R.id.sendFeedBackBtn);
+        previewerNotesBtn = v.findViewById(R.id.previewerNotesBtn);
         return v ;
     }
 
@@ -168,6 +172,39 @@ public class OrderDetailsAcceptableFragment extends Fragment {
                         recyclerView.setHasFixedSize(true);
                         recyclerView.setAdapter(adapter);
                     }
+
+                    sendFeedBackBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Create the fragment instance
+                            SendFeedBackFragment sendFeedBackFragment = new SendFeedBackFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("company_id", realstateShowUserResponse.getData().getRow().getCompany().getId() + ""); // Replace with your actual company ID
+                            sendFeedBackFragment.setArguments(bundle);
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frameLayout, sendFeedBackFragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        }
+                    });
+
+                    previewerNotesBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            PreviewerNotesFragment previewerNotesFragment =new PreviewerNotesFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("company_id", "" + id); // Replace with your actual company ID
+                            previewerNotesFragment.setArguments(bundle);
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frameLayout, previewerNotesFragment)
+                                    .addToBackStack(null)
+                                    .commit();
+
+
+
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frameLayout , previewerNotesFragment).addToBackStack(null).commit();                        }
+                    });
 
                     if (!realstateShowUserResponse.getData().getRow().getFiles().isEmpty() && realstateShowUserResponse.getData().getRow().getFiles() != null){
 

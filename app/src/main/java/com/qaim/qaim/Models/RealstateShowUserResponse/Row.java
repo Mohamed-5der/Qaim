@@ -1,6 +1,7 @@
 package com.qaim.qaim.Models.RealstateShowUserResponse;
 
 import com.google.gson.annotations.SerializedName;
+import com.qaim.qaim.Models.GetAcceptedOrderPrev.Company;
 
 import java.util.List;
 
@@ -65,6 +66,12 @@ public class Row{
 
 	@SerializedName("show_previewer")
 	private int show_previewer;
+
+	@SerializedName("company")
+	private Company company;
+
+	@SerializedName("notes_list")
+	private List<NoteItem> notesList;
 
 	public void setCost(String cost){
 		this.cost = cost;
@@ -224,6 +231,22 @@ public class Row{
 
 	public void setShow_previewer(int show_previewer) {
 		this.show_previewer = show_previewer;
+	}
+
+	public void setCompany(Company company){
+		this.company = company;
+	}
+
+	public Company getCompany(){
+		return company;
+	}
+
+	public List<NoteItem> getNotesList() {
+		return notesList;
+	}
+
+	public void setNotesList(List<NoteItem> notesList) {
+		this.notesList = notesList;
 	}
 
 	@Override

@@ -237,6 +237,42 @@
                     android:layout_marginBottom="82dp"
                     />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="100dp">
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/custom_edit_orders_btn"
+                        android:text="@string/send_feed"
+                        android:id="@+id/sendFeedBackBtn"
+                        android:textColor="#FFF"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        />
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/custom_end_orders_btn"
+                        android:text="@string/previewer_notes"
+                        android:id="@+id/previewerNotesBtn"
+                        android:textColor="#FFF"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        />
+
+                </LinearLayout>
+
             </LinearLayout>
 
 
