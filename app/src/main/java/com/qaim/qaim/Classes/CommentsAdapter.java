@@ -3,6 +3,7 @@ package com.qaim.qaim.Classes;
 import static android.view.View.TEXT_DIRECTION_LTR;
 import static android.view.View.TEXT_DIRECTION_RTL;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Models.MyListCommentsPreviewer.CommentsItem;
@@ -50,15 +52,18 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imageView , imageView2 ;
-        TextView commentTEXT;
+        ImageView imageView , imageView2 , iv_image;
+        TextView commentTEXT, senderText;
         RelativeLayout rowItem;
         CardView companyViewRight , companyViewLeft ;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.companyView1);
             imageView2 = itemView.findViewById(R.id.companyView2);
+            iv_image = itemView.findViewById(R.id.iv_image);
             commentTEXT = itemView.findViewById(R.id.commentText);
+            senderText = itemView.findViewById(R.id.senderText);
             rowItem = itemView.findViewById(R.id.rel);
             companyViewRight = itemView.findViewById(R.id.companyViewRight);
             companyViewLeft = itemView.findViewById(R.id.companyViewLeft);
@@ -66,29 +71,32 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
         public void onBind(CommentsItem comments){
             if (comments.getCompany() != null){
-                commentTEXT.setText(comments.getComment());
-                String imag = comments.getCompany().getImage();
-                Picasso.get().load(imag).fit().into(imageView2);
+                senderText.setText(comments.getCompany().getName());
+                Picasso.get().load(comments.getCompany().getImage()).fit().into(imageView2);
                 imageView.setVisibility(View.GONE);
-                commentTEXT.setTextDirection(TEXT_DIRECTION_LTR);
                 companyViewLeft.setVisibility(View.VISIBLE);
             }
             else if (comments.getEmployee() != null){
-                String imag = comments.getEmployee().getImage();
-                Picasso.get().load(imag).fit().into(imageView2);
-                commentTEXT.setText(comments.getComment());
+                senderText.setText(comments.getEmployee().getName());
+                Picasso.get().load(comments.getEmployee().getImage()).fit().into(imageView2);
                 imageView.setVisibility(View.GONE);
-                commentTEXT.setTextDirection(TEXT_DIRECTION_LTR);
                 companyViewLeft.setVisibility(View.VISIBLE);
             }
             else if (comments.getPreviewer() != null){
-                String imag = comments.getPreviewer().getImage();
-                Picasso.get().load(imag).fit().into(imageView);
+                senderText.setText(comments.getPreviewer().getName());
+                Picasso.get().load(comments.getPreviewer().getImage()).fit().into(imageView);
+                imageView2.setVisibility(View.GONE);
+            }
+            // Set Image
+            if (comments.getType().equals("text")) {
+                commentTEXT.setVisibility(View.VISIBLE);
+                iv_image.setVisibility(View.GONE);
                 commentTEXT.setText(comments.getComment());
                 commentTEXT.setTextDirection(TEXT_DIRECTION_RTL);
-                imageView2.setVisibility(View.GONE);
-
-
+            } else {
+                commentTEXT.setVisibility(View.GONE);
+                iv_image.setVisibility(View.VISIBLE);
+                Picasso.get().load(comments.getComment()).fit().into(iv_image);
             }
         }
     }

@@ -92,6 +92,8 @@ import com.qaim.qaim.Models.RefusedPrevReport.RefusePrevReportEmpResponse;
 import com.qaim.qaim.Models.RefusedPreviewerReport.RefusedPreviewerReportResponse;
 import com.qaim.qaim.Models.RegionsResponse.GetRegionResponse;
 import com.qaim.qaim.Models.ReportCompleted.ReportCompletedtResponse;
+import com.qaim.qaim.Models.ReportCompleted.sendFeedBack.FeedBackResponse;
+import com.qaim.qaim.Models.ReportCompleted.sendFeedBack.FeedbackRequest;
 import com.qaim.qaim.Models.ResetPassword.ResetPasswordResponse;
 import com.qaim.qaim.Models.SendOfferResponse.SendOfferResponse;
 import com.qaim.qaim.Models.ShowCompanyPrevReport.ShowCompanyPrevReportResponse;
@@ -256,6 +258,9 @@ Call<RealstateStoreUserResponse> storeRealstate(@Header("Authorization") String 
     @POST("/api/company/com-comments-add")
     Call<AddCommentsListResponse> addMyListComments(@Header("Authorization") String token ,@Body AddListCommentsParams params);
     @Multipart
+    @POST("/api/company/com-comments-add")
+    Call<AddCommentsListResponse> addMyListComments(@Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part file);
+    @Multipart
     @POST("/api/company/register")
     Call<CompanyRegisterResponse> registerCompany(@PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part image);
 
@@ -293,6 +298,9 @@ Call<RealstateStoreUserResponse> storeRealstate(@Header("Authorization") String 
     Call<MyListPrevCommentsResponse> myListCommentsPreviewer(@Header("Authorization") String token , @Body InfoParams params);
     @POST("/api/previewer/pre-comments-add")
     Call<MyListPrevCommentsAddResponse> myListCommentsAddPreviewer(@Header("Authorization") String token ,@Body AddComentsPreviewerParams params);
+    @Multipart
+    @POST("/api/previewer/pre-comments-add")
+    Call<MyListPrevCommentsAddResponse> myListCommentsAddPreviewer(@Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part file);
     @POST("/api/previewer/get-balance")
     Call<GetPreviewerBalanceResponse> getBalancePreviewer(@Header("Authorization") String token);
     @POST("/api/previewer/pull-balance")
@@ -331,6 +339,9 @@ Call<RealstateStoreUserResponse> storeRealstate(@Header("Authorization") String 
     Call<EmployeeCommentsResponse> myListEmployeeComments(@Header("Authorization") String token , @Body InfoParams params);
     @POST("/api/employee/emp-comments-add")
     Call<EmployeeAddCommentsResponse> myListEmployeeAddComments(@Header("Authorization") String token , @Body AddListEmployeeCommentsParams params);
+    @Multipart
+    @POST("/api/employee/emp-comments-add")
+    Call<EmployeeAddCommentsResponse> myListEmployeeAddComments(@Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part file);
     @Multipart
     @POST("/api/employee/request-add-info")
     Call<EmployeeAddNotesResponse> employeeAddNotesAndReports(@Header("Authorization") String token ,@PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document);
@@ -385,4 +396,6 @@ Call<RealstateStoreUserResponse> storeRealstate(@Header("Authorization") String 
     Call<OtpResponse> verifyCompany(@Header("Authorization") String token, @Body OTPParams params);
     @POST("/api/previewer/verify-account")
     Call<OtpResponse> verifyPreviewer(@Header("Authorization") String token, @Body OTPParams params);
+    @POST("/api/send-feedback")
+    Call<FeedBackResponse> sendFeedBack(@Header("Authorization") String token, @Body FeedbackRequest feedbackRequest);
 }

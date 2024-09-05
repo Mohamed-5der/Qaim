@@ -367,7 +367,7 @@ public class CompanyProfileFragment extends Fragment {
         // set type
         intent.setType("image/*");
         // start activity result
-        startActivityForResult(Intent.createChooser(intent,"Select Image"),100);
+        startActivityForResult(Intent.createChooser(intent,getString(R.string.select_image)),100);
     }
 
     @Override

@@ -444,6 +444,9 @@
     <string name="addyearsOfWork">اضف سنوات العمل</string>
     <string name="appointmentRequests">طلبات التعيين</string>
     <string name="sendNotes">ارسال ملاحظات</string>
+    <string name="subject">الموضوع</string>
+    <string name="content">نص الشكوى</string>
+    <string name="sendTo">ارسال الى </string>
     <string name="order">طلبات</string>
     <string name="submitReport">تقديم تقرير المعاينة</string>
     <string name="comments">التعليقات</string>
@@ -460,6 +463,7 @@
     <string name="addAttributed">اضافة خصائص</string>
     <string name="writingPreviewReports">كتابة تقارير المعاينة</string>
     <string name="writeReports">كتابة تقارير</string>
+    <string name="writeFeed">كتابة الشكوى</string>
     <string name="service">الخدمات</string>
     <string name="addService">اضف خدمات</string>
     <string name="theNameOfTheNearestCommercialStreet">اسم اقرب شارع تجاري </string>
@@ -661,8 +665,15 @@
     <string name="allRealstate">جميع العقارات</string>
     <string name="add_location">اضف موقع</string>
     <string name="previewer_notes">ملاحظات المعاين</string>
+    <string name="company_notes">ملاحظات الشركة</string>
     <string name="send_feed">ارسال شكوى</string>
     <string name="send_offer_note">في حالة انه لم يتم اضافة "معلومات الشركة" ويمكنه الذهاب للملف</string>
     <string name="company_info">معلومات عن الشركة</string>
+    <string name="spinner_prompt">Select an option</string>
+    <string name="select_image">اختر صورة</string>
 
+    <string-array name="spinner_items">
+        <item>قيم</item>
+        <item>شركة التقييم</item>
+    </string-array>
 </resources>

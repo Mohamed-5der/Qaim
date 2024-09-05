@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Models.EmployeeComments.CommentsItem;
@@ -23,8 +24,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class CommentsEmployeeAdapter extends RecyclerView.Adapter<CommentsEmployeeAdapter.ViewHolder> {
-    List<CommentsItem> commentsItems ;
-    AppCompatActivity activity ;
+    List<CommentsItem> commentsItems;
+    AppCompatActivity activity;
 
     public CommentsEmployeeAdapter(List<CommentsItem> commentsItems) {
         this.commentsItems = commentsItems;
@@ -33,7 +34,7 @@ public class CommentsEmployeeAdapter extends RecyclerView.Adapter<CommentsEmploy
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.comments_layout ,null , false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.comments_layout, null, false);
         activity = (AppCompatActivity) parent.getContext();
         return new ViewHolder(v);
     }
@@ -52,55 +53,51 @@ public class CommentsEmployeeAdapter extends RecyclerView.Adapter<CommentsEmploy
         return commentsItems.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imageView , imageView2 ;
-        TextView commentTEXT;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageView, imageView2, iv_image;
+        TextView commentTEXT, senderText;
         RelativeLayout rowItem;
 
-        CommentsItem comments ;
+        CommentsItem comments;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.companyView1);
             imageView2 = itemView.findViewById(R.id.companyView2);
+            iv_image = itemView.findViewById(R.id.iv_image);
             commentTEXT = itemView.findViewById(R.id.commentText);
+            senderText = itemView.findViewById(R.id.senderText);
             rowItem = itemView.findViewById(R.id.rel);
-
         }
 
-        public void onBind(CommentsItem comments){
-            if (comments.getCompany() != null){
-                commentTEXT.setText(comments.getComment());
-                try{
-                    Picasso.get().load(comments.getCompany().getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(imageView);
-                }catch(NullPointerException e){
-                    Log.e(TAG, e.toString());
-                }
-               imageView.setVisibility(View.GONE);
+        public void onBind(CommentsItem comments) {
+            if (comments.getCompany() != null) {
+                Picasso.get().load(comments.getCompany().getImage()).fit().into(imageView);
+                imageView.setVisibility(View.GONE);
                 commentTEXT.setTextDirection(TEXT_DIRECTION_LTR);
-            }
-            else if (comments.getEmployee() != null){
-                try{
-                    Picasso.get().load(comments.getEmployee().getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(imageView2);
-                }catch(NullPointerException e){
-                    Log.e(TAG, e.toString());
-                }
+            } else if (comments.getEmployee() != null) {
+                Picasso.get().load(comments.getEmployee().getImage()).fit().into(imageView2);
                 commentTEXT.setText(comments.getComment());
                 imageView2.setVisibility(View.GONE);
                 commentTEXT.setTextDirection(TEXT_DIRECTION_RTL);
-            }
-            else if (comments.getPreviewer() != null){
-                try{
-                    Picasso.get().load(comments.getPreviewer().getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(imageView2);
-                }catch(NullPointerException e){
-                    Log.e(TAG, e.toString());
-                }
+            } else if (comments.getPreviewer() != null) {
+                Picasso.get().load(comments.getPreviewer().getImage()).fit().into(imageView2);
                 commentTEXT.setText(comments.getComment());
                 commentTEXT.setTextDirection(TEXT_DIRECTION_LTR);
                 imageView.setVisibility(View.GONE);
-
+            }
+            // Set Image
+            if (comments.getType().equals("text")) {
+                commentTEXT.setVisibility(View.VISIBLE);
+                iv_image.setVisibility(View.GONE);
+                commentTEXT.setText(comments.getComment());
+                commentTEXT.setTextDirection(TEXT_DIRECTION_RTL);
+            } else {
+                commentTEXT.setVisibility(View.GONE);
+                iv_image.setVisibility(View.VISIBLE);
+                Picasso.get().load(comments.getComment()).fit().into(iv_image);
             }
         }
 
     }
-
 }

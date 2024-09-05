@@ -14,6 +14,12 @@ public class CommentsItem{
 	@SerializedName("comment")
 	private String comment;
 
+	@SerializedName("type")
+	private String type;
+
+	@SerializedName("file_type")
+	private String fileType;
+
 	@SerializedName("id")
 	private int id;
 
@@ -42,6 +48,22 @@ public class CommentsItem{
 
 	public String getComment(){
 		return comment;
+	}
+
+	public void setType(String type){
+		this.type = type;
+	}
+
+	public String getType(){
+		return type;
+	}
+
+	public void setFileType(String fileType){
+		this.fileType = fileType;
+	}
+
+	public String getFileType(){
+		return fileType;
 	}
 
 	public void setId(int id){
