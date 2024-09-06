@@ -23,6 +23,7 @@ import com.qaim.qaim.Classes.PreviewerRateParams;
 import com.qaim.qaim.Classes.RegionParams;
 import com.qaim.qaim.Classes.ResetPasswordParams;
 import com.qaim.qaim.Classes.ShowRealstateUserParams;
+import com.qaim.qaim.Classes.StatusReportCompanyRejectParams;
 import com.qaim.qaim.Classes.StatusReportParams;
 import com.qaim.qaim.Classes.StoreUserRealstateParams;
 import com.qaim.qaim.Classes.TeamAddParams;
@@ -270,7 +271,7 @@ Call<RealstateStoreUserResponse> storeRealstate(@Header("Authorization") String 
     @POST("/api/company/previewer-report-accept")
     Call<AcceptPreviewerReportResponse> acceptPreviewerReport(@Header("Authorization") String token  , @Body StatusReportParams params );
     @POST("/api/company/previewer-report-refuse")
-    Call<RefusedPreviewerReportResponse> rejectPreviewerReport(@Header("Authorization") String token  , @Body StatusReportParams params );
+    Call<RefusedPreviewerReportResponse> rejectPreviewerReport(@Header("Authorization") String token  , @Body StatusReportCompanyRejectParams params );
     @Multipart
     @POST("/api/previewer/register")
     Call<PreviewerRegisterResponse> registerPreviewer(@PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part image);

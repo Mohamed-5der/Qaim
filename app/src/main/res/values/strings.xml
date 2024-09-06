@@ -671,6 +671,9 @@
     <string name="company_info">معلومات عن الشركة</string>
     <string name="spinner_prompt">Select an option</string>
     <string name="select_image">اختر صورة</string>
+    <string name="rejection_reason">سبب الرفض</string>
+    <string name="enter_rejection_reason">ادخل سبب الرفض:</string>
+    <string name="plz_enter_rejection_reason">من فضلك ادخل سبب الرفض</string>
 
     <string-array name="spinner_items">
         <item>قيم</item>

@@ -1,6 +1,8 @@
 package com.qaim.qaim.Fragments;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -34,6 +37,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.CustomAttributedAdapterReport;
 import com.qaim.qaim.Classes.OrderListItemParams;
+import com.qaim.qaim.Classes.StatusReportCompanyRejectParams;
 import com.qaim.qaim.Classes.StatusReportParams;
 import com.qaim.qaim.Models.AcceptPreviewerReport.AcceptPreviewerReportResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -222,28 +226,46 @@ public class ShowPreviewerReportFragment extends Fragment {
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CompanyActivity.dialog.show();
-                Call<RefusedPreviewerReportResponse> acceptPreviewerReportResponseCall = jsonApi.rejectPreviewerReport("Bearer " + CompanyActivity.token , new StatusReportParams(reportId));
-                acceptPreviewerReportResponseCall.enqueue(new Callback<RefusedPreviewerReportResponse>() {
-                    @Override
-                    public void onResponse(Call<RefusedPreviewerReportResponse> call, Response<RefusedPreviewerReportResponse> response) {
 
-                        CompanyActivity.dialog.dismiss();
-                        RefusedPreviewerReportResponse reportResponse = response.body();
-                        if (reportResponse.getCode() == 200){
-                            getActivity().recreate();
-                            Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                // Create an EditText to enter the rejection reason
+                final EditText reasonInput = new EditText(view.getContext());
+
+                // Create a dialog to show the EditText
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle(R.string.rejection_reason);
+                builder.setMessage(R.string.enter_rejection_reason);
+
+                // Add the EditText to the dialog
+                builder.setView(reasonInput);
+
+                // Add action buttons
+                builder.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Get the entered text from the EditText
+                        String rejectionReason = reasonInput.getText().toString().trim();
+
+                        // Handle the rejection reason
+                        if (!rejectionReason.isEmpty()) {
+                            // Do something with the rejection reason
+                            // For example, save it or display it in a TextView
+                            rejectReport(rejectionReason);
+                        } else {
+                            // Handle case where no input was provided
+                            Toast.makeText(view.getContext(), getString(R.string.plz_enter_rejection_reason), Toast.LENGTH_SHORT).show();
                         }
                     }
+                });
 
+                builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
-                    public void onFailure(Call<RefusedPreviewerReportResponse> call, Throwable t) {
-                        Toast.makeText(getActivity(),t.getMessage(), Toast.LENGTH_SHORT).show();
-
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel(); // Close the dialog
                     }
                 });
+
+                // Show the dialog
+                builder.show();
             }
         });
         rateVersionV.setOnClickListener(new View.OnClickListener() {
@@ -251,6 +273,31 @@ public class ShowPreviewerReportFragment extends Fragment {
             public void onClick(View view) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(rateVersion));
                 startActivity(browserIntent);
+            }
+        });
+    }
+
+    public void rejectReport(String reason) {
+        CompanyActivity.dialog.show();
+        Call<RefusedPreviewerReportResponse> acceptPreviewerReportResponseCall = jsonApi.rejectPreviewerReport("Bearer " + CompanyActivity.token , new StatusReportCompanyRejectParams(reportId, reason));
+        acceptPreviewerReportResponseCall.enqueue(new Callback<RefusedPreviewerReportResponse>() {
+            @Override
+            public void onResponse(Call<RefusedPreviewerReportResponse> call, Response<RefusedPreviewerReportResponse> response) {
+
+                CompanyActivity.dialog.dismiss();
+                RefusedPreviewerReportResponse reportResponse = response.body();
+                if (reportResponse.getCode() == 200){
+                    getActivity().recreate();
+                    Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RefusedPreviewerReportResponse> call, Throwable t) {
+                Toast.makeText(getActivity(),t.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
     }
