@@ -191,7 +191,7 @@ public class OrderDetailsAcceptableFragment extends Fragment {
                     previewerNotesBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            PreviewerNotesFragment previewerNotesFragment =new PreviewerNotesFragment();
+                            PreviewerNotesFragment previewerNotesFragment = new PreviewerNotesFragment();
                             Bundle bundle = new Bundle();
                             bundle.putString("company_id", "" + id); // Replace with your actual company ID
                             previewerNotesFragment.setArguments(bundle);
@@ -199,11 +199,7 @@ public class OrderDetailsAcceptableFragment extends Fragment {
                                     .replace(R.id.frameLayout, previewerNotesFragment)
                                     .addToBackStack(null)
                                     .commit();
-
-
-
-                            getActivity().getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.frameLayout , previewerNotesFragment).addToBackStack(null).commit();                        }
+                        }
                     });
 
                     if (!realstateShowUserResponse.getData().getRow().getFiles().isEmpty() && realstateShowUserResponse.getData().getRow().getFiles() != null){

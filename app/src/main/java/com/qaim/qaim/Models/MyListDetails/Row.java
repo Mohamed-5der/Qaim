@@ -1,6 +1,9 @@
 package com.qaim.qaim.Models.MyListDetails;
 
 import com.google.gson.annotations.SerializedName;
+import com.qaim.qaim.Models.RealstateShowUserResponse.NoteItem;
+
+import java.util.List;
 
 public class Row{
 
@@ -84,6 +87,12 @@ public class Row{
 
 	@SerializedName("real_estate")
 	private RealEstate realEstate;
+
+	@SerializedName("notes_list")
+	private List<NoteItem> notesList;
+
+	@SerializedName("previewer_notes_list")
+	private List<NoteItem> previewerNotesList;
 
 	public void setCost(String cost){
 		this.cost = cost;
@@ -211,6 +220,22 @@ public class Row{
 
 	public RealEstate getRealEstate(){
 		return realEstate;
+	}
+
+	public List<NoteItem> getNotesList() {
+		return notesList;
+	}
+
+	public void setNotesList(List<NoteItem> notesList) {
+		this.notesList = notesList;
+	}
+
+	public List<NoteItem> getPreviewerNotesList() {
+		return previewerNotesList;
+	}
+
+	public void setPreviewerNotesList(List<NoteItem> previewerNotesList) {
+		this.previewerNotesList = previewerNotesList;
 	}
 
 	@Override

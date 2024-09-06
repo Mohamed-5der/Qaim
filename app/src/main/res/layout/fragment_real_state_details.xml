@@ -158,15 +158,33 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addNotesBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/custom_end_orders_btn"
                     android:text="@string/addNotes"
-                    android:id="@+id/addNotesBtn"
-                    android:textColor="#FFF"
+                    android:textColor="#FFF" />
+
+                <TextView
+                    android:id="@+id/notes_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textDirection="rtl"
+                    android:textColor="#585858"
+                    android:text=""
+                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/previewerNotesBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_end_orders_btn"
+                    android:text="@string/previewer_notes"
+                    android:textColor="#FFF" />
             </LinearLayout>
 
             <LinearLayout

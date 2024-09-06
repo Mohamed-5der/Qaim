@@ -40,7 +40,7 @@ public class CustomNote extends RecyclerView.Adapter<CustomNote.ViewHolder> {
         return attributesItems.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder{
         TextView title , des ;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

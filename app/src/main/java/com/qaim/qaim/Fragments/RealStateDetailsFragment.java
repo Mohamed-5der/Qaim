@@ -46,6 +46,7 @@ import com.qaim.qaim.Models.CompanyFinishOrder.CompanyFinishOrderResponse;
 import com.qaim.qaim.Models.MyListDetails.FilesItem;
 import com.qaim.qaim.Models.MyListDetails.MyListDetailsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
+import com.qaim.qaim.Models.RealstateShowUserResponse.NoteItem;
 import com.qaim.qaim.R;
 import com.squareup.picasso.Picasso;
 
@@ -66,11 +67,11 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
     Retrofit retrofit ;
     JsonApi jsonApi ;
     TextView tittle , cost , description , realStateType , realStateArea ,neighborhood , city
-            ,additionalDetalis , address ;
+            ,additionalDetalis , address , notes_date ;
     Button chooseTeamBtn ;
     RelativeLayout openFile ;
     String fileURL , previewerDoc ;
-    Button commentsBtn, teamReportsBtn ,teamRateBtn , endBtn , addNotesBtn ;
+    Button commentsBtn, teamReportsBtn ,teamRateBtn , endBtn , addNotesBtn , previewerNotesBtn ;
 
     int hasCompleted , hasreport , hideAllBtn ;
 
@@ -152,6 +153,8 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
         recyclerView = v.findViewById(R.id.recycleView);
         lblFileName = v.findViewById(R.id.lblFileName);
         mapView =  v.findViewById(R.id.mapView);
+        notes_date =  v.findViewById(R.id.notes_date);
+        previewerNotesBtn =  v.findViewById(R.id.previewerNotesBtn);
         mapView.onCreate(savedInstanceState);
         return v ;
     }
@@ -186,6 +189,14 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
                             recyclerView.setHasFixedSize(true);
                             recyclerView.setAdapter(adapter);
                         }
+
+                        StringBuilder dates = new StringBuilder();
+                        if (realstateShowUserResponse.getData().getRow().getNotesList() != null) {
+                            for (NoteItem item : realstateShowUserResponse.getData().getRow().getNotesList()) {
+                                dates.append("\n").append(item.getCreatedAt());
+                            }
+                        }
+                        notes_date.setText(dates.toString());
                         tittle.setText(String.valueOf(realstateShowUserResponse.getData().getRow().getRealEstate().getTitle()));
                         description.setText(String.valueOf(realstateShowUserResponse.getData().getRow().getRealEstate().getDescription()));
                         latLng = new LatLng(Double.parseDouble(realstateShowUserResponse.getData().getRow().getRealEstate().getLatitude()) , Double.parseDouble(realstateShowUserResponse.getData().getRow().getRealEstate().getLongitude()));
@@ -252,6 +263,21 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
             @Override
             public void onFailure(Call<MyListDetailsResponse> call, Throwable t) {
                 Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        previewerNotesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PreviewerNotesFragment previewerNotesFragment = new PreviewerNotesFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("previewer_id", "" + id); // Replace with your actual company ID
+                previewerNotesFragment.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, previewerNotesFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
