@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.qaim.qaim.Activities.CompanyActivity;
@@ -35,6 +36,7 @@ public class CompanyBalance extends Fragment {
     Retrofit retrofit ;
     JsonApi jsonApi ;
     Button pullBalance ;
+    AppCompatButton previousTransactionsBtn ;
 
     public CompanyBalance() {
         // Required empty public constructor
@@ -74,6 +76,7 @@ public class CompanyBalance extends Fragment {
         getMyBalance = v.findViewById(R.id.balnce);
         myBalance =  v.findViewById(R.id.balnceDue);
         pullBalance =  v.findViewById(R.id.endOrderBtn);
+        previousTransactionsBtn =  v.findViewById(R.id.previousTransactionsBtn);
         CompanyActivity.dialog.show();
         Call<GetBalanceResponse> call = jsonApi.getBalance("Bearer " + CompanyActivity.token);
         call.enqueue(new Callback<GetBalanceResponse>() {
@@ -108,6 +111,21 @@ public class CompanyBalance extends Fragment {
                 callPullBalanceAPI();
             }
         });
+
+        previousTransactionsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CompanyPreviousTransactionsFragment companyTransactions = new CompanyPreviousTransactionsFragment();
+                loadFragment(companyTransactions);
+            }
+        });
+    }
+
+    public void loadFragment(Fragment fragment) {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction().disallowAddToBackStack()
+                .replace(R.id.frameLayout , fragment)
+                .commit();
     }
 
     public void callPullBalanceAPI(){

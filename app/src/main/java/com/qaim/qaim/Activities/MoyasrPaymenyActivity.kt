@@ -94,7 +94,6 @@ class MoyasrPaymenyActivity : AppCompatActivity() {
             }
             is PaymentResult.Failed -> {
                 // Handle error
-                var error = result.error;
             }
             PaymentResult.Canceled -> {
                 // User has canceled the payment

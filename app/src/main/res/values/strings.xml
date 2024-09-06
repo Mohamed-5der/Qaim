@@ -674,6 +674,7 @@
     <string name="rejection_reason">سبب الرفض</string>
     <string name="enter_rejection_reason">ادخل سبب الرفض:</string>
     <string name="plz_enter_rejection_reason">من فضلك ادخل سبب الرفض</string>
+    <string name="previous_transactions">المعاملات السابقة</string>
 
     <string-array name="spinner_items">
         <item>قيم</item>

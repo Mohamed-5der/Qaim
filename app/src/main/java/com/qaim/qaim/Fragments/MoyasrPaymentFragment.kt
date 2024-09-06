@@ -50,20 +50,6 @@ class MoyasrPaymentFragment : Fragment() {
         val txCompanyName =v.findViewById<TextView>(R.id.comp)
         txCompanyName.setText(" المبلغ مقدم مقابل خدمات شركة " + param3)
 
-
-        val config= PaymentConfig(
-            amount = 100,
-            currency = "SAR",
-            description = "Sample Android SDK Payment",
-            apiKey = "pk_test_qZdLz9zChj28YbWc7ibpYCUxAGcULfAdiDTHMueo"
-//            metadata = mapOf(
-//                "order_id" to "order_id_123"
-//            )
-        )
-//        paymentSheet = PaymentSheet(requireActivity(), { handlePaymentResult(it) }, config)
-
-
-
         val donateBtn =v.findViewById<Button>(R.id.button)
         donateBtn.setOnClickListener {
             paymentSheet!!.present()
@@ -95,7 +81,6 @@ class MoyasrPaymentFragment : Fragment() {
         when (payment.status) {
             "paid" -> { /* Handle successful payment */ }
             "failed" -> {
-                var errorMessage = payment.source["message"]
                 /* Handle failed payment */
             }
             else -> { /* Handle other statuses */ }
