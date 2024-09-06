@@ -1,5 +1,6 @@
 package com.qaim.qaim.Models.GetBalance;
 
+import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class Data{
@@ -10,40 +11,25 @@ public class Data{
 	@SerializedName("available")
 	private String available;
 
+	@SerializedName("rows")
+	private List<RowsItem> rows;
+
 	@SerializedName("message")
 	private String message;
 
-	public void setBalance(int balance){
-		this.balance = balance;
-	}
-
 	public int getBalance(){
 		return balance;
-	}
-
-	public void setAvailable(String available){
-		this.available = available;
 	}
 
 	public String getAvailable(){
 		return available;
 	}
 
-	public void setMessage(String message){
-		this.message = message;
+	public List<RowsItem> getRows(){
+		return rows;
 	}
 
 	public String getMessage(){
 		return message;
 	}
-
-	@Override
- 	public String toString(){
-		return 
-			"Data{" + 
-			"balance = '" + balance + '\'' + 
-			",available = '" + available + '\'' + 
-			",message = '" + message + '\'' + 
-			"}";
-		}
 }
