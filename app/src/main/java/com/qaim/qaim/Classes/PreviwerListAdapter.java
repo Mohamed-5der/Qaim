@@ -105,13 +105,11 @@ public class PreviwerListAdapter extends RecyclerView.Adapter<PreviwerListAdapte
             @Override
             public void onClick(View view) {
                 // region
-                ShowPreviewerProfileFragment showPreviewerProfileFragment =ShowPreviewerProfileFragment.newInstance(previewer.getName() ,previewer.getCost() , previewer.getImage() , order_id ,previewer.getArea() , previewer.getYears() , previewer.getFieldTxt() , previewer.getExtraAbout() , realStateID);
+                ShowPreviewerProfileFragment showPreviewerProfileFragment =ShowPreviewerProfileFragment.newInstance(previewer.getName() ,previewer.getCost() , previewer.getImage() , order_id ,previewer.getArea() , previewer.getYears() , previewer.getFieldTxt() , previewer.getExtraAbout() , realStateID, previewer.getRate());
                 activity.getSupportFragmentManager().beginTransaction()
                                 .addToBackStack(null)
                                 .replace(R.id.frameLayout ,showPreviewerProfileFragment)
                                 .commit();
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(fileURL));
-//                startActivity(browserIntent);
             }
         });
     }

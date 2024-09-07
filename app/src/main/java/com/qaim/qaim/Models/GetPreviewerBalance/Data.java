@@ -1,6 +1,9 @@
 package com.qaim.qaim.Models.GetPreviewerBalance;
 
 import com.google.gson.annotations.SerializedName;
+import com.qaim.qaim.Models.GetBalance.RowsItem;
+
+import java.util.List;
 
 public class Data{
 
@@ -12,6 +15,9 @@ public class Data{
 
 	@SerializedName("message")
 	private String message;
+
+	@SerializedName("rows")
+	private List<RowsItem> rows;
 
 	public double getBalance() {
 		return balance;
@@ -35,6 +41,10 @@ public class Data{
 
 	public String getMessage(){
 		return message;
+	}
+
+	public List<RowsItem> getRows(){
+		return rows;
 	}
 
 	@Override

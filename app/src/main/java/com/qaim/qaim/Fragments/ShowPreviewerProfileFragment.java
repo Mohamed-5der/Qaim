@@ -26,6 +26,7 @@ public class ShowPreviewerProfileFragment extends Fragment {
     private static final String ARG_PARAM7 = "param7";
     private static final String ARG_PARAM8 = "param8";
     private static final String ARG_PARAM9 = "param9";
+    private static final String ARG_PARAM20 = "param20";
 
     private String mParam1;
     private String mParam2;
@@ -35,15 +36,16 @@ public class ShowPreviewerProfileFragment extends Fragment {
     private String year ;
     private String filed ;
     private String extra ;
+    private String rate ;
     private int real_State_ID ;
     ImageView imageView ;
-    TextView userName1 , userName2 , cost , tvRegions , tvYears , tvFiled , tvExtra ;
+    TextView userName1 , userName2 , cost , tvRegions , tvYears , tvFiled , tvExtra, lblRate ;
 
     public ShowPreviewerProfileFragment() {
         // Required empty public constructor
     }
 
-    public static ShowPreviewerProfileFragment newInstance(String param1, String param2 , String param3 , int order_id , String region , String years , String filed , String extra , int real_State_ID ) {
+    public static ShowPreviewerProfileFragment newInstance(String param1, String param2 , String param3 , int order_id , String region , String years , String filed , String extra , int real_State_ID, String rate) {
         ShowPreviewerProfileFragment fragment = new ShowPreviewerProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -55,6 +57,7 @@ public class ShowPreviewerProfileFragment extends Fragment {
         args.putString(ARG_PARAM7, filed);
         args.putString(ARG_PARAM8, extra);
         args.putInt(ARG_PARAM9, real_State_ID);
+        args.putString(ARG_PARAM20, rate);
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,6 +74,7 @@ public class ShowPreviewerProfileFragment extends Fragment {
             year = getArguments().getString(ARG_PARAM6);
             filed = getArguments().getString(ARG_PARAM7);
             extra = getArguments().getString(ARG_PARAM8);
+            rate = getArguments().getString(ARG_PARAM20);
             real_State_ID = getArguments().getInt(ARG_PARAM9);
         }
     }
@@ -97,6 +101,7 @@ public class ShowPreviewerProfileFragment extends Fragment {
         tvFiled = v.findViewById(R.id.experienceField);
         tvRegions = v.findViewById(R.id.region1);
         tvExtra = v.findViewById(R.id.info);
+        lblRate = v.findViewById(R.id.lbl_rate);
         return v ;
     }
 
@@ -111,5 +116,6 @@ public class ShowPreviewerProfileFragment extends Fragment {
         tvFiled.setText(filed);
         tvRegions.setText(region);
         tvExtra.setText(extra);
+        lblRate.setText(rate);
     }
 }

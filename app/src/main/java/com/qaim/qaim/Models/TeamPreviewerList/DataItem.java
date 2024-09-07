@@ -54,6 +54,9 @@ public class DataItem{
 	@SerializedName("email")
 	private String email;
 
+	@SerializedName("rate")
+	private String rate;
+
 	public void setImage(String image){
 		this.image = image;
 	}
@@ -156,6 +159,14 @@ public class DataItem{
 
 	public String getEmail(){
 		return email;
+	}
+
+	public String getRate() {
+		return rate;
+	}
+
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 
 	@Override

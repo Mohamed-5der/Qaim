@@ -10,8 +10,8 @@ public class RowsItem{
 	@SerializedName("previewer_cost")
 	private int previewerCost;
 
-	@SerializedName("qaim_net")
-	private int qaimNet;
+//	@SerializedName("qaim_net")
+//	private int qaimNet;
 
 	@SerializedName("description")
 	private String description;
@@ -33,9 +33,9 @@ public class RowsItem{
 		return previewerCost;
 	}
 
-	public int getQaimNet(){
-		return qaimNet;
-	}
+//	public int getQaimNet(){
+//		return qaimNet;
+//	}
 
 	public String getDescription(){
 		return description;
