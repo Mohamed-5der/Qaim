@@ -112,11 +112,13 @@ import com.qaim.qaim.Models.UpdateEmployeeProfile.UpdateEmpolyeeProfileResponse;
 import com.qaim.qaim.Models.UpdatePreviewerProfile.UpdatePreviewerProfileResponse;
 import com.qaim.qaim.Models.UpdateTeamResponse.UpdateTeamResponse;
 import com.qaim.qaim.Models.UploadFileResponse.UploadFileResponse;
+import com.qaim.qaim.Models.UserCompaniesResponse.UserCompaniesResponse;
 import com.qaim.qaim.Models.UserPaymentsResponse.UserPaymentsResponse;
 import com.qaim.qaim.Models.UserProfileResponse.UserProfileResponse;
 import com.qaim.qaim.Models.UserRegisterResponse.UserRegisterResponse;
 import com.qaim.qaim.Models.UserReportResponse.UserReportResponse;
 import com.qaim.qaim.Models.UserUpdateProfile.UserUpdateProfileResponse;
+import com.qaim.qaim.Models.vip.VipRequestResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -399,4 +401,8 @@ Call<RealstateStoreUserResponse> storeRealstate(@Header("Authorization") String 
     Call<OtpResponse> verifyPreviewer(@Header("Authorization") String token, @Body OTPParams params);
     @POST("/api/send-feedback")
     Call<FeedBackResponse> sendFeedBack(@Header("Authorization") String token, @Body FeedbackRequest feedbackRequest);
+    @POST("/api/company/request-vip")
+    Call<VipRequestResponse> sendVipRequest(@Header("Authorization") String token);
+    @POST("/api/user/vip-companies")
+    Call<UserCompaniesResponse> userCompanies(@Header("Authorization") String token);
 }

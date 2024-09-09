@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.qaim.qaim.Activities.PreviewerActivity;
@@ -37,6 +38,8 @@ public class PreviewerBalance extends Fragment {
     Retrofit retrofit ;
     JsonApi jsonApi ;
     Button pullBalance ;
+    AppCompatButton previousTransactionsBtn ;
+
     public PreviewerBalance() {
         // Required empty public constructor
     }
@@ -65,8 +68,7 @@ public class PreviewerBalance extends Fragment {
         getMyBalance = v.findViewById(R.id.balnce);
         myBalance =  v.findViewById(R.id.balnceDue);
         pullBalance =  v.findViewById(R.id.endOrderBtn);
-
-
+        previousTransactionsBtn =  v.findViewById(R.id.previousTransactionsBtn);
         return v;
     }
 
@@ -102,7 +104,23 @@ public class PreviewerBalance extends Fragment {
                 callPullBalanceAPI();
             }
         });
+
+        previousTransactionsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PreviewerPreviousTransactionsFragment companyTransactions = new PreviewerPreviousTransactionsFragment();
+                loadFragment(companyTransactions);
+            }
+        });
     }
+
+    public void loadFragment(Fragment fragment) {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction().disallowAddToBackStack()
+                .replace(R.id.frameLayout , fragment)
+                .commit();
+    }
+
     public void callPullBalanceAPI(){
         PreviewerActivity.dialog.show();
         Call<PullPreviewerBalanceResponse> call = jsonApi.pullBalancePreviewer("Bearer " + PreviewerActivity.token);

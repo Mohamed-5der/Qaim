@@ -2,6 +2,8 @@ package com.qaim.qaim.Classes;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +61,7 @@ public class PreviewerBusinessInProgressRecycleViewAdapter extends RecyclerView.
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView realStateName , realStateDescription , companyName ;
+        TextView realStateName , realStateDescription , companyName , status;
         ImageView imageView ;
         RelativeLayout phoneBtn , emailBtn , whatsAppBtn , comments ;
         Button sendReportBtn , showDetailsBtn ;
@@ -69,6 +71,7 @@ public class PreviewerBusinessInProgressRecycleViewAdapter extends RecyclerView.
             realStateName = itemView.findViewById(R.id.nameOforder);
             realStateDescription = itemView.findViewById(R.id.descriptionOforder) ;
             companyName = itemView.findViewById(R.id.companyName) ;
+            status = itemView.findViewById(R.id.status) ;
             imageView = itemView.findViewById(R.id.image) ;
             phoneBtn = itemView.findViewById(R.id.phoneBtn) ;
             emailBtn = itemView.findViewById(R.id.emailBtn) ;
@@ -80,8 +83,13 @@ public class PreviewerBusinessInProgressRecycleViewAdapter extends RecyclerView.
 
         public void onBind(DataItem businessInProgressDetails){
             realStateName.setText(businessInProgressDetails.getInfo().getRealEstate().getTitle());
-            realStateDescription.setText(businessInProgressDetails.getInfo().getRealEstate().getDescription());
-            companyName.setText(businessInProgressDetails.getCompany().getName());
+            realStateDescription.setText(businessInProgressDetails.getInfo().getNotes());
+            companyName.setText("اسم شركة التقييم: " + businessInProgressDetails.getCompany().getName());
+
+            status.setText(businessInProgressDetails.getInfo().getRealEstate().getStatusTxt());
+            GradientDrawable gb = (GradientDrawable) status.getBackground();
+            gb.setColor(Color.parseColor(businessInProgressDetails.getInfo().getRealEstate().getColor()));
+
             phoneNumber = businessInProgressDetails.getCompany().getPhone();
             email = businessInProgressDetails.getCompany().getEmail();
             whatsAPP = businessInProgressDetails.getCompany().getPhone();

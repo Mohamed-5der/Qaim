@@ -61,6 +61,9 @@ public class Previewer{
 	@SerializedName("email")
 	private String email;
 
+	@SerializedName("rate")
+	private String rate;
+
 	public void setImage(String image){
 		this.image = image;
 	}
@@ -211,6 +214,10 @@ public class Previewer{
 
 	public String getEmail(){
 		return email;
+	}
+
+	public String getRate() {
+		return rate;
 	}
 
 	@Override

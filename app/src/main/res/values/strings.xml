@@ -675,6 +675,9 @@
     <string name="enter_rejection_reason">ادخل سبب الرفض:</string>
     <string name="plz_enter_rejection_reason">من فضلك ادخل سبب الرفض</string>
     <string name="previous_transactions">المعاملات السابقة</string>
+    <string name="vip_vcompanies">شركات بعضوية مميزه</string>
+    <string name="vip_company">انت شركة مميزة</string>
+    <string name="complete_your_profile">الرجاء اكمال الخانة التعريفية في الملف الشخصي</string>
 
     <string-array name="spinner_items">
         <item>قيم</item>

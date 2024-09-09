@@ -1,6 +1,8 @@
 package com.qaim.qaim.Activities;
 
 import static com.qaim.qaim.Activities.SplashScreen.sToken;
+import static com.qaim.qaim.Activities.SplashScreen.signUpEditor;
+import static com.qaim.qaim.Activities.SplashScreen.spSignUp;
 
 import android.content.Intent;
 import android.os.Build;
@@ -91,7 +93,12 @@ public class PreviewerActivity extends AppCompatActivity implements MainFragment
         token = sToken.getString("token_key" , "");
 
 
-
+        String first_login = spSignUp.getString("first_login" , "");
+        if (first_login.equals("1")) {
+            Toast.makeText(PreviewerActivity.this, getString(R.string.complete_your_profile), Toast.LENGTH_SHORT).show();
+            signUpEditor.putString("first_login" , "0");
+            signUpEditor.apply();
+        }
 
         mbn = findViewById(R.id.bottomNaviView);
         slidingRootNavInflate(savedInstanceState);
@@ -234,6 +241,8 @@ public class PreviewerActivity extends AppCompatActivity implements MainFragment
             }
         });
 
+        RelativeLayout companyVip = findViewById(R.id.companyVipRel);
+        companyVip.setVisibility(View.GONE);
 
         // on payment click
         RelativeLayout payment = findViewById(R.id.paymentRel);

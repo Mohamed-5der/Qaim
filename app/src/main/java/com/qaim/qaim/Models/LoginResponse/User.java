@@ -37,6 +37,9 @@ public class User{
 	@SerializedName("token")
 	private String token;
 
+	@SerializedName("first_login")
+	private int firstLogin;
+
 	public void setCountryCode(String countryCode){
 		this.countryCode = countryCode;
 	}
@@ -124,6 +127,15 @@ public class User{
 	public String getToken(){
 		return token;
 	}
+
+	public int getFirstLogin() {
+		return firstLogin;
+	}
+
+	public void setFirstLogin(int firstLogin) {
+		this.firstLogin = firstLogin;
+	}
+
 
 	@Override
  	public String toString(){

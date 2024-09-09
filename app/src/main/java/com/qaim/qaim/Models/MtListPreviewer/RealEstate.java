@@ -40,6 +40,12 @@ public class RealEstate{
 	@SerializedName("longitude")
 	private Object longitude;
 
+	@SerializedName("color")
+	private String color;
+
+	@SerializedName("status_txt")
+	private String statusTxt;
+
 	public void setAddress(String address){
 		this.address = address;
 	}
@@ -126,6 +132,22 @@ public class RealEstate{
 
 	public Object getLongitude(){
 		return longitude;
+	}
+
+	public void setColor(String color){
+		this.color = color;
+	}
+
+	public String getColor(){
+		return color;
+	}
+
+	public void setStatusTxt(String statusTxt){
+		this.statusTxt = statusTxt;
+	}
+
+	public String getStatusTxt(){
+		return statusTxt;
 	}
 
 	@Override

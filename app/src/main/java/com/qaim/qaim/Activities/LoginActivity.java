@@ -188,6 +188,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                     break;
                                 case "previewer" :
+                                    signUpEditor.putString("first_login" , "" + loginResponse.getData().getUser().getFirstLogin());
                                     signUpEditor.putString("yes" , "previewer");
                                     signUpEditor.apply();
 

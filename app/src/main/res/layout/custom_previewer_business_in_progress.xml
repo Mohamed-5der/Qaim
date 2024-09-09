@@ -15,14 +15,32 @@
         android:padding="8dp"
         >
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:scaleType="fitXY"
-            android:id="@+id/image"
             android:background="#DDD"
             >
-        </ImageView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:id="@+id/image"
+                />
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_text_view_status"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/status"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:textColor="#FFF"
+                android:layout_marginLeft="16dp"
+                android:text="@string/accepted"
+                />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

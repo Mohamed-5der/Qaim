@@ -75,7 +75,7 @@ public class EditPreviewerProfileFragment extends Fragment {
     CountryCodePicker contryCod ;
     Button confirm ;
     Spinner citySpinner ,region1Spinner ,region2Spinner , region3Spinner;
-    TextView userName ;
+    TextView userName , lblRate;
     ImageView profileImage ;
     Retrofit retrofit ;
     JsonApi jsonApi ;
@@ -147,6 +147,7 @@ public class EditPreviewerProfileFragment extends Fragment {
         jsonApi = retrofit.create(JsonApi.class);
         imageView = v.findViewById(R.id.proflieImage);
         userName = v.findViewById(R.id.userName);
+        lblRate = v.findViewById(R.id.lbl_rate);
         proflieName = v.findViewById(R.id.EditProfileNameEditText);
         proflieEmail = v.findViewById(R.id.EditProfileEmailEditText);
         profliePhone = v.findViewById(R.id.phoneEditText);
@@ -233,6 +234,7 @@ public class EditPreviewerProfileFragment extends Fragment {
 //                    });
                     isEnable();
                     userName.setText(previewerProfileResponse.getData().getPreviewer().getName());
+                    lblRate.setText(previewerProfileResponse.getData().getPreviewer().getRate());
                     proflieName.setText(previewerProfileResponse.getData().getPreviewer().getName());
                     proflieEmail.setText(previewerProfileResponse.getData().getPreviewer().getEmail());
                     profliePhone.setText(previewerProfileResponse.getData().getPreviewer().getPhone());

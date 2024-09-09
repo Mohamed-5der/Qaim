@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 
 import com.qaim.qaim.Fragments.AboutUsFragment;
 import com.qaim.qaim.Fragments.AddRealStateFragment;
+import com.qaim.qaim.Fragments.CompanyVipFragment;
 import com.qaim.qaim.Fragments.EditProfileFragment;
 import com.qaim.qaim.Fragments.MainFragment;
 import com.qaim.qaim.Fragments.NotificationFragment;
@@ -251,6 +252,19 @@ public class MainActivity extends AppCompatActivity implements MainFragment.AddR
             public void onClick(View view) {
                 EditProfileFragment editProfileFragment = new EditProfileFragment ();
                 loadFragment(editProfileFragment);
+                slidingRootNav.closeMenu(true);
+            }
+        });
+
+        TextView vip_company = findViewById(R.id.vipText);
+        vip_company.setText(getString(R.string.vip_vcompanies));
+
+        RelativeLayout companyVip = findViewById(R.id.companyVipRel);
+        companyVip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CompanyVipFragment companyVipFragment = new CompanyVipFragment ();
+                loadFragment(companyVipFragment);
                 slidingRootNav.closeMenu(true);
             }
         });

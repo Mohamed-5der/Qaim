@@ -37,6 +37,7 @@ import com.qaim.qaim.Models.CompanyProfile.Company;
 import com.qaim.qaim.Models.CompanyProfile.CompanyProfileResponse;
 import com.qaim.qaim.Models.LogoutRespone.LogOutResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
+import com.qaim.qaim.Models.vip.VipRequestResponse;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -232,7 +233,17 @@ public class CompanyActivity extends AppCompatActivity {
             }
         });
 
+        TextView vip_company = findViewById(R.id.vipText);
+        vip_company.setText(getString(R.string.vip_company));
 
+        // on payment click
+        RelativeLayout companyVipRel = findViewById(R.id.companyVipRel);
+        companyVipRel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requestVipCompany();
+            }
+        });
         // on payment click
         RelativeLayout payment = findViewById(R.id.paymentRel);
         payment.setOnClickListener(new View.OnClickListener() {
@@ -353,5 +364,25 @@ public class CompanyActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void requestVipCompany(){
+        slidingRootNav.closeMenu(true);
+        Call<VipRequestResponse> call = jsonApi.sendVipRequest("Bearer "+CompanyActivity.token);
+        call.enqueue(new Callback<VipRequestResponse>() {
+            @Override
+            public void onResponse(Call<VipRequestResponse> call, Response<VipRequestResponse> response) {
+                CompanyActivity.dialog.dismiss();
+                VipRequestResponse vipRequestResponse = response.body();
+                if (vipRequestResponse != null && vipRequestResponse.getMessage() != null) {
+                    Toast.makeText(getApplicationContext() , vipRequestResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VipRequestResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }
