@@ -1055,7 +1055,7 @@
                             android:id="@+id/comname"
                             android:textSize="16sp"
                             android:textColor="#303030"
-                            android:text="company"
+                            android:text="@string/company_"
                             android:gravity="center"
                             android:layout_margin="8dp"
                             />
@@ -1100,7 +1100,7 @@
                             android:id="@+id/previName"
                             android:textSize="16sp"
                             android:textColor="#303030"
-                            android:text="Preivewer"
+                            android:text="@string/Previewer"
                             android:gravity="center"
                             android:layout_margin="8dp"
                             />
@@ -1129,8 +1129,6 @@
 
             </LinearLayout>
         </ScrollView>
-
-
 
     </RelativeLayout>
 

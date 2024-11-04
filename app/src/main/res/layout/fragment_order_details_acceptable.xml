@@ -6,8 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.OrderDetailsAcceptableFragment"
     >
-
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,8 +46,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             />
-
-
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -133,14 +129,11 @@
                         android:textDirection="rtl"
                         />
                 </RelativeLayout>
-
-
                 <LinearLayout
                     android:id="@+id/previewerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
 
                     <TextView
                         android:layout_width="match_parent"
@@ -256,8 +249,6 @@
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         />
-
-
                     <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -274,10 +265,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
-
-
         </ScrollView>
     </RelativeLayout>
 

@@ -58,7 +58,6 @@ import com.qaim.qaim.Models.EmployeeComments.EmployeeCommentsResponse;
 import com.qaim.qaim.Models.EmployeeProfile.EmpolyeeProfileResponse;
 import com.qaim.qaim.Models.EmpolyeeAddNotes.EmployeeAddNotesResponse;
 import com.qaim.qaim.Models.GetAcceptedOrderPrev.AcceptedOrderPrevResponse;
-import com.qaim.qaim.Models.GetBalance.GetBalanceResponse;
 import com.qaim.qaim.Models.GetOrdersPreviewer.OrderPrevResponse;
 import com.qaim.qaim.Models.GetPreviewerBalance.GetPreviewerBalanceResponse;
 import com.qaim.qaim.Models.GetProviewerProfile.PreviewerProfileResponse;

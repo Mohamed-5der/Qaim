@@ -31,6 +31,4 @@
             android:textStyle="bold"
             />
     </androidx.cardview.widget.CardView>
-
-
 </RelativeLayout>

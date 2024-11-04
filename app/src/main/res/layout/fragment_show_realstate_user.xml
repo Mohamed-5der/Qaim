@@ -40,7 +40,6 @@
             android:layout_marginRight="16dp"
             />
 
-
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"

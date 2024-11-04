@@ -29,7 +29,6 @@
             android:background="#00000000"
             android:layout_marginRight="16dp"
             />
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +37,6 @@
             android:layout_centerVertical="false"
             android:layout_marginTop="16dp"
             />
-
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -89,13 +87,11 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/iconly_light_profile"
                         android:layout_margin="12dp"/>
-
                     <View
                         android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:background="#DDD"
                         />
-
                     <EditText
                         android:id="@+id/profileEditText"
                         android:layout_width="match_parent"
@@ -126,19 +122,16 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layoutDirection="rtl">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/iconly_light_message"
                         android:layout_margin="12dp"/>
-
                     <View
                         android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:background="#DDD"
                         />
-
                     <EditText
                         android:id="@+id/emailEditText"
                         android:layout_width="match_parent"
@@ -172,20 +165,17 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layoutDirection="rtl">
-
                     <com.hbb20.CountryCodePicker
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/countryCode"
                         card_view:ccp_defaultNameCode="sa"
                         />
-
                     <View
                         android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:background="#DDD"
                         />
-
                     <EditText
                         android:id="@+id/phoneEditText"
                         android:layout_width="match_parent"
@@ -194,7 +184,7 @@
                         android:textSize="16sp"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:hint="50"
+                        android:hint="@string/_50"
                         android:gravity="center_vertical"
                         android:background="#00000000" />
                 </LinearLayout>
@@ -219,7 +209,6 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layoutDirection="rtl">
-
                     <Spinner
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -249,7 +238,6 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layoutDirection="rtl">
-
                     <EditText
                         android:id="@+id/licenceEditText"
                         android:layout_width="match_parent"
@@ -283,19 +271,16 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layoutDirection="rtl">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/svgexport_60"
                         android:layout_margin="12dp"/>
-
                     <View
                         android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:background="#DDD"
                         />
-
                     <EditText
                         android:id="@+id/passwordEditText"
                         android:layout_width="match_parent"
@@ -397,10 +382,7 @@
 
                     />
 
-
-
             </LinearLayout>
-
 
         </LinearLayout>
     </ScrollView>

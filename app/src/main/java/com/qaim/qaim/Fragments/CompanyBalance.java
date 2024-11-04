@@ -18,7 +18,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.qaim.qaim.Activities.CompanyActivity;
-import com.qaim.qaim.Models.GetBalance.GetBalanceResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.PullBalance.PullBalanceResponse;
 import com.qaim.qaim.R;

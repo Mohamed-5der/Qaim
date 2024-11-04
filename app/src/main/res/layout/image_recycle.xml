@@ -15,7 +15,6 @@
             android:layout_height="65dp"
             android:id="@+id/image"
             android:scaleType="fitXY"
-
             />
         <ImageView
             android:layout_width="24dp"
@@ -26,6 +25,5 @@
             android:layout_alignParentTop="true"
 
             />
-
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

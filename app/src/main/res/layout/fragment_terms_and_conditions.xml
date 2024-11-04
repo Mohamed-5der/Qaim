@@ -29,7 +29,6 @@
             android:textSize="25sp"
             />
 
-
     </RelativeLayout>
 
 
@@ -70,7 +69,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="الشروط و الأحكام"
+                android:text="@string/termsAndConditions"
                 android:textSize="20sp"
                 android:textDirection="rtl"
                 android:textStyle="bold"
@@ -92,7 +91,6 @@
                 />
 
         </RelativeLayout>
-
 
     </ScrollView>
 </RelativeLayout>

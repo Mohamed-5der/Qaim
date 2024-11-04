@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="اختار معاين"
+            android:text="@string/Choose_a_viewer"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:textColor="#FFF"
@@ -38,9 +38,7 @@
             android:layout_marginRight="16dp"
             />
 
-
     </RelativeLayout>
-
 
     <ScrollView
         android:layout_width="match_parent"

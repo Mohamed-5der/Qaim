@@ -39,10 +39,7 @@
             android:background="#00000000"
             android:layout_marginRight="16dp"
             />
-
-
     </RelativeLayout>
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -85,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#303030"
                         android:textSize="16sp"
-                        android:text="Name"
+                        android:text="@string/name"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:textDirection="rtl"
@@ -274,9 +271,6 @@
                 android:text="@string/reject"
                 android:layout_marginBottom="84dp"
                 />
-
-
-
 
 
             <!--            <TextView-->

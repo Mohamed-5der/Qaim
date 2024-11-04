@@ -953,17 +953,11 @@
 
                 </RelativeLayout>
 
-
-
-
-
-
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_sign_up_btn"
-                    android:text="اوافق على التقرير"
+                    android:text="@string/I_agree_to_the_report"
                     android:textColor="#FFF"
                     android:id="@+id/accept"
                     android:layout_marginTop="16dp"
@@ -974,7 +968,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_edit_orders_btn"
-                    android:text="لا اوافق على التقرير"
+                    android:text="@string/I_do_not_agree_with_the_report"
                     android:textColor="#FFF"
                     android:id="@+id/reject"
                     android:layout_marginTop="16dp"

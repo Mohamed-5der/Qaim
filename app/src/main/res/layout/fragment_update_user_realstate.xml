@@ -6,7 +6,6 @@
     tools:context=".Fragments.UpdateUserRealstateFragment" >
 
 
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +38,6 @@
             android:background="#00000000"
             android:layout_marginRight="16dp"
             />
-
 
     </RelativeLayout>
 
@@ -105,7 +103,6 @@
                     android:id = "@+id/spinner"
                     android:layout_gravity="center"
                     />
-
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
@@ -203,8 +200,6 @@
                         />
 
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <TextView
@@ -265,7 +260,6 @@
                     android:paddingLeft="20dip"
                     android:textColor="#FFF"
                     android:textSize="10sp"
-
                     android:id="@+id/addLocation"
                     />
 

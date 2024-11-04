@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,9 +46,6 @@
 
     </RelativeLayout>
 
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -83,7 +79,7 @@
                 android:id="@+id/lbl_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.5"
+                android:text="@string/_4_5"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:layout_gravity="center"
@@ -239,7 +235,7 @@
                         android:textSize="16sp"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:hint="50"
+                        android:hint="@string/_50"
                         android:gravity="center_vertical"
                         android:background="#00000000" />
                 </LinearLayout>

@@ -38,8 +38,6 @@
             android:layout_centerVertical="false"
             android:layout_marginTop="16dp"
             />
-
-
     </RelativeLayout>
 
     <ScrollView
@@ -98,7 +96,6 @@
                         android:layout_height="match_parent"
                         android:background="#DDD"
                         />
-
                     <EditText
                         android:id="@+id/profileEditText"
                         android:layout_width="match_parent"
@@ -197,7 +194,7 @@
                         android:textSize="16sp"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:hint="50"
+                        android:hint="@string/_50"
                         android:gravity="center_vertical"
                         android:background="#00000000" />
                 </LinearLayout>
@@ -354,16 +351,10 @@
                     android:text="@string/singIn"
                     android:layout_marginBottom="8dp"
                     />
-
-
-
             </LinearLayout>
-
 
         </LinearLayout>
 
     </ScrollView>
-
-
 
 </RelativeLayout>

@@ -52,8 +52,7 @@
             android:textColor="#000"
             android:textSize="16sp"
             android:textDirection="rtl"
-            android:text="Description"
-
+            android:text="@string/description"
             android:layout_marginBottom="8dp"
             android:maxLines="2"
             />

@@ -48,9 +48,6 @@
 
         </RelativeLayout>
 
-
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -58,8 +55,6 @@
             android:layout_below="@id/topView"
             android:layout_marginTop="64dp"
             >
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -266,8 +261,6 @@
                                 android:background="#00000000"
                                 />
                         </RelativeLayout>
-
-
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -287,8 +280,6 @@
                         android:text="@string/edit"
                         android:layout_marginTop="8dp"
                         />
-
-
                 </LinearLayout>
             </LinearLayout>
 
@@ -320,8 +311,5 @@
                 />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
-
-
-
 
 </ScrollView>

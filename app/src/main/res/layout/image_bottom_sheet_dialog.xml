@@ -10,5 +10,4 @@
         android:src="@drawable/about_bg"
         android:id="@+id/dialog_image"
         />
-
 </RelativeLayout>

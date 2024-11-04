@@ -12,5 +12,4 @@
         android:id="@+id/cityName"
         android:textColor="#000"
         />
-
 </RelativeLayout>

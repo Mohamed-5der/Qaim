@@ -39,8 +39,6 @@
             android:background="#00000000"
             android:layout_marginRight="16dp"
             />
-
-
     </RelativeLayout>
 
     <ScrollView
@@ -196,7 +194,7 @@
                         android:textSize="16sp"
                         android:inputType="number"
                         android:maxLength="11"
-                        android:hint="50"
+                        android:hint="@string/_50"
                         android:gravity="center_vertical"
                         android:background="#00000000" />
                 </LinearLayout>
@@ -323,8 +321,6 @@
                             android:id="@+id/showPassword"
                             />
                     </RelativeLayout>
-
-
                 </LinearLayout>
             </LinearLayout>
 
@@ -345,8 +341,6 @@
                     android:layout_marginBottom="84dp"
                     />
             </LinearLayout>
-
-
         </LinearLayout>
 
     </ScrollView>
@@ -364,7 +358,6 @@
         android:scaleType="centerCrop"
         android:layout_centerHorizontal="true"
         >
-
         <ImageView
             android:id="@+id/proflieImage"
             android:layout_width="match_parent"
@@ -376,6 +369,5 @@
             android:background="@drawable/rounded_image"
             />
     </androidx.cardview.widget.CardView>
-
 
 </RelativeLayout>

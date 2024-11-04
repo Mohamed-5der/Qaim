@@ -39,18 +39,13 @@
             android:background="#00000000"
             android:layout_marginRight="16dp"
             />
-
-
     </RelativeLayout>
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/topView"
         android:layout_marginTop="24dp"
         android:background="@drawable/bottom_sheet_dialog"
-
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -123,7 +118,7 @@
                                 android:id="@+id/prevName"
                                 android:textSize="14sp"
                                 android:textColor="#303030"
-                                android:text="Name"
+                                android:text="@string/name"
                                 android:maxLines="1"
                                 />
                             <TextView
@@ -133,11 +128,9 @@
                                 android:textSize="12sp"
                                 android:textColor="#303030"
                                 android:layout_marginTop="8dp"
-                                android:text="Description"
+                                android:text="@string/description"
                                 android:maxLines="2"
                                 />
-
-
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -209,7 +202,7 @@
                                 android:id="@+id/artistName"
                                 android:textSize="14sp"
                                 android:textColor="#303030"
-                                android:text="Name"
+                                android:text="@string/name"
                                 android:maxLines="1"
                                 />
                             <TextView
@@ -219,14 +212,11 @@
                                 android:textSize="12sp"
                                 android:textColor="#303030"
                                 android:layout_marginTop="8dp"
-                                android:text="Description"
+                                android:text="@string/description"
                                 android:maxLines="2"
                                 />
-
-
                         </LinearLayout>
                     </RelativeLayout>
-
                 </RelativeLayout>
             </LinearLayout>
             <LinearLayout
@@ -296,7 +286,7 @@
                                 android:id="@+id/revName"
                                 android:textSize="14sp"
                                 android:textColor="#303030"
-                                android:text="Name"
+                                android:text="@string/name"
                                 android:maxLines="1"
                                 />
                             <TextView
@@ -306,17 +296,13 @@
                                 android:textSize="12sp"
                                 android:textColor="#303030"
                                 android:layout_marginTop="8dp"
-                                android:text="Description"
+                                android:text="@string/description"
                                 android:maxLines="2"
                                 />
-
-
                         </LinearLayout>
                     </RelativeLayout>
-
                 </RelativeLayout>
             </LinearLayout>
-
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/confirm"
@@ -331,5 +317,4 @@
                 />
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

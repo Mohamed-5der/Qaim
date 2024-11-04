@@ -105,7 +105,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="المبلغ مقدم مقابل خدمة شركة المحمدية "
+                    android:text="@string/The_amount_is_provided_for_the_service"
                     android:gravity="right"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"

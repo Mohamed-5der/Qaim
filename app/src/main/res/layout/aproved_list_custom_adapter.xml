@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="Name"
+            android:text="@string/name"
             android:textDirection="rtl"
             />
         <TextView
@@ -58,7 +58,7 @@
             android:textColor="#000"
             android:textSize="16sp"
             android:textDirection="rtl"
-            android:text="Description"
+            android:text="@string/description"
             android:layout_marginBottom="8dp"
             />
 <!--        <LinearLayout-->

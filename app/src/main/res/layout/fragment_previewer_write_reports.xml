@@ -258,13 +258,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/yes"
-                                android:text="نعم"
+                                android:text="@string/Yes"
                                 />
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/no"
-                                android:text="لا"
+                                android:text="@string/No"
                                 android:layout_below="@id/yes"
                                 />
                     </RadioGroup>
@@ -312,27 +312,27 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/phone"
-                            android:text="هاتف"
+                            android:text="@string/Phone"
                             />
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/out"
-                            android:text="صرف"
+                            android:text="@string/exchange"
                             android:layout_below="@id/phone"
                             />
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/elc"
-                            android:text="كهرباء"
+                            android:text="@string/electricity"
                             android:layout_below="@id/out"
                             />
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/water"
-                            android:text="مياه"
+                            android:text="@string/water"
                             android:layout_below="@id/elc"
                             />
 
@@ -738,7 +738,6 @@
                         android:id = "@+id/south"
                         android:layout_gravity="center"
                         android:textSize="16sp"
-
                         android:background="#00000000"
                         />
 

@@ -6,7 +6,7 @@
         android:textColor="#FFF"
         android:textSize="25sp"
         android:gravity="center"
-        android:text="45131564894653"
+        android:text="@string/_45131564894653"
         android:id="@+id/alertMsg"
         android:background="@drawable/alert_dialog"
         />

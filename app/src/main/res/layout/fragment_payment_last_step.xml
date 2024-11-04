@@ -155,8 +155,6 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layoutDirection="rtl">
-
-
                     <EditText
                         android:id="@+id/cvv"
                         android:layout_width="match_parent"
@@ -189,9 +187,7 @@
 
                 </LinearLayout>
 
-
             </LinearLayout>
-
 
         </ScrollView>
     </RelativeLayout>

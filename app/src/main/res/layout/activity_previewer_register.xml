@@ -194,7 +194,7 @@
                         android:inputType="phone"
                         android:textSize="16sp"
                         android:singleLine="true"
-                        android:hint="50"
+                        android:hint="@string/_50"
                         android:gravity="center_vertical"
                         android:background="#00000000" />
                 </LinearLayout>
@@ -500,7 +500,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="اضف شهادة اعتماد"
+                    android:text="@string/Add_a_certificate_of_accreditation"
                     android:gravity="right"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
@@ -574,7 +574,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="قبول الشروط و الأحكام"
+                    android:text="@string/Accept_the_terms_andـconditions"
                     android:layout_toStartOf="@id/termsChecker"
                     android:layout_marginEnd="8dp"
                     android:textColor="#9A7232"

@@ -20,7 +20,6 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_baseline_logout_24"
         />
-
 <!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
 <!--        android:id="@+id/coordinator"-->
 <!--        android:layout_width="match_parent"-->
@@ -56,7 +55,6 @@
 <!--&lt;!&ndash;            app:layout_anchor="@id/bottomAppBar" />&ndash;&gt;-->
 
 <!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
-
 </RelativeLayout>
 
 

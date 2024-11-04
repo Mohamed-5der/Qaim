@@ -14,7 +14,6 @@
         android:orientation="vertical"
         android:padding="8dp"
         >
-
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="140dp"
@@ -33,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_sign_up_btn"
-                android:text="عرض تقرير المعاين"
+                android:text="@string/View_the_inspection_report"
                 android:textColor="#FFF"
                 android:id="@+id/showPrevReport"
                 android:layout_marginTop="16dp"
@@ -46,14 +45,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-
                 <TextView
                     android:id="@+id/nameOforder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
                     android:textSize="20sp"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:layout_marginBottom="8dp"
                     android:textDirection="rtl"
                     />
@@ -64,14 +62,11 @@
                     android:textColor="#000"
                     android:textSize="16sp"
                     android:textDirection="rtl"
-                    android:text="Description"
+                    android:text="@string/description"
                     android:maxLines="2"
                     />
 
             </LinearLayout>
-
-
-
 
         </LinearLayout>
         <RelativeLayout
@@ -117,11 +112,9 @@
                 android:layout_marginRight="8dp"
                 android:layout_toLeftOf="@id/companyName1"
                 android:id="@+id/companyName"
-                android:text="شركة الأحمدية"
+                android:text="@string/AlـAhmadiahـCompany"
                 android:textColor="#000"
-
                 />
-
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,11 +143,5 @@
 <!--                android:layout_marginTop="16dp"-->
 <!--                />-->
         </LinearLayout>
-
-
-
     </LinearLayout>
-
-
-
 </androidx.cardview.widget.CardView>

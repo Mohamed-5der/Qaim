@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="من نحن ‘‘قيم‘‘"
+            android:text="@string/who_We_Are_Qaim"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:textColor="#FFF"
@@ -70,7 +70,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="من نحن"
+                android:text="@string/Who_We_Are"
                 android:textSize="20sp"
                 android:textDirection="rtl"
                 android:textStyle="bold"
@@ -82,7 +82,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="من نحن"
+                android:text="@string/Who_We_Are"
                 android:textSize="18sp"
                 android:textDirection="rtl"
                 android:textColor="#525252"
@@ -90,11 +90,10 @@
                 android:layout_marginTop="8dp"
                 android:id="@+id/whoUsTxt"
                 />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="خدماتنا"
+                android:text="@string/Our_Services"
                 android:textSize="20sp"
                 android:textDirection="rtl"
                 android:textStyle="bold"
@@ -106,7 +105,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="خدماتنا"
+                android:text="@string/Our_Services"
                 android:textSize="18sp"
                 android:textDirection="rtl"
                 android:textColor="#525252"
@@ -116,7 +115,6 @@
                 android:layout_marginBottom="82dp"
                 />
         </RelativeLayout>
-
     </ScrollView>
 
 </RelativeLayout>

@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="tittle"
+                android:text="@string/tittle"
                 android:textColor="#313131"
                 android:textDirection="rtl"
                 android:textSize="16sp" />
@@ -71,7 +71,7 @@
                         android:layout_marginEnd="4dp"
                         android:layout_marginBottom="4dp"
                         android:maxLines="1"
-                        android:text="رسوم المعاينة"
+                        android:text="@string/Inspectionـfees"
                         android:textColor="#585858"
                         android:textDirection="rtl"
                         android:textSize="12dp" />

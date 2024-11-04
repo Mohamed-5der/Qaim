@@ -58,14 +58,6 @@
                 android:gravity="center"
                 android:maxLines="1"
                 />
-
-
         </LinearLayout>
-
-
     </LinearLayout>
-
-
-
-
 </ScrollView>
