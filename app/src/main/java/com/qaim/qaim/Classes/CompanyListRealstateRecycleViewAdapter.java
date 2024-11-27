@@ -44,7 +44,7 @@ public class CompanyListRealstateRecycleViewAdapter extends RecyclerView.Adapter
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_list_of_realstate_adapter , null , false);
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://qaim.app")
+                .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);

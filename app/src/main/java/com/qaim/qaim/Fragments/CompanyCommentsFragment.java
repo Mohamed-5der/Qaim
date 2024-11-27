@@ -108,7 +108,7 @@ public class CompanyCommentsFragment extends Fragment {
         sendFile = v.findViewById(R.id.sendFile);
         comment = v.findViewById(R.id.addComment);
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://qaim.app")
+                .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);

@@ -103,7 +103,7 @@ public class CompanyTeamReportsFragment extends Fragment {
             }
         });
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://qaim.app")
+                .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);

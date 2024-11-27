@@ -58,7 +58,7 @@ public class PaymentLastStepFragment extends Fragment {
             cost = getArguments().getString(ARG_PARAM2);
             companyName = getArguments().getString(ARG_PARAM3);
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://qaim.app")
+                    .baseUrl("https://qaimha.com")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             jsonApi = retrofit.create(JsonApi.class);

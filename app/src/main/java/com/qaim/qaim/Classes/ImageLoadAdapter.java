@@ -43,7 +43,7 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.View
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_recycle ,null , false);
         activity =(AppCompatActivity) parent.getContext();
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://qaim.app")
+                .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);

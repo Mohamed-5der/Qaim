@@ -101,7 +101,7 @@ public class CompnayUserRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compnay_user_register);
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://qaim.app")
+                .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);

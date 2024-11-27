@@ -122,7 +122,7 @@ public class ShowRealstateUserFragment extends Fragment implements OnMapReadyCal
         res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://qaim.app")
+                .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);

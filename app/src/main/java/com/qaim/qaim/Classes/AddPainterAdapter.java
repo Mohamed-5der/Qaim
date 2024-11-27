@@ -57,7 +57,7 @@ public class AddPainterAdapter extends RecyclerView.Adapter<AddPainterAdapter.Vi
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_painter_layout , null , false);
         activity = (AppCompatActivity) parent.getContext();
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://qaim.app")
+                .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);

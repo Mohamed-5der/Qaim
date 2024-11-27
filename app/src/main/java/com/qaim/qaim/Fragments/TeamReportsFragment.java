@@ -61,7 +61,7 @@
 //        View v = inflater.inflate(R.layout.fragment_team_reports, container, false);
 //        recyclerView = v.findViewById(R.id.PreviewerRecycleView);
 //        retrofit = new Retrofit.Builder()
-//                .baseUrl("https://qaim.app")
+//                .baseUrl("https://qaimha.com")
 //                .addConverterFactory(GsonConverterFactory.create())
 //                .build();
 //        jsonApi = retrofit.create(JsonApi.class);

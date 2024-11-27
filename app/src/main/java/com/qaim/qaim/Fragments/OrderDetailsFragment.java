@@ -72,7 +72,7 @@ public class OrderDetailsFragment extends Fragment {
         if (getArguments() != null) {
             id = getArguments().getInt(ARG_NAME_ORDER);
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://qaim.app")
+                    .baseUrl("https://qaimha.com")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             jsonApi = retrofit.create(JsonApi.class);

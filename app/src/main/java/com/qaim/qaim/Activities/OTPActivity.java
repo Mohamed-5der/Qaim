@@ -44,7 +44,7 @@ public class OTPActivity extends AppCompatActivity {
         authToken = SplashScreen.sToken.getString("token_key", "");
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://qaim.app")
+                .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

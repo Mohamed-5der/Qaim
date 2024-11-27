@@ -112,7 +112,7 @@ public class SendFeedBackFragment extends Fragment {
 
     public void sendFeedBack(String content, String subject, String selectItem) {
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://qaim.app")
+                .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
