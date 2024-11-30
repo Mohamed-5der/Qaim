@@ -1,7 +1,7 @@
 package com.qaim.qaim.Models.UserReportResponse;
 
-import com.qaim.qaim.Models.ShowCompanyPrevReport.ImagesItem;
 import com.google.gson.annotations.SerializedName;
+import com.qaim.qaim.Models.ShowCompanyPrevReport.ImagesItem;
 
 import java.util.List;
 

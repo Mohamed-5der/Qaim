@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.qaim.qaim.Models.RealstateShowUserResponse.AttributesItem;
 import com.qaim.qaim.Models.RealstateShowUserResponse.NoteItem;
 import com.qaim.qaim.R;
 

@@ -5,8 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -67,7 +65,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -129,16 +126,7 @@ public class PreviewerListDetailsFragment extends Fragment implements OnMapReady
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_previewer_list_details, container, false);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -255,7 +243,7 @@ public class PreviewerListDetailsFragment extends Fragment implements OnMapReady
                         }
                     }else {
                         tittle.setText("شركة");
-                        description.setText("قيم");
+                        description.setText("قيمها");
                         latLng = new LatLng(0,0);
                     }
                     fileURL =  myListPrevDetailsResponse.getData().getRow().getInfo().getDoc();

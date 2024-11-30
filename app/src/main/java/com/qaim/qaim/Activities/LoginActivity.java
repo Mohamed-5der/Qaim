@@ -10,8 +10,6 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -25,7 +23,6 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -34,12 +31,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.qaim.qaim.Classes.LoginParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.LoginResponse.LoginResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
-
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,8 +43,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoginActivity extends AppCompatActivity {
-
+public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "LoginActivity";
     private ActivityResultLauncher<String> requestPermissionLauncher ;
@@ -57,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     public static SharedPreferences.Editor spNotiTokenEditor ;
     public static String NOTI_KEY = "noti" ;
     public static String notiToken ;
-
 
     Retrofit retrofit ;
     JsonApi jsonApi ;
@@ -73,13 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = this.getResources();
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();dialog = new PregressDialog(this);
-        config.locale = locale;
-        res.updateConfiguration(config, res.getDisplayMetrics());
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         TextView createAccount = findViewById(R.id.createAccount);
         TextView forget = findViewById(R.id.forgetPassword);
@@ -311,5 +299,21 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void changeLanguage(View view) {
+        if (LocaleHelper.getLanguage(this).equals("en")) {
+            LocaleHelper.setLocale(this, "ar");
+        } else {
+            LocaleHelper.setLocale(this, "en");
+        }
+        restartApp(); // Restart activity to apply language changes
+    }
+
+    private void restartApp() {
+        Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finishAffinity(); // Finish current activity
     }
 }

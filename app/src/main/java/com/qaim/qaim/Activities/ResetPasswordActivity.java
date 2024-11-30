@@ -8,8 +8,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.qaim.qaim.Classes.ResetPasswordParams;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.ResetPassword.ResetPasswordResponse;
@@ -22,7 +20,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ResetPasswordActivity extends AppCompatActivity {
+public class ResetPasswordActivity extends BaseActivity {
     Retrofit retrofit ;
     JsonApi jsonApi ;
     public static PregressDialog dialog;

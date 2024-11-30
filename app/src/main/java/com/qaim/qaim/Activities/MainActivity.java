@@ -19,10 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.qaim.qaim.Fragments.AboutUsFragment;
 import com.qaim.qaim.Fragments.AddRealStateFragment;
 import com.qaim.qaim.Fragments.CompanyVipFragment;
@@ -40,8 +41,6 @@ import com.qaim.qaim.Models.UserProfileResponse.User;
 import com.qaim.qaim.Models.UserProfileResponse.UserProfileResponse;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
@@ -53,7 +52,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MainActivity extends AppCompatActivity implements MainFragment.AddRealstateFragmentListner {
+public class MainActivity extends BaseActivity implements MainFragment.AddRealstateFragmentListner {
     BottomNavigationView mbn ;
     private SlidingRootNav slidingRootNav;
     FloatingActionButton fab ;
@@ -98,13 +97,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.AddR
         slidingRootNavInflate(savedInstanceState);
         bbmShow();
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AddRealStateFragment fragment = new AddRealStateFragment();
-                getSupportFragmentManager().beginTransaction().addToBackStack(null)
-                        .replace(R.id.frameLayout , fragment).commit();
-            }
+        fab.setOnClickListener(view -> {
+            AddRealStateFragment fragment = new AddRealStateFragment();
+            getSupportFragmentManager().beginTransaction().addToBackStack(null)
+                    .replace(R.id.frameLayout , fragment).commit();
         });
         alert = new Alert();
     }
@@ -228,86 +224,62 @@ public class MainActivity extends AppCompatActivity implements MainFragment.AddR
     public void onSlideRootMenuItemClick(){
         // on user name and profile image click
         LinearLayout profile = findViewById(R.id.profileRel);
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditProfileFragment editProfileFragment = new EditProfileFragment ();
-                loadFragment(editProfileFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        profile.setOnClickListener(view -> {
+            EditProfileFragment editProfileFragment = new EditProfileFragment ();
+            loadFragment(editProfileFragment);
+            slidingRootNav.closeMenu(true);
         });
         ImageButton editProfileBtn = findViewById(R.id.editprofileBtn);
-        editProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditProfileFragment editProfileFragment = new EditProfileFragment ();
-                loadFragment(editProfileFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        editProfileBtn.setOnClickListener(view -> {
+            EditProfileFragment editProfileFragment = new EditProfileFragment ();
+            loadFragment(editProfileFragment);
+            slidingRootNav.closeMenu(true);
         });
 
         ImageView preofilePhoto = findViewById(R.id.ProfilePhoto);
-        preofilePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditProfileFragment editProfileFragment = new EditProfileFragment ();
-                loadFragment(editProfileFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        preofilePhoto.setOnClickListener(view -> {
+            EditProfileFragment editProfileFragment = new EditProfileFragment ();
+            loadFragment(editProfileFragment);
+            slidingRootNav.closeMenu(true);
         });
 
         TextView vip_company = findViewById(R.id.vipText);
         vip_company.setText(getString(R.string.vip_vcompanies));
 
         RelativeLayout companyVip = findViewById(R.id.companyVipRel);
-        companyVip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CompanyVipFragment companyVipFragment = new CompanyVipFragment ();
-                loadFragment(companyVipFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        companyVip.setOnClickListener(view -> {
+            CompanyVipFragment companyVipFragment = new CompanyVipFragment ();
+            loadFragment(companyVipFragment);
+            slidingRootNav.closeMenu(true);
         });
 
         // on payment click
         RelativeLayout payment = findViewById(R.id.paymentRel);
-        payment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserPaymentsFragment userPaymentsFragment = new UserPaymentsFragment ();
-                loadFragment(userPaymentsFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        payment.setOnClickListener(view -> {
+            UserPaymentsFragment userPaymentsFragment = new UserPaymentsFragment ();
+            loadFragment(userPaymentsFragment);
+            slidingRootNav.closeMenu(true);
         });
         // terms And Condtions
         RelativeLayout termsAndCondtions = findViewById(R.id.terms);
-        termsAndCondtions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TermsAndConditionsFragment termsAndConditionsFragment = new TermsAndConditionsFragment ();
-                loadFragment(termsAndConditionsFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        termsAndCondtions.setOnClickListener(view -> {
+            TermsAndConditionsFragment termsAndConditionsFragment = new TermsAndConditionsFragment ();
+            loadFragment(termsAndConditionsFragment);
+            slidingRootNav.closeMenu(true);
         });
         // on noti icon and on text click
         ImageView noti = findViewById(R.id.noti);
-        noti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationFragment notificationFragment = new NotificationFragment ();
-                loadFragment(notificationFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        noti.setOnClickListener(view -> {
+            NotificationFragment notificationFragment = new NotificationFragment ();
+            loadFragment(notificationFragment);
+            slidingRootNav.closeMenu(true);
         });
 
         TextView notitv = findViewById(R.id.notitv);
-        notitv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationFragment notificationFragment = new NotificationFragment ();
-                loadFragment(notificationFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        notitv.setOnClickListener(view -> {
+            NotificationFragment notificationFragment = new NotificationFragment ();
+            loadFragment(notificationFragment);
+            slidingRootNav.closeMenu(true);
         });
         // on switch change
         Switch switchNoti = findViewById(R.id.switchNoti);
@@ -325,33 +297,27 @@ public class MainActivity extends AppCompatActivity implements MainFragment.AddR
 
         // on About Us click
         RelativeLayout aboutUs = findViewById(R.id.aboutUsRel);
-        aboutUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AboutUsFragment aboutUsFragment = new AboutUsFragment ();
-                getSupportFragmentManager()
-                        .beginTransaction().addToBackStack(null)
-                        .replace(R.id.frameLayout , aboutUsFragment)
-                        .commit();
-                slidingRootNav.closeMenu(true);
-            }
+        aboutUs.setOnClickListener(view -> {
+            AboutUsFragment aboutUsFragment = new AboutUsFragment ();
+            getSupportFragmentManager()
+                    .beginTransaction().addToBackStack(null)
+                    .replace(R.id.frameLayout , aboutUsFragment)
+                    .commit();
+            slidingRootNav.closeMenu(true);
         });
 
         RelativeLayout logOut = findViewById(R.id.logOut1);
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logOutCallAPI();
-                SplashScreen.signUpEditor.putString("yes" , "");
-                SplashScreen.signUpEditor.apply();
-                SplashScreen.tokenEditor.putString("token_key" ,"" );
-                SplashScreen.tokenEditor.apply();
-                SplashScreen.spNotiTokenEditor.putString("noti" , "");
-                SplashScreen.spNotiTokenEditor.apply();
-                Intent i = new Intent(MainActivity.this , SplashScreen.class);
-                startActivity(i);
-                finish();
-            }
+        logOut.setOnClickListener(view -> {
+            logOutCallAPI();
+            SplashScreen.signUpEditor.putString("yes" , "");
+            SplashScreen.signUpEditor.apply();
+            SplashScreen.tokenEditor.putString("token_key" ,"" );
+            SplashScreen.tokenEditor.apply();
+            SplashScreen.spNotiTokenEditor.putString("noti" , "");
+            SplashScreen.spNotiTokenEditor.apply();
+            Intent i = new Intent(MainActivity.this , SplashScreen.class);
+            startActivity(i);
+            finish();
         });
 
 

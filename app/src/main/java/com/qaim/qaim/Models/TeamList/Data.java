@@ -1,8 +1,8 @@
 package com.qaim.qaim.Models.TeamList;
 
+import com.google.gson.annotations.SerializedName;
 import com.qaim.qaim.Models.MyListTeamReports.Painter;
 import com.qaim.qaim.Models.MyListTeamReports.Reviewer;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 

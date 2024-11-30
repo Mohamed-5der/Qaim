@@ -9,6 +9,7 @@ import com.qaim.qaim.Classes.AssignTeamParams;
 import com.qaim.qaim.Classes.AssignTeamParamsAll;
 import com.qaim.qaim.Classes.AssignTeamParamsPrev;
 import com.qaim.qaim.Classes.AssignTeamParamsRev;
+import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CompanyRateParams;
 import com.qaim.qaim.Classes.CompanyRealstateIdParams;
 import com.qaim.qaim.Classes.DeleteRealstateUserParams;
@@ -25,7 +26,6 @@ import com.qaim.qaim.Classes.ResetPasswordParams;
 import com.qaim.qaim.Classes.ShowRealstateUserParams;
 import com.qaim.qaim.Classes.StatusReportCompanyRejectParams;
 import com.qaim.qaim.Classes.StatusReportParams;
-import com.qaim.qaim.Classes.StoreUserRealstateParams;
 import com.qaim.qaim.Classes.TeamAddParams;
 import com.qaim.qaim.Classes.TeamParams;
 import com.qaim.qaim.Classes.TeamUpdateParams;
@@ -51,6 +51,7 @@ import com.qaim.qaim.Models.CompanyProfile.CompanyProfileResponse;
 import com.qaim.qaim.Models.CompanyRealstate.CompanyRealstateResponse;
 import com.qaim.qaim.Models.CompanyRegister.CompanyRegisterResponse;
 import com.qaim.qaim.Models.CompanyUserRegisterResponse.CompanyUserRegisterResponse;
+import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Delete.DeleteFileResponse;
 import com.qaim.qaim.Models.DeleteTeamResponse.DeleteTeamResponse;
 import com.qaim.qaim.Models.EmployeeAddComments.EmployeeAddCommentsResponse;
@@ -58,6 +59,7 @@ import com.qaim.qaim.Models.EmployeeComments.EmployeeCommentsResponse;
 import com.qaim.qaim.Models.EmployeeProfile.EmpolyeeProfileResponse;
 import com.qaim.qaim.Models.EmpolyeeAddNotes.EmployeeAddNotesResponse;
 import com.qaim.qaim.Models.GetAcceptedOrderPrev.AcceptedOrderPrevResponse;
+import com.qaim.qaim.Models.GetBalance.GetBalanceResponse;
 import com.qaim.qaim.Models.GetOrdersPreviewer.OrderPrevResponse;
 import com.qaim.qaim.Models.GetPreviewerBalance.GetPreviewerBalanceResponse;
 import com.qaim.qaim.Models.GetProviewerProfile.PreviewerProfileResponse;
@@ -154,12 +156,6 @@ public interface  JsonApi {
             @Header("Authorization") String token,
             @PartMap() Map<String, RequestBody> partMap,
             @Part List<MultipartBody.Part> files);
-
-
-
-
-@POST("/api/user/realestate-store")
-Call<RealstateStoreUserResponse> storeRealstate(@Header("Authorization") String token,@Body StoreUserRealstateParams storeUserRealstateParams);
 @Multipart
 @POST("/api/user/realestate-update")
     Call<RealstateUpdateUserResponse> updateRealstate(
@@ -374,9 +370,11 @@ Call<RealstateStoreUserResponse> storeRealstate(@Header("Authorization") String 
     @POST("/api/v1/logout")
     Call<LogOutResponse> logOut(@Header("Authorization") String token , @Body String player_id);
 
-    // cities
+    // countries
+    @POST("/api/countries")
+    Call<CountriesResponse> getCountries();
     @POST("/api/cities")
-    Call<CitiesResponse> getCities();
+    Call<CitiesResponse> getCities(@Body CitiesListParams params);
     @POST("/api/delete-file")
     Call<DeleteFileResponse> deleteFile(@Body FileIdParams parms);
     @POST("/api/types")

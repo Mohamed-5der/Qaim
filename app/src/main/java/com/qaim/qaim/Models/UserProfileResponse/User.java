@@ -16,6 +16,9 @@ public class User{
 	@SerializedName("phone")
 	private String phone;
 
+	@SerializedName("country")
+	private Country country;
+
 	@SerializedName("city")
 	private City city;
 
@@ -27,6 +30,9 @@ public class User{
 
 	@SerializedName("email")
 	private String email;
+
+	@SerializedName("country_id")
+	private int countryId;
 
 	@SerializedName("city_id")
 	private int cityId;
@@ -66,6 +72,14 @@ public class User{
 		return phone;
 	}
 
+	public void setCountry(Country country){
+		this.country = country;
+	}
+
+	public Country getCountry(){
+		return country;
+	}
+
 	public void setCity(City city){
 		this.city = city;
 	}
@@ -98,6 +112,14 @@ public class User{
 		return email;
 	}
 
+	public void setCountryId(int countryId){
+		this.countryId = countryId;
+	}
+
+	public int getCountryId(){
+		return countryId;
+	}
+
 	public void setCityId(int cityId){
 		this.cityId = cityId;
 	}
@@ -122,12 +144,14 @@ public class User{
 			",image = '" + image + '\'' + 
 			",license = '" + license + '\'' + 
 			",phone = '" + phone + '\'' + 
-			",city = '" + city + '\'' + 
-			",name = '" + name + '\'' + 
+			",country = '" + country + '\'' +
+			",city = '" + city + '\'' +
+			",name = '" + name + '\'' +
 			",id = '" + id + '\'' + 
 			",email = '" + email + '\'' + 
-			",city_id = '" + cityId + '\'' + 
-			",token = '" + token + '\'' + 
+			",country_id = '" + countryId + '\'' +
+			",city_id = '" + cityId + '\'' +
+			",token = '" + token + '\'' +
 			"}";
 		}
 }

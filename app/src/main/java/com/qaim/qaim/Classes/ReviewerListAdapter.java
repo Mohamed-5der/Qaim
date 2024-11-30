@@ -63,45 +63,39 @@ public class ReviewerListAdapter extends RecyclerView.Adapter<ReviewerListAdapte
 //        holder.cost.setText(painter.getcost);
         Picasso.get().load(reviewer.getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(holder.imageView);
 
-        holder.choose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.choose.setOnClickListener(view -> {
 
-                Call<AssingTeamResponse> call = jsonApi.assignTeam("Bearer " + CompanyActivity.token ,new AssignTeamParamsRev(
-                        id ,reviewer.getId()));
-                call.enqueue(new Callback<AssingTeamResponse>() {
-                    @Override
-                    public void onResponse(Call<AssingTeamResponse> call, Response<AssingTeamResponse> response) {
-                        AssingTeamResponse assignTeamResponse = response.body();
-                        if (assignTeamResponse.getCode() == 200) {
-                            CompanyActivity.alert.crateMsg(response.body().getMessage() , activity);
+            Call<AssingTeamResponse> call = jsonApi.assignTeam("Bearer " + CompanyActivity.token ,new AssignTeamParamsRev(
+                    id ,reviewer.getId()));
+            call.enqueue(new Callback<AssingTeamResponse>() {
+                @Override
+                public void onResponse(Call<AssingTeamResponse> call, Response<AssingTeamResponse> response) {
+                    AssingTeamResponse assignTeamResponse = response.body();
+                    if (assignTeamResponse.getCode() == 200) {
+                        CompanyActivity.alert.crateMsg(response.body().getMessage() , activity);
 //                            Toast.makeText(activity ,assignTeamResponse.getMessage() , Toast.LENGTH_SHORT).show();
-                            CompanyChooseTeamFragment chooseTeamFragment = CompanyChooseTeamFragment.newInstance(id);
-                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , chooseTeamFragment).commit();
+                        CompanyChooseTeamFragment chooseTeamFragment = CompanyChooseTeamFragment.newInstance(id);
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , chooseTeamFragment).commit();
 
-                        }else {
-                            CompanyActivity.alert.crateMsg(response.body().getMessage() , activity);
+                    }else {
+                        CompanyActivity.alert.crateMsg(response.body().getMessage() , activity);
 //                            Toast.makeText(activity ,assignTeamResponse.getMessage() , Toast.LENGTH_SHORT).show();
-                        }
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<AssingTeamResponse> call, Throwable t) {
-                        Toast.makeText(activity ,t.getMessage() , Toast.LENGTH_SHORT).show();
-                    }
-                });
+                @Override
+                public void onFailure(Call<AssingTeamResponse> call, Throwable t) {
+                    Toast.makeText(activity ,t.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+            });
 
-            }
         });
-        holder.showProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ShowReviewerProfileFragment showReviewerProfileFragment = ShowReviewerProfileFragment.newInstance(reviewer.getName() , reviewer.getEmail() , reviewer.getImage() ,id);
-                activity.getSupportFragmentManager().beginTransaction()
-                                .addToBackStack(null)
-                                .replace(R.id.frameLayout ,showReviewerProfileFragment)
-                                .commit();
-            }
+        holder.showProfile.setOnClickListener(view -> {
+            ShowReviewerProfileFragment showReviewerProfileFragment = ShowReviewerProfileFragment.newInstance(reviewer.getName() , reviewer.getEmail() , reviewer.getImage() ,id);
+            activity.getSupportFragmentManager().beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.frameLayout ,showReviewerProfileFragment)
+                            .commit();
         });
     }
 

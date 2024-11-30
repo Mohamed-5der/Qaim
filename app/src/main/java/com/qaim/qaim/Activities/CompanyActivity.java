@@ -19,10 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.qaim.qaim.Fragments.AboutUsFragment;
 import com.qaim.qaim.Fragments.CompanyBalance;
 import com.qaim.qaim.Fragments.CompanyListOfRealstateFragment;
@@ -40,8 +41,6 @@ import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.vip.VipRequestResponse;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
@@ -52,7 +51,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CompanyActivity extends AppCompatActivity {
+public class CompanyActivity extends BaseActivity {
 
     BottomNavigationView mbn ;
 
@@ -96,13 +95,9 @@ public class CompanyActivity extends AppCompatActivity {
         slidingRootNavInflate(savedInstanceState);
         bbmShow();
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CompanyPaymentsFragment companyPaymentsFragment = new CompanyPaymentsFragment ();
-                loadFragment(companyPaymentsFragment);
-
-            }
+        fab.setOnClickListener(view -> {
+            CompanyPaymentsFragment companyPaymentsFragment = new CompanyPaymentsFragment ();
+            loadFragment(companyPaymentsFragment);
         });
     }
     private void bbmShow (){
@@ -215,22 +210,16 @@ public class CompanyActivity extends AppCompatActivity {
     public void onSlideRootMenuItemClick(){
         // on user name and profile image click
         LinearLayout profile = findViewById(R.id.profileRel);
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CompanyProfileFragment companyProfileFragment = new CompanyProfileFragment ();
-                loadFragment(companyProfileFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        profile.setOnClickListener(view -> {
+            CompanyProfileFragment companyProfileFragment = new CompanyProfileFragment ();
+            loadFragment(companyProfileFragment);
+            slidingRootNav.closeMenu(true);
         });
         ImageButton editProfileBtn = findViewById(R.id.editprofileBtn);
-        editProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CompanyProfileFragment companyProfileFragment = new CompanyProfileFragment ();
-                loadFragment(companyProfileFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        editProfileBtn.setOnClickListener(view -> {
+            CompanyProfileFragment companyProfileFragment = new CompanyProfileFragment ();
+            loadFragment(companyProfileFragment);
+            slidingRootNav.closeMenu(true);
         });
 
         TextView vip_company = findViewById(R.id.vipText);
@@ -238,51 +227,34 @@ public class CompanyActivity extends AppCompatActivity {
 
         // on payment click
         RelativeLayout companyVipRel = findViewById(R.id.companyVipRel);
-        companyVipRel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                requestVipCompany();
-            }
-        });
+        companyVipRel.setOnClickListener(view -> requestVipCompany());
         // on payment click
         RelativeLayout payment = findViewById(R.id.paymentRel);
-        payment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CompanyPaymentsFragment companyPaymentsFragment = new CompanyPaymentsFragment ();
-                loadFragment(companyPaymentsFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        payment.setOnClickListener(view -> {
+            CompanyPaymentsFragment companyPaymentsFragment = new CompanyPaymentsFragment ();
+            loadFragment(companyPaymentsFragment);
+            slidingRootNav.closeMenu(true);
         });
 
         // terms And Condtions
         RelativeLayout termsAndCondtions = findViewById(R.id.terms);
-        termsAndCondtions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TermsAndConditionsFragment termsAndConditionsFragment = new TermsAndConditionsFragment ();
-                loadFragment(termsAndConditionsFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        termsAndCondtions.setOnClickListener(view -> {
+            TermsAndConditionsFragment termsAndConditionsFragment = new TermsAndConditionsFragment ();
+            loadFragment(termsAndConditionsFragment);
+            slidingRootNav.closeMenu(true);
         });
         // on noti icon and on text click
         ImageView noti = findViewById(R.id.noti);
-        noti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationCompanyFragment notificationFragment =new NotificationCompanyFragment();
-                loadFragment(notificationFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        noti.setOnClickListener(view -> {
+            NotificationCompanyFragment notificationFragment =new NotificationCompanyFragment();
+            loadFragment(notificationFragment);
+            slidingRootNav.closeMenu(true);
         });
         TextView notitv = findViewById(R.id.notitv);
-        notitv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationCompanyFragment notificationFragment =new NotificationCompanyFragment();
-                loadFragment(notificationFragment);
-                slidingRootNav.closeMenu(true);
-            }
+        notitv.setOnClickListener(view -> {
+            NotificationCompanyFragment notificationFragment =new NotificationCompanyFragment();
+            loadFragment(notificationFragment);
+            slidingRootNav.closeMenu(true);
         });
         // on switch change
         Switch switchNoti = findViewById(R.id.switchNoti);
@@ -295,46 +267,37 @@ public class CompanyActivity extends AppCompatActivity {
 
         // on About Us click
         RelativeLayout aboutUs = findViewById(R.id.aboutUsRel);
-        aboutUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AboutUsFragment aboutUsFragment = new AboutUsFragment ();
-                getSupportFragmentManager()
-                        .beginTransaction().addToBackStack(null)
-                        .replace(R.id.frameLayout , aboutUsFragment)
-                        .commit();
-                slidingRootNav.closeMenu(true);
+        aboutUs.setOnClickListener(view -> {
+            AboutUsFragment aboutUsFragment = new AboutUsFragment ();
+            getSupportFragmentManager()
+                    .beginTransaction().addToBackStack(null)
+                    .replace(R.id.frameLayout , aboutUsFragment)
+                    .commit();
+            slidingRootNav.closeMenu(true);
 
-            }
         });
 
 
         // on balance click
         RelativeLayout myBalance = findViewById(R.id.balanceRel);
-        myBalance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                 CompanyBalance companyBalance = new CompanyBalance();
-                 loadFragment(companyBalance);
-                slidingRootNav.closeMenu(true);
-            }
+        myBalance.setOnClickListener(view -> {
+             CompanyBalance companyBalance = new CompanyBalance();
+             loadFragment(companyBalance);
+            slidingRootNav.closeMenu(true);
         });
 
         RelativeLayout logOut = findViewById(R.id.logOut1);
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logOutCallAPI();
-                SplashScreen.signUpEditor.putString("yes" , "");
-                SplashScreen.signUpEditor.apply();
-                SplashScreen.tokenEditor.putString("token_key" ,"" );
-                SplashScreen.tokenEditor.apply();
-                SplashScreen.spNotiTokenEditor.putString("noti" , "");
-                SplashScreen.spNotiTokenEditor.apply();
-                Intent i = new Intent(CompanyActivity.this , SplashScreen.class);
-                startActivity(i);
-                finish();
-            }
+        logOut.setOnClickListener(view -> {
+            logOutCallAPI();
+            SplashScreen.signUpEditor.putString("yes" , "");
+            SplashScreen.signUpEditor.apply();
+            SplashScreen.tokenEditor.putString("token_key" ,"" );
+            SplashScreen.tokenEditor.apply();
+            SplashScreen.spNotiTokenEditor.putString("noti" , "");
+            SplashScreen.spNotiTokenEditor.apply();
+            Intent i = new Intent(CompanyActivity.this , SplashScreen.class);
+            startActivity(i);
+            finish();
         });
     }
     @Override

@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hbb20.CountryCodePicker;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Fragments.CompanySetTeamFragment;
 import com.qaim.qaim.Models.DeleteTeamResponse.DeleteTeamResponse;
@@ -28,7 +29,6 @@ import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.TeamSendInfo.TeamSendInfoResponse;
 import com.qaim.qaim.Models.UpdateTeamResponse.UpdateTeamResponse;
 import com.qaim.qaim.R;
-import com.hbb20.CountryCodePicker;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -103,33 +103,30 @@ public class AddPainterAdapter extends RecyclerView.Adapter<AddPainterAdapter.Vi
             description.setText(painter.getNotes());
 
             // buttons click
-            deleteBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Call<DeleteTeamResponse> call = jsonApi.deleteTeam("Bearer " + CompanyActivity.token  ,new TeamParams(painter.getId()));
-                    call.enqueue(new Callback<DeleteTeamResponse>() {
-                        @Override
-                        public void onResponse(Call<DeleteTeamResponse> call, Response<DeleteTeamResponse> response) {
-                            DeleteTeamResponse deleteTeamResponse = response.body();
-                            if (deleteTeamResponse.getCode() == 200){
-                                Toast.makeText(activity.getBaseContext() , "Painter has been deleted" , Toast.LENGTH_SHORT).show();
-                                CompanySetTeamFragment fragment = new CompanySetTeamFragment();
-                                activity.getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.frameLayout , fragment)
-                                        .commit();
-                            }
-
-
+            deleteBtn.setOnClickListener(view -> {
+                Call<DeleteTeamResponse> call = jsonApi.deleteTeam("Bearer " + CompanyActivity.token  ,new TeamParams(painter.getId()));
+                call.enqueue(new Callback<DeleteTeamResponse>() {
+                    @Override
+                    public void onResponse(Call<DeleteTeamResponse> call, Response<DeleteTeamResponse> response) {
+                        DeleteTeamResponse deleteTeamResponse = response.body();
+                        if (deleteTeamResponse.getCode() == 200){
+                            Toast.makeText(activity.getBaseContext() , "Painter has been deleted" , Toast.LENGTH_SHORT).show();
+                            CompanySetTeamFragment fragment = new CompanySetTeamFragment();
+                            activity.getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.frameLayout , fragment)
+                                    .commit();
                         }
 
-                        @Override
-                        public void onFailure(Call<DeleteTeamResponse> call, Throwable t) {
-                            Toast.makeText(activity.getBaseContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
-                }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DeleteTeamResponse> call, Throwable t) {
+                        Toast.makeText(activity.getBaseContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             });
             editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

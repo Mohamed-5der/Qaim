@@ -2,8 +2,6 @@ package com.qaim.qaim.Fragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,14 +26,12 @@ import com.qaim.qaim.Classes.AddComentsPreviewerParams;
 import com.qaim.qaim.Classes.CommentsAdapter;
 import com.qaim.qaim.Classes.InfoParams;
 import com.qaim.qaim.Models.AddCommentsPreviewer.MyListPrevCommentsAddResponse;
-import com.qaim.qaim.Models.AddListComments.AddCommentsListResponse;
 import com.qaim.qaim.Models.MyListCommentsPreviewer.MyListPrevCommentsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -88,23 +84,12 @@ public class PreviewerCommentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_previewer_comments, container, false);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PreviewerBusinessInProgressFragment mainFragment = new PreviewerBusinessInProgressFragment ();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            PreviewerBusinessInProgressFragment mainFragment = new PreviewerBusinessInProgressFragment ();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
         });
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
 
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         recyclerView = v.findViewById(R.id.offers_recycleView) ;
         btn = v.findViewById(R.id.sendBtn);

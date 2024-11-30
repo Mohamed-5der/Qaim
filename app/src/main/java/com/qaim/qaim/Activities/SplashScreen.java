@@ -7,31 +7,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.cardview.widget.CardView;
 
-import com.qaim.qaim.Classes.CustomCityAdapter;
-import com.qaim.qaim.Classes.CustomRegionAdapter;
-import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 //import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreen extends BaseActivity {
     private static final String SINGIN_KEY = "singInKey";
-    CardView cleintCard , companyCard , previewerCard;
     public static SharedPreferences spSignUp ;
     public static SharedPreferences.Editor signUpEditor ;
     public static SharedPreferences sToken ;
@@ -41,16 +30,8 @@ public class SplashScreen extends AppCompatActivity {
     public static SharedPreferences.Editor spNotiTokenEditor ;
     Retrofit retrofit ;
     JsonApi jsonApi ;
-    CustomCityAdapter cityAdapter ;
-    int cityId ;
-    CustomRegionAdapter regionAdapter;
-    int regionId_1;
-    int regionId_2;
-    int regionId_13;
-    Spinner region1Spinner ,region2Spinner , region3Spinner;
     public static String acountType;
     public static PregressDialog dialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,21 +50,6 @@ public class SplashScreen extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities();
-        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
-                if (response.code() == 200) {
-                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
-                Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_LONG).show();
-            }
-        });
 
         // splash full screen hide status bar
         if (Build.VERSION.SDK_INT < 16)
@@ -141,8 +107,6 @@ public class SplashScreen extends AppCompatActivity {
         } , 0);
 
         showLoginDialog();
-
-
     }
     // show login dialog
     private void showLoginDialog (){

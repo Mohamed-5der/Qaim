@@ -5,8 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -61,7 +59,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -132,16 +129,7 @@ public class SendRateDisplayFragment extends Fragment {
                         replace(R.id.frameLayout , fragment).commit();
             }
         });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")

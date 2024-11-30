@@ -21,10 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.qaim.qaim.Fragments.AboutUsFragment;
 import com.qaim.qaim.Fragments.EditPreviewerProfileFragment;
 import com.qaim.qaim.Fragments.MainFragment;
@@ -41,8 +42,6 @@ import com.qaim.qaim.Models.LogoutRespone.LogOutResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
@@ -53,7 +52,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PreviewerActivity extends AppCompatActivity implements MainFragment.AddRealstateFragmentListner {
+public class PreviewerActivity extends BaseActivity implements MainFragment.AddRealstateFragmentListner {
     BottomNavigationView mbn ;
 
     private SlidingRootNav slidingRootNav;

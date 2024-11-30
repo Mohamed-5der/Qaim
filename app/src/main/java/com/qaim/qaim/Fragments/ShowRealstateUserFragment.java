@@ -1,16 +1,9 @@
 package com.qaim.qaim.Fragments;
 
-import android.Manifest;
 import android.app.Dialog;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.audiofx.Equalizer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,12 +31,6 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.CustomAttributed;
 import com.qaim.qaim.Classes.ShowRealstateUserParams;
@@ -53,7 +40,6 @@ import com.qaim.qaim.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -110,16 +96,7 @@ public class ShowRealstateUserFragment extends Fragment implements OnMapReadyCal
                         replace(R.id.frameLayout , fragment).commit();
             }
         });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")

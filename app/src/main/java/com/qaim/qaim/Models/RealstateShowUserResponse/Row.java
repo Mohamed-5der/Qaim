@@ -19,6 +19,9 @@ public class Row{
 	@SerializedName("distance")
 	private String distance;
 
+	@SerializedName("country")
+	private Country country;
+
 	@SerializedName("city")
 	private City city;
 
@@ -103,6 +106,14 @@ public class Row{
 
 	public String getDistance(){
 		return distance;
+	}
+
+	public void setCountry(Country country){
+		this.country = country;
+	}
+
+	public Country getCountry(){
+		return country;
 	}
 
 	public void setCity(City city){
@@ -257,8 +268,9 @@ public class Row{
 			",address = '" + address + '\'' + 
 			",color = '" + color + '\'' + 
 			",distance = '" + distance + '\'' + 
-			",city = '" + city + '\'' + 
-			",latitude = '" + latitude + '\'' + 
+			",country = '" + country + '\'' +
+			",city = '" + city + '\'' +
+			",latitude = '" + latitude + '\'' +
 			",description = '" + description + '\'' + 
 			",previewer = '" + previewer + '\'' + 
 			",reviewer = '" + reviewer + '\'' + 

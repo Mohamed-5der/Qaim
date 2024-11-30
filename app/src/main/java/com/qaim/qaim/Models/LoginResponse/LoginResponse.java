@@ -1,6 +1,7 @@
 package com.qaim.qaim.Models.LoginResponse;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class LoginResponse {

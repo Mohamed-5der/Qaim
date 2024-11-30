@@ -137,11 +137,75 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
                 >
-
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chooseCountry"
+                    android:gravity="right"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/custom_edittext_field"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl">
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/countrySpinner"
+                        android:layout_margin="8dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chooseCity"
+                    android:gravity="right"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/custom_edittext_field"
+                    android:layoutDirection="rtl">
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:id = "@+id/neiborhood"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseNeighborhood"
@@ -150,23 +214,8 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/chooseCity"
-                    android:gravity="right"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:layoutDirection="rtl">
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="60dp"
                     android:background="@drawable/custom_edittext_field"
@@ -178,24 +227,6 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="12dp"
                         android:id = "@+id/citySpinner"
-                        android:layout_gravity="center"
-                        />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="8dp"
-                    android:background="@drawable/custom_edittext_field"
-                    android:layoutDirection="rtl">
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="12dp"
-                        android:id = "@+id/neiborhood"
                         android:layout_gravity="center"
                         />
 

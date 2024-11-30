@@ -56,12 +56,9 @@ public class ImageAdapter  extends RecyclerView.Adapter<ImageAdapter.ViewHolder>
 
         public void onBind( Bitmap bitmap){
             imageView.setImageBitmap(bitmap);
-            cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    bitmaps.remove(getPosition());
-                    notifyItemRemoved(getPosition());
-                }
+            cancel.setOnClickListener(view -> {
+                bitmaps.remove(getPosition());
+                notifyItemRemoved(getPosition());
             });
         }
     }

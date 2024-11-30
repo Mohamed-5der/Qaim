@@ -102,56 +102,31 @@ public class PreviewerBusinessInProgressRecycleViewAdapter extends RecyclerView.
             }
 
 
-            phoneBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:"+phoneNumber));
-                    activity.startActivity(intent);
-                }
+            phoneBtn.setOnClickListener(view -> {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+phoneNumber));
+                activity.startActivity(intent);
             });
-            emailBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                    emailIntent.setData(Uri.parse("mailto:" + email));
-                    activity.startActivity(emailIntent);
-                }
+            emailBtn.setOnClickListener(view -> {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setData(Uri.parse("mailto:" + email));
+                activity.startActivity(emailIntent);
             });
-            whatsAppBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                   onClickWhatsApp();
-                }
-            });
-            sendReportBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    PreviewerWriteReportsFragment previewerWriteReportsFragment = PreviewerWriteReportsFragment.newInstance(businessInProgressDetails.getInfo().getId());
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout ,previewerWriteReportsFragment).addToBackStack(null).commit();
-                }
+            whatsAppBtn.setOnClickListener(view -> onClickWhatsApp());
+            sendReportBtn.setOnClickListener(view -> {
+                PreviewerWriteReportsFragment previewerWriteReportsFragment = PreviewerWriteReportsFragment.newInstance(businessInProgressDetails.getInfo().getId());
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout ,previewerWriteReportsFragment).addToBackStack(null).commit();
             });
 
-            showDetailsBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    PreviewerListDetailsFragment fragment = PreviewerListDetailsFragment.newInstance(businessInProgressDetails.getId());
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout ,fragment).addToBackStack(null).commit();
-                }
+            showDetailsBtn.setOnClickListener(view -> {
+                PreviewerListDetailsFragment fragment = PreviewerListDetailsFragment.newInstance(businessInProgressDetails.getId());
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout ,fragment).addToBackStack(null).commit();
             });
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    PreviewerListDetailsFragment fragment = PreviewerListDetailsFragment.newInstance(businessInProgressDetails.getId());
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout ,fragment).addToBackStack(null).commit();
-                }
+            itemView.setOnClickListener(view -> {
+                PreviewerListDetailsFragment fragment = PreviewerListDetailsFragment.newInstance(businessInProgressDetails.getId());
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout ,fragment).addToBackStack(null).commit();
             });
-            comments.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onCommentsClick(businessInProgressDetails.getInfo().getId());
-                }
-            });
+            comments.setOnClickListener(view -> onCommentsClick(businessInProgressDetails.getInfo().getId()));
         }
 
         public void onClickWhatsApp() {

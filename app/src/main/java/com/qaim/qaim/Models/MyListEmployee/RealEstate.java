@@ -1,7 +1,7 @@
 package com.qaim.qaim.Models.MyListEmployee;
 
-import com.qaim.qaim.Models.MyRealstateCompanyList.FilesItem;
 import com.google.gson.annotations.SerializedName;
+import com.qaim.qaim.Models.MyRealstateCompanyList.FilesItem;
 
 import java.util.List;
 

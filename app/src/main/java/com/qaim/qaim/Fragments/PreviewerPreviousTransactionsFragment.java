@@ -1,7 +1,5 @@
 package com.qaim.qaim.Fragments;
 
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.CompanyTransactionRecycleViewAdapter;
-import com.qaim.qaim.Models.GetBalance.GetBalanceResponse;
 import com.qaim.qaim.Models.GetBalance.RowsItem;
 import com.qaim.qaim.Models.GetPreviewerBalance.GetPreviewerBalanceResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
 
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,22 +51,8 @@ public class PreviewerPreviousTransactionsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_previewer_previous_transactions, container, false);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().onBackPressed();
-            }
-        });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
+        imageButton.setOnClickListener(view -> getActivity().onBackPressed());
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         recyclerView = v.findViewById(R.id.order_recycleView);
         retrofit = new Retrofit.Builder()

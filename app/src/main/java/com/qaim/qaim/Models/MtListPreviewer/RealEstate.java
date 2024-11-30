@@ -1,7 +1,7 @@
 package com.qaim.qaim.Models.MtListPreviewer;
 
-import com.qaim.qaim.Models.MyListPrevDetails.FilesItem;
 import com.google.gson.annotations.SerializedName;
+import com.qaim.qaim.Models.MyListPrevDetails.FilesItem;
 
 import java.util.List;
 

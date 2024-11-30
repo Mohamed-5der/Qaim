@@ -1,7 +1,5 @@
 package com.qaim.qaim.Fragments;
 
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import com.hbb20.CountryCodePicker;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.TeamAddParams;
 import com.qaim.qaim.Models.AddTeamResponse.AddTeamResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
-import com.hbb20.CountryCodePicker;
-
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,16 +56,7 @@ public class AddCheakerFragment extends Fragment {
                         replace(R.id.frameLayout , fragment).commit();
             }
         });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")

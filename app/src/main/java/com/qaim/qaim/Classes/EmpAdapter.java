@@ -46,16 +46,13 @@ public class EmpAdapter extends RecyclerView.Adapter<EmpAdapter.ViewHolder> {
         DataItem dataItem = details.get(position);
         holder.onBind(dataItem);
 
-       holder.showPrevReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(activity, "" +  dataItem.getId(), Toast.LENGTH_LONG).show();
-                ShowPreviewerReportEmployeeFragment fragment = ShowPreviewerReportEmployeeFragment.newInstance( dataItem.getId());
-                activity.getSupportFragmentManager().beginTransaction().addToBackStack(null)
-                        .replace(R.id.frameLayout , fragment)
-                        .commit();
-            }
-        });
+       holder.showPrevReport.setOnClickListener(view -> {
+           Toast.makeText(activity, "" +  dataItem.getId(), Toast.LENGTH_LONG).show();
+           ShowPreviewerReportEmployeeFragment fragment = ShowPreviewerReportEmployeeFragment.newInstance( dataItem.getId());
+           activity.getSupportFragmentManager().beginTransaction().addToBackStack(null)
+                   .replace(R.id.frameLayout , fragment)
+                   .commit();
+       });
 
 
     }
@@ -92,26 +89,15 @@ public class EmpAdapter extends RecyclerView.Adapter<EmpAdapter.ViewHolder> {
                 String file = dataItem.getRealEstate().getFiles().get(0).getFile();
                 Picasso.get().load(file).fit().error(R.drawable.group9821).into(imageView);
             }
-            showdetails.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    EmployeeListDetailsFragment fragment = EmployeeListDetailsFragment.newInstance(dataItem.getId());
-                    activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout ,fragment).commit();
-                }
+            showdetails.setOnClickListener(view -> {
+                EmployeeListDetailsFragment fragment = EmployeeListDetailsFragment.newInstance(dataItem.getId());
+                activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout ,fragment).commit();
             });
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    EmployeeListDetailsFragment fragment = EmployeeListDetailsFragment.newInstance(dataItem.getId());
-                    activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout ,fragment).commit();
-                }
+            itemView.setOnClickListener(view -> {
+                EmployeeListDetailsFragment fragment = EmployeeListDetailsFragment.newInstance(dataItem.getId());
+                activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout ,fragment).commit();
             });
-            comments.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onCommentsClick(dataItem.getRealEstate().getId());
-                }
-            });
+            comments.setOnClickListener(view -> onCommentsClick(dataItem.getRealEstate().getId()));
             if (hasReport == 1){
                 showPrevReport.setVisibility(View.VISIBLE);
             }

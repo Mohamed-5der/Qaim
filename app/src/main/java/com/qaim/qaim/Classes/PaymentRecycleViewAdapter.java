@@ -41,12 +41,6 @@ public class PaymentRecycleViewAdapter extends RecyclerView.Adapter<PaymentRecyc
         holder.orderNameTv.setText(details.getCompany().getName());
         holder.lblPaymentDescription.setText(details.getPaymentDescription());
         holder.orderDiscriptionTv.setText(details.getCost());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     @Override

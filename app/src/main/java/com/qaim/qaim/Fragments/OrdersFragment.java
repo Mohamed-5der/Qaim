@@ -2,8 +2,6 @@ package com.qaim.qaim.Fragments;
 
 import static com.qaim.qaim.Activities.SplashScreen.sToken;
 
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +24,6 @@ import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
 
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,26 +49,7 @@ public class OrdersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_orders, container, false);
-//        ImageButton imageButton = v.findViewById(R.id.imageBtn);
-//        imageButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                MainFragment fragment = new  MainFragment();
-//                getActivity().getSupportFragmentManager()
-//                        .beginTransaction().
-//                        replace(R.id.frameLayout , fragment).commit();
-//            }
-//        });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         recyclerView = v.findViewById(R.id.order_recycleView) ;
         retrofit = new Retrofit.Builder()

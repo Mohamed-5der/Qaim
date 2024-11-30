@@ -5,8 +5,6 @@ import static android.app.Activity.RESULT_OK;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,24 +31,26 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.hbb20.CountryCodePicker;
 import com.qaim.qaim.Activities.PreviewerActivity;
+import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
+import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Classes.CustomRegionAdapter;
 import com.qaim.qaim.Classes.RegionParams;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
+import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.GetProviewerProfile.PreviewerProfileResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RegionsResponse.GetRegionResponse;
 import com.qaim.qaim.Models.UpdatePreviewerProfile.UpdatePreviewerProfileResponse;
 import com.qaim.qaim.R;
-import com.hbb20.CountryCodePicker;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -74,12 +74,14 @@ public class EditPreviewerProfileFragment extends Fragment {
             , addFees , infoAboutMe , experiance , yearsOfWork ;
     CountryCodePicker contryCod ;
     Button confirm ;
-    Spinner citySpinner ,region1Spinner ,region2Spinner , region3Spinner;
+    Spinner countrySpinner, citySpinner ,region1Spinner ,region2Spinner , region3Spinner;
     TextView userName , lblRate;
     ImageView profileImage ;
     Retrofit retrofit ;
     JsonApi jsonApi ;
+    CustomCountryAdapter countryAdapter ;
     CustomCityAdapter cityAdapter ;
+    int countryId ;
     int cityId ;
     CustomRegionAdapter regionAdapter;
     int regionId_1;
@@ -129,16 +131,7 @@ public class EditPreviewerProfileFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
             }
         });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")
@@ -157,6 +150,7 @@ public class EditPreviewerProfileFragment extends Fragment {
         infoAboutMe = v.findViewById(R.id.addInfoAboutMe);
         experiance = v.findViewById(R.id.experienceField);
         yearsOfWork = v.findViewById(R.id.yearsOfWork);
+        countrySpinner = v.findViewById(R.id.countrySpinner);
         citySpinner = v.findViewById(R.id.citySpinner);
         region1Spinner  = v.findViewById(R.id.Area1spinner);
         region2Spinner = v.findViewById(R.id.Area2spinner);
@@ -175,22 +169,6 @@ public class EditPreviewerProfileFragment extends Fragment {
             }
         });
         contryCod = v.findViewById(R.id.countryCode);
-//        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities();
-//        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
-//            @Override
-//            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
-//                if (response.code() == 200) {
-//                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
-//                    citySpinner.setAdapter(cityAdapter);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
-//                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
-//            }
-//        });
         callProffileAPI();
         return v;
     }
@@ -216,22 +194,6 @@ public class EditPreviewerProfileFragment extends Fragment {
                PreviewerActivity.dialog.dismiss();
                 PreviewerProfileResponse previewerProfileResponse = response.body();
                 if (previewerProfileResponse.getCode() == 200) {
-//                    Call<CitiesResponse> citiesResponseCall = jsonApi.getCities();
-//                    citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
-//                        @Override
-//                        public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
-//                            if (response.code() == 200) {
-//                                cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
-//                                citySpinner.setAdapter(cityAdapter);
-//                            }
-//
-//                        }
-//
-//                        @Override
-//                        public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
-//                            Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
-//                        }
-//                    });
                     isEnable();
                     userName.setText(previewerProfileResponse.getData().getPreviewer().getName());
                     lblRate.setText(previewerProfileResponse.getData().getPreviewer().getRate());
@@ -245,6 +207,7 @@ public class EditPreviewerProfileFragment extends Fragment {
                     yearsOfWork.setText(String.valueOf(previewerProfileResponse.getData().getPreviewer().getYears()));
 
                     profileResponse = previewerProfileResponse;
+                    getCountries();
                     onEditProfileCallAPI();
 
                     if (previewerProfileResponse.getData().getPreviewer().getCountryCode() != null){
@@ -300,157 +263,10 @@ public class EditPreviewerProfileFragment extends Fragment {
 
 
     public void onEditProfileCallAPI(){
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities();
-        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
-                CitiesResponse citiesResponse = response.body();
-                if (citiesResponse != null){
-                    if (citiesResponse.getCode() == 200) {
-                        cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
-                        citySpinner.setAdapter(cityAdapter);
+        getCities(profileResponse.getData().getPreviewer().getCountry().getId());
 
-
-                        if (profileResponse.getData().getPreviewer().getCity() != null){
-
-                            citySpinner.setAdapter(cityAdapter);
-
-                            citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                    cityId = (int) cityAdapter.getItemId(i);
-                                    callRegionstype(cityId);
-                                    region1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                        @Override
-                                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                            regionId_1 = (int) regionAdapter.getItemId(i);
-                                        }
-
-                                        @Override
-                                        public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                        }
-                                    });
-                                    region2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                        @Override
-                                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                            regionId_2 = (int) regionAdapter.getItemId(i);
-                                        }
-
-                                        @Override
-                                        public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                        }
-                                    });
-                                    region3Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                        @Override
-                                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                            regionId_13 = (int) regionAdapter.getItemId(i);
-                                        }
-
-                                        @Override
-                                        public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                        }
-                                    });
-                                }
-
-                                @Override
-                                public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                }
-                            });
-
-                        }
-
-
-
-                    }else {
-                        Toast.makeText(getContext() ,citiesResponse.getMessage() , Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
-                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
-            }
-        });
-        citySpinner.setAdapter(cityAdapter);
-        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                cityId = (int) cityAdapter.getItemId(i);
-                callRegionstype(cityId);
-                region1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        regionId_1 = (int) regionAdapter.getItemId(i);
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
-                });
-                region2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        regionId_2 = (int) regionAdapter.getItemId(i);
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
-                });
-                region3Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        regionId_13 = (int) regionAdapter.getItemId(i);
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
-                });
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-//        Bitmap bm = profileImage.getDrawingCache();
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
-//        byte[] b = baos.toByteArray();
-//        String encodedImage = null;
-//        encodedImage = Base64.encodeToString(b, Base64.NO_WRAP);
-        String name = String.valueOf(proflieName.getText());
-        String phone = String.valueOf(profliePhone.getText());
-        String email = String.valueOf(proflieEmail.getText());
-        String password = String.valueOf(profliePassword.getText());
-        String aboutV = String.valueOf(infoAboutMe.getText());
-        String experianceV = String.valueOf(experiance.getText());
-        String addInfoV = String.valueOf(addInfo.getText());
-        String addFessV = String.valueOf(addFees.getText());
-        String yearsOfWorkV = String.valueOf(yearsOfWork.getText());
         MultipartBody.Part body = null;
 
-//        if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty() || aboutV.isEmpty() || experianceV.isEmpty() || addInfoV.isEmpty() ||
-//            addFessV.isEmpty()||yearsOfWorkV.isEmpty() ||citySpinner.isSelected() || region1Spinner.isSelected() || region2Spinner.isSelected() || region3Spinner.isSelected()
-//        ) {
-//            Toast.makeText(getContext()  , "ادخل جميع الحقول ", Toast.LENGTH_SHORT ).show();
-//        }
-//        else {
-//        UpdatePreviewerProfileParms parms = new UpdatePreviewerProfileParms(String.valueOf(proflieName.getText())
-//        ,String.valueOf(profliePhone.getText()) ,String.valueOf(proflieEmail.getText()) ,String.valueOf(profliePassword.getText()) ,contryCod.getSelectedCountryNameCode(),
-//                cityId ,regionId_1,regionId_2,regionId_13,String.valueOf(infoAboutMe.getText()) ,"Doc"
-//                ,String.valueOf(addInfo.getText()) ,String.valueOf(addFees.getText()) , String.valueOf(yearsOfWork.getText()) , String.valueOf(experiance.getText()),"encodedImage");
         if (fileUri != null && getPath(fileUri) != null) {
             File file = new File(getPath(fileUri));
             RequestBody requestFile =
@@ -462,6 +278,7 @@ public class EditPreviewerProfileFragment extends Fragment {
             body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
         }
 
+        String password = String.valueOf(profliePassword.getText());
         HashMap<String, RequestBody> map = new HashMap<>();
         if (password.isEmpty()){
             map.put("password", RequestBody.create(MultipartBody.FORM , profliePassword.getText().toString()));
@@ -471,6 +288,7 @@ public class EditPreviewerProfileFragment extends Fragment {
             map.put("phone", RequestBody.create(MultipartBody.FORM , profliePhone.getText().toString()));
             map.put("email", RequestBody.create(MultipartBody.FORM , proflieEmail.getText().toString()));
             map.put("country_code", RequestBody.create(MultipartBody.FORM , contryCod.getSelectedCountryNameCode()));
+            map.put("country_id", RequestBody.create(MultipartBody.FORM , String.valueOf(countryId)));
             map.put("city_id", RequestBody.create(MultipartBody.FORM , String.valueOf(cityId)));
             map.put("region_1_id", RequestBody.create(MultipartBody.FORM , String.valueOf(regionId_1)));
             map.put("region_2_id", RequestBody.create(MultipartBody.FORM , String.valueOf(regionId_2)));
@@ -671,4 +489,104 @@ public class EditPreviewerProfileFragment extends Fragment {
         return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
     }
 
+    public void getCountries() {
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
+                CountriesResponse countriesResponse = response.body();
+                if (countriesResponse.getCode() == 200) {
+                    countryAdapter = new CustomCountryAdapter(response.body().getData().getCountries());
+                    countrySpinner.setAdapter(countryAdapter);
+                    countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            countryId = (int) countryAdapter.getItemId(i);
+                            cityId = 0;
+                            getCities(countryId);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getContext() , countriesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CountriesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void getCities(int countryId) {
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
+                CitiesResponse citiesResponse = response.body();
+                if (citiesResponse.getCode() == 200) {
+                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
+                    citySpinner.setAdapter(cityAdapter);
+                    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            cityId = (int) cityAdapter.getItemId(i);
+                            callRegionstype(cityId);
+                            region1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                    regionId_1 = (int) regionAdapter.getItemId(i);
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                }
+                            });
+                            region2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                    regionId_2 = (int) regionAdapter.getItemId(i);
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                }
+                            });
+                            region3Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                    regionId_13 = (int) regionAdapter.getItemId(i);
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                }
+                            });
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getContext() , citiesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }

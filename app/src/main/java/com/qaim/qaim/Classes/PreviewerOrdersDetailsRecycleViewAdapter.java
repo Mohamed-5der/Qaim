@@ -89,35 +89,15 @@ public class PreviewerOrdersDetailsRecycleViewAdapter extends RecyclerView.Adapt
             name.setText(details.getCompany().getName());
             description.setText(details.getInfo().getNotes());
             Picasso.get().load(details.getCompany().getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(imageView);
-            acceptBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    callAcceptedOrderAPI(details.getId());
-                }
-            });
-            rejectBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    callRefusedOrderAPI(details.getId());
-                }
-            });
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-            sendNotesBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    PrevRealstateDetailsFragment fragment = PrevRealstateDetailsFragment.newInstance(details.getId());
-                    activity.getSupportFragmentManager()
-                            .beginTransaction()
-                            .addToBackStack(null)
-                            .replace(R.id.frameLayout , fragment)
-                            .commit();
-                }
+            acceptBtn.setOnClickListener(view -> callAcceptedOrderAPI(details.getId()));
+            rejectBtn.setOnClickListener(view -> callRefusedOrderAPI(details.getId()));
+            sendNotesBtn.setOnClickListener(view -> {
+                PrevRealstateDetailsFragment fragment = PrevRealstateDetailsFragment.newInstance(details.getId());
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack(null)
+                        .replace(R.id.frameLayout , fragment)
+                        .commit();
             });
         }
 

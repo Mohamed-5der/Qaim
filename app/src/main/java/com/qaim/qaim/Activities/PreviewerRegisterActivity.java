@@ -9,8 +9,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,21 +33,23 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 
+import com.hbb20.CountryCodePicker;
+import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
+import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Classes.CustomRegionAdapter;
 import com.qaim.qaim.Classes.RegionParams;
 import com.qaim.qaim.Helper.Alert;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
+import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.PreviewerRegisterResponse.PreviewerRegisterResponse;
 import com.qaim.qaim.Models.RegionsResponse.GetRegionResponse;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
-import com.hbb20.CountryCodePicker;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -59,7 +59,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -70,7 +69,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PreviewerRegisterActivity extends AppCompatActivity {
+public class PreviewerRegisterActivity extends BaseActivity {
 //    CheckBox termsChecker ;
     CheckBox termsChecker ;
     Alert alert ;
@@ -78,7 +77,9 @@ public class PreviewerRegisterActivity extends AppCompatActivity {
     Retrofit retrofit ;
     JsonApi jsonApi ;
     CustomCityAdapter cityAdapter ;
-    int cityId ;
+    CustomCountryAdapter countryAdapter ;
+    int cityId, countryId ;
+    Spinner citySpinner, countrySpinner ;
     CustomRegionAdapter regionAdapter;
     int regionId_1;
     int regionId_2;
@@ -100,13 +101,7 @@ public class PreviewerRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_previewer_register);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = this.getResources();
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        res.updateConfiguration(config, res.getDisplayMetrics());
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         dialog = new PregressDialog(this);
         alert = new Alert();
@@ -134,61 +129,40 @@ public class PreviewerRegisterActivity extends AppCompatActivity {
                     }
                 });
         ImageButton imageButton = findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PreviewerRegisterActivity.this , CreateNewAccountActivity.class));
-                finishAffinity();
-            }
+        imageButton.setOnClickListener(view -> {
+            startActivity(new Intent(PreviewerRegisterActivity.this , CreateNewAccountActivity.class));
+            finishAffinity();
         });
         addPDF = findViewById(R.id.addPolicy);
         pdfFile = findViewById(R.id.pdfFile);
         lblFileName = findViewById(R.id.lblFileName);
         image = findViewById(R.id.image);
-        addPDF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(
-                        getApplicationContext(),
-                        Manifest.permission
-                                .READ_EXTERNAL_STORAGE)
-                        != PackageManager
-                        .PERMISSION_GRANTED) {
-                    // When permission is not granted
-                    // Result permission
-                    ActivityCompat.requestPermissions(
-                            PreviewerRegisterActivity.this,
-                            new String[] {
-                                    Manifest.permission
-                                            .READ_EXTERNAL_STORAGE },
-                            1);
-                }
-                else {
-                    // When permission is granted
-                    // Create method
-                    selectPDF();
-                }
+        addPDF.setOnClickListener(view -> {
+            if (ActivityCompat.checkSelfPermission(
+                    getApplicationContext(),
+                    Manifest.permission
+                            .READ_EXTERNAL_STORAGE)
+                    != PackageManager
+                    .PERMISSION_GRANTED) {
+                // When permission is not granted
+                // Result permission
+                ActivityCompat.requestPermissions(
+                        PreviewerRegisterActivity.this,
+                        new String[] {
+                                Manifest.permission
+                                        .READ_EXTERNAL_STORAGE },
+                        1);
+            }
+            else {
+                // When permission is granted
+                // Create method
+                selectPDF();
             }
         });
-        Spinner citySpinner = findViewById(R.id.citySpinner);
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities();
-        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
-                CitiesResponse citiesResponse = response.body();
-                if (citiesResponse.getCode() == 200) {
-                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
-                    citySpinner.setAdapter(cityAdapter);
-                    Toast.makeText(getApplicationContext() , citiesResponse.getMessage() , Toast.LENGTH_LONG).show();
-                }
 
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
-                Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_LONG).show();
-            }
-        });
+        countrySpinner = findViewById(R.id.countrySpinner);
+        citySpinner = findViewById(R.id.citySpinner);
+        getCountries();
 
         EditText proflieName = findViewById(R.id.profileEditText);
         EditText proflieEmail = findViewById(R.id.emailEditText);
@@ -281,62 +255,56 @@ public class PreviewerRegisterActivity extends AppCompatActivity {
             }
         });
 
+        confirm.setOnClickListener(view -> {
+            if (contryCod.isValidFullNumber() == false) {
+                Toast.makeText(getApplicationContext(), "رقم الجوال غير صحيح", Toast.LENGTH_SHORT).show();
+            } else if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "كلمة المرور غير متطابقة", Toast.LENGTH_SHORT).show();
+            } else {
+                HashMap<String, RequestBody> map = new HashMap<>();
+                map.put("name", RequestBody.create(MultipartBody.FORM, proflieName.getText().toString()));
+                map.put("phone", RequestBody.create(MultipartBody.FORM, profliePhone.getText().toString()));
+                map.put("email", RequestBody.create(MultipartBody.FORM, proflieEmail.getText().toString()));
+                map.put("password", RequestBody.create(MultipartBody.FORM, profliePassword.getText().toString()));
+                map.put("country_id", RequestBody.create(MultipartBody.FORM, String.valueOf(countryId)));
+                map.put("city_id", RequestBody.create(MultipartBody.FORM, String.valueOf(cityId)));
+                map.put("region_1_id", RequestBody.create(MultipartBody.FORM, String.valueOf(regionId_1)));
+                map.put("region_2_id", RequestBody.create(MultipartBody.FORM, String.valueOf(regionId_2)));
+                map.put("region_3_id", RequestBody.create(MultipartBody.FORM, String.valueOf(regionId_13)));
+                map.put("cost", RequestBody.create(MultipartBody.FORM, proflieFess.getText().toString()));
+                map.put("identity", RequestBody.create(MultipartBody.FORM, proflieId.getText().toString()));
+                map.put("country_code", RequestBody.create(MultipartBody.FORM, String.valueOf(contryCod.getSelectedCountryNameCode())));
+                map.put("player_id", RequestBody.create(MultipartBody.FORM, spNotiToken.getString(NOTI_KEY , "")));
 
-
-
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (contryCod.isValidFullNumber() == false) {
-                    Toast.makeText(getApplicationContext(), "رقم الجوال غير صحيح", Toast.LENGTH_SHORT).show();
-                } else if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "كلمة المرور غير متطابقة", Toast.LENGTH_SHORT).show();
-                } else {
-                    HashMap<String, RequestBody> map = new HashMap<>();
-                    map.put("name", RequestBody.create(MultipartBody.FORM, proflieName.getText().toString()));
-                    map.put("phone", RequestBody.create(MultipartBody.FORM, profliePhone.getText().toString()));
-                    map.put("email", RequestBody.create(MultipartBody.FORM, proflieEmail.getText().toString()));
-                    map.put("password", RequestBody.create(MultipartBody.FORM, profliePassword.getText().toString()));
-                    map.put("city_id", RequestBody.create(MultipartBody.FORM, String.valueOf(cityId)));
-                    map.put("region_1_id", RequestBody.create(MultipartBody.FORM, String.valueOf(regionId_1)));
-                    map.put("region_2_id", RequestBody.create(MultipartBody.FORM, String.valueOf(regionId_2)));
-                    map.put("region_3_id", RequestBody.create(MultipartBody.FORM, String.valueOf(regionId_13)));
-                    map.put("cost", RequestBody.create(MultipartBody.FORM, proflieFess.getText().toString()));
-                    map.put("identity", RequestBody.create(MultipartBody.FORM, proflieId.getText().toString()));
-                    map.put("country_code", RequestBody.create(MultipartBody.FORM, String.valueOf(contryCod.getSelectedCountryNameCode())));
-                    map.put("player_id", RequestBody.create(MultipartBody.FORM, spNotiToken.getString(NOTI_KEY , "")));
-
-                    dialog.show();
-                    Call<PreviewerRegisterResponse> callUserRegister = jsonApi.registerPreviewer(map, body);
-                    callUserRegister.enqueue(new Callback<PreviewerRegisterResponse>() {
-                        @Override
-                        public void onResponse(Call<PreviewerRegisterResponse> call, Response<PreviewerRegisterResponse> response) {
-                            dialog.dismiss();
-                            PreviewerRegisterResponse userRegisterResponse = response.body();
-                            if (userRegisterResponse.getCode() == 200 && userRegisterResponse.getData() != null){
-                                Toast.makeText(getApplicationContext() , userRegisterResponse.getMessage() , Toast.LENGTH_SHORT).show();
-                                String token = userRegisterResponse.getData().getPreviewer().getToken();
-                                tokenEditor.putString("token_key" , token);
-                                tokenEditor.commit();
-                                signUpEditor.putString("yes" , "previewer");
-                                signUpEditor.apply();
-                                saveVerification(userRegisterResponse.getData().getPreviewer().getIsVerified() == 1);
-                                Toast.makeText(getApplicationContext(),userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getApplicationContext() , OTPActivity.class);
-                                startActivity(i);
+                dialog.show();
+                Call<PreviewerRegisterResponse> callUserRegister = jsonApi.registerPreviewer(map, body);
+                callUserRegister.enqueue(new Callback<PreviewerRegisterResponse>() {
+                    @Override
+                    public void onResponse(Call<PreviewerRegisterResponse> call, Response<PreviewerRegisterResponse> response) {
+                        dialog.dismiss();
+                        PreviewerRegisterResponse userRegisterResponse = response.body();
+                        if (userRegisterResponse.getCode() == 200 && userRegisterResponse.getData() != null){
+                            Toast.makeText(getApplicationContext() , userRegisterResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                            String token = userRegisterResponse.getData().getPreviewer().getToken();
+                            tokenEditor.putString("token_key" , token);
+                            tokenEditor.commit();
+                            signUpEditor.putString("yes" , "previewer");
+                            signUpEditor.apply();
+                            saveVerification(userRegisterResponse.getData().getPreviewer().getIsVerified() == 1);
+                            Toast.makeText(getApplicationContext(),userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(getApplicationContext() , OTPActivity.class);
+                            startActivity(i);
 //                                finishAffinity();
-                            }
-                            else {
-                                Toast.makeText(getApplicationContext(),userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
                         }
-                        @Override
-                        public void onFailure(Call<PreviewerRegisterResponse> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),t.getMessage(), Toast.LENGTH_SHORT).show();
+                        else {
+                            Toast.makeText(getApplicationContext(),userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    });
-                }
+                    }
+                    @Override
+                    public void onFailure(Call<PreviewerRegisterResponse> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -498,4 +466,73 @@ public class PreviewerRegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void getCountries() {
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
+                CountriesResponse countriesResponse = response.body();
+                if (countriesResponse.getCode() == 200) {
+                    countryAdapter = new CustomCountryAdapter(response.body().getData().getCountries());
+                    countrySpinner.setAdapter(countryAdapter);
+                    countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            countryId = (int) countryAdapter.getItemId(i);
+                            cityId = 0;
+                            getCities(countryId);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getApplicationContext() , countriesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CountriesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void getCities(int countryId) {
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
+                CitiesResponse citiesResponse = response.body();
+                if (citiesResponse.getCode() == 200) {
+                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
+                    citySpinner.setAdapter(cityAdapter);
+                    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            cityId = (int) cityAdapter.getItemId(i);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getApplicationContext() , citiesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 }

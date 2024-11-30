@@ -5,8 +5,6 @@ import static android.content.Context.MODE_PRIVATE;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -46,7 +44,6 @@ import com.qaim.qaim.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -162,25 +159,13 @@ public class ReportsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_reports, container, false);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OrderDetailsAcceptableFragment fragment = OrderDetailsAcceptableFragment.newInstance(id , hasReport , hasCompleted);
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction().
-                        replace(R.id.frameLayout , fragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            OrderDetailsAcceptableFragment fragment = OrderDetailsAcceptableFragment.newInstance(id , hasReport , hasCompleted);
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction().
+                    replace(R.id.frameLayout , fragment).commit();
         });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")

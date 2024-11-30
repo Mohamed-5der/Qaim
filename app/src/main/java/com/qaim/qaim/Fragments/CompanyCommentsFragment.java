@@ -2,8 +2,6 @@ package com.qaim.qaim.Fragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,7 +31,6 @@ import com.qaim.qaim.R;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -84,23 +81,11 @@ public class CompanyCommentsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_company_comments, container, false);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RealStateDetailsFragment fragment = RealStateDetailsFragment.newInstance(id);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , fragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            RealStateDetailsFragment fragment = RealStateDetailsFragment.newInstance(id);
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , fragment).commit();
         });
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         recyclerView = v.findViewById(R.id.offers_recycleView) ;
@@ -119,23 +104,15 @@ public class CompanyCommentsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getComments();
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addComment();
-            }
-        });
+        btn.setOnClickListener(view12 -> addComment());
 
-        sendFile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Initialize intent
-                Intent intent=new Intent(Intent.ACTION_PICK);
-                // set type
-                intent.setType("image/*");
-                // start activity result
-                startActivityForResult(Intent.createChooser(intent,getString(R.string.select_image)),100);
-            }
+        sendFile.setOnClickListener(view1 -> {
+            // Initialize intent
+            Intent intent=new Intent(Intent.ACTION_PICK);
+            // set type
+            intent.setType("image/*");
+            // start activity result
+            startActivityForResult(Intent.createChooser(intent,getString(R.string.select_image)),100);
         });
     }
 

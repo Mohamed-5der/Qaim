@@ -2,8 +2,6 @@ package com.qaim.qaim.Fragments;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -31,7 +29,6 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.qaim.qaim.R;
 import com.qaim.qaim.Activities.EmployeeActivity;
 import com.qaim.qaim.Classes.CustomAttributedAdapter;
 import com.qaim.qaim.Classes.OrderListItemParams;
@@ -41,11 +38,11 @@ import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RefusedPrevReport.RefusePrevReportEmpResponse;
 import com.qaim.qaim.Models.ShowPrevReportEmp.AttributesItem;
 import com.qaim.qaim.Models.ShowPrevReportEmp.ShowPrevReportEmpResponse;
+import com.qaim.qaim.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -156,21 +153,12 @@ public class ShowPreviewerReportEmployeeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_show_previewer_report_employee, container, false);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EmployeeMainFragment fragment = new EmployeeMainFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayout , fragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            EmployeeMainFragment fragment = new EmployeeMainFragment();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout , fragment).commit();
         });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        res.updateConfiguration(config, res.getDisplayMetrics());
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")
@@ -185,67 +173,58 @@ public class ShowPreviewerReportEmployeeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EmployeeActivity.dialog.show();
-                Call<AcceptPrevReportEmpResponse> acceptPreviewerReportResponseCall = jsonApi.acceptPreviewerEmpReport("Bearer " + EmployeeActivity.token , new StatusReportParams(reportId));
-                acceptPreviewerReportResponseCall.enqueue(new Callback<AcceptPrevReportEmpResponse>() {
-                    @Override
-                    public void onResponse(Call<AcceptPrevReportEmpResponse> call, Response<AcceptPrevReportEmpResponse> response) {
+        accept.setOnClickListener(view1 -> {
+            EmployeeActivity.dialog.show();
+            Call<AcceptPrevReportEmpResponse> acceptPreviewerReportResponseCall = jsonApi.acceptPreviewerEmpReport("Bearer " + EmployeeActivity.token , new StatusReportParams(reportId));
+            acceptPreviewerReportResponseCall.enqueue(new Callback<AcceptPrevReportEmpResponse>() {
+                @Override
+                public void onResponse(Call<AcceptPrevReportEmpResponse> call, Response<AcceptPrevReportEmpResponse> response) {
 
-                        EmployeeActivity.dialog.dismiss();
-                        AcceptPrevReportEmpResponse reportResponse = response.body();
-                        if (reportResponse.getCode() == 200){
-                            getActivity().recreate();
-                            Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                    EmployeeActivity.dialog.dismiss();
+                    AcceptPrevReportEmpResponse reportResponse = response.body();
+                    if (reportResponse.getCode() == 200){
+                        getActivity().recreate();
+                        Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<AcceptPrevReportEmpResponse> call, Throwable t) {
-                        Toast.makeText(getActivity(),t.getMessage(), Toast.LENGTH_SHORT).show();
+                @Override
+                public void onFailure(Call<AcceptPrevReportEmpResponse> call, Throwable t) {
+                    Toast.makeText(getActivity(),t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                    }
-                });
-            }
+                }
+            });
         });
 
-        reject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EmployeeActivity.dialog.show();
-                Call<RefusePrevReportEmpResponse> acceptPreviewerReportResponseCall = jsonApi.rejectPreviewerEmpReport("Bearer " + EmployeeActivity.token , new StatusReportParams(reportId));
-                acceptPreviewerReportResponseCall.enqueue(new Callback<RefusePrevReportEmpResponse>() {
-                    @Override
-                    public void onResponse(Call<RefusePrevReportEmpResponse> call, Response<RefusePrevReportEmpResponse> response) {
+        reject.setOnClickListener(view12 -> {
+            EmployeeActivity.dialog.show();
+            Call<RefusePrevReportEmpResponse> acceptPreviewerReportResponseCall = jsonApi.rejectPreviewerEmpReport("Bearer " + EmployeeActivity.token , new StatusReportParams(reportId));
+            acceptPreviewerReportResponseCall.enqueue(new Callback<RefusePrevReportEmpResponse>() {
+                @Override
+                public void onResponse(Call<RefusePrevReportEmpResponse> call, Response<RefusePrevReportEmpResponse> response) {
 
-                        EmployeeActivity.dialog.dismiss();
-                        RefusePrevReportEmpResponse reportResponse = response.body();
-                        if (reportResponse.getCode() == 200){
-                            getActivity().recreate();
-                            Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                    EmployeeActivity.dialog.dismiss();
+                    RefusePrevReportEmpResponse reportResponse = response.body();
+                    if (reportResponse.getCode() == 200){
+                        getActivity().recreate();
+                        Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getActivity(),reportResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<RefusePrevReportEmpResponse> call, Throwable t) {
-                        Toast.makeText(getActivity(),t.getMessage(), Toast.LENGTH_SHORT).show();
+                @Override
+                public void onFailure(Call<RefusePrevReportEmpResponse> call, Throwable t) {
+                    Toast.makeText(getActivity(),t.getMessage(), Toast.LENGTH_SHORT).show();
 
-                    }
-                });
-            }
+                }
+            });
         });
-        rateVersionV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(rateVersion));
-                startActivity(browserIntent);
-            }
+        rateVersionV.setOnClickListener(view13 -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(rateVersion));
+            startActivity(browserIntent);
         });
     }
     public void callReportAPI(){

@@ -103,24 +103,14 @@ public class CompanyProjectRecycleViewAdapter extends RecyclerView.Adapter<Compa
             Picasso.get().load(projectDetails.getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(imageView);
             name.setText(projectDetails.getTitle());
             description.setText(projectDetails.getDescription());
-            endBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onEndBtnPressed(projectDetails.getId());
-                }
-            });
+            endBtn.setOnClickListener(view -> onEndBtnPressed(projectDetails.getId()));
             editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     onEditBtnPressed(projectDetails.getId());
                 }
             });
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onCardPressed(projectDetails.getId());
-                }
-            });
+            itemView.setOnClickListener(view -> onCardPressed(projectDetails.getId()));
         }
 
 

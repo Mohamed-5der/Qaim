@@ -35,22 +35,10 @@ public class CompanyTransactionRecycleViewAdapter extends RecyclerView.Adapter<C
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         RowsItem details = orderDetails.get(position);
-
-//        holder.status.setText(details.getStatusText());
         holder.orderNameTv.setText(details.getRealEstate().getTitle());
         holder.lblPaymentDescription.setText(details.getDescription());
         holder.orderDiscriptionTv.setText(details.getCost());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                RealStateDetailsFragment detailsFragment = RealStateDetailsFragment.newInstance(details.getRealEstate().getId());
-//                activity.getSupportFragmentManager().beginTransaction()
-//                        .addToBackStack(null)
-//                        .replace(R.id.frameLayout , detailsFragment).commit();
-            }
-        });
     }
 
     @Override

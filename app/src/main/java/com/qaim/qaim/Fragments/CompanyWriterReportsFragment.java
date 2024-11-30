@@ -7,8 +7,6 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -65,7 +63,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -202,16 +199,7 @@ public class CompanyWriterReportsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_company_writer_reports, container, false);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -831,42 +819,6 @@ public class CompanyWriterReportsFragment extends Fragment {
                 map.put("reliable_data", RequestBody.create(MultipartBody.FORM , "" + reliable_data.getText().toString()));
                 map.put("company_opinion", RequestBody.create(MultipartBody.FORM , "" + company_opinion.getText().toString()));
 
-
-
-//                        map.put("land_lines", RequestBody.create(MultipartBody.FORM , "" +widgt ));
-//                        map.put("city_id", RequestBody.create(MultipartBody.FORM , "" +cityId ));
-//                        map.put("region_id", RequestBody.create(MultipartBody.FORM , "" +regionId ));
-//                        map.put("boundries", RequestBody.create(MultipartBody.FORM , "" +realstateLimits ));
-//                        map.put("location_txt", RequestBody.create(MultipartBody.FORM , "" +realstateGeneralLocation ));
-//                        map.put("attributed", RequestBody.create(MultipartBody.FORM , "" +
-//                        attributed ));
-//                        map.put("services", RequestBody.create(MultipartBody.FORM , "" + service ));
-//                        map.put("street_name", RequestBody.create(MultipartBody.FORM , "" +nearstStreat ));
-//                        map.put("nerest_commerial_street", RequestBody.create(MultipartBody.FORM , "" +howFasrRealstateRating ));
-//                        map.put("nerest_commerial_street_distance", RequestBody.create(MultipartBody.FORM , "" +howFarRealstateCenterCity ));
-//                        map.put("distance_to_city_center", RequestBody.create(MultipartBody.FORM , "" +howFarRealstateCenterCity));
-//                        map.put("interfaces", RequestBody.create(MultipartBody.FORM , "" +Views));
-//                        map.put("client_name", RequestBody.create(MultipartBody.FORM , "" +
-//                        thePartyDirected ));
-//                        map.put("client_username", RequestBody.create(MultipartBody.FORM , "" +rateUser ));
-//                        map.put("client_reasons", RequestBody.create(MultipartBody.FORM , "" +ratePurpose ));
-//                        map.put("client_type_id", RequestBody.create(MultipartBody.FORM , "" +regionId2 ));
-//                        map.put("client_city_id", RequestBody.create(MultipartBody.FORM , "" +cityId2 ));
-//                        map.put("client_owner_type", RequestBody.create(MultipartBody.FORM , "" +ownerShipType ));
-//                        map.put("rate_amount", RequestBody.create(MultipartBody.FORM , "" +rate ));
-//                        map.put("rate_day_date", RequestBody.create(MultipartBody.FORM , "" +
-//                        rateDate ));
-//                        map.put("rate_preview_date", RequestBody.create(MultipartBody.FORM , "" +previweDate ));
-//                        map.put("rate_type", RequestBody.create(MultipartBody.FORM , "" +usedMethods));
-//                        map.put("rate_type_done", RequestBody.create(MultipartBody.FORM , "" +methodsAndWays ));
-//                        map.put("rate_amount_usage", RequestBody.create(MultipartBody.FORM , "" +valueHypothesis));
-//                        map.put("rate_steps", RequestBody.create(MultipartBody.FORM , "" +
-//                        applicableEvaluationCriteria ));
-//                        map.put("rate_independant_txt", RequestBody.create(MultipartBody.FORM , "" +ndependentConflictOfInterest ));
-//                        map.put("rate_ref_no", RequestBody.create(MultipartBody.FORM , "" +referanceNumber ));
-//                        map.put("rate_report_type", RequestBody.create(MultipartBody.FORM , "" +rateType ));
-//                        map.put("rate_report_date", RequestBody.create(MultipartBody.FORM , "" +rateDate1 ));
-//                        map.put("rate_terms", RequestBody.create(MultipartBody.FORM , "" +infoSources));
                         map.put("notes", RequestBody.create(MultipartBody.FORM , "" +  notes));
 
 

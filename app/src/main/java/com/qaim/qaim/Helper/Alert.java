@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Html;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
@@ -79,20 +78,14 @@ public class Alert {
             dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation ;
             dialog.getWindow().setGravity(Gravity.BOTTOM);
 
-            acceptBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    b.setEnabled(true);
-                    b.getBackground().setColorFilter(Color.parseColor("#9A7232") , PorterDuff.Mode.MULTIPLY);
-                    dialog.dismiss();
-                }
+            acceptBtn.setOnClickListener(view -> {
+                b.setEnabled(true);
+                b.getBackground().setColorFilter(Color.parseColor("#9A7232") , PorterDuff.Mode.MULTIPLY);
+                dialog.dismiss();
             });
-            rejectBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    b.setEnabled(false);
-                    dialog.dismiss();
-                }
+            rejectBtn.setOnClickListener(view -> {
+                b.setEnabled(false);
+                dialog.dismiss();
             });
 
     }

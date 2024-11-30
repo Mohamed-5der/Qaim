@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.CompanyWriterReportsFragment"
-    >
+    tools:context=".Fragments.CompanyWriterReportsFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -1539,7 +1537,6 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_margin="12dp"-->
 <!--                        android:id = "@+id/citySpinnerspinner"-->
-<!--                        android:entries="@array/citySpinner"-->
 <!--                        android:layout_gravity="center"-->
 <!--                        />-->
 
@@ -1558,7 +1555,6 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_margin="12dp"-->
 <!--                        android:id = "@+id/neiborhood"-->
-<!--                        android:entries="@array/neighborhoodSpinner"-->
 <!--                        android:layout_gravity="center"-->
 <!--                        />-->
 
@@ -1815,7 +1811,6 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_margin="12dp"-->
 <!--                        android:id = "@+id/citySpinnerspinner2"-->
-<!--                        android:entries="@array/citySpinner"-->
 <!--                        android:layout_gravity="center"-->
 <!--                        />-->
 
@@ -1834,7 +1829,6 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_margin="12dp"-->
 <!--                        android:id = "@+id/neiborhood2"-->
-<!--                        android:entries="@array/neighborhoodSpinner"-->
 <!--                        android:layout_gravity="center"-->
 <!--                        />-->
 

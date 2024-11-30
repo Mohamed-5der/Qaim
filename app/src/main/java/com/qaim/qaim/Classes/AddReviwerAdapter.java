@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hbb20.CountryCodePicker;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Fragments.CompanySetTeamFragment;
 import com.qaim.qaim.Models.DeleteTeamResponse.DeleteTeamResponse;
@@ -29,7 +30,6 @@ import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.TeamSendInfo.TeamSendInfoResponse;
 import com.qaim.qaim.Models.UpdateTeamResponse.UpdateTeamResponse;
 import com.qaim.qaim.R;
-import com.hbb20.CountryCodePicker;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -101,133 +101,123 @@ public class AddReviwerAdapter extends RecyclerView.Adapter<AddReviwerAdapter.Vi
             name.setText(reviewer.getName());
             description.setText(reviewer.getNotes());
 
-
             // buttons click
-            deleteBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Call<DeleteTeamResponse> call = jsonApi.deleteTeam("Bearer " + CompanyActivity.token  ,new TeamParams(reviewer.getId()));
-                    call.enqueue(new Callback<DeleteTeamResponse>() {
-                        @Override
-                        public void onResponse(Call<DeleteTeamResponse> call, Response<DeleteTeamResponse> response) {
-                            DeleteTeamResponse deleteTeamResponse = response.body();
-                            if (deleteTeamResponse.getCode() == 200){
-                                Toast.makeText(activity.getBaseContext() , "reviewer has been deleted" , Toast.LENGTH_SHORT).show();
-                                CompanySetTeamFragment fragment = new CompanySetTeamFragment();
-                                activity.getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.frameLayout , fragment)
-                                        .commit();
-                            }
-
+            deleteBtn.setOnClickListener(view -> {
+                Call<DeleteTeamResponse> call = jsonApi.deleteTeam("Bearer " + CompanyActivity.token  ,new TeamParams(reviewer.getId()));
+                call.enqueue(new Callback<DeleteTeamResponse>() {
+                    @Override
+                    public void onResponse(Call<DeleteTeamResponse> call, Response<DeleteTeamResponse> response) {
+                        DeleteTeamResponse deleteTeamResponse = response.body();
+                        if (deleteTeamResponse.getCode() == 200){
+                            Toast.makeText(activity.getBaseContext() , "reviewer has been deleted" , Toast.LENGTH_SHORT).show();
+                            CompanySetTeamFragment fragment = new CompanySetTeamFragment();
+                            activity.getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.frameLayout , fragment)
+                                    .commit();
                         }
 
-                        @Override
-                        public void onFailure(Call<DeleteTeamResponse> call, Throwable t) {
-                            Toast.makeText(activity.getBaseContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DeleteTeamResponse> call, Throwable t) {
+                        Toast.makeText(activity.getBaseContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
+                    }
+                });
             });
-            editBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Dialog dialog = new Dialog(activity);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.update_employee);
-                    EditText email = dialog.findViewById(R.id.emailEditText);
-                    EditText userName = dialog.findViewById(R.id.profileEditText);
-                    EditText password = dialog.findViewById(R.id.passwordEditText);
-                    EditText phoneEditText = dialog.findViewById(R.id.phoneEditText);
-                    CountryCodePicker countryCodePicker = dialog.findViewById(R.id.countryCode);
-                    countryCodePicker.registerCarrierNumberEditText(phoneEditText);
-                    email.setText(reviewer.getEmail());
-                    userName.setText(reviewer.getName());
-                    Button comnfirm = dialog.findViewById(R.id.signUp);
-                    comnfirm.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (countryCodePicker.isValidFullNumber() == false){
-                                Toast.makeText(email.getContext(), "رقم الجوال غير صحيح" , Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                CompanyActivity.dialog.show();
-                                Call<UpdateTeamResponse> call = jsonApi.updateTeam("Bearer " + CompanyActivity.token, new TeamUpdateParams(reviewer.getId(),
-                                        String.valueOf(userName.getText()), String.valueOf(email.getText()), String.valueOf(password.getText())
-                                        , "reviewer", countryCodePicker.getSelectedCountryNameCode(), phoneEditText.getText().toString()
-                                ));
-                                call.enqueue(new Callback<UpdateTeamResponse>() {
-                                    @Override
-                                    public void onResponse(Call<UpdateTeamResponse> call, Response<UpdateTeamResponse> response) {
-                                        CompanyActivity.dialog.dismiss();
-                                        UpdateTeamResponse updateTeamResponse = response.body();
-                                        if (updateTeamResponse.getCode() == 200) {
-                                            dialog.dismiss();
-                                            Toast.makeText(activity.getBaseContext(), updateTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(activity.getBaseContext(), updateTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<UpdateTeamResponse> call, Throwable t) {
-                                        Toast.makeText(activity.getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-
+            editBtn.setOnClickListener(view -> {
+                Dialog dialog = new Dialog(activity);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.update_employee);
+                EditText email = dialog.findViewById(R.id.emailEditText);
+                EditText userName = dialog.findViewById(R.id.profileEditText);
+                EditText password = dialog.findViewById(R.id.passwordEditText);
+                EditText phoneEditText = dialog.findViewById(R.id.phoneEditText);
+                CountryCodePicker countryCodePicker = dialog.findViewById(R.id.countryCode);
+                countryCodePicker.registerCarrierNumberEditText(phoneEditText);
+                email.setText(reviewer.getEmail());
+                userName.setText(reviewer.getName());
+                Button comnfirm = dialog.findViewById(R.id.signUp);
+                comnfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (countryCodePicker.isValidFullNumber() == false){
+                            Toast.makeText(email.getContext(), "رقم الجوال غير صحيح" , Toast.LENGTH_SHORT).show();
                         }
-                    });
-                    dialog.show();
-                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.WRAP_CONTENT);
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation ;
-                    dialog.getWindow().setGravity(Gravity.BOTTOM);
-                }
+                        else {
+                            CompanyActivity.dialog.show();
+                            Call<UpdateTeamResponse> call = jsonApi.updateTeam("Bearer " + CompanyActivity.token, new TeamUpdateParams(reviewer.getId(),
+                                    String.valueOf(userName.getText()), String.valueOf(email.getText()), String.valueOf(password.getText())
+                                    , "reviewer", countryCodePicker.getSelectedCountryNameCode(), phoneEditText.getText().toString()
+                            ));
+                            call.enqueue(new Callback<UpdateTeamResponse>() {
+                                @Override
+                                public void onResponse(Call<UpdateTeamResponse> call, Response<UpdateTeamResponse> response) {
+                                    CompanyActivity.dialog.dismiss();
+                                    UpdateTeamResponse updateTeamResponse = response.body();
+                                    if (updateTeamResponse.getCode() == 200) {
+                                        dialog.dismiss();
+                                        Toast.makeText(activity.getBaseContext(), updateTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(activity.getBaseContext(), updateTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<UpdateTeamResponse> call, Throwable t) {
+                                    Toast.makeText(activity.getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                    }
+                });
+                dialog.show();
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation ;
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
             });
-            sendBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            sendBtn.setOnClickListener(view -> {
 
-                    Dialog dialog = new Dialog(activity);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.send_file);
-                    EditText email = dialog.findViewById(R.id.emailEditText);
-                    Button sendBtn = dialog.findViewById(R.id.signUp);
-                    sendBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String emailV = String.valueOf(email.getText());
-                            if (emailV.isEmpty()){
-                                Toast.makeText(activity , "Enter E-Mail Please" , Toast.LENGTH_SHORT).show();
-                            }else {
-                                Call<TeamSendInfoResponse> call = jsonApi.sendInfo("Bearer " + CompanyActivity.token  ,new TeamParams(reviewer.getId()));
-                                call.enqueue(new Callback<TeamSendInfoResponse>() {
-                                    @Override
-                                    public void onResponse(Call<TeamSendInfoResponse> call, Response<TeamSendInfoResponse> response) {
-                                        TeamSendInfoResponse teamSendInfoResponse = response.body();
-                                        if (teamSendInfoResponse.getCode() == 200){
-                                            dialog.dismiss();
-                                            Toast.makeText(activity.getBaseContext() , "Send Success" , Toast.LENGTH_SHORT).show();
-                                        }
-
+                Dialog dialog = new Dialog(activity);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.send_file);
+                EditText email = dialog.findViewById(R.id.emailEditText);
+                Button sendBtn = dialog.findViewById(R.id.signUp);
+                sendBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String emailV = String.valueOf(email.getText());
+                        if (emailV.isEmpty()){
+                            Toast.makeText(activity , "Enter E-Mail Please" , Toast.LENGTH_SHORT).show();
+                        }else {
+                            Call<TeamSendInfoResponse> call = jsonApi.sendInfo("Bearer " + CompanyActivity.token  ,new TeamParams(reviewer.getId()));
+                            call.enqueue(new Callback<TeamSendInfoResponse>() {
+                                @Override
+                                public void onResponse(Call<TeamSendInfoResponse> call, Response<TeamSendInfoResponse> response) {
+                                    TeamSendInfoResponse teamSendInfoResponse = response.body();
+                                    if (teamSendInfoResponse.getCode() == 200){
+                                        dialog.dismiss();
+                                        Toast.makeText(activity.getBaseContext() , "Send Success" , Toast.LENGTH_SHORT).show();
                                     }
 
-                                    @Override
-                                    public void onFailure(Call<TeamSendInfoResponse> call, Throwable t) {
-                                        Toast.makeText(activity.getBaseContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
+                                }
+
+                                @Override
+                                public void onFailure(Call<TeamSendInfoResponse> call, Throwable t) {
+                                    Toast.makeText(activity.getBaseContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
-                    });
-                    dialog.show();
-                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.WRAP_CONTENT);
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation ;
-                    dialog.getWindow().setGravity(Gravity.BOTTOM);
-                }
+                    }
+                });
+                dialog.show();
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation ;
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
             });
         }
     }

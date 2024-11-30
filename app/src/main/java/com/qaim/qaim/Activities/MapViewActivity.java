@@ -1,12 +1,10 @@
 package com.qaim.qaim.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,6 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,17 +34,17 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import com.qaim.qaim.R;
 
 
-public class MapViewActivity extends AppCompatActivity implements OnMapReadyCallback , GoogleMap.OnCameraMoveListener , LocationListener {
+public class MapViewActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnCameraMoveListener, LocationListener {
 
-    ImageButton imageButton ;
-    Button btnConfirm ;
+    ImageButton imageButton;
+    Button btnConfirm;
     MapView mapView;
     LatLng latLng;
     boolean isPermissionGranted;
-    double latitude ;
-    double longitude ;
+    double latitude;
+    double longitude;
 
-    private LocationManager locationManager ;
+    private LocationManager locationManager;
     private GoogleMap googleMap;
 
     @Override
@@ -54,10 +55,10 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
         checkPermissions();
         imageButton = findViewById(R.id.imageBtn);
         btnConfirm = findViewById(R.id.confirm);
-        mapView =  findViewById(R.id.mapView);
+        mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        if (getIntent().getDoubleExtra("lat", 0.0) != 0.0 && getIntent().getDoubleExtra("long" , 0.0) != 0.0 ) {
-            latLng = new LatLng(getIntent().getDoubleExtra("lat" , 0.0) , getIntent().getDoubleExtra("long" , 0.0));
+        if (getIntent().getDoubleExtra("lat", 0.0) != 0.0 && getIntent().getDoubleExtra("long", 0.0) != 0.0) {
+            latLng = new LatLng(getIntent().getDoubleExtra("lat", 0.0), getIntent().getDoubleExtra("long", 0.0));
         }
         mapView.getMapAsync(MapViewActivity.this);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +70,7 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext() , "تم اضافة موقع" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "تم اضافة موقع", Toast.LENGTH_SHORT).show();
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("latitude", latitude);
                 resultIntent.putExtra("longitude", longitude);
@@ -78,26 +79,39 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
             }
         });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         mapView.onStart();
     }
+
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.googleMap = googleMap;
         googleMap.setOnCameraMoveListener(this);
         if (latLng != null) {
             googleMap.addMarker(new MarkerOptions().position(latLng));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng , 12));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
         }
 
     }
-    public void checkPermissions(){
+
+    public void checkPermissions() {
         Dexter.withContext(this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            return;
+                        }
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, MapViewActivity.this);
                     }
                     @Override

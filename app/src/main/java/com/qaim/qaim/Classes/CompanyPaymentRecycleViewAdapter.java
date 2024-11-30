@@ -48,15 +48,6 @@ public class CompanyPaymentRecycleViewAdapter extends RecyclerView.Adapter<Compa
         holder.orderNameTv.setText(details.getRealEstate().getTitle());
         holder.lblPaymentDescription.setText(details.getPaymentDescription());
         holder.orderDiscriptionTv.setText(details.getCost());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                RealStateDetailsFragment detailsFragment = RealStateDetailsFragment.newInstance(details.getRealEstate().getId());
-//                activity.getSupportFragmentManager().beginTransaction()
-//                        .addToBackStack(null)
-//                        .replace(R.id.frameLayout , detailsFragment).commit();
-            }
-        });
     }
 
     @Override

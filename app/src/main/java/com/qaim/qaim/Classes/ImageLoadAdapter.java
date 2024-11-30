@@ -73,28 +73,25 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.View
 
         public void onBind(FilesItem filesItem){
             Picasso.get().load(filesItem.getFile()).into(imageView);
-            cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Call<DeleteFileResponse> call = jsonApi.deleteFile(new FileIdParams(filesItem.getId()));
-                    call.enqueue(new Callback<DeleteFileResponse>() {
-                        @Override
-                        public void onResponse(Call<DeleteFileResponse> call, Response<DeleteFileResponse> response) {
-                            if (response.body().getCode() == 200){
-                                Toast.makeText(activity , response.body().getMessage() , Toast.LENGTH_SHORT).show();
-                            }else {
-                                Toast.makeText(activity , response.body().getMessage() , Toast.LENGTH_SHORT).show();
-                            }
+            cancel.setOnClickListener(view -> {
+                Call<DeleteFileResponse> call = jsonApi.deleteFile(new FileIdParams(filesItem.getId()));
+                call.enqueue(new Callback<DeleteFileResponse>() {
+                    @Override
+                    public void onResponse(Call<DeleteFileResponse> call, Response<DeleteFileResponse> response) {
+                        if (response.body().getCode() == 200){
+                            Toast.makeText(activity , response.body().getMessage() , Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(activity , response.body().getMessage() , Toast.LENGTH_SHORT).show();
                         }
+                    }
 
-                        @Override
-                        public void onFailure(Call<DeleteFileResponse> call, Throwable t) {
-                            Toast.makeText(activity , t.getMessage() , Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    imageUrls.remove(getPosition());
-                    notifyItemRemoved(getPosition());
-                }
+                    @Override
+                    public void onFailure(Call<DeleteFileResponse> call, Throwable t) {
+                        Toast.makeText(activity , t.getMessage() , Toast.LENGTH_SHORT).show();
+                    }
+                });
+                imageUrls.remove(getPosition());
+                notifyItemRemoved(getPosition());
             });
         }
 

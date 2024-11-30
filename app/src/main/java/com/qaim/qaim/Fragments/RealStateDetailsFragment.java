@@ -2,8 +2,6 @@ package com.qaim.qaim.Fragments;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -52,7 +50,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -108,24 +105,12 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_real_state_details, container, false);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CompanyProjectsFragment fragment = new  CompanyProjectsFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , fragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            CompanyProjectsFragment fragment = new  CompanyProjectsFragment();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , fragment).commit();
         });
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")

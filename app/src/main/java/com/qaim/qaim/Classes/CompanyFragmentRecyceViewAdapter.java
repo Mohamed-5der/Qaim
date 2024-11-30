@@ -1,7 +1,5 @@
 package com.qaim.qaim.Classes;
 
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.qaim.qaim.Fragments.OrderDetailsAcceptableFragment;
-import com.qaim.qaim.Models.AprovedList.DataItem;
 import com.qaim.qaim.Models.UserCompaniesResponse.RowsItem;
 import com.qaim.qaim.R;
 import com.squareup.picasso.Picasso;

@@ -69,48 +69,42 @@ public class PreviwerListAdapter extends RecyclerView.Adapter<PreviwerListAdapte
 
         Picasso.get().load(previewer.getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(holder.imageView);
 
-        holder.choose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CompanyActivity.dialog.show();
-                Call<AssingTeamResponse> call = jsonApi.assignTeam("Bearer " + CompanyActivity.token ,new AssignTeamParamsPrev(
-                        order_id ,previewer.getId()));
-                call.enqueue(new Callback<AssingTeamResponse>() {
-                    @Override
-                    public void onResponse(Call<AssingTeamResponse> call, Response<AssingTeamResponse> response) {
-                        CompanyActivity.dialog.dismiss();
-                        AssingTeamResponse assignTeamResponse = response.body();
-                        if (assignTeamResponse.getCode() == 200) {
-                            CompanyActivity.alert.crateMsg(response.body().getMessage() ,activity);
+        holder.choose.setOnClickListener(view -> {
+            CompanyActivity.dialog.show();
+            Call<AssingTeamResponse> call = jsonApi.assignTeam("Bearer " + CompanyActivity.token ,new AssignTeamParamsPrev(
+                    order_id ,previewer.getId()));
+            call.enqueue(new Callback<AssingTeamResponse>() {
+                @Override
+                public void onResponse(Call<AssingTeamResponse> call, Response<AssingTeamResponse> response) {
+                    CompanyActivity.dialog.dismiss();
+                    AssingTeamResponse assignTeamResponse = response.body();
+                    if (assignTeamResponse.getCode() == 200) {
+                        CompanyActivity.alert.crateMsg(response.body().getMessage() ,activity);
 //                            Toast.makeText(activity ,assignTeamResponse.getMessage() , Toast.LENGTH_SHORT).show();
-                            CompanyChooseTeamFragment chooseTeamFragment = CompanyChooseTeamFragment.newInstance(order_id);
-                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , chooseTeamFragment).commit();
-                        }
-                        else {
-                            CompanyActivity.alert.crateMsg(response.body().getMessage() , activity);
+                        CompanyChooseTeamFragment chooseTeamFragment = CompanyChooseTeamFragment.newInstance(order_id);
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , chooseTeamFragment).commit();
+                    }
+                    else {
+                        CompanyActivity.alert.crateMsg(response.body().getMessage() , activity);
 //                            Toast.makeText(activity ,assignTeamResponse.getMessage() , Toast.LENGTH_SHORT).show();
-                        }
                     }
+                }
 
 
-                    @Override
-                    public void onFailure(Call<AssingTeamResponse> call, Throwable t) {
-                        Toast.makeText(activity ,t.getMessage() , Toast.LENGTH_SHORT).show();
-                    }
-                });
+                @Override
+                public void onFailure(Call<AssingTeamResponse> call, Throwable t) {
+                    Toast.makeText(activity ,t.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+            });
 
-            }
         });
-        holder.showProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // region
-                ShowPreviewerProfileFragment showPreviewerProfileFragment =ShowPreviewerProfileFragment.newInstance(previewer.getName() ,previewer.getCost() , previewer.getImage() , order_id ,previewer.getArea() , previewer.getYears() , previewer.getFieldTxt() , previewer.getExtraAbout() , realStateID, previewer.getRate());
-                activity.getSupportFragmentManager().beginTransaction()
-                                .addToBackStack(null)
-                                .replace(R.id.frameLayout ,showPreviewerProfileFragment)
-                                .commit();
-            }
+        holder.showProfile.setOnClickListener(view -> {
+            // region
+            ShowPreviewerProfileFragment showPreviewerProfileFragment =ShowPreviewerProfileFragment.newInstance(previewer.getName() ,previewer.getCost() , previewer.getImage() , order_id ,previewer.getArea() , previewer.getYears() , previewer.getFieldTxt() , previewer.getExtraAbout() , realStateID, previewer.getRate());
+            activity.getSupportFragmentManager().beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.frameLayout ,showPreviewerProfileFragment)
+                            .commit();
         });
     }
 

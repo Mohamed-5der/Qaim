@@ -97,16 +97,10 @@ public class CompanyListRealstateRecycleViewAdapter extends RecyclerView.Adapter
                     status.setText(projectDetails.getStatusTxt());
                     GradientDrawable gb = (GradientDrawable) status.getBackground();
                     gb.setColor(Color.parseColor(projectDetails.getColor()));
-//                    status.getBackground().setColorFilter(Color.parseColor(projectDetails.getColor()) , PorterDuff.Mode.MULTIPLY);
                 }
             }
 
-            sendRatingOffer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onSendRateOfferBtnPressed(projectDetails.getId());
-                }
-            });
+            sendRatingOffer.setOnClickListener(view -> onSendRateOfferBtnPressed(projectDetails.getId()));
         }
 
         public void onSendRateOfferBtnPressed(int id){

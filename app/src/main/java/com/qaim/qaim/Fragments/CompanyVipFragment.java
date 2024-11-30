@@ -1,12 +1,10 @@
 package com.qaim.qaim.Fragments;
 
-import android.app.Dialog;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,29 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Toast;
-
-import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.interfaces.ItemClickListener;
-import com.denzcoskun.imageslider.models.SlideModel;
-import com.google.android.gms.maps.model.LatLng;
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.CompanyFragmentRecyceViewAdapter;
-import com.qaim.qaim.Classes.CustomAttributed;
-import com.qaim.qaim.Classes.ShowRealstateUserParams;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.UserCompaniesResponse.UserCompaniesResponse;
-import com.qaim.qaim.Models.UserCompaniesResponse.UserCompaniesResponse;
-import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
-import com.squareup.picasso.Picasso;
-
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,13 +38,7 @@ public class CompanyVipFragment extends Fragment {
         View v =inflater.inflate(R.layout.fragment_company_vip, container, false);
 
         recyclerView = v.findViewById(R.id.recycleView);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = this.getResources();
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        res.updateConfiguration(config, res.getDisplayMetrics());
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         retrofit = new Retrofit.Builder()

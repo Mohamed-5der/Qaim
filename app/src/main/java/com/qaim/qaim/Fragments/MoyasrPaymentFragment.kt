@@ -1,20 +1,17 @@
 package com.qaim.qaim.Fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.activity.ComponentActivity
-import com.qaim.qaim.R
-import com.moyasar.android.sdk.PaymentConfig
+import androidx.fragment.app.Fragment
 import com.moyasar.android.sdk.PaymentResult
 import com.moyasar.android.sdk.PaymentSheet
 import com.moyasar.android.sdk.payment.models.Payment
-import androidx.appcompat.app.AppCompatActivity
+import com.qaim.qaim.R
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"

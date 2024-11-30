@@ -1,7 +1,8 @@
 package com.qaim.qaim.Models.RealstateStoreUserResponse;
 
-import java.util.List;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class Row{
 

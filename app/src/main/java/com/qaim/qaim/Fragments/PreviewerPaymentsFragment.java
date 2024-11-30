@@ -1,12 +1,9 @@
 package com.qaim.qaim.Fragments;
 
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,7 +21,6 @@ import com.qaim.qaim.Models.PreviwerPayments.PreviewerPaymentsResponse;
 import com.qaim.qaim.R;
 
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,24 +47,6 @@ public class PreviewerPaymentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_previewer_payments, container, false);
-        ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                PreviewerBusinessInProgressFragment mainFragment = new PreviewerBusinessInProgressFragment ();
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
-            }
-        });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
-
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         recyclerView = v.findViewById(R.id.order_recycleView) ;
         retrofit = new Retrofit.Builder()

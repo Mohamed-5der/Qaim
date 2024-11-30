@@ -64,13 +64,10 @@ public class ShowPainterProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_show_painter_profile, container, false);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PainterListFragment painterListFragment = PainterListFragment.newInstance(mParam4);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout ,painterListFragment).commit();
+        imageButton.setOnClickListener(view -> {
+            PainterListFragment painterListFragment = PainterListFragment.newInstance(mParam4);
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout ,painterListFragment).commit();
 
-            }
         });
         imageView = v.findViewById(R.id.image);
         userName1 = v.findViewById(R.id.firstUserName);

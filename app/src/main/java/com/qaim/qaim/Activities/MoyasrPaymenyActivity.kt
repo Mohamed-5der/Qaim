@@ -1,7 +1,6 @@
 package com.qaim.qaim.Activities
 
 import android.app.Dialog
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -15,23 +14,21 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.qaim.qaim.Classes.PaymentParams
-import com.qaim.qaim.Models.AcceptedOrderUserResponse.AcceptedOrderUserResponse
-import com.qaim.qaim.Models.Networks.JsonApi
-import com.qaim.qaim.R
 import com.moyasar.android.sdk.PaymentConfig
 import com.moyasar.android.sdk.PaymentResult
 import com.moyasar.android.sdk.PaymentSheet
 import com.moyasar.android.sdk.payment.models.Payment
+import com.qaim.qaim.Classes.PaymentParams
+import com.qaim.qaim.Models.AcceptedOrderUserResponse.AcceptedOrderUserResponse
+import com.qaim.qaim.Models.Networks.JsonApi
+import com.qaim.qaim.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.security.AccessController.getContext
 
-class MoyasrPaymenyActivity : AppCompatActivity() {
+class MoyasrPaymenyActivity : BaseActivity() {
 
     var paymentSheet: PaymentSheet? = null
 
@@ -45,7 +42,7 @@ class MoyasrPaymenyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_moyasr_paymeny)
 
         retrofit = Retrofit.Builder()
-            .baseUrl("https://qaim.app")
+            .baseUrl("https://qaimha.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         jsonApi = retrofit?.create(JsonApi::class.java)

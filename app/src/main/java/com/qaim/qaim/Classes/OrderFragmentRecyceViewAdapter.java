@@ -68,12 +68,9 @@ public class OrderFragmentRecyceViewAdapter extends RecyclerView.Adapter<OrderFr
                 GradientDrawable gb = (GradientDrawable) status.getBackground();
                 gb.setColor(Color.parseColor(dataItem.getColor()));
                 Picasso.get().load(dataItem.getImage()).fit().into(imageView);
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        OrderDetailsAcceptableFragment fragment = OrderDetailsAcceptableFragment.newInstance(dataItem.getId() ,dataItem.getHasReport() , dataItem.getHasCompleted() );
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , fragment).addToBackStack(null).commit();
-                    }
+                itemView.setOnClickListener(view -> {
+                    OrderDetailsAcceptableFragment fragment = OrderDetailsAcceptableFragment.newInstance(dataItem.getId() ,dataItem.getHasReport() , dataItem.getHasCompleted() );
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , fragment).addToBackStack(null).commit();
                 });
             }
     }

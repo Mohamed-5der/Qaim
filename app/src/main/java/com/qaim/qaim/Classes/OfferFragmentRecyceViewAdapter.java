@@ -98,24 +98,9 @@ int id ;
             offerCompanyName.setText(companyName);
             offerPrice.setText( "التكلفه : "+cost);
             offerDescription.setText(details.getCompany().getAbout());
-            acceptedBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onAcceptedBtnPressed(details.getId());
-                }
-            });
-            rejectedBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onRejectedPressed(details.getId());
-                }
-            });
-            showBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onShowBtnPressed(details.getId());
-                }
-            });
+            acceptedBtn.setOnClickListener(view -> onAcceptedBtnPressed(details.getId()));
+            rejectedBtn.setOnClickListener(view -> onRejectedPressed(details.getId()));
+            showBtn.setOnClickListener(view -> onShowBtnPressed(details.getId()));
         }
 
 
@@ -134,19 +119,10 @@ int id ;
             dialog.setContentView(R.layout.canceled_bottom_sheet_dialog);
             Button cancel = dialog.findViewById(R.id.rejectBtn);
             Button rejected = dialog.findViewById(R.id.sendNotes);
-            cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-
-                }
-            });
-            rejected.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                    onRejectedBtnPressed(id);
-                }
+            cancel.setOnClickListener(view -> dialog.dismiss());
+            rejected.setOnClickListener(view -> {
+                dialog.dismiss();
+                onRejectedBtnPressed(id);
             });
             dialog.show();
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -160,27 +136,15 @@ int id ;
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.accepted_bottom_sheet_dialog);
             Button cancel = dialog.findViewById(R.id.rejectBtn);
-            cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                }
-            });
+            cancel.setOnClickListener(view -> dialog.dismiss());
             Button confirm = dialog.findViewById(R.id.sendNotes);
-            confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-//                    MoyasrPaymentFragment paymentFragment = MoyasrPaymentFragment.newInstance(cost , id , companyName);
-//                    activity.getSupportFragmentManager().beginTransaction().addToBackStack(null)
-//                            .replace(R.id.frameLayout , paymentFragment)
-//                            .commit();
-                    Intent i = new Intent(activity , MoyasrPaymenyActivity.class);
-                    i.putExtra("cost" , cost);
-                    i.putExtra("id" , id);
-                    i.putExtra("company" , companyName);
-                    activity.startActivity(i);
-                }
+            confirm.setOnClickListener(view -> {
+                dialog.dismiss();
+                Intent i = new Intent(activity , MoyasrPaymenyActivity.class);
+                i.putExtra("cost" , cost);
+                i.putExtra("id" , id);
+                i.putExtra("company" , companyName);
+                activity.startActivity(i);
             });
             dialog.show();
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.WRAP_CONTENT);

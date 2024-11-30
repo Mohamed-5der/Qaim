@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.LoginActivity" >
+    tools:context=".Activities.LoginActivity">
 
 
     <ImageView
@@ -11,21 +11,30 @@
         android:layout_height="match_parent"
         android:background="@drawable/group8937"
         android:layout_marginTop="-200dp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
-        android:id="@+id/topView"
-        >
+        android:id="@+id/topView">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/maskgroup17"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/world"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="changeLanguage"/>
 
     </RelativeLayout>
     <RelativeLayout

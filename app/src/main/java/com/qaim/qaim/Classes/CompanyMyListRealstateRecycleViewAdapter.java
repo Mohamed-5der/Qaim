@@ -86,12 +86,9 @@ public class CompanyMyListRealstateRecycleViewAdapter extends RecyclerView.Adapt
                 status.setText(projectDetails.getStatusText());
                 GradientDrawable gb = (GradientDrawable) status.getBackground();
                 gb.setColor(Color.parseColor(projectDetails.getColor()));            }
-            showBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    RealStateDetailsFragment fragment = RealStateDetailsFragment.newInstance(projectDetails.getId());
-                    activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout , fragment).commit();
-                }
+            showBtn.setOnClickListener(view -> {
+                RealStateDetailsFragment fragment = RealStateDetailsFragment.newInstance(projectDetails.getId());
+                activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout , fragment).commit();
             });
         }
     }

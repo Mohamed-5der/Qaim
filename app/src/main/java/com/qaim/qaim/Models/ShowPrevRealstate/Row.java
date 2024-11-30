@@ -1,7 +1,7 @@
 package com.qaim.qaim.Models.ShowPrevRealstate;
 
-import com.qaim.qaim.Models.MyListDetails.FilesItem;
 import com.google.gson.annotations.SerializedName;
+import com.qaim.qaim.Models.MyListDetails.FilesItem;
 
 import java.util.List;
 

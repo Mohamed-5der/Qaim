@@ -214,7 +214,6 @@
                         android:layout_height="match_parent"
                         android:id="@+id/citySpinner"
                         android:layout_margin="8dp"
-                        android:entries="@array/citySpinner"
                         />
                 </LinearLayout>
             </LinearLayout>

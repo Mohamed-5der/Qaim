@@ -5,8 +5,6 @@ import static android.app.Activity.RESULT_OK;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,22 +31,24 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.hbb20.CountryCodePicker;
 import com.qaim.qaim.Activities.CompanyActivity;
+import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
+import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.CompanyProfile.Company;
 import com.qaim.qaim.Models.CompanyProfile.CompanyProfileResponse;
+import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.UpdateCompanyProfile.UpdateCompanyProfileResponse;
 import com.qaim.qaim.R;
-import com.hbb20.CountryCodePicker;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -69,10 +69,11 @@ public class CompanyProfileFragment extends Fragment {
     TextView userName , tittle ;
     EditText addName ,  addPhone ,addPassword , addEmail , licenceEditText , about ;
     Button editBtn ;
-    Spinner city ;
+    Spinner citySpinner, countrySpinner ;
     CountryCodePicker countryCodePicker ;
     CustomCityAdapter cityAdapter ;
-    int cityId ;
+    CustomCountryAdapter countryAdapter ;
+    int cityId, countryId ;
     Uri fileUri;
     ImageView imageView ;
     String imageURL ;
@@ -110,16 +111,7 @@ public class CompanyProfileFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v =inflater.inflate(R.layout.fragment_company_profile, container, false);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")
@@ -127,31 +119,12 @@ public class CompanyProfileFragment extends Fragment {
                 .build();
         jsonApi = retrofit.create(JsonApi.class);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CompanyListOfRealstateFragment mainFragment = new CompanyListOfRealstateFragment ();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            CompanyListOfRealstateFragment mainFragment = new CompanyListOfRealstateFragment ();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
         });
-        // get cities
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities();
+        getCountries();
 
-        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
-                if (response.code() == 200) {
-                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
-                    city.setAdapter(cityAdapter);
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
-                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
-            }
-        });
         userName = v.findViewById(R.id.nameofuser);
         addName = v.findViewById(R.id.EditProfileNameEditText);
         countryCodePicker = v.findViewById(R.id.countryCode);
@@ -171,9 +144,11 @@ public class CompanyProfileFragment extends Fragment {
         addEmail.setEnabled(false);
         about.setEnabled(false);
         imageView.setEnabled(false);
-        city = v.findViewById(R.id.citySpinner);
-        city.setAdapter(cityAdapter);
-        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        citySpinner = v.findViewById(R.id.citySpinner);
+        countrySpinner = v.findViewById(R.id.countrySpinner);
+
+        citySpinner.setAdapter(cityAdapter);
+        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 cityId = (int) cityAdapter.getItemId(i);
@@ -319,7 +294,7 @@ public class CompanyProfileFragment extends Fragment {
         addPassword.setEnabled(isEnabled);
         addEmail.setEnabled(isEnabled);
         about.setEnabled(isEnabled);
-        city.setEnabled(isEnabled);
+        citySpinner.setEnabled(isEnabled);
         imageView.setEnabled(isEnabled);
     }
 
@@ -439,4 +414,73 @@ public class CompanyProfileFragment extends Fragment {
         // MultipartBody.Part is used to send also the actual file name
         return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
     }
+
+    public void getCountries() {
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
+                CountriesResponse countriesResponse = response.body();
+                if (countriesResponse.getCode() == 200) {
+                    countryAdapter = new CustomCountryAdapter(response.body().getData().getCountries());
+                    countrySpinner.setAdapter(countryAdapter);
+                    countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            countryId = (int) countryAdapter.getItemId(i);
+                            cityId = 0;
+                            getCities(countryId);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getContext() , countriesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CountriesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void getCities(int countryId) {
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
+                CitiesResponse citiesResponse = response.body();
+                if (citiesResponse.getCode() == 200) {
+                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
+                    citySpinner.setAdapter(cityAdapter);
+                    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            cityId = (int) cityAdapter.getItemId(i);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getContext() , citiesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 }

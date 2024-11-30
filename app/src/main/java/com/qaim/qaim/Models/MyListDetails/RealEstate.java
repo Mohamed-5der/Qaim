@@ -1,6 +1,5 @@
 package com.qaim.qaim.Models.MyListDetails;
 
-import com.qaim.qaim.Models.MyListDetails.AttributesItem;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

@@ -9,17 +9,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.qaim.qaim.Fragments.EmployeeMainFragment;
 import com.qaim.qaim.Models.LogoutRespone.LogOutResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 
 import retrofit2.Call;
@@ -28,7 +27,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class EmployeeActivity extends AppCompatActivity {
+public class EmployeeActivity extends BaseActivity {
     BottomNavigationView mbn ;
     private SlidingRootNav slidingRootNav;
     FloatingActionButton fab ;

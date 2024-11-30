@@ -45,19 +45,19 @@ public class TeamReporysAdapter extends RecyclerView.Adapter<TeamReporysAdapter.
         Reviewer reviewer = data.getReviewer();
 
         if (previewer != null){
-            holder.tittle.setText("تقرير المعاين");
+            holder.tittle.setText("تقرير معاين العقار");
             holder.name.setText(previewer.getName());
             Picasso.get().load(previewer.getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(holder.imageView);
 //            holder.description.setText(previewer.getEmail());
         }
         if (painter != null){
-            holder.tittle.setText("تقرير المعاين");
+            holder.tittle.setText("تقرير معاين العقار");
             holder.name.setText(painter.getName());
             Picasso.get().load(painter.getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(holder.imageView);
 //            holder.description.setText(previewer.getEmail());
         }
         if (reviewer != null){
-            holder.tittle.setText("تقرير المعاين");
+            holder.tittle.setText("تقرير معاين العقار");
             holder.name.setText(reviewer.getName());
             Picasso.get().load(reviewer.getImage()).fit().error(activity.getDrawable(R.drawable.icon)).into(holder.imageView);
 //            holder.description.setText(previewer.getEmail());

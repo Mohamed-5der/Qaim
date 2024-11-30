@@ -1,14 +1,13 @@
 package com.qaim.qaim.Fragments;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,43 +16,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.interfaces.ItemClickListener;
-import com.denzcoskun.imageslider.models.SlideModel;
-import com.google.android.gms.maps.model.LatLng;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Activities.MainActivity;
-import com.qaim.qaim.Classes.AddNotesAndReportsParams;
-import com.qaim.qaim.Classes.CustomAttributed;
-import com.qaim.qaim.Classes.CustomComAttributesAdapter;
 import com.qaim.qaim.Classes.CustomNote;
 import com.qaim.qaim.Classes.OrderListItemParams;
 import com.qaim.qaim.Classes.ShowRealstateUserParams;
-import com.qaim.qaim.Models.AddNotesCompany.AddNotesAndReportsCompanyResponse;
-import com.qaim.qaim.Models.CompanyFinishOrder.CompanyFinishOrderResponse;
-import com.qaim.qaim.Models.MyListDetails.FilesItem;
 import com.qaim.qaim.Models.MyListDetails.MyListDetailsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RealstateShowUserResponse.NoteItem;
 import com.qaim.qaim.Models.RealstateShowUserResponse.RealstateShowUserResponse;
 import com.qaim.qaim.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,22 +63,10 @@ public class PreviewerNotesFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_previewer_notes, container, false);
         recyclerView = v.findViewById(R.id.recyclerView);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        imageButton.setOnClickListener(view -> {
 
-            }
         });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")
@@ -120,12 +83,7 @@ public class PreviewerNotesFragment extends Fragment {
 
         text = view.findViewById(R.id.text);
         ImageButton imageBtn = view.findViewById(R.id.imageBtn);
-        imageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
+        imageBtn.setOnClickListener(v -> getActivity().onBackPressed());
 
         if (companyId == null || companyId.isEmpty()) {
             text.setText(getString(R.string.previewer_notes));

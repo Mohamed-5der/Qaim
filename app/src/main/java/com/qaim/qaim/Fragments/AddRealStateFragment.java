@@ -42,12 +42,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Activities.MapViewActivity;
+import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
+import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Classes.CustomRealstateTypeAdapter;
 import com.qaim.qaim.Classes.CustomRegionAdapter;
 import com.qaim.qaim.Classes.ImageAdapter;
 import com.qaim.qaim.Classes.RegionParams;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
+import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RealstateStoreUserResponse.RealstateStoreUserResponse;
 import com.qaim.qaim.Models.RegionsResponse.GetRegionResponse;
@@ -75,12 +78,14 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
     Retrofit retrofit;
     JsonApi jsonApi;
     CustomCityAdapter cityAdapter;
+    int countryId;
     int cityId;
     CustomRegionAdapter regionAdapter;
+    CustomCountryAdapter countryAdapter ;
     int regionId;
     CustomRealstateTypeAdapter customRealstateTypeAdapter;
     int typeId;
-    Spinner realStateType, neighborhoodSpinner, city;
+    Spinner realStateType, neighborhoodSpinner, countrySpinner, citySpinner;
     EditText realstateArea, addAddtionalDetails , tittle;
     Button addPhotoBtn, addLocationBtn, confirmBtn , addEstatePhoto;
     LocationManager locationManager;
@@ -151,23 +156,11 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
         jsonApi = retrofit.create(JsonApi.class);
         callRealstateType();
         MainActivity.dialog.show();
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities();
-        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
-                MainActivity.dialog.dismiss();
-                if (response.code() == 200) {
-                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
-                    city.setAdapter(cityAdapter);
 
-                }
-            }
+        countrySpinner = v.findViewById(R.id.countrySpinner);
+        citySpinner = v.findViewById(R.id.citySpinner);
+        getCountries();
 
-            @Override
-            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
         realstateArea = v.findViewById(R.id.addRealStateArea);
         tittle = v.findViewById(R.id.tittle);
         addAddtionalDetails = v.findViewById(R.id.addAddtionalDetails);
@@ -202,32 +195,6 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 typeId = (int) customRealstateTypeAdapter.getItemId(i);
          //       Toast.makeText(getContext(), "" + typeId, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        city = v.findViewById(R.id.citySpinner);
-        city.setAdapter(cityAdapter);
-        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                cityId = (int) cityAdapter.getItemId(i);
-                callRegionstype(cityId);
-                neighborhoodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        regionId = (int) regionAdapter.getItemId(i);
-                   //     Toast.makeText(getContext(), "" + regionId, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
-                });
             }
 
             @Override
@@ -318,6 +285,7 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
                    map.put("title", RequestBody.create(MultipartBody.FORM , tittle.getText().toString()));
                    map.put("description", RequestBody.create(MultipartBody.FORM , addAddtionalDetails.getText().toString()));
                    map.put("type_id", RequestBody.create(MultipartBody.FORM , "" + typeId));
+                   map.put("country_id", RequestBody.create(MultipartBody.FORM , "" + countryId));
                    map.put("city_id", RequestBody.create(MultipartBody.FORM , "" + cityId));
                    map.put("region_id", RequestBody.create(MultipartBody.FORM , "" + regionId));
                    map.put("latitude", RequestBody.create(MultipartBody.FORM , "" + latitude));
@@ -386,6 +354,18 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
                 if (response.code() == 200) {
                     regionAdapter = new CustomRegionAdapter(regionResponse.getData().getCities());
                     neighborhoodSpinner.setAdapter(regionAdapter);
+
+                    neighborhoodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            regionId = (int) regionAdapter.getItemId(i);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
                 }
             }
 
@@ -515,5 +495,76 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.googleMap = googleMap;
+    }
+
+    public void getCountries() {
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
+                CountriesResponse countriesResponse = response.body();
+                if (countriesResponse.getCode() == 200) {
+                    countryAdapter = new CustomCountryAdapter(response.body().getData().getCountries());
+                    countrySpinner.setAdapter(countryAdapter);
+                    countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            countryId = (int) countryAdapter.getItemId(i);
+                            cityId = 0;
+                            getCities(countryId);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getContext() , countriesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CountriesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void getCities(int countryId) {
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
+                CitiesResponse citiesResponse = response.body();
+                if (citiesResponse.getCode() == 200) {
+                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
+                    citySpinner.setAdapter(cityAdapter);
+                    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            cityId = (int) cityAdapter.getItemId(i);
+                            regionId = 0;
+                            callRegionstype(cityId);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                    callRegionstype(cityId);
+                } else {
+                    Toast.makeText(getContext() , citiesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

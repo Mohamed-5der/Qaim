@@ -1,7 +1,7 @@
 package com.qaim.qaim.Models.EmployeeComments;
 
-import com.qaim.qaim.Models.AddListComments.Previewer;
 import com.google.gson.annotations.SerializedName;
+import com.qaim.qaim.Models.AddListComments.Previewer;
 
 public class CommentsItem{
 

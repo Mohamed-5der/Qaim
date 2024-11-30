@@ -193,7 +193,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Area_of​_expertise"
+                        android:text="@string/Area_of_expertise"
                         android:textSize="14sp"
                         android:textColor="#9A7232"
                         android:layout_margin="8dp"

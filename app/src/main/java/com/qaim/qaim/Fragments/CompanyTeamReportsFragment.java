@@ -1,8 +1,6 @@
 package com.qaim.qaim.Fragments;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,8 +27,6 @@ import com.qaim.qaim.Models.MyListTeamReports.Reviewer;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
 import com.squareup.picasso.Picasso;
-
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -81,26 +77,13 @@ public class CompanyTeamReportsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_company_team_reports, container, false);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
-
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
-
+        
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RealStateDetailsFragment chooseTeamFragment = RealStateDetailsFragment.newInstance(id);
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayout , chooseTeamFragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            RealStateDetailsFragment chooseTeamFragment = RealStateDetailsFragment.newInstance(id);
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout , chooseTeamFragment).commit();
         });
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")
@@ -146,19 +129,13 @@ public class CompanyTeamReportsFragment extends Fragment {
                         Picasso.get().load(previewer.getImage()).into(prevImage);
                         prevName.setText(previewer.getName());
                         prevDescrition.setText(previewer.getNotes());
-                        prevShowBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                ShowPreviewerReportFragment fragment =ShowPreviewerReportFragment.newInstance(id);
-                                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout ,fragment).commit();
-                            }
+                        prevShowBtn.setOnClickListener(view1 -> {
+                            ShowPreviewerReportFragment fragment =ShowPreviewerReportFragment.newInstance(id);
+                            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout ,fragment).commit();
                         });
-                        prevDownBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(reportsResponse.getData().getRow().getPreviewerFile()));
-                                startActivity(browserIntent);
-                            }
+                        prevDownBtn.setOnClickListener(view12 -> {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(reportsResponse.getData().getRow().getPreviewerFile()));
+                            startActivity(browserIntent);
                         });
                     }
 
@@ -172,12 +149,9 @@ public class CompanyTeamReportsFragment extends Fragment {
                         Painter painter = reportsResponse.getData().getRow().getPainter();
                         Picasso.get().load(painter.getImage()).into(painterImage);
                         painterName.setText(painter.getName());
-                        painterDescrition.setText((String) painter.getNotes());
-                        painterShowBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                        painterDescrition.setText(painter.getNotes());
+                        painterShowBtn.setOnClickListener(view13 -> {
 
-                            }
                         });
                         painterDownBtn.setOnClickListener(new View.OnClickListener() {
                             @Override

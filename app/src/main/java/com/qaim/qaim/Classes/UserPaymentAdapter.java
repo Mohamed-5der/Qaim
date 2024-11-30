@@ -41,13 +41,6 @@ public class UserPaymentAdapter extends RecyclerView.Adapter<UserPaymentAdapter.
         holder.orderNameTv.setText(details.getTitle());
         holder.lblPaymentDescription.setText(details.getPaymentDescription());
         holder.orderDiscriptionTv.setText(details.getCost());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                OrderDetailsAcceptableFragment fragment = OrderDetailsAcceptableFragment.newInstance(details.getId());
-//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , fragment).commit();
-            }
-        });
     }
 
     @Override

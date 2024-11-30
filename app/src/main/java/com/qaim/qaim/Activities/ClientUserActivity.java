@@ -6,8 +6,6 @@ import static com.qaim.qaim.Activities.SplashScreen.signUpEditor;
 import static com.qaim.qaim.Activities.SplashScreen.tokenEditor;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
@@ -21,20 +19,20 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.hbb20.CountryCodePicker;
+import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
+import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Classes.UserRegisterParms;
 import com.qaim.qaim.Helper.Alert;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
+import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.UserRegisterResponse.UserRegisterResponse;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
-import com.hbb20.CountryCodePicker;
-
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,12 +40,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ClientUserActivity extends AppCompatActivity {
+public class ClientUserActivity extends BaseActivity {
     CheckBox termsChecker ;
     ImageButton imageButton;
     Retrofit retrofit ;
     JsonApi jsonApi ;
+    Spinner citySpinner, countrySpinner ;
+    CustomCountryAdapter countryAdapter ;
     CustomCityAdapter cityAdapter ;
+    int countryId ;
     int cityId ;
     public static PregressDialog dialog;
     Alert alert ;
@@ -60,40 +61,17 @@ public class ClientUserActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = this.getResources();
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        res.updateConfiguration(config, res.getDisplayMetrics());
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        Spinner citySpinner = findViewById(R.id.citySpinner);
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities();
-        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
-                CitiesResponse citiesResponse = response.body();
-                if (citiesResponse.getCode() == 200) {
-                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
-                    citySpinner.setAdapter(cityAdapter);
-                    Toast.makeText(getApplicationContext() , citiesResponse.getMessage() , Toast.LENGTH_LONG).show();
-                }
+        countrySpinner = findViewById(R.id.countrySpinner);
+        citySpinner = findViewById(R.id.citySpinner);
 
-            }
+        getCountries();
 
-            @Override
-            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
-                Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_LONG).show();
-            }
-        });
         imageButton = findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               startActivity(new Intent(ClientUserActivity.this , ClientActivity.class));
-               finishAffinity();
-            }
+        imageButton.setOnClickListener(view -> {
+           startActivity(new Intent(ClientUserActivity.this , ClientActivity.class));
+           finishAffinity();
         });
         dialog = new PregressDialog(this);
         alert = new Alert();
@@ -118,18 +96,6 @@ public class ClientUserActivity extends AppCompatActivity {
             }
         });
 
-        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                cityId = (int) cityAdapter.getItemId(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        citySpinner.setAdapter(cityAdapter);
 //        EditText proflieLicense = findViewById(R.id.licenceEditText);
         EditText profliePassword = findViewById(R.id.passwordEditText);
         EditText confirmprofliePassword = findViewById(R.id.confirmPasswordEditText);
@@ -150,53 +116,50 @@ public class ClientUserActivity extends AppCompatActivity {
         });
 
 
-        singUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        singUp.setOnClickListener(view -> {
 
-                if (contryCod.isValidFullNumber() == false) {
-                    Toast.makeText(getApplicationContext(), "رقم الجوال غير صحيح", Toast.LENGTH_SHORT).show();
-                } else if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "كلمة المرور غير متطابقة", Toast.LENGTH_SHORT).show();
-                } else {
-                    UserRegisterParms userRegisterParms = new UserRegisterParms(
-                            String.valueOf(proflieName.getText()),
-                            String.valueOf(profliePhone.getText()),
-                            String.valueOf(proflieEmail.getText()),
-                            String.valueOf(profliePassword.getText()),
-                            String.valueOf(contryCod.getSelectedCountryNameCode()),
-                            "user_user", cityId , spNotiToken.getString(NOTI_KEY , ""));
+            if (contryCod.isValidFullNumber() == false) {
+                Toast.makeText(getApplicationContext(), "رقم الجوال غير صحيح", Toast.LENGTH_SHORT).show();
+            } else if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "كلمة المرور غير متطابقة", Toast.LENGTH_SHORT).show();
+            } else {
+                UserRegisterParms userRegisterParms = new UserRegisterParms(
+                        String.valueOf(proflieName.getText()),
+                        String.valueOf(profliePhone.getText()),
+                        String.valueOf(proflieEmail.getText()),
+                        String.valueOf(profliePassword.getText()),
+                        String.valueOf(contryCod.getSelectedCountryNameCode()),
+                        "user_user", countryId , cityId , spNotiToken.getString(NOTI_KEY , ""));
 
-                    dialog.show();
-                    Call<UserRegisterResponse> callUserRegister = jsonApi.registerUser(userRegisterParms);
-                    callUserRegister.enqueue(new Callback<UserRegisterResponse>() {
-                        @Override
-                        public void onResponse(Call<UserRegisterResponse> call, Response<UserRegisterResponse> response) {
-                           dialog.dismiss();
-                            UserRegisterResponse userRegisterResponse = response.body();
-                            if (userRegisterResponse.getCode() == 200) {
-                                String token = userRegisterResponse.getData().getUser().getToken();
-                                tokenEditor.putString("token_key", token);
-                                tokenEditor.commit();
-                                signUpEditor.putString("yes", "individualClient");
-                                signUpEditor.apply();
-                                saveVerification(userRegisterResponse.getData().getUser().getIsVerified() == 1);
-                                Toast.makeText(getApplicationContext(), userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getApplicationContext(), OTPActivity.class);
-                                startActivity(i);
+                dialog.show();
+                Call<UserRegisterResponse> callUserRegister = jsonApi.registerUser(userRegisterParms);
+                callUserRegister.enqueue(new Callback<UserRegisterResponse>() {
+                    @Override
+                    public void onResponse(Call<UserRegisterResponse> call, Response<UserRegisterResponse> response) {
+                       dialog.dismiss();
+                        UserRegisterResponse userRegisterResponse = response.body();
+                        if (userRegisterResponse.getCode() == 200) {
+                            String token = userRegisterResponse.getData().getUser().getToken();
+                            tokenEditor.putString("token_key", token);
+                            tokenEditor.commit();
+                            signUpEditor.putString("yes", "individualClient");
+                            signUpEditor.apply();
+                            saveVerification(userRegisterResponse.getData().getUser().getIsVerified() == 1);
+                            Toast.makeText(getApplicationContext(), userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(getApplicationContext(), OTPActivity.class);
+                            startActivity(i);
 //                                finishAffinity();
-                            } else {
-                                Toast.makeText(getApplicationContext(), userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-
+                        } else {
+                            Toast.makeText(getApplicationContext(), userRegisterResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
-                        @Override
-                        public void onFailure(Call<UserRegisterResponse> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserRegisterResponse> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -205,5 +168,73 @@ public class ClientUserActivity extends AppCompatActivity {
     private void saveVerification(boolean isVerified) {
         SplashScreen.signUpEditor.putBoolean("isVerified", isVerified);
         SplashScreen.signUpEditor.apply();
+    }
+
+    public void getCountries() {
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
+                CountriesResponse countriesResponse = response.body();
+                if (countriesResponse.getCode() == 200) {
+                    countryAdapter = new CustomCountryAdapter(response.body().getData().getCountries());
+                    countrySpinner.setAdapter(countryAdapter);
+                    countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            countryId = (int) countryAdapter.getItemId(i);
+                            cityId = 0;
+                            getCities(countryId);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getApplicationContext() , countriesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CountriesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void getCities(int countryId) {
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
+                CitiesResponse citiesResponse = response.body();
+                if (citiesResponse.getCode() == 200) {
+                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
+                    citySpinner.setAdapter(cityAdapter);
+                    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            cityId = (int) cityAdapter.getItemId(i);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getApplicationContext() , citiesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

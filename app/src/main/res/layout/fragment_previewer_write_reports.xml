@@ -1324,7 +1324,6 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_margin="12dp"-->
 <!--                        android:id = "@+id/citySpinnerspinner"-->
-<!--                        android:entries="@array/citySpinner"-->
 <!--                        android:layout_gravity="center"-->
 <!--                        />-->
 
@@ -1343,7 +1342,6 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_margin="12dp"-->
 <!--                        android:id = "@+id/neiborhood"-->
-<!--                        android:entries="@array/neighborhoodSpinner"-->
 <!--                        android:layout_gravity="center"-->
 <!--                        />-->
 
@@ -1611,7 +1609,6 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_margin="12dp"-->
 <!--                        android:id = "@+id/citySpinnerspinner2"-->
-<!--                        android:entries="@array/citySpinner"-->
 <!--                        android:layout_gravity="center"-->
 <!--                        />-->
 
@@ -1630,7 +1627,6 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_margin="12dp"-->
 <!--                        android:id = "@+id/neiborhood2"-->
-<!--                        android:entries="@array/neighborhoodSpinner"-->
 <!--                        android:layout_gravity="center"-->
 <!--                        />-->
 

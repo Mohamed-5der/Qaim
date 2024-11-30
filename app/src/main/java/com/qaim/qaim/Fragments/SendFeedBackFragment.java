@@ -1,11 +1,6 @@
 package com.qaim.qaim.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +12,13 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.moyasar.android.sdk.generated.callback.OnClickListener;
-import com.qaim.qaim.Activities.CompanyActivity;
-import com.qaim.qaim.Activities.OTPActivity;
+import androidx.fragment.app.Fragment;
+
 import com.qaim.qaim.Activities.SplashScreen;
-import com.qaim.qaim.Classes.OTPParams;
 import com.qaim.qaim.Models.Networks.JsonApi;
-import com.qaim.qaim.Models.OtpResponse.OtpResponse;
 import com.qaim.qaim.Models.ReportCompleted.sendFeedBack.FeedBackResponse;
 import com.qaim.qaim.Models.ReportCompleted.sendFeedBack.FeedbackRequest;
 import com.qaim.qaim.R;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -93,7 +82,7 @@ public class SendFeedBackFragment extends Fragment {
             public void onClick(View v) {
                 String content = et_content.getText().toString();
                 String subject = et_subject.getText().toString();
-                String selectItem = sp_txtChoose.getSelectedItem().toString().equals("قيم") ? "" : companyId;
+                String selectItem = sp_txtChoose.getSelectedItem().toString().equals("قيمها") ? "" : companyId;
                 sendFeedBack(content,subject,selectItem);
 
             }

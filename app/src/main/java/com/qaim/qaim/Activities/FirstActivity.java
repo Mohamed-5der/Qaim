@@ -7,12 +7,10 @@ import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
 
-public class FirstActivity extends AppCompatActivity {
+public class FirstActivity extends BaseActivity {
     public static PregressDialog dialog;
 
     @Override

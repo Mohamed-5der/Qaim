@@ -5,8 +5,6 @@ import static android.app.Activity.RESULT_OK;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,22 +31,24 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.hbb20.CountryCodePicker;
 import com.qaim.qaim.Activities.MainActivity;
+import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
+import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
+import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.UserProfileResponse.User;
 import com.qaim.qaim.Models.UserProfileResponse.UserProfileResponse;
 import com.qaim.qaim.Models.UserUpdateProfile.UserUpdateProfileResponse;
 import com.qaim.qaim.R;
-import com.hbb20.CountryCodePicker;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -71,14 +71,18 @@ public class EditProfileFragment extends Fragment {
     EditText addName ,  addPhone ,addPassword , addEmail ;
 //    licince ;
     Button editBtn ;
-    Spinner city ;
+    Spinner countrySpinner ;
+    Spinner citySpinner ;
     CountryCodePicker countryCodePicker ;
     CustomCityAdapter cityAdapter ;
+    int countryId ;
     int cityId ;
     Uri fileUri;
     ImageView imageView ;
     String imageURL ;
     Bitmap bitmap ;
+    CustomCountryAdapter countryAdapter ;
+
     public EditProfileFragment() {
         // Required empty public constructor
     }
@@ -108,48 +112,20 @@ public class EditProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainFragment fragment = new  MainFragment();
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction().
-                        replace(R.id.frameLayout , fragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            MainFragment fragment = new  MainFragment();
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction().
+                    replace(R.id.frameLayout , fragment).commit();
         });
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities();
-
-        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
-                if (response.code() == 200) {
-                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
-                    city.setAdapter(cityAdapter);
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
-                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
-            }
-        });
+        getCountries();
         userName = v.findViewById(R.id.userName);
         addName = v.findViewById(R.id.EditProfileNameEditText);
         countryCodePicker = v.findViewById(R.id.countryCode);
@@ -167,19 +143,8 @@ public class EditProfileFragment extends Fragment {
         addEmail.setEnabled(false);
 //        licince.setEnabled(false);
         imageView.setEnabled(false);
-        city = v.findViewById(R.id.citySpinner);
-        city.setAdapter(cityAdapter);
-        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                cityId = (int) cityAdapter.getItemId(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        countrySpinner = v.findViewById(R.id.countrySpinner);
+        citySpinner = v.findViewById(R.id.citySpinner);
         editBtn = v.findViewById(R.id.confirm);
 
         return v;
@@ -206,6 +171,7 @@ public class EditProfileFragment extends Fragment {
                    addEmail.setText(String.valueOf(user.getEmail()));
 //                   licince.setText(String.valueOf(user.getLicense()));
 //                   city.setSelection(user.getCity().getId());
+                   getCities(user.getCountryId());
                    addPassword.setText("");
                    Picasso.get().load(user.getImage()).fit().error(R.drawable.icon).into(imageView);
 
@@ -220,83 +186,61 @@ public class EditProfileFragment extends Fragment {
            }
        });
 
-       editBtn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               String name = String.valueOf(addName.getText());
-               String phone = String.valueOf(addPhone.getText());
-               String email = String.valueOf(addEmail.getText());
-               String password = String.valueOf(addPassword.getText());
-//               String aboutV = String.valueOf(licince.getText());
-               MultipartBody.Part body = null;
-              if (addName.isEnabled()){
+       editBtn.setOnClickListener(view12 -> {
+           MultipartBody.Part body = null;
+          if (addName.isEnabled()){
+              if (fileUri != null && getPath(fileUri) != null) {
+                  File file = new File(getPath(fileUri));
+                  RequestBody requestFile =
+                          RequestBody.create(
+                                  MediaType.parse(getContext().getContentResolver().getType(fileUri)),
+                                  file
 
-//                  if (name.isEmpty() || phone.isEmpty() || password.isEmpty() || email.isEmpty() || aboutV.isEmpty() || city.isSelected() || countryCodePicker.isSelected()){
-//                      Toast.makeText(getContext()  , "ادخل جميع الحقول ", Toast.LENGTH_SHORT ).show();
-//                  }
-//                  else {
-//                      File file = new File(imageURL);
-//                      RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
-//                      MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), reqFile);
-
-                  if (fileUri != null && getPath(fileUri) != null) {
-                      File file = new File(getPath(fileUri));
-                      RequestBody requestFile =
-                              RequestBody.create(
-                                      MediaType.parse(getContext().getContentResolver().getType(fileUri)),
-                                      file
-
-                              );
-                      body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-                  }
-                  HashMap<String, RequestBody> map = new HashMap<>();
-                  if (password.isEmpty()){
-                      map.put("password", RequestBody.create(MultipartBody.FORM , addPassword.getText().toString()));
-                  }
-                      map.put("name", RequestBody.create(MultipartBody.FORM , addName.getText().toString()));
-                      map.put("phone", RequestBody.create(MultipartBody.FORM , addPhone.getText().toString()));
-                      map.put("email", RequestBody.create(MultipartBody.FORM , addEmail.getText().toString()));
-                      map.put("country_code", RequestBody.create(MultipartBody.FORM , countryCodePicker.getSelectedCountryNameCode()));
-                      map.put("city_id", RequestBody.create(MultipartBody.FORM , String.valueOf(cityId)));
-//                      map.put("lisence", RequestBody.create(MultipartBody.FORM , licince.getText().toString()));
-                      MainActivity.dialog.show();
-                      Call<UserUpdateProfileResponse> call = jsonApi.updateUserProfile("Bearer "+ MainActivity.token , map, body);
-
-                      call.enqueue(new Callback<UserUpdateProfileResponse>() {
-                          @Override
-                          public void onResponse(Call<UserUpdateProfileResponse> call, Response<UserUpdateProfileResponse> response) {
-                              MainActivity.dialog.dismiss();
-                              UserUpdateProfileResponse response1 = response.body();
-//                              Toast.makeText(getContext() , response1.getMessage() , Toast.LENGTH_SHORT).show();
-                              if (response.code() == 200) {
-                                  setEnabled(false);
-                                  MainActivity.alert.crateMsg(response.body().getMessage() , getContext());
-                                  Intent i = new Intent(getContext() , MainActivity.class);
-                                  startActivity(i);
-                              }else {
-                                  MainActivity.alert.crateMsg(response.body().getMessage() , getContext());
-//                                  Toast.makeText(getContext() , response1.getMessage() , Toast.LENGTH_SHORT).show();
-                              }
-                          }
-                          @Override
-                          public void onFailure(Call<UserUpdateProfileResponse> call, Throwable t) {
-                              Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
-                          }
-                      });
-
-              } else {
-                  setEnabled(true);
+                          );
+                  body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
               }
+              HashMap<String, RequestBody> map = new HashMap<>();
+              if (String.valueOf(addPassword.getText()).isEmpty()){
+                  map.put("password", RequestBody.create(MultipartBody.FORM , addPassword.getText().toString()));
+              }
+                  map.put("name", RequestBody.create(MultipartBody.FORM , addName.getText().toString()));
+                  map.put("phone", RequestBody.create(MultipartBody.FORM , addPhone.getText().toString()));
+                  map.put("email", RequestBody.create(MultipartBody.FORM , addEmail.getText().toString()));
+                  map.put("country_code", RequestBody.create(MultipartBody.FORM , countryCodePicker.getSelectedCountryNameCode()));
+                  map.put("country_id", RequestBody.create(MultipartBody.FORM , String.valueOf(countryId)));
+                  map.put("city_id", RequestBody.create(MultipartBody.FORM , String.valueOf(cityId)));
+//                      map.put("lisence", RequestBody.create(MultipartBody.FORM , licince.getText().toString()));
+                  MainActivity.dialog.show();
+                  Call<UserUpdateProfileResponse> call = jsonApi.updateUserProfile("Bearer "+ MainActivity.token , map, body);
 
-           }
+                  call.enqueue(new Callback<UserUpdateProfileResponse>() {
+                      @Override
+                      public void onResponse(Call<UserUpdateProfileResponse> call, Response<UserUpdateProfileResponse> response) {
+                          MainActivity.dialog.dismiss();
+                          UserUpdateProfileResponse response1 = response.body();
+//                              Toast.makeText(getContext() , response1.getMessage() , Toast.LENGTH_SHORT).show();
+                          if (response.code() == 200) {
+                              setEnabled(false);
+                              MainActivity.alert.crateMsg(response.body().getMessage() , getContext());
+                              Intent i = new Intent(getContext() , MainActivity.class);
+                              startActivity(i);
+                          }else {
+                              MainActivity.alert.crateMsg(response.body().getMessage() , getContext());
+//                                  Toast.makeText(getContext() , response1.getMessage() , Toast.LENGTH_SHORT).show();
+                          }
+                      }
+                      @Override
+                      public void onFailure(Call<UserUpdateProfileResponse> call, Throwable t) {
+                          Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
+                      }
+                  });
+
+          } else {
+              setEnabled(true);
+          }
 
        });
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGallory();
-            }
-        });
+        imageView.setOnClickListener(view1 -> openGallory());
 
     }
 
@@ -414,4 +358,71 @@ public class EditProfileFragment extends Fragment {
 //        RequestBody model ;
     }
 
+    public void getCountries() {
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
+                CountriesResponse countriesResponse = response.body();
+                if (countriesResponse.getCode() == 200) {
+                    countryAdapter = new CustomCountryAdapter(response.body().getData().getCountries());
+                    countrySpinner.setAdapter(countryAdapter);
+                    countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            countryId = (int) countryAdapter.getItemId(i);
+                            cityId = 0;
+                            getCities(countryId);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getContext() , countriesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CountriesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void getCities(int countryId) {
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {
+                CitiesResponse citiesResponse = response.body();
+                if (citiesResponse.getCode() == 200) {
+                    cityAdapter = new CustomCityAdapter(response.body().getData().getCities());
+                    citySpinner.setAdapter(cityAdapter);
+                    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            cityId = (int) cityAdapter.getItemId(i);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getContext() , citiesResponse.getMessage() , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CitiesResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }

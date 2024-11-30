@@ -2,8 +2,6 @@ package com.qaim.qaim.Fragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,11 +22,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Activities.EmployeeActivity;
-import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.AddListEmployeeCommentsParams;
 import com.qaim.qaim.Classes.CommentsEmployeeAdapter;
 import com.qaim.qaim.Classes.InfoParams;
-import com.qaim.qaim.Models.AddCommentsPreviewer.MyListPrevCommentsAddResponse;
 import com.qaim.qaim.Models.EmployeeAddComments.EmployeeAddCommentsResponse;
 import com.qaim.qaim.Models.EmployeeComments.EmployeeCommentsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -36,7 +32,6 @@ import com.qaim.qaim.R;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -89,24 +84,13 @@ public class EmployeeCommentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_employee_comments, container, false);
-        Locale.setDefault(Locale.ENGLISH);
-        Resources res = getContext().getResources();
 
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EmployeeMainFragment fragment = new EmployeeMainFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayout , fragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            EmployeeMainFragment fragment = new EmployeeMainFragment();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout , fragment).commit();
         });
-        res.updateConfiguration(config, res.getDisplayMetrics());
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         recyclerView = v.findViewById(R.id.offers_recycleView) ;
         btn = v.findViewById(R.id.sendBtn);
