@@ -74,7 +74,7 @@ public class OrdersFragment extends Fragment {
                 MainActivity.dialog.dismiss();
                 ApprovedListResponse listUserResponse = response.body();
                 if (listUserResponse.getCode() == 200) {
-                    if (listUserResponse.getData().getRows().getData().isEmpty() || listUserResponse.getData().getRows().getData() == null){
+                    if (listUserResponse.getData().getRows() == null || listUserResponse.getData().getRows().getData().isEmpty() || listUserResponse.getData().getRows().getData() == null){
                         noData.setVisibility(View.VISIBLE);
                     }else {
                         noData.setVisibility(View.GONE);

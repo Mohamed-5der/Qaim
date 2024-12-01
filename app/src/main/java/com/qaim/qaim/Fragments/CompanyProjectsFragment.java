@@ -92,7 +92,7 @@ public class CompanyProjectsFragment extends Fragment {
                 MyRealstateCompanyResponse myRealstateCompanyListResponse = response.body();
                 if (response.code() == 200) {
                     CompanyActivity.alert.crateMsg(response.body().getMessage() , getContext());
-                    if (myRealstateCompanyListResponse.getData().getRows().getData().isEmpty() || myRealstateCompanyListResponse.getData().getRows().getData() == null){
+                    if (myRealstateCompanyListResponse.getData().getRows() == null || myRealstateCompanyListResponse.getData().getRows().getData().isEmpty() || myRealstateCompanyListResponse.getData().getRows().getData() == null){
                         noData.setVisibility(View.VISIBLE);
                     }else {
                         noData.setVisibility(View.GONE);

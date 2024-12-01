@@ -95,7 +95,7 @@ public class EmployeeMainFragment extends Fragment {
                 EmployeeActivity.dialog.dismiss();
                 MyListEmployeeResponse empolyeeResponse = response.body();
                 if (empolyeeResponse.getCode() == 200){
-                    if (empolyeeResponse.getData().getRows().getData().isEmpty() || empolyeeResponse.getData().getRows().getData() == null){
+                    if (empolyeeResponse.getData().getRows() == null || empolyeeResponse.getData().getRows().getData().isEmpty() || empolyeeResponse.getData().getRows().getData() == null){
                         noData.setVisibility(View.VISIBLE);
                     }else {
                         noData.setVisibility(View.GONE);

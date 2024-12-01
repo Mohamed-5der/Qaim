@@ -9,11 +9,17 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.PregressDialog;
 import com.qaim.qaim.R;
+
+import java.util.concurrent.Executor;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -64,54 +70,121 @@ public class SplashScreen extends BaseActivity {
             int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
             decorView.setSystemUiVisibility(uiOptions);
         }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                String sign = spSignUp.getString("yes" , "");
+        new Handler().postDelayed(() -> {
+            String sign = spSignUp.getString("yes" , "");
+            boolean verified = spSignUp.getBoolean("isVerified",false );
 
-                boolean verified = spSignUp.getBoolean("isVerified",false );
-
-                if(verified) {
-                    switch (sign) {
-                        case "individualClient":
-                            startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                            finishAffinity();
-                            break;
-                        case "company":
-                            startActivity(new Intent(SplashScreen.this, CompanyActivity.class));
-                            finishAffinity();
-                            break;
-
-                        case "previewer":
-                            startActivity(new Intent(SplashScreen.this, PreviewerActivity.class));
-                            finishAffinity();
-                            break;
-
-                        case "painter":
-                            startActivity(new Intent(SplashScreen.this, EmployeeActivity.class));
-                            Toast.makeText(getApplicationContext(), "splash painter error", Toast.LENGTH_LONG).show();
-                            finishAffinity();
-                            break;
-
-                        case "reviewer":
-                            startActivity(new Intent(SplashScreen.this, EmployeeActivity.class));
-                            Toast.makeText(getApplicationContext(), "splash reviewer error", Toast.LENGTH_LONG).show();
-                            finishAffinity();
-                            break;
-
-                        default:
-                            showLoginDialog();
-                    }
-                }
+            if (sign.isEmpty() || !verified) {
+                showLoginDialog();
+            } else {
+                startBio();
             }
-        } , 0);
 
-        showLoginDialog();
+        }, 0);
     }
     // show login dialog
     private void showLoginDialog (){
         startActivity(new Intent(SplashScreen.this , LoginActivity.class));
         finishAffinity();
+    }
+
+    private void checkRedirect() {
+        String sign = spSignUp.getString("yes" , "");
+
+        boolean verified = spSignUp.getBoolean("isVerified",false );
+
+        if(verified) {
+            switch (sign) {
+                case "individualClient":
+                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                    finishAffinity();
+                    break;
+                case "company":
+                    startActivity(new Intent(SplashScreen.this, CompanyActivity.class));
+                    finishAffinity();
+                    break;
+
+                case "previewer":
+                    startActivity(new Intent(SplashScreen.this, PreviewerActivity.class));
+                    finishAffinity();
+                    break;
+
+                case "painter":
+                    startActivity(new Intent(SplashScreen.this, EmployeeActivity.class));
+                    Toast.makeText(getApplicationContext(), "splash painter error", Toast.LENGTH_LONG).show();
+                    finishAffinity();
+                    break;
+
+                case "reviewer":
+                    startActivity(new Intent(SplashScreen.this, EmployeeActivity.class));
+                    Toast.makeText(getApplicationContext(), "splash reviewer error", Toast.LENGTH_LONG).show();
+                    finishAffinity();
+                    break;
+
+                default:
+                    showLoginDialog();
+            }
+        }
+    }
+
+    private void startBio() {
+        // Check if biometric authentication is available
+        BiometricManager biometricManager = BiometricManager.from(this);
+        switch (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)) {
+            case BiometricManager.BIOMETRIC_SUCCESS:
+                initBiometricPrompt();
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Toast.makeText(this, "No biometric hardware available", Toast.LENGTH_SHORT).show();
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                Toast.makeText(this, "Biometric hardware unavailable", Toast.LENGTH_SHORT).show();
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                Toast.makeText(this, "No biometric data enrolled", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    private void initBiometricPrompt() {
+        Executor executor = ContextCompat.getMainExecutor(this);
+
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor,
+                new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationError(int errorCode,
+                                                      @NonNull CharSequence errString) {
+                        super.onAuthenticationError(errorCode, errString);
+                        Toast.makeText(SplashScreen.this, "Authentication error: " + errString,
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onAuthenticationSucceeded(
+                            @NonNull BiometricPrompt.AuthenticationResult result) {
+                        super.onAuthenticationSucceeded(result);
+                        Toast.makeText(SplashScreen.this, "Authentication succeeded!",
+                                Toast.LENGTH_SHORT).show();
+                        // Proceed with the login logic
+                        checkRedirect();
+                    }
+
+                    @Override
+                    public void onAuthenticationFailed() {
+                        super.onAuthenticationFailed();
+                        Toast.makeText(SplashScreen.this, "Authentication failed",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle(getString(R.string.biometric_login))
+                .setSubtitle(getString(R.string.log_in_using_your_biometric_credential))
+                .setNegativeButtonText(getString(R.string.cancel))
+                .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
+                .build();
+
+        biometricPrompt.authenticate(promptInfo);
     }
 
 }

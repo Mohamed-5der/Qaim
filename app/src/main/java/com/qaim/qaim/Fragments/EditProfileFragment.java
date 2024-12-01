@@ -164,17 +164,18 @@ public class EditProfileFragment extends Fragment {
                    MainActivity.alert.crateMsg(response.body().getMessage() , getContext());
                    MainActivity.dialog.dismiss();
                    User user = userProfileResponse.getData().getUser();
-                   userName.setText(String.valueOf(user.getName()));
-                   addName.setText(String.valueOf(user.getName()));
-                   countryCodePicker.setCountryForNameCode(String.valueOf(user.getCountryCode()));
-                   addPhone.setText(String.valueOf(user.getPhone()));
-                   addEmail.setText(String.valueOf(user.getEmail()));
+                   if (user != null) {
+                       userName.setText(String.valueOf(user.getName()));
+                       addName.setText(String.valueOf(user.getName()));
+                       countryCodePicker.setCountryForNameCode(String.valueOf(user.getCountryCode()));
+                       addPhone.setText(String.valueOf(user.getPhone()));
+                       addEmail.setText(String.valueOf(user.getEmail()));
 //                   licince.setText(String.valueOf(user.getLicense()));
 //                   city.setSelection(user.getCity().getId());
-                   getCities(user.getCountryId());
-                   addPassword.setText("");
-                   Picasso.get().load(user.getImage()).fit().error(R.drawable.icon).into(imageView);
-
+                       getCities(user.getCountryId());
+                       addPassword.setText("");
+                       Picasso.get().load(user.getImage()).fit().error(R.drawable.icon).into(imageView);
+                   }
                }else {
                    MainActivity.alert.crateMsg(response.body().getMessage() , getContext());
                }

@@ -86,7 +86,7 @@ public class PreviewerOrdersFragment extends Fragment {
                 OrderPrevResponse prevResponse = response.body();
                 if (prevResponse.getCode() == 200){
                     PreviewerActivity.alert.crateMsg(response.body().getMessage() , getContext());
-                    if (prevResponse.getData().getRows().getData().isEmpty() || prevResponse.getData().getRows().getData() == null){
+                    if (prevResponse.getData().getRows() == null || prevResponse.getData().getRows().getData().isEmpty() || prevResponse.getData().getRows().getData() == null){
                         noData.setVisibility(View.VISIBLE);
                     }else {
                         noData.setVisibility(View.GONE);

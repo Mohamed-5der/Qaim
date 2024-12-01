@@ -12,8 +12,8 @@ android {
         applicationId "com.qaim.qaim"
         minSdk 23
         targetSdk 33
-        versionCode 5
-        versionName "1.5"
+        versionCode 9
+        versionName "1.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -84,5 +84,5 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.3'
     // otp
     implementation 'com.github.appsfeature:otp-view:1.1'
-//    implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.5.1'
+    implementation 'androidx.biometric:biometric:1.2.0-alpha05'
 }

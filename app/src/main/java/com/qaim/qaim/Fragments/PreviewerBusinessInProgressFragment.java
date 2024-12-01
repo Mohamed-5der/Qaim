@@ -93,7 +93,7 @@ public class PreviewerBusinessInProgressFragment extends Fragment {
                 MyListPrevResponse prevResponse = response.body();
                 if (prevResponse.getCode() == 200){
                     PreviewerActivity.alert.creatDialog(response.body().getMessage() , getContext());
-                    if (prevResponse.getData().getRows().getData().isEmpty() || prevResponse.getData().getRows().getData() == null){
+                    if (prevResponse.getData().getRows() == null || prevResponse.getData().getRows().getData().isEmpty() || prevResponse.getData().getRows().getData() == null){
                         noData.setVisibility(View.VISIBLE);
                     }else {
                         noData.setVisibility(View.GONE);

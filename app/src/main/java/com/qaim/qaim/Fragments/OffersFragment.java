@@ -72,7 +72,7 @@ public class OffersFragment extends Fragment {
                 MainActivity.dialog.dismiss();
                 OrderListUserResponse orderListUserResponse = response.body();
                 if (response.code() == 200) {
-                    if (orderListUserResponse.getData().getRows().getData().isEmpty() || orderListUserResponse.getData().getRows().getData() == null){
+                    if (orderListUserResponse.getData().getRows() == null || orderListUserResponse.getData().getRows().getData().isEmpty() || orderListUserResponse.getData().getRows().getData() == null){
                         noData.setVisibility(View.VISIBLE);
                     }else {
                         noData.setVisibility(View.GONE);

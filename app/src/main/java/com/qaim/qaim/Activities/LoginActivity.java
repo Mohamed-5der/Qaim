@@ -61,7 +61,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        dialog = new PregressDialog(this);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())

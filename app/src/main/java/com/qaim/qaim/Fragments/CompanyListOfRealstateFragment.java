@@ -95,7 +95,7 @@ public class CompanyListOfRealstateFragment extends Fragment {
                 CompanyRealstateResponse companyRealstateResponse = response.body();
                 if (response.code() == 200) {
                     CompanyActivity.alert.crateMsg(response.body().getMessage() , getContext());
-                    if (companyRealstateResponse.getData().getRows().getData().isEmpty() || companyRealstateResponse.getData().getRows().getData() == null){
+                    if (companyRealstateResponse.getData().getRows() == null || companyRealstateResponse.getData().getRows().getData().isEmpty() || companyRealstateResponse.getData().getRows().getData() == null){
                         noData.setVisibility(View.VISIBLE);
                     }else {
                         noData.setVisibility(View.GONE);

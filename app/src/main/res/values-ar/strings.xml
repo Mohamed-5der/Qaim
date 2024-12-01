@@ -322,6 +322,8 @@
     <string name="Cost">التكلفة:</string>
     <string name="_4_5">4.5</string>
     <string name="_00000">00000</string>
+    <string name="biometric_login">تسجيل الدخول باستخدام البصمة</string>
+    <string name="log_in_using_your_biometric_credential">قم بتسجيل الدخول باستخدام بيانات القياسات الحيوية الخاصة بك</string>
     <string-array name="spinner_items">
         <item>قيمها</item>
         <item>شركة التقييم</item>

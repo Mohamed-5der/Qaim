@@ -321,6 +321,8 @@
     <string name="Cost">Cost:</string>
     <string name="_4_5">4.5</string>
     <string name="_00000">00000</string>
+    <string name="biometric_login">Biometric Login</string>
+    <string name="log_in_using_your_biometric_credential">Log in using your biometric credential</string>
 
     <string-array name="spinner_items">
         <item>Qaimha</item>

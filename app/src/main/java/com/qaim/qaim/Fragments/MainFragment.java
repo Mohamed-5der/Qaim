@@ -115,7 +115,7 @@ public class MainFragment extends Fragment {
                 RealstateListUserResponse realstateListUserResponse = response.body();
                 MainActivity.dialog.dismiss();
                 if (response.code() == 200) {
-                    if (realstateListUserResponse.getData().getRows().getData().isEmpty() || realstateListUserResponse.getData().getRows().getData() == null){
+                    if (realstateListUserResponse.getData().getRows() == null || realstateListUserResponse.getData().getRows().getData() == null || realstateListUserResponse.getData().getRows().getData().isEmpty()){
                         noData.setVisibility(View.VISIBLE);
                     }else {
                         noData.setVisibility(View.GONE);
