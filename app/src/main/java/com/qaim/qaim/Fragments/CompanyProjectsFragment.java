@@ -97,7 +97,7 @@ public class CompanyProjectsFragment extends Fragment {
                     }else {
                         noData.setVisibility(View.GONE);
                     }
-                    if (myRealstateCompanyListResponse.getData().getRows().getData() != null) {
+                    if (myRealstateCompanyListResponse.getData().getRows() != null && myRealstateCompanyListResponse.getData().getRows().getData() != null) {
                         List<DataItem> dataItems = myRealstateCompanyListResponse.getData().getRows().getData();
                         adapter = new CompanyMyListRealstateRecycleViewAdapter(dataItems);
                         RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());

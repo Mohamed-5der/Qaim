@@ -109,7 +109,7 @@ public class AddReviwerAdapter extends RecyclerView.Adapter<AddReviwerAdapter.Vi
                     public void onResponse(Call<DeleteTeamResponse> call, Response<DeleteTeamResponse> response) {
                         DeleteTeamResponse deleteTeamResponse = response.body();
                         if (deleteTeamResponse.getCode() == 200){
-                            Toast.makeText(activity.getBaseContext() , "reviewer has been deleted" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity.getBaseContext() , R.string.reviewer_has_been_deleted , Toast.LENGTH_SHORT).show();
                             CompanySetTeamFragment fragment = new CompanySetTeamFragment();
                             activity.getSupportFragmentManager()
                                     .beginTransaction()
@@ -142,7 +142,7 @@ public class AddReviwerAdapter extends RecyclerView.Adapter<AddReviwerAdapter.Vi
                     @Override
                     public void onClick(View view) {
                         if (countryCodePicker.isValidFullNumber() == false){
-                            Toast.makeText(email.getContext(), "رقم الجوال غير صحيح" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(email.getContext(), R.string.phone_number_incorrect , Toast.LENGTH_SHORT).show();
                         }
                         else {
                             CompanyActivity.dialog.show();
@@ -191,7 +191,7 @@ public class AddReviwerAdapter extends RecyclerView.Adapter<AddReviwerAdapter.Vi
                     public void onClick(View view) {
                         String emailV = String.valueOf(email.getText());
                         if (emailV.isEmpty()){
-                            Toast.makeText(activity , "Enter E-Mail Please" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity , R.string.enter_e_mail_please , Toast.LENGTH_SHORT).show();
                         }else {
                             Call<TeamSendInfoResponse> call = jsonApi.sendInfo("Bearer " + CompanyActivity.token  ,new TeamParams(reviewer.getId()));
                             call.enqueue(new Callback<TeamSendInfoResponse>() {
@@ -200,7 +200,7 @@ public class AddReviwerAdapter extends RecyclerView.Adapter<AddReviwerAdapter.Vi
                                     TeamSendInfoResponse teamSendInfoResponse = response.body();
                                     if (teamSendInfoResponse.getCode() == 200){
                                         dialog.dismiss();
-                                        Toast.makeText(activity.getBaseContext() , "Send Success" , Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(activity.getBaseContext() , R.string.send_success , Toast.LENGTH_SHORT).show();
                                     }
 
                                 }

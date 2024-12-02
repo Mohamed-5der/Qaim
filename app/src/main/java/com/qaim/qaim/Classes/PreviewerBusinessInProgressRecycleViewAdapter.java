@@ -84,7 +84,7 @@ public class PreviewerBusinessInProgressRecycleViewAdapter extends RecyclerView.
         public void onBind(DataItem businessInProgressDetails){
             realStateName.setText(businessInProgressDetails.getInfo().getRealEstate().getTitle());
             realStateDescription.setText(businessInProgressDetails.getInfo().getNotes());
-            companyName.setText("اسم شركة التقييم: " + businessInProgressDetails.getCompany().getName());
+            companyName.setText(activity.getString(R.string.evaluation_company_name) + businessInProgressDetails.getCompany().getName());
 
             status.setText(businessInProgressDetails.getInfo().getRealEstate().getStatusTxt());
             GradientDrawable gb = (GradientDrawable) status.getBackground();

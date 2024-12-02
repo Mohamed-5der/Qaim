@@ -324,6 +324,39 @@
     <string name="_00000">00000</string>
     <string name="biometric_login">تسجيل الدخول باستخدام البصمة</string>
     <string name="log_in_using_your_biometric_credential">قم بتسجيل الدخول باستخدام بيانات القياسات الحيوية الخاصة بك</string>
+    <string name="phone_number_incorrect">رقم الجوال غير صحيح</string>
+    <string name="password_does_not_match">كلمة المرور غير متطابقة</string>
+    <string name="no_biometric_hardware_available">لا توجد أجهزة بيومترية متاحة</string>
+    <string name="amoun_company_service">"المبلغ مقدم مقابل خدمة شركة"</string>
+    <string name="ryal">"ريال"</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="Company_name">اسم الشركة</string>
+    <string name="Activation_code_incorrect">كود التفعيل غير صحيح</string>
+    <string name="biometric_hardware_unavailable">الأجهزة البيومترية غير متوفرة</string>
+    <string name="no_biometric_data_enrolled">لا توجد بيانات بيومترية مسجلة</string>
+    <string name="authentication_error">"خطأ في المصادقة: "</string>
+    <string name="authentication_succeeded">تمت المصادقة بنجاح!</string>
+    <string name="authentication_failed">فشلت المصادقة</string>
+    <string name="splash_painter_error">خطأ في واجهة الرسام</string>
+    <string name="splash_reviewer_error">خطأ في واجهة المراجع</string>
+    <string name="painter_has_been_deleted">تم حذف الرسام</string>
+    <string name="enter_e_mail_please">يرجى إدخال البريد الإلكتروني</string>
+    <string name="send_success">تم الإرسال بنجاح</string>
+    <string name="reviewer_has_been_deleted">تم حذف المراجع</string>
+    <string name="Company">شركة</string>
+    <string name="cost_">التكلفة: </string>
+    <string name="evaluation_company_name">اسم شركة التقييم: </string>
+    <string name="Property_Inspector_Report">تقرير معاين العقار</string>
+    <string name="permission_denied">تم رفض الإذن</string>
+    <string name="enter_password">أدخل كلمة المرور</string>
+    <string name="the_offer_is_rejected">تم رفض العرض</string>
+    <string name="qaimha">قيمها</string>
+    <string name="show_file">عرض الملف</string>
+    <string name="server_error">خطأ في الخادم: </string>
+    <string name="response_body_is_null">نص الاستجابة فارغ</string>
+    <string name="request_failed">فشل الطلب: </string>
+    <string name="year">"سنة"</string>
+
     <string-array name="spinner_items">
         <item>قيمها</item>
         <item>شركة التقييم</item>

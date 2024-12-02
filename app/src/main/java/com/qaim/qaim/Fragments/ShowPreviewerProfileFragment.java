@@ -111,8 +111,8 @@ public class ShowPreviewerProfileFragment extends Fragment {
         Picasso.get().load(mParam3).fit().error(getActivity().getDrawable(R.drawable.icon)).into(imageView);
         userName1.setText(mParam1);
         userName2.setText(mParam1);
-        cost.setText(mParam2 + " ريال ");
-        tvYears.setText(year + " سنة ");
+        cost.setText(mParam2 + getString(R.string.ryal));
+        tvYears.setText(year + getString(R.string.year));
         tvFiled.setText(filed);
         tvRegions.setText(region);
         tvExtra.setText(extra);

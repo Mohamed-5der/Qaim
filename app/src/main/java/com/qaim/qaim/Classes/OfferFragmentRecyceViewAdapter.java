@@ -96,7 +96,7 @@ int id ;
         public void onBind(DataItem details){
             companyName = details.getCompany().getName() ;
             offerCompanyName.setText(companyName);
-            offerPrice.setText( "التكلفه : "+cost);
+            offerPrice.setText( activity.getString(R.string.cost_)+cost);
             offerDescription.setText(details.getCompany().getAbout());
             acceptedBtn.setOnClickListener(view -> onAcceptedBtnPressed(details.getId()));
             rejectedBtn.setOnClickListener(view -> onRejectedPressed(details.getId()));

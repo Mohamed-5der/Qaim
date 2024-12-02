@@ -257,9 +257,9 @@ public class PreviewerRegisterActivity extends BaseActivity {
 
         confirm.setOnClickListener(view -> {
             if (contryCod.isValidFullNumber() == false) {
-                Toast.makeText(getApplicationContext(), "رقم الجوال غير صحيح", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.phone_number_incorrect, Toast.LENGTH_SHORT).show();
             } else if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
-                Toast.makeText(getApplicationContext(), "كلمة المرور غير متطابقة", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.password_does_not_match, Toast.LENGTH_SHORT).show();
             } else {
                 HashMap<String, RequestBody> map = new HashMap<>();
                 map.put("name", RequestBody.create(MultipartBody.FORM, proflieName.getText().toString()));

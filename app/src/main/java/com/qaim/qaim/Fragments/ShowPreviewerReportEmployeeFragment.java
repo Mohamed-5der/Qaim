@@ -322,7 +322,7 @@ public class ShowPreviewerReportEmployeeFragment extends Fragment {
                         doc = showPrevReportEmpResponse.getData().getRow().getDocument();
                         docName = showPrevReportEmpResponse.getData().getRow().getDocumentName();
                         if (docName.equals("") || docName == null) {
-                            txDocName.setText("عرض الملف");
+                            txDocName.setText(R.string.show_file);
                         } else {
                             txDocName.setText(docName);
                         }

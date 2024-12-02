@@ -434,7 +434,7 @@ public class EditPreviewerProfileFragment extends Fragment {
         else
         {
             // when permission is denied
-            Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -92,10 +92,10 @@ public class OTPActivity extends BaseActivity {
                         startActivity(new Intent(OTPActivity.this, CompanyActivity.class));
                         finishAffinity();
                     } else {
-                        Toast.makeText(OTPActivity.this, "كود التفعيل غير صحيح", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OTPActivity.this, R.string.Activation_code_incorrect, Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(OTPActivity.this, "كود التفعيل غير صحيح", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OTPActivity.this,  R.string.Activation_code_incorrect, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -118,10 +118,10 @@ public class OTPActivity extends BaseActivity {
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finishAffinity();
                     } else {
-                        Toast.makeText(OTPActivity.this, "كود التفعيل غير صحيح", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OTPActivity.this,  R.string.Activation_code_incorrect, Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(OTPActivity.this, "كود التفعيل غير صحيح", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OTPActivity.this,  R.string.Activation_code_incorrect, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -144,10 +144,10 @@ public class OTPActivity extends BaseActivity {
                         startActivity(new Intent(OTPActivity.this, PreviewerActivity.class));
                         finishAffinity();
                     } else {
-                        Toast.makeText(OTPActivity.this, "كود التفعيل غير صحيح", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OTPActivity.this,  R.string.Activation_code_incorrect, Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(OTPActivity.this, "كود التفعيل غير صحيح", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OTPActivity.this,  R.string.Activation_code_incorrect, Toast.LENGTH_SHORT).show();
                 }
             }
 

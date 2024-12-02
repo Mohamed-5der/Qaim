@@ -43,9 +43,9 @@ class MoyasrPaymentFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_moyasr_payment, container, false)
         val txtCost =v.findViewById<EditText>(R.id.emailEditText)
-        txtCost.setText(param1 + " ريال ")
+        txtCost.setText(param1 + getString(R.string.ryal))
         val txCompanyName =v.findViewById<TextView>(R.id.comp)
-        txCompanyName.setText(" المبلغ مقدم مقابل خدمات شركة " + param3)
+        txCompanyName.setText(getString(R.string.amoun_company_service) + param3)
 
         val donateBtn =v.findViewById<Button>(R.id.button)
         donateBtn.setOnClickListener {

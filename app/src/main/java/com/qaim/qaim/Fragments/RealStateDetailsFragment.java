@@ -210,7 +210,7 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
                             });
                         }
                     }else {
-                        tittle.setText("شركة");
+                        tittle.setText(R.string.company_);
                         latLng = new LatLng(0,0);
                     }
 
@@ -234,7 +234,7 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
                     fileURL = realstateShowUserResponse.getData().getRow().getDoc();
 //                  lblFileName
                     if (realstateShowUserResponse.getData().getRow().getDocName().isEmpty() ||realstateShowUserResponse.getData().getRow().getDocName().equals("")||realstateShowUserResponse.getData().getRow().getDocName() == null ){
-                        lblFileName.setText("عرض الملف");
+                        lblFileName.setText(R.string.show_file);
                     }else {
                         lblFileName.setText(realstateShowUserResponse.getData().getRow().getDocName());
                     }

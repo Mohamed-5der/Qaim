@@ -70,7 +70,7 @@ public class PaymentFragment extends Fragment {
                     replace(R.id.frameLayout , fragment).commit();
         });
 
-        company.setText( companyName+" المبلغ مقدم مقابل خدمات شركة ");
+        company.setText( companyName+R.string.amoun_company_service);
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         costEditText = v.findViewById(R.id.emailEditText);
@@ -83,7 +83,7 @@ public class PaymentFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        costEditText.setText(mParam1 + " ريال ");
+        costEditText.setText(mParam1 + R.string.ryal);
         payBtn.setOnClickListener(view1 -> {
             PaymentLastStepFragment paymentLastStepFragment = PaymentLastStepFragment.newInstance(id ,mParam1 , companyName);
             getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frameLayout , paymentLastStepFragment).commit();

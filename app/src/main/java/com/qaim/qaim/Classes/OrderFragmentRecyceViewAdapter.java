@@ -63,7 +63,7 @@ public class OrderFragmentRecyceViewAdapter extends RecyclerView.Adapter<OrderFr
                 this.dataItem = dataItem ;
                 orderNameTv.setText(dataItem.getOrderDescription());
                // orderDiscriptionTv.setText(dataItem.getDescription());
-                orderDiscriptionTv.setText("التكلفه : "+dataItem.getCost());
+                orderDiscriptionTv.setText(R.string.cost_+dataItem.getCost());
                 status.setText(dataItem.getStatusTxt());
                 GradientDrawable gb = (GradientDrawable) status.getBackground();
                 gb.setColor(Color.parseColor(dataItem.getColor()));

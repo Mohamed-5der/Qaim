@@ -74,7 +74,7 @@ public class CompanyMyListRealstateRecycleViewAdapter extends RecyclerView.Adapt
                     Picasso.get().load(filesItem.get(0).getFile()).fit().into(imageView);
                 }
             }else {
-                name.setText("شركة");
+                name.setText(R.string.Company);
             }
 
             if (projectDetails.getStatus().isEmpty())

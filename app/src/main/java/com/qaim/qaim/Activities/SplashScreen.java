@@ -111,13 +111,13 @@ public class SplashScreen extends BaseActivity {
 
                 case "painter":
                     startActivity(new Intent(SplashScreen.this, EmployeeActivity.class));
-                    Toast.makeText(getApplicationContext(), "splash painter error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.splash_painter_error, Toast.LENGTH_LONG).show();
                     finishAffinity();
                     break;
 
                 case "reviewer":
                     startActivity(new Intent(SplashScreen.this, EmployeeActivity.class));
-                    Toast.makeText(getApplicationContext(), "splash reviewer error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.splash_reviewer_error, Toast.LENGTH_LONG).show();
                     finishAffinity();
                     break;
 
@@ -135,13 +135,13 @@ public class SplashScreen extends BaseActivity {
                 initBiometricPrompt();
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                Toast.makeText(this, "No biometric hardware available", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.no_biometric_hardware_available, Toast.LENGTH_SHORT).show();
                 break;
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                Toast.makeText(this, "Biometric hardware unavailable", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.biometric_hardware_unavailable, Toast.LENGTH_SHORT).show();
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                Toast.makeText(this, "No biometric data enrolled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.no_biometric_data_enrolled, Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -155,7 +155,7 @@ public class SplashScreen extends BaseActivity {
                     public void onAuthenticationError(int errorCode,
                                                       @NonNull CharSequence errString) {
                         super.onAuthenticationError(errorCode, errString);
-                        Toast.makeText(SplashScreen.this, "Authentication error: " + errString,
+                        Toast.makeText(SplashScreen.this, getString(R.string.authentication_error) + errString,
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -163,7 +163,7 @@ public class SplashScreen extends BaseActivity {
                     public void onAuthenticationSucceeded(
                             @NonNull BiometricPrompt.AuthenticationResult result) {
                         super.onAuthenticationSucceeded(result);
-                        Toast.makeText(SplashScreen.this, "Authentication succeeded!",
+                        Toast.makeText(SplashScreen.this, R.string.authentication_succeeded,
                                 Toast.LENGTH_SHORT).show();
                         // Proceed with the login logic
                         checkRedirect();
@@ -172,7 +172,7 @@ public class SplashScreen extends BaseActivity {
                     @Override
                     public void onAuthenticationFailed() {
                         super.onAuthenticationFailed();
-                        Toast.makeText(SplashScreen.this, "Authentication failed",
+                        Toast.makeText(SplashScreen.this, R.string.authentication_failed,
                                 Toast.LENGTH_SHORT).show();
                     }
                 });

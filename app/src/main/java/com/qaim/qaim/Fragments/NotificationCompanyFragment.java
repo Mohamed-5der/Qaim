@@ -111,7 +111,9 @@ public class NotificationCompanyFragment extends Fragment {
                     recyclerView.setAdapter(adapter);
                     recyclerView.setHasFixedSize(true);
                 }else {
-                    CompanyActivity.alert.crateMsg(response.body().getMessage() , getContext());
+                    if (response.body() != null) {
+                        CompanyActivity.alert.crateMsg(response.body().getMessage(), getContext());
+                    }
                 }
             }
             @Override

@@ -93,7 +93,7 @@ public class AddArtistOrCheakerFragment extends Fragment {
                 );
 
                 if (countryCode.isValidFullNumber() == false) {
-                    Toast.makeText(getContext() , "رقم الجوال غير صحيح"  ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext() , R.string.phone_number_incorrect  ,Toast.LENGTH_SHORT).show();
                 } else {
                     CompanyActivity.dialog.show();
                     Call<AddTeamResponse> call = jsonApi.addTeam("Bearer " + CompanyActivity.token, params);

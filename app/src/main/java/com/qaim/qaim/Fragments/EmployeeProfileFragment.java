@@ -199,7 +199,7 @@ public class EmployeeProfileFragment extends Fragment {
                         body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
                     }
                     if (password.isEmpty()){
-                        Toast.makeText(getContext() ,"ادخل كلمة المرور" ,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext() , R.string.enter_password ,Toast.LENGTH_SHORT).show();
                     }else {
                         HashMap<String, RequestBody> map = new HashMap<>();
                         map.put("name", RequestBody.create(MultipartBody.FORM , addName.getText().toString()));
@@ -296,7 +296,7 @@ public class EmployeeProfileFragment extends Fragment {
         else
         {
             // when permission is denied
-            Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
         }
     }
 

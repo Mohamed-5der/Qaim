@@ -242,8 +242,8 @@ public class PreviewerListDetailsFragment extends Fragment implements OnMapReady
 
                         }
                     }else {
-                        tittle.setText("شركة");
-                        description.setText("قيمها");
+                        tittle.setText(R.string.company_);
+                        description.setText(R.string.qaimha);
                         latLng = new LatLng(0,0);
                     }
                     fileURL =  myListPrevDetailsResponse.getData().getRow().getInfo().getDoc();

@@ -82,7 +82,7 @@ public class SendFeedBackFragment extends Fragment {
             public void onClick(View v) {
                 String content = et_content.getText().toString();
                 String subject = et_subject.getText().toString();
-                String selectItem = sp_txtChoose.getSelectedItem().toString().equals("قيمها") ? "" : companyId;
+                String selectItem = sp_txtChoose.getSelectedItem().toString().equals(getString(R.string.qaimha)) ? "" : companyId;
                 sendFeedBack(content,subject,selectItem);
 
             }
@@ -119,16 +119,16 @@ public class SendFeedBackFragment extends Fragment {
                         Toast.makeText(getContext(), feedBackResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         getActivity().onBackPressed();
                     } else {
-                        Toast.makeText(getContext(), "Response body is null", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.response_body_is_null, Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getContext(), "Server Error: " + response.code() + " " + response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.server_error) + response.code() + " " + response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<FeedBackResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "Request Failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.request_failed) + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

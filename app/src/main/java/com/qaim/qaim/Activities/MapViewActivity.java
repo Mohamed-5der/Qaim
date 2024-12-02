@@ -70,7 +70,7 @@ public class MapViewActivity extends BaseActivity implements OnMapReadyCallback,
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "تم اضافة موقع", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.Website_added, Toast.LENGTH_SHORT).show();
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("latitude", latitude);
                 resultIntent.putExtra("longitude", longitude);

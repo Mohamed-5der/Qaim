@@ -212,7 +212,7 @@ public class OrderDetailsFragment extends Fragment {
                 RefusedOrderUserResponse refusedOrderUserResponse = response.body();
                 if (response.code() == 200) {
                     MainActivity.dialog.dismiss();
-                    Toast.makeText(getContext(), "the offer is Rejected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.the_offer_is_rejected, Toast.LENGTH_SHORT).show();
                 }
 
             }

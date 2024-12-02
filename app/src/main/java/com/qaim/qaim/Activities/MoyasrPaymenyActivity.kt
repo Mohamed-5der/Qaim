@@ -53,9 +53,9 @@ class MoyasrPaymenyActivity : BaseActivity() {
         companyName = intent.extras?.getString("company")
 
         val txtCost = findViewById<EditText>(R.id.emailEditText)
-        txtCost.setText(cost + " ريال ")
+        txtCost.setText(cost + getString(R.string.ryal))
         val txCompanyName = findViewById<TextView>(R.id.comp)
-        txCompanyName.setText(" المبلغ مقدم مقابل خدمات شركة " + companyName)
+        txCompanyName.setText(getString(R.string.amoun_company_service) + companyName)
 
         val finalCost = cost + ""
 
@@ -134,7 +134,7 @@ class MoyasrPaymenyActivity : BaseActivity() {
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                     dialog.setContentView(R.layout.accepted_payment_bottom_sheet_dialog)
                     val view = dialog.findViewById<TextView>(R.id.companyName)
-                    view.setText(companyName + " المبلغ مقدم مقابل خدمة شركة ")
+                    view.setText(companyName + getString(R.string.amoun_company_service))
                     dialog.show()
                     dialog.window!!.setLayout(
                         ViewGroup.LayoutParams.MATCH_PARENT,

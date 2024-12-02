@@ -388,7 +388,7 @@ public class ShowPreviewerReportFragment extends Fragment {
                         docName = userReportResponse.getData().getRow().getDocumentName();
                         tvDocName.setText(docName);
                         if (docName.equals("") || docName == null) {
-                            tvDocName.setText("عرض الملف");
+                            tvDocName.setText(R.string.show_file);
                         } else {
                             tvDocName.setText(docName);
                         }

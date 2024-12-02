@@ -155,7 +155,6 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
                 .build();
         jsonApi = retrofit.create(JsonApi.class);
         callRealstateType();
-        MainActivity.dialog.show();
 
         countrySpinner = v.findViewById(R.id.countrySpinner);
         citySpinner = v.findViewById(R.id.citySpinner);
@@ -311,14 +310,14 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
                    }
 
 //                   StoreUserRealstateParams realstateParams = new StoreUserRealstateParams(String.valueOf(tittle.getText()), String.valueOf(addAddtionalDetails.getText()), typeId, cityId, regionId, latitude, longitude, address, Integer.parseInt((String.valueOf(realstateArea.getText()))));
-                   MainActivity.dialog.show();
+//                   MainActivity.dialog.show();
                    Call<RealstateStoreUserResponse> call = jsonApi.storeRealstate("Bearer " + MainActivity.token, map, imgs);
 
 
                    call.enqueue(new Callback<RealstateStoreUserResponse>() {
                        @Override
                        public void onResponse(Call<RealstateStoreUserResponse> call, Response<RealstateStoreUserResponse> response) {
-                           MainActivity.dialog.dismiss();
+//                           MainActivity.dialog.dismiss();
                            RealstateStoreUserResponse response1 = response.body();
 //                           Toast.makeText(getContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -335,6 +334,7 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
 
                        @Override
                        public void onFailure(Call<RealstateStoreUserResponse> call, Throwable t) {
+//                           MainActivity.dialog.dismiss();
                            Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                        }
                    });

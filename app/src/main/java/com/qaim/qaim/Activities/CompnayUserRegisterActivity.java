@@ -227,9 +227,9 @@ public class CompnayUserRegisterActivity extends BaseActivity {
 
         singUp.setOnClickListener(view -> {
             if (contryCod.isValidFullNumber() == false) {
-                Toast.makeText(getApplicationContext(), "رقم الجوال غير صحيح", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.phone_number_incorrect, Toast.LENGTH_SHORT).show();
             } else if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
-                Toast.makeText(getApplicationContext(), "كلمة المرور غير متطابقة", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.password_does_not_match, Toast.LENGTH_SHORT).show();
             } else {
                 if (type.equals("user_company")){
                     HashMap<String, RequestBody> map = new HashMap<>();
@@ -326,11 +326,11 @@ public class CompnayUserRegisterActivity extends BaseActivity {
         });
 
         if (type.equals("user_company")){
-            userName.setText("اسم المستخدم");
+            userName.setText(R.string.user_name);
             licenceName.setVisibility(View.GONE);
             licenceli.setVisibility(View.GONE);
         }else {
-            userName.setText("اسم الشركة");
+            userName.setText(R.string.Company_name);
             licenceName.setVisibility(View.VISIBLE);
             licenceli.setVisibility(View.VISIBLE);
         }

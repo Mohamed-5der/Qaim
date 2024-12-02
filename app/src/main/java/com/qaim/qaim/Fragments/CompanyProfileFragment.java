@@ -179,17 +179,18 @@ public class CompanyProfileFragment extends Fragment {
                 if (response.code() == 200) {
                     CompanyActivity.alert.crateMsg(response.body().getMessage() , getContext());
                     Company company = companyProfileResponse.getData().getCompany();
-                    userName.setText(String.valueOf(company.getName()));
-                    addName.setText(String.valueOf(company.getName()));
+                    if (company != null) {
+                        userName.setText(String.valueOf(company.getName()));
+                        addName.setText(String.valueOf(company.getName()));
 //                    countryCodePicker.setCountryForNameCode(String.valueOf(company.getCountryCode()));
-                    addPhone.setText(String.valueOf(company.getPhone()));
-                    addEmail.setText(String.valueOf(company.getEmail()));
-                    about.setText(String.valueOf(company.getAbout()));
-                    licenceEditText.setText(String.valueOf(company.getLicence()));
+                        addPhone.setText(String.valueOf(company.getPhone()));
+                        addEmail.setText(String.valueOf(company.getEmail()));
+                        about.setText(String.valueOf(company.getAbout()));
+                        licenceEditText.setText(String.valueOf(company.getLicence()));
 //                   city.setSelection(user.getCity().getId());
-                    addPassword.setText("");
-                    Picasso.get().load(company.getImage()).fit().error(R.drawable.icon).into(imageView);
-
+                        addPassword.setText("");
+                        Picasso.get().load(company.getImage()).fit().error(R.drawable.icon).into(imageView);
+                    }
                 }else {
                     CompanyActivity.alert.crateMsg(response.body().getMessage() , getContext());
                 }
@@ -360,7 +361,7 @@ public class CompanyProfileFragment extends Fragment {
         else
         {
             // when permission is denied
-            Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
         }
     }
 

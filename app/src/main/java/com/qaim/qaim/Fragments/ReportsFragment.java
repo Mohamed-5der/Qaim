@@ -342,7 +342,7 @@ public class ReportsFragment extends Fragment {
                         docName = userReportResponse.getData().getRow().getDocumentName();
 
                         if (docName.equals("") || docName == null) {
-                            tvdocName.setText("عرض الملف");
+                            tvdocName.setText(R.string.show_file);
                         } else {
                             tvdocName.setText(docName);
                         }
