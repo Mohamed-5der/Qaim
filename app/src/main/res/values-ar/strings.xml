@@ -308,7 +308,7 @@
     <string name="_50">50</string>
     <string name="Choose_a_painter">اختار رسام</string>
     <string name="Choose_a_viewer">اختار معاين العقار</string>
-    <string name="company_">company</string>
+    <string name="company_">شركة</string>
     <string name="Previewer">معاينة</string>
     <string name="email">البريد الالكتروني :</string>
     <string name="_Inspection_fees">رسوم المعاينة:</string>
@@ -327,6 +327,7 @@
     <string name="phone_number_incorrect">رقم الجوال غير صحيح</string>
     <string name="password_does_not_match">كلمة المرور غير متطابقة</string>
     <string name="no_biometric_hardware_available">لا توجد أجهزة بيومترية متاحة</string>
+    <string name="Website_added">تم اضافة الموقع</string>
     <string name="amoun_company_service">"المبلغ مقدم مقابل خدمة شركة"</string>
     <string name="ryal">"ريال"</string>
     <string name="user_name">اسم المستخدم</string>
