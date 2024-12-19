@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.qaim.qaim.Fragments.EmployeeMainFragment;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.LogoutRespone.LogOutResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.PregressDialog;
@@ -83,7 +84,7 @@ public class EmployeeActivity extends BaseActivity {
     }
 
     private void logOutCallAPI(){
-        Call<LogOutResponse> call = jsonApi.logOut("Bearer "+EmployeeActivity.token , SplashScreen.spNotiToken.getString("noti" , ""));
+        Call<LogOutResponse> call = jsonApi.logOut(LocaleHelper.getLanguage(this), "Bearer "+EmployeeActivity.token , SplashScreen.spNotiToken.getString("noti" , ""));
         call.enqueue(new Callback<LogOutResponse>() {
             @Override
             public void onResponse(Call<LogOutResponse> call, Response<LogOutResponse> response) {

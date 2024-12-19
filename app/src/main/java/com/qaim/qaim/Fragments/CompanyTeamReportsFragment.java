@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.OrderListItemParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.MyListTeamReports.MyListTeamReportResponse;
 import com.qaim.qaim.Models.MyListTeamReports.Painter;
 import com.qaim.qaim.Models.MyListTeamReports.Previewer;
@@ -99,7 +100,7 @@ public class CompanyTeamReportsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CompanyActivity.dialog.show();
-        Call<MyListTeamReportResponse> call = jsonApi.myListTeamReports("Bearer " + CompanyActivity.token , new OrderListItemParams(id));
+        Call<MyListTeamReportResponse> call = jsonApi.myListTeamReports(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token , new OrderListItemParams(id));
         call.enqueue(new Callback<MyListTeamReportResponse>() {
             @Override
             public void onResponse(Call<MyListTeamReportResponse> call, Response<MyListTeamReportResponse> response) {

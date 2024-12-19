@@ -39,6 +39,7 @@ import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.AddNotesAndReportsParams;
 import com.qaim.qaim.Classes.CustomComAttributesAdapter;
 import com.qaim.qaim.Classes.OrderListItemParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AddNotesCompany.AddNotesAndReportsCompanyResponse;
 import com.qaim.qaim.Models.CompanyFinishOrder.CompanyFinishOrderResponse;
 import com.qaim.qaim.Models.MyListDetails.FilesItem;
@@ -158,7 +159,7 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CompanyActivity.dialog.show();
-        Call<MyListDetailsResponse> call = jsonApi.myListDetails("Bearer " + CompanyActivity.token ,new OrderListItemParams(id));
+        Call<MyListDetailsResponse> call = jsonApi.myListDetails(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token ,new OrderListItemParams(id));
         call.enqueue(new Callback<MyListDetailsResponse>() {
             @Override
             public void onResponse(Call<MyListDetailsResponse> call, Response<MyListDetailsResponse> response) {
@@ -303,7 +304,7 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
             @Override
             public void onClick(View view) {
                 CompanyActivity.dialog.show();
-                Call<CompanyFinishOrderResponse> call2 = jsonApi.finishOrder("Bearer " + CompanyActivity.token , new OrderListItemParams(id));
+                Call<CompanyFinishOrderResponse> call2 = jsonApi.finishOrder(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token , new OrderListItemParams(id));
                 call2.enqueue(new Callback<CompanyFinishOrderResponse>() {
                     @Override
                     public void onResponse(Call<CompanyFinishOrderResponse> call, Response<CompanyFinishOrderResponse> response) {
@@ -330,7 +331,7 @@ public class RealStateDetailsFragment extends Fragment implements OnMapReadyCall
             @Override
             public void onClick(View view) {
                 CompanyActivity.dialog.show();
-                Call<AddNotesAndReportsCompanyResponse> call1 = jsonApi.addNotesAndReports("Bearer " + CompanyActivity.token ,
+                Call<AddNotesAndReportsCompanyResponse> call1 = jsonApi.addNotesAndReports(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token ,
                         new AddNotesAndReportsParams(id , String.valueOf(address.getText()) , fileURL)
                         );
                 call1.enqueue(new Callback<AddNotesAndReportsCompanyResponse>() {

@@ -37,6 +37,7 @@ import com.qaim.qaim.Classes.CustomCityAdapter;
 import com.qaim.qaim.Classes.CustomUserAttributesAdapter;
 import com.qaim.qaim.Classes.PreviewerRateParams;
 import com.qaim.qaim.Classes.ShowRealstateUserParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RateResponse.RateResponse;
 import com.qaim.qaim.Models.UserReportResponse.UserReportResponse;
@@ -242,7 +243,7 @@ public class ReportsFragment extends Fragment {
 
     public void callReportAPI(){
         MainActivity.dialog.show();
-        Call<UserReportResponse> call = jsonApi.report("Bearer " + MainActivity.token , new ShowRealstateUserParams(id));
+        Call<UserReportResponse> call = jsonApi.report(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token , new ShowRealstateUserParams(id));
         call.enqueue(new Callback<UserReportResponse>() {
             @Override
             public void onResponse(Call<UserReportResponse> call, Response<UserReportResponse> response) {
@@ -350,7 +351,7 @@ public class ReportsFragment extends Fragment {
                             @Override
                             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                                 MainActivity.dialog.show();
-                                Call<RateResponse> call = jsonApi.companyRate("Bearer " + MainActivity.token, new CompanyRateParams(id, companyId, companyRating.getRating()));
+                                Call<RateResponse> call = jsonApi.companyRate(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token, new CompanyRateParams(id, companyId, companyRating.getRating()));
                                 call.enqueue(new Callback<RateResponse>() {
                                     @Override
                                     public void onResponse(Call<RateResponse> call, Response<RateResponse> response) {
@@ -377,7 +378,7 @@ public class ReportsFragment extends Fragment {
                             @Override
                             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                                 MainActivity.dialog.show();
-                                Call<RateResponse> call = jsonApi.previewerRate("Bearer " + MainActivity.token, new PreviewerRateParams(id, previwerId,  previewerRating.getRating()));
+                                Call<RateResponse> call = jsonApi.previewerRate(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token, new PreviewerRateParams(id, previwerId,  previewerRating.getRating()));
                                 call.enqueue(new Callback<RateResponse>() {
                                     @Override
                                     public void onResponse(Call<RateResponse> call, Response<RateResponse> response) {

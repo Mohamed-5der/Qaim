@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Activities.MoyasrPaymenyActivity;
 import com.qaim.qaim.Classes.OrderListItemParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RefusedOrderUserResponse.RefusedOrderUserResponse;
 import com.qaim.qaim.Models.ShowOrderUserResponse.ShowOrderUserResponse;
@@ -102,7 +103,7 @@ public class OrderDetailsFragment extends Fragment {
         openFile = v.findViewById(R.id.openFile) ;
         rejected = v.findViewById(R.id.editOrderBtn) ;
         MainActivity.dialog.show();
-        Call<ShowOrderUserResponse> call = jsonApi.showOrders("Bearer " + MainActivity.token  , new OrderListItemParams(id));
+        Call<ShowOrderUserResponse> call = jsonApi.showOrders(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token  , new OrderListItemParams(id));
         call.enqueue(new Callback<ShowOrderUserResponse>() {
             @Override
             public void onResponse(Call<ShowOrderUserResponse> call, Response<ShowOrderUserResponse> response) {
@@ -205,7 +206,7 @@ public class OrderDetailsFragment extends Fragment {
     }
     public void onRejectedBtnPressed(int id){
         MainActivity.dialog.show();
-        Call<RefusedOrderUserResponse> call = jsonApi.getRefusedOrders("Bearer " +MainActivity.token, new OrderListItemParams(id));
+        Call<RefusedOrderUserResponse> call = jsonApi.getRefusedOrders(LocaleHelper.getLanguage(getContext()), "Bearer " +MainActivity.token, new OrderListItemParams(id));
         call.enqueue(new Callback<RefusedOrderUserResponse>() {
             @Override
             public void onResponse(Call<RefusedOrderUserResponse> call, Response<RefusedOrderUserResponse> response) {

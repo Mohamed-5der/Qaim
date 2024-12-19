@@ -25,6 +25,7 @@ import com.qaim.qaim.Activities.EmployeeActivity;
 import com.qaim.qaim.Classes.AddListEmployeeCommentsParams;
 import com.qaim.qaim.Classes.CommentsEmployeeAdapter;
 import com.qaim.qaim.Classes.InfoParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.EmployeeAddComments.EmployeeAddCommentsResponse;
 import com.qaim.qaim.Models.EmployeeComments.EmployeeCommentsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -158,7 +159,7 @@ public class EmployeeCommentsFragment extends Fragment {
         map.put("name", RequestBody.create(MultipartBody.FORM , "" + id));
 
         CompanyActivity.dialog.show();
-        Call<EmployeeAddCommentsResponse> call = jsonApi.myListEmployeeAddComments("Bearer " + EmployeeActivity.token , map, body);
+        Call<EmployeeAddCommentsResponse> call = jsonApi.myListEmployeeAddComments(LocaleHelper.getLanguage(getContext()), "Bearer " + EmployeeActivity.token , map, body);
         call.enqueue(new Callback<EmployeeAddCommentsResponse>() {
             @Override
             public void onResponse(Call<EmployeeAddCommentsResponse> call, Response<EmployeeAddCommentsResponse> response) {
@@ -182,7 +183,7 @@ public class EmployeeCommentsFragment extends Fragment {
 
     public void addComment(){
         EmployeeActivity.dialog.show();
-        Call<EmployeeAddCommentsResponse> call = jsonApi.myListEmployeeAddComments("Bearer " + EmployeeActivity.token , new AddListEmployeeCommentsParams(id ,
+        Call<EmployeeAddCommentsResponse> call = jsonApi.myListEmployeeAddComments(LocaleHelper.getLanguage(getContext()), "Bearer " + EmployeeActivity.token , new AddListEmployeeCommentsParams(id ,
                 String.valueOf(comment.getText())
         ));
         call.enqueue(new Callback<EmployeeAddCommentsResponse>() {
@@ -207,7 +208,7 @@ public class EmployeeCommentsFragment extends Fragment {
     }
     public void getComments(){
         EmployeeActivity.dialog.show();
-        Call<EmployeeCommentsResponse> call = jsonApi.myListEmployeeComments("Bearer " + EmployeeActivity.token , new InfoParams(id));
+        Call<EmployeeCommentsResponse> call = jsonApi.myListEmployeeComments(LocaleHelper.getLanguage(getContext()), "Bearer " + EmployeeActivity.token , new InfoParams(id));
         call.enqueue(new Callback<EmployeeCommentsResponse>() {
             @Override
             public void onResponse(Call<EmployeeCommentsResponse> call, Response<EmployeeCommentsResponse> response) {

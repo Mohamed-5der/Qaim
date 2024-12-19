@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.PrevListParams;
 import com.qaim.qaim.Classes.PreviwerListAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.TeamPreviewerList.TeamPreviewerListResponse;
 import com.qaim.qaim.R;
@@ -89,7 +90,7 @@ public class PreviwerListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Call<TeamPreviewerListResponse> call = jsonApi.getTeamPreviewersList("Bearer "+ CompanyActivity.token , new PrevListParams(realStateID));
+        Call<TeamPreviewerListResponse> call = jsonApi.getTeamPreviewersList(LocaleHelper.getLanguage(getContext()), "Bearer "+ CompanyActivity.token , new PrevListParams(realStateID));
         call.enqueue(new Callback<TeamPreviewerListResponse>() {
             @Override
             public void onResponse(Call<TeamPreviewerListResponse> call, Response<TeamPreviewerListResponse> response) {

@@ -46,6 +46,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.ImageAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.PreviewerMakeReport.PreviewerMakeReportResponse;
 import com.qaim.qaim.R;
@@ -550,7 +551,7 @@ public class PreviewerWriteReportsFragment extends Fragment {
 
 
                 PreviewerActivity.dialog.show();
-                Call<PreviewerMakeReportResponse> call = jsonApi.makeReportPreviewer("Bearer " + PreviewerActivity.token , map, body , imgs);
+                Call<PreviewerMakeReportResponse> call = jsonApi.makeReportPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token , map, body , imgs);
                 call.enqueue(new Callback<PreviewerMakeReportResponse>() {
                     @Override
                     public void onResponse(Call<PreviewerMakeReportResponse> call, Response<PreviewerMakeReportResponse> response) {

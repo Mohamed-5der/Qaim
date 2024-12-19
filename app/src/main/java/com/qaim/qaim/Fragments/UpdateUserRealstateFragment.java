@@ -44,6 +44,7 @@ import com.qaim.qaim.Classes.ImageAdapter;
 import com.qaim.qaim.Classes.ImageLoadAdapter;
 import com.qaim.qaim.Classes.RegionParams;
 import com.qaim.qaim.Classes.ShowRealstateUserParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -222,7 +223,7 @@ public class UpdateUserRealstateFragment extends Fragment {
                 map.put("distance", RequestBody.create(MultipartBody.FORM , "" + realstateArea.getText().toString()));
 
 
-                Call<RealstateUpdateUserResponse> call = jsonApi.updateRealstate("Bearer " + MainActivity.token,  map, imgs);
+                Call<RealstateUpdateUserResponse> call = jsonApi.updateRealstate(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token,  map, imgs);
                     call.enqueue(new Callback<RealstateUpdateUserResponse>() {
                         @Override
                         public void onResponse(Call<RealstateUpdateUserResponse> call, Response<RealstateUpdateUserResponse> response) {
@@ -256,7 +257,7 @@ public class UpdateUserRealstateFragment extends Fragment {
     }
 
     public void callRegionstype(int id){
-        Call<GetRegionResponse> getRegionResponseCall = jsonApi.getRegions(new RegionParams(id));
+        Call<GetRegionResponse> getRegionResponseCall = jsonApi.getRegions(LocaleHelper.getLanguage(getContext()), new RegionParams(id));
         getRegionResponseCall.enqueue(new Callback<GetRegionResponse>() {
             @Override
             public void onResponse(Call<GetRegionResponse> call, Response<GetRegionResponse> response) {
@@ -290,7 +291,7 @@ public class UpdateUserRealstateFragment extends Fragment {
         });
     }
     public void callRealstateType(){
-        Call<GetTypeResponse> getTypeResponseCall = jsonApi.getTypes();
+        Call<GetTypeResponse> getTypeResponseCall = jsonApi.getTypes(LocaleHelper.getLanguage(getContext()));
         getTypeResponseCall.enqueue(new Callback<GetTypeResponse>() {
             @Override
             public void onResponse(Call<GetTypeResponse> call, Response<GetTypeResponse> response) {
@@ -402,7 +403,7 @@ public class UpdateUserRealstateFragment extends Fragment {
 
     public void showRealState(){
         MainActivity.dialog.show();
-        Call<RealstateShowUserResponse> call = jsonApi.ShowRealstate("Bearer " + MainActivity.token , new ShowRealstateUserParams(id));
+        Call<RealstateShowUserResponse> call = jsonApi.ShowRealstate(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token , new ShowRealstateUserParams(id));
         call.enqueue(new Callback<RealstateShowUserResponse>() {
             @Override
             public void onResponse(Call<RealstateShowUserResponse> call, Response<RealstateShowUserResponse> response) {
@@ -434,7 +435,7 @@ public class UpdateUserRealstateFragment extends Fragment {
     }
 
     public void getCountries() {
-        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries(LocaleHelper.getLanguage(getContext()));
         countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
@@ -469,7 +470,7 @@ public class UpdateUserRealstateFragment extends Fragment {
     }
 
     public void getCities(int countryId) {
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(LocaleHelper.getLanguage(getContext()), new CitiesListParams(countryId));
         citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {

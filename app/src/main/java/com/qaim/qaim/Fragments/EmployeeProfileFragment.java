@@ -32,6 +32,7 @@ import androidx.fragment.app.Fragment;
 import com.hbb20.CountryCodePicker;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.qaim.qaim.Activities.EmployeeActivity;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.EmployeeProfile.Employee;
 import com.qaim.qaim.Models.EmployeeProfile.EmpolyeeProfileResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -137,7 +138,7 @@ public class EmployeeProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         EmployeeActivity.dialog.show();
-        Call<EmpolyeeProfileResponse> call = jsonApi.getEmployeeProfile("Bearer "+ EmployeeActivity.token);
+        Call<EmpolyeeProfileResponse> call = jsonApi.getEmployeeProfile(LocaleHelper.getLanguage(getContext()), "Bearer "+ EmployeeActivity.token);
         call.enqueue(new Callback<EmpolyeeProfileResponse>() {
             @Override
             public void onResponse(Call<EmpolyeeProfileResponse> call, Response<EmpolyeeProfileResponse> response) {
@@ -209,7 +210,7 @@ public class EmployeeProfileFragment extends Fragment {
                         map.put("country_code", RequestBody.create(MultipartBody.FORM , countryCodePicker.getSelectedCountryNameCode()));
 
                         EmployeeActivity.dialog.show();
-                        Call<UpdateEmpolyeeProfileResponse> call = jsonApi.updateEmployeeProfile("Bearer "+ EmployeeActivity.token ,
+                        Call<UpdateEmpolyeeProfileResponse> call = jsonApi.updateEmployeeProfile(LocaleHelper.getLanguage(getContext()), "Bearer "+ EmployeeActivity.token ,
                                 map, body );
                         call.enqueue(new Callback<UpdateEmpolyeeProfileResponse>() {
                             @Override

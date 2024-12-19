@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.OrderFragmentRecyceViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AprovedList.ApprovedListResponse;
 import com.qaim.qaim.Models.AprovedList.DataItem;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -67,7 +68,7 @@ public class OrdersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MainActivity.dialog.show();
-        Call<ApprovedListResponse> listUserResponseCall = jsonApi.aprovdedList("Bearer " + token);
+        Call<ApprovedListResponse> listUserResponseCall = jsonApi.aprovdedList(LocaleHelper.getLanguage(getContext()), "Bearer " + token);
         listUserResponseCall.enqueue(new Callback<ApprovedListResponse>() {
             @Override
             public void onResponse(Call<ApprovedListResponse> call, Response<ApprovedListResponse> response) {

@@ -36,6 +36,7 @@ import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
 import com.qaim.qaim.Classes.CustomCountryAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.CompanyProfile.Company;
 import com.qaim.qaim.Models.CompanyProfile.CompanyProfileResponse;
@@ -170,7 +171,7 @@ public class CompanyProfileFragment extends Fragment {
 
 
         CompanyActivity.dialog.show();
-        Call<CompanyProfileResponse> call = jsonApi.getCompanyProfile("Bearer "+CompanyActivity.token);
+        Call<CompanyProfileResponse> call = jsonApi.getCompanyProfile(LocaleHelper.getLanguage(getContext()), "Bearer "+CompanyActivity.token);
         call.enqueue(new Callback<CompanyProfileResponse>() {
             @Override
             public void onResponse(Call<CompanyProfileResponse> call, Response<CompanyProfileResponse> response) {
@@ -237,7 +238,7 @@ public class CompanyProfileFragment extends Fragment {
                             map.put("licence", RequestBody.create(MultipartBody.FORM , licenceEditText.getText().toString()));
 
                             CompanyActivity.dialog.show();
-                            Call<UpdateCompanyProfileResponse> call = jsonApi.updateCompanyProfile("Bearer " + CompanyActivity.token, map ,body);
+                            Call<UpdateCompanyProfileResponse> call = jsonApi.updateCompanyProfile(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token, map ,body);
                             call.enqueue(new Callback<UpdateCompanyProfileResponse>() {
                                 @Override
                                 public void onResponse(Call<UpdateCompanyProfileResponse> call, Response<UpdateCompanyProfileResponse> response) {
@@ -417,7 +418,7 @@ public class CompanyProfileFragment extends Fragment {
     }
 
     public void getCountries() {
-        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries(LocaleHelper.getLanguage(getContext()));
         countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
@@ -452,7 +453,7 @@ public class CompanyProfileFragment extends Fragment {
     }
 
     public void getCities(int countryId) {
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(LocaleHelper.getLanguage(getContext()), new CitiesListParams(countryId));
         citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {

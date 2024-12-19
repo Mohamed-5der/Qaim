@@ -19,6 +19,7 @@ import com.moyasar.android.sdk.PaymentResult
 import com.moyasar.android.sdk.PaymentSheet
 import com.moyasar.android.sdk.payment.models.Payment
 import com.qaim.qaim.Classes.PaymentParams
+import com.qaim.qaim.LocaleHelper
 import com.qaim.qaim.Models.AcceptedOrderUserResponse.AcceptedOrderUserResponse
 import com.qaim.qaim.Models.Networks.JsonApi
 import com.qaim.qaim.R
@@ -115,7 +116,7 @@ class MoyasrPaymenyActivity : BaseActivity() {
     fun onAcceptedBtnPressed(id: Int , transaction_id:String) {
         MainActivity.dialog.show()
         val call: Call<AcceptedOrderUserResponse> =
-            jsonApi!!.getAcceptedOrdersList("Bearer " + MainActivity.token, PaymentParams(id , transaction_id))
+            jsonApi!!.getAcceptedOrdersList(LocaleHelper.getLanguage(this), "Bearer " + MainActivity.token, PaymentParams(id , transaction_id))
             call.enqueue(object : Callback<AcceptedOrderUserResponse?> {
             override fun onResponse(
                 call: Call<AcceptedOrderUserResponse?>,

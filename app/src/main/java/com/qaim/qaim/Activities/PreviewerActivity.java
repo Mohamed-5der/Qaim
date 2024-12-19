@@ -36,6 +36,7 @@ import com.qaim.qaim.Fragments.PreviewerOrdersFragment;
 import com.qaim.qaim.Fragments.PreviewerPaymentsFragment;
 import com.qaim.qaim.Fragments.TermsAndConditionsFragment;
 import com.qaim.qaim.Helper.Alert;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.GetProviewerProfile.Previewer;
 import com.qaim.qaim.Models.GetProviewerProfile.PreviewerProfileResponse;
 import com.qaim.qaim.Models.LogoutRespone.LogOutResponse;
@@ -196,7 +197,7 @@ public class PreviewerActivity extends BaseActivity implements MainFragment.AddR
         onSlideRootMenuItemClick();
         dialog.show();
 
-        Call<PreviewerProfileResponse> call = jsonApi.getPreviewerProfile("Bearer " + PreviewerActivity.token);
+        Call<PreviewerProfileResponse> call = jsonApi.getPreviewerProfile(LocaleHelper.getLanguage(this), "Bearer " + PreviewerActivity.token);
         call.enqueue(new Callback<PreviewerProfileResponse>() {
             @Override
             public void onResponse(Call<PreviewerProfileResponse> call, Response<PreviewerProfileResponse> response) {
@@ -344,7 +345,7 @@ public class PreviewerActivity extends BaseActivity implements MainFragment.AddR
     }
 
     private void logOutCallAPI(){
-        Call<LogOutResponse> call = jsonApi.logOut("Bearer "+PreviewerActivity.token , SplashScreen.spNotiToken.getString("noti" , ""));
+        Call<LogOutResponse> call = jsonApi.logOut(LocaleHelper.getLanguage(this), "Bearer "+PreviewerActivity.token , SplashScreen.spNotiToken.getString("noti" , ""));
         call.enqueue(new Callback<LogOutResponse>() {
             @Override
             public void onResponse(Call<LogOutResponse> call, Response<LogOutResponse> response) {

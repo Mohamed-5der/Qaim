@@ -50,6 +50,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.CustomPrevAttributesAdapter;
 import com.qaim.qaim.Classes.OrderListItemParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AddNotesPreviwer.PreviewerAddNotesResponse;
 import com.qaim.qaim.Models.MyListPrevDetails.MyListPrevDetailsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -196,7 +197,7 @@ public class PreviewerListDetailsFragment extends Fragment implements OnMapReady
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         PreviewerActivity.dialog.show();
-        Call<MyListPrevDetailsResponse> call = jsonApi.myListPreviewerDetails("Bearer " + PreviewerActivity.token , new OrderListItemParams(id));
+        Call<MyListPrevDetailsResponse> call = jsonApi.myListPreviewerDetails(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token , new OrderListItemParams(id));
         call.enqueue(new Callback<MyListPrevDetailsResponse>() {
             @Override
             public void onResponse(Call<MyListPrevDetailsResponse> call, Response<MyListPrevDetailsResponse> response) {
@@ -309,7 +310,7 @@ public class PreviewerListDetailsFragment extends Fragment implements OnMapReady
         map.put("info_id", RequestBody.create(MultipartBody.FORM , "" +id ));
         map.put("pre_notes", RequestBody.create(MultipartBody.FORM , "" +notes ));
         PreviewerActivity.dialog.show();
-        Call<PreviewerAddNotesResponse> call = jsonApi.addNotes("Bearer " + PreviewerActivity.token ,map , body);
+        Call<PreviewerAddNotesResponse> call = jsonApi.addNotes(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token ,map , body);
         call.enqueue(new Callback<PreviewerAddNotesResponse>() {
             @Override
             public void onResponse(Call<PreviewerAddNotesResponse> call, Response<PreviewerAddNotesResponse> response) {

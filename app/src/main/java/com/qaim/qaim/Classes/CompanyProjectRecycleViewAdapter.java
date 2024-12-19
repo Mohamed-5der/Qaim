@@ -18,6 +18,7 @@ import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Fragments.MainFragment;
 import com.qaim.qaim.Fragments.ShowRealstateUserFragment;
 import com.qaim.qaim.Fragments.UpdateUserRealstateFragment;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RealstateDeleteUserResponse.RealstateDeleteUserResponse;
 import com.qaim.qaim.Models.RealsteatListUserResponse.DataItem;
@@ -118,7 +119,7 @@ public class CompanyProjectRecycleViewAdapter extends RecyclerView.Adapter<Compa
 
         public void onEndBtnPressed(int id){
             MainActivity.dialog.show();
-            Call<RealstateDeleteUserResponse> realstateDeleteUserResponseCall = jsonApi.deleteRealstate("Bearer " +MainActivity.token , new DeleteRealstateUserParams(id) );
+            Call<RealstateDeleteUserResponse> realstateDeleteUserResponseCall = jsonApi.deleteRealstate(LocaleHelper.getLanguage(activity), "Bearer " +MainActivity.token , new DeleteRealstateUserParams(id) );
             realstateDeleteUserResponseCall.enqueue(new Callback<RealstateDeleteUserResponse>() {
                 @Override
                 public void onResponse(Call<RealstateDeleteUserResponse> call, Response<RealstateDeleteUserResponse> response) {

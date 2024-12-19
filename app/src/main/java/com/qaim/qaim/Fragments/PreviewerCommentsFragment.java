@@ -25,6 +25,7 @@ import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.AddComentsPreviewerParams;
 import com.qaim.qaim.Classes.CommentsAdapter;
 import com.qaim.qaim.Classes.InfoParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AddCommentsPreviewer.MyListPrevCommentsAddResponse;
 import com.qaim.qaim.Models.MyListCommentsPreviewer.MyListPrevCommentsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -157,7 +158,7 @@ public class PreviewerCommentsFragment extends Fragment {
         map.put("name", RequestBody.create(MultipartBody.FORM , "" + id));
 
         CompanyActivity.dialog.show();
-        Call<MyListPrevCommentsAddResponse> call = jsonApi.myListCommentsAddPreviewer("Bearer " + PreviewerActivity.token , map, body);
+        Call<MyListPrevCommentsAddResponse> call = jsonApi.myListCommentsAddPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token , map, body);
         call.enqueue(new Callback<MyListPrevCommentsAddResponse>() {
             @Override
             public void onResponse(Call<MyListPrevCommentsAddResponse> call, Response<MyListPrevCommentsAddResponse> response) {
@@ -181,7 +182,7 @@ public class PreviewerCommentsFragment extends Fragment {
 
     public void addComment(){
         PreviewerActivity.dialog.show();
-        Call<MyListPrevCommentsAddResponse> call = jsonApi.myListCommentsAddPreviewer("Bearer " + PreviewerActivity.token , new AddComentsPreviewerParams(id ,
+        Call<MyListPrevCommentsAddResponse> call = jsonApi.myListCommentsAddPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token , new AddComentsPreviewerParams(id ,
                 String.valueOf(comment.getText())
                 ));
         call.enqueue(new Callback<MyListPrevCommentsAddResponse>() {
@@ -206,7 +207,7 @@ public class PreviewerCommentsFragment extends Fragment {
     }
     public void getComments(){
         PreviewerActivity.dialog.show();
-        Call<MyListPrevCommentsResponse> call = jsonApi.myListCommentsPreviewer("Bearer " + PreviewerActivity.token , new InfoParams(id));
+        Call<MyListPrevCommentsResponse> call = jsonApi.myListCommentsPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token , new InfoParams(id));
         call.enqueue(new Callback<MyListPrevCommentsResponse>() {
             @Override
             public void onResponse(Call<MyListPrevCommentsResponse> call, Response<MyListPrevCommentsResponse> response) {

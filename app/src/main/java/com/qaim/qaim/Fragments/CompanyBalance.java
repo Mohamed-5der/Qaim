@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.qaim.qaim.Activities.CompanyActivity;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.GetBalance.GetBalanceResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.PullBalance.PullBalanceResponse;
@@ -65,7 +66,7 @@ public class CompanyBalance extends Fragment {
         pullBalance =  v.findViewById(R.id.endOrderBtn);
         previousTransactionsBtn =  v.findViewById(R.id.previousTransactionsBtn);
         CompanyActivity.dialog.show();
-        Call<GetBalanceResponse> call = jsonApi.getBalance("Bearer " + CompanyActivity.token);
+        Call<GetBalanceResponse> call = jsonApi.getBalance(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token);
         call.enqueue(new Callback<GetBalanceResponse>() {
             @Override
             public void onResponse(Call<GetBalanceResponse> call, Response<GetBalanceResponse> response) {
@@ -117,7 +118,7 @@ public class CompanyBalance extends Fragment {
 
     public void callPullBalanceAPI(){
         CompanyActivity.dialog.show();
-        Call<PullBalanceResponse> call = jsonApi.pullBalance("Bearer " + CompanyActivity.token);
+        Call<PullBalanceResponse> call = jsonApi.pullBalance(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token);
         call.enqueue(new Callback<PullBalanceResponse>() {
             @Override
             public void onResponse(Call<PullBalanceResponse> call, Response<PullBalanceResponse> response) {

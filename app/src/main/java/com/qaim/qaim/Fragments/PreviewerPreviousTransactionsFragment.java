@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.CompanyTransactionRecycleViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.GetBalance.RowsItem;
 import com.qaim.qaim.Models.GetPreviewerBalance.GetPreviewerBalanceResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -69,7 +70,7 @@ public class PreviewerPreviousTransactionsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        Call<GetPreviewerBalanceResponse> call = jsonApi.getBalancePreviewer("Bearer " + PreviewerActivity.token);
+        Call<GetPreviewerBalanceResponse> call = jsonApi.getBalancePreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token);
         call.enqueue(new Callback<GetPreviewerBalanceResponse>() {
             @Override
             public void onResponse(Call<GetPreviewerBalanceResponse> call, Response<GetPreviewerBalanceResponse> response) {

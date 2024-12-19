@@ -49,6 +49,7 @@ import com.qaim.qaim.Classes.CustomRealstateTypeAdapter;
 import com.qaim.qaim.Classes.CustomRegionAdapter;
 import com.qaim.qaim.Classes.ImageAdapter;
 import com.qaim.qaim.Classes.RegionParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -311,7 +312,7 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
 
 //                   StoreUserRealstateParams realstateParams = new StoreUserRealstateParams(String.valueOf(tittle.getText()), String.valueOf(addAddtionalDetails.getText()), typeId, cityId, regionId, latitude, longitude, address, Integer.parseInt((String.valueOf(realstateArea.getText()))));
 //                   MainActivity.dialog.show();
-                   Call<RealstateStoreUserResponse> call = jsonApi.storeRealstate("Bearer " + MainActivity.token, map, imgs);
+                   Call<RealstateStoreUserResponse> call = jsonApi.storeRealstate(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token, map, imgs);
 
 
                    call.enqueue(new Callback<RealstateStoreUserResponse>() {
@@ -346,7 +347,7 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
 
     }
     public void callRegionstype(int id){
-        Call<GetRegionResponse> getRegionResponseCall = jsonApi.getRegions(new RegionParams(id));
+        Call<GetRegionResponse> getRegionResponseCall = jsonApi.getRegions(LocaleHelper.getLanguage(getContext()), new RegionParams(id));
         getRegionResponseCall.enqueue(new Callback<GetRegionResponse>() {
             @Override
             public void onResponse(Call<GetRegionResponse> call, Response<GetRegionResponse> response) {
@@ -376,7 +377,7 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
         });
     }
     public void callRealstateType(){
-        Call<GetTypeResponse> getTypeResponseCall = jsonApi.getTypes();
+        Call<GetTypeResponse> getTypeResponseCall = jsonApi.getTypes(LocaleHelper.getLanguage(getContext()));
         getTypeResponseCall.enqueue(new Callback<GetTypeResponse>() {
             @Override
             public void onResponse(Call<GetTypeResponse> call, Response<GetTypeResponse> response) {
@@ -498,7 +499,7 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
     }
 
     public void getCountries() {
-        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries(LocaleHelper.getLanguage(getContext()));
         countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
@@ -533,7 +534,7 @@ public class AddRealStateFragment extends Fragment  implements OnMapReadyCallbac
     }
 
     public void getCities(int countryId) {
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(LocaleHelper.getLanguage(getContext()), new CitiesListParams(countryId));
         citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {

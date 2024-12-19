@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Activities.EmployeeActivity;
 import com.qaim.qaim.Classes.EmpAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.MyListEmployee.MyListEmployeeResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
@@ -88,7 +89,7 @@ public class EmployeeMainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
         EmployeeActivity.dialog.show();
-        Call<MyListEmployeeResponse> call = jsonApi.myListEmployee("Bearer " + EmployeeActivity.token);
+        Call<MyListEmployeeResponse> call = jsonApi.myListEmployee(LocaleHelper.getLanguage(getContext()), "Bearer " + EmployeeActivity.token);
         call.enqueue(new Callback<MyListEmployeeResponse>() {
             @Override
             public void onResponse(Call<MyListEmployeeResponse> call, Response<MyListEmployeeResponse> response) {

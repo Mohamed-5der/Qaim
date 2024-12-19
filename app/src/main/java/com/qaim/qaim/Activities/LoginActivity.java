@@ -127,7 +127,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 dialog.show();
-                Call<LoginResponse> call = jsonApi.login(new LoginParams(
+                Call<LoginResponse> call = jsonApi.login(LocaleHelper.getLanguage(getApplicationContext()), new LoginParams(
                         String.valueOf(email.getText()) ,
                         String.valueOf(password.getText()) , spNotiToken.getString(NOTI_KEY , "")));
                 call.enqueue(new Callback<LoginResponse>() {

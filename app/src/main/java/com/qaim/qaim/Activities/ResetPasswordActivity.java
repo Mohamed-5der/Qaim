@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.qaim.qaim.Classes.ResetPasswordParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.ResetPassword.ResetPasswordResponse;
 import com.qaim.qaim.PregressDialog;
@@ -42,7 +43,7 @@ public class ResetPasswordActivity extends BaseActivity {
 
                 String emailText = email.getText().toString();
                     dialog.show();
-                    Call<ResetPasswordResponse> call = jsonApi.resetPassword(new ResetPasswordParams(String.valueOf(email.getText())));
+                    Call<ResetPasswordResponse> call = jsonApi.resetPassword(LocaleHelper.getLanguage(getApplicationContext()), new ResetPasswordParams(String.valueOf(email.getText())));
                     call.enqueue(new Callback<ResetPasswordResponse>() {
                         @Override
                         public void onResponse(Call<ResetPasswordResponse> call, Response<ResetPasswordResponse> response) {

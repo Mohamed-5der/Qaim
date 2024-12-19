@@ -43,6 +43,7 @@ import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Classes.CustomRegionAdapter;
 import com.qaim.qaim.Classes.RegionParams;
 import com.qaim.qaim.Helper.Alert;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -277,7 +278,7 @@ public class PreviewerRegisterActivity extends BaseActivity {
                 map.put("player_id", RequestBody.create(MultipartBody.FORM, spNotiToken.getString(NOTI_KEY , "")));
 
                 dialog.show();
-                Call<PreviewerRegisterResponse> callUserRegister = jsonApi.registerPreviewer(map, body);
+                Call<PreviewerRegisterResponse> callUserRegister = jsonApi.registerPreviewer(LocaleHelper.getLanguage(this), map, body);
                 callUserRegister.enqueue(new Callback<PreviewerRegisterResponse>() {
                     @Override
                     public void onResponse(Call<PreviewerRegisterResponse> call, Response<PreviewerRegisterResponse> response) {
@@ -447,7 +448,7 @@ public class PreviewerRegisterActivity extends BaseActivity {
     }
 
     public void callRegionstype(int id){
-        Call<GetRegionResponse> getRegionResponseCall = jsonApi.getRegions(new RegionParams(id));
+        Call<GetRegionResponse> getRegionResponseCall = jsonApi.getRegions(LocaleHelper.getLanguage(this), new RegionParams(id));
         getRegionResponseCall.enqueue(new Callback<GetRegionResponse>() {
             @Override
             public void onResponse(Call<GetRegionResponse> call, Response<GetRegionResponse> response) {
@@ -468,7 +469,7 @@ public class PreviewerRegisterActivity extends BaseActivity {
     }
 
     public void getCountries() {
-        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries(LocaleHelper.getLanguage(this));
         countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
@@ -503,7 +504,7 @@ public class PreviewerRegisterActivity extends BaseActivity {
     }
 
     public void getCities(int countryId) {
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(LocaleHelper.getLanguage(this), new CitiesListParams(countryId));
         citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {

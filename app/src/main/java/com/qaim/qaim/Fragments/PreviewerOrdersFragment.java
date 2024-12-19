@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.PreviewerOrdersDetailsRecycleViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.GetOrdersPreviewer.OrderPrevResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
@@ -78,7 +79,7 @@ public class PreviewerOrdersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         PreviewerActivity.dialog.show();
-        Call<OrderPrevResponse> call = jsonApi.getOrdersPreviewer("Bearer " + PreviewerActivity.token);
+        Call<OrderPrevResponse> call = jsonApi.getOrdersPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token);
         call.enqueue(new Callback<OrderPrevResponse>() {
             @Override
             public void onResponse(Call<OrderPrevResponse> call, Response<OrderPrevResponse> response) {

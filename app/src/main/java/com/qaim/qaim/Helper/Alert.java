@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AppInfo.AppInfoResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
@@ -56,7 +57,7 @@ public class Alert {
             TextView terms = dialog.findViewById(R.id.terms);
             Button acceptBtn = dialog.findViewById(R.id.acceptBtn);
             Button rejectBtn = dialog.findViewById(R.id.rejectBtn);
-            Call<AppInfoResponse> call = jsonApi.getAppInfo();
+            Call<AppInfoResponse> call = jsonApi.getAppInfo(LocaleHelper.getLanguage(context));
             call.enqueue(new Callback<AppInfoResponse>() {
                 @Override
                 public void onResponse(Call<AppInfoResponse> call, Response<AppInfoResponse> response) {

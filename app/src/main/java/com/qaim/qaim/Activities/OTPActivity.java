@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.otpview.OTPListener;
 import com.otpview.OTPTextView;
 import com.qaim.qaim.Classes.OTPParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.OtpResponse.OtpResponse;
 import com.qaim.qaim.R;
@@ -81,7 +82,7 @@ public class OTPActivity extends BaseActivity {
     }
 
     private void verifyCompany(String otp) {
-        Call<OtpResponse> call = jsonApi.verifyCompany("bearer " + authToken, new OTPParams(otp));
+        Call<OtpResponse> call = jsonApi.verifyCompany(LocaleHelper.getLanguage(this), "bearer " + authToken, new OTPParams(otp));
         call.enqueue(new Callback<OtpResponse>() {
             @Override
             public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
@@ -107,7 +108,7 @@ public class OTPActivity extends BaseActivity {
     }
 
     private void verifyUser(String otp) {
-        Call<OtpResponse> call = jsonApi.verifyUser("bearer " + authToken, new OTPParams(otp));
+        Call<OtpResponse> call = jsonApi.verifyUser(LocaleHelper.getLanguage(this), "bearer " + authToken, new OTPParams(otp));
         call.enqueue(new Callback<OtpResponse>() {
             @Override
             public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
@@ -133,7 +134,7 @@ public class OTPActivity extends BaseActivity {
     }
 
     private void verifyPreviewer(String otp) {
-        Call<OtpResponse> call = jsonApi.verifyPreviewer("bearer " + authToken, new OTPParams(otp));
+        Call<OtpResponse> call = jsonApi.verifyPreviewer(LocaleHelper.getLanguage(this), "bearer " + authToken, new OTPParams(otp));
         call.enqueue(new Callback<OtpResponse>() {
             @Override
             public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.CompanyTransactionRecycleViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.GetBalance.GetBalanceResponse;
 import com.qaim.qaim.Models.GetBalance.RowsItem;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -74,7 +75,7 @@ public class CompanyPreviousTransactionsFragment extends Fragment {
 
 
         CompanyActivity.dialog.show();
-        Call<GetBalanceResponse> call = jsonApi.getBalance("Bearer " + CompanyActivity.token);
+        Call<GetBalanceResponse> call = jsonApi.getBalance(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token);
         call.enqueue(new Callback<GetBalanceResponse>() {
             @Override
             public void onResponse(Call<GetBalanceResponse> call, Response<GetBalanceResponse> response) {

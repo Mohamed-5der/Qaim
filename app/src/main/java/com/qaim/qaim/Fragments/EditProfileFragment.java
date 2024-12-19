@@ -36,6 +36,7 @@ import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
 import com.qaim.qaim.Classes.CustomCountryAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -154,7 +155,7 @@ public class EditProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MainActivity.dialog.show();
-        Call<UserProfileResponse> callResponse = jsonApi.getUserProfile("Bearer "+ MainActivity.token);
+        Call<UserProfileResponse> callResponse = jsonApi.getUserProfile(LocaleHelper.getLanguage(getContext()), "Bearer "+ MainActivity.token);
         callResponse.enqueue(new Callback<UserProfileResponse>() {
            @Override
            public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
@@ -212,7 +213,7 @@ public class EditProfileFragment extends Fragment {
                   map.put("city_id", RequestBody.create(MultipartBody.FORM , String.valueOf(cityId)));
 //                      map.put("lisence", RequestBody.create(MultipartBody.FORM , licince.getText().toString()));
                   MainActivity.dialog.show();
-                  Call<UserUpdateProfileResponse> call = jsonApi.updateUserProfile("Bearer "+ MainActivity.token , map, body);
+                  Call<UserUpdateProfileResponse> call = jsonApi.updateUserProfile(LocaleHelper.getLanguage(getContext()), "Bearer "+ MainActivity.token , map, body);
 
                   call.enqueue(new Callback<UserUpdateProfileResponse>() {
                       @Override
@@ -360,7 +361,7 @@ public class EditProfileFragment extends Fragment {
     }
 
     public void getCountries() {
-        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries(LocaleHelper.getLanguage(getContext()));
         countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
@@ -395,7 +396,7 @@ public class EditProfileFragment extends Fragment {
     }
 
     public void getCities(int countryId) {
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(LocaleHelper.getLanguage(getContext()), new CitiesListParams(countryId));
         citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {

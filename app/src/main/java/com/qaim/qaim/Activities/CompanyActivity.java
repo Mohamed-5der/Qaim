@@ -34,6 +34,7 @@ import com.qaim.qaim.Fragments.CompanySetTeamFragment;
 import com.qaim.qaim.Fragments.NotificationCompanyFragment;
 import com.qaim.qaim.Fragments.TermsAndConditionsFragment;
 import com.qaim.qaim.Helper.Alert;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CompanyProfile.Company;
 import com.qaim.qaim.Models.CompanyProfile.CompanyProfileResponse;
 import com.qaim.qaim.Models.LogoutRespone.LogOutResponse;
@@ -177,7 +178,7 @@ public class CompanyActivity extends BaseActivity {
                 .inject();
 
         CompanyActivity.dialog.show();
-        Call<CompanyProfileResponse> call = jsonApi.getCompanyProfile("Bearer "+CompanyActivity.token);
+        Call<CompanyProfileResponse> call = jsonApi.getCompanyProfile(LocaleHelper.getLanguage(this), "Bearer "+CompanyActivity.token);
         call.enqueue(new Callback<CompanyProfileResponse>() {
             @Override
             public void onResponse(Call<CompanyProfileResponse> call, Response<CompanyProfileResponse> response) {
@@ -311,7 +312,7 @@ public class CompanyActivity extends BaseActivity {
         return;
     }
     private void logOutCallAPI(){
-        Call<LogOutResponse> call = jsonApi.logOut("Bearer "+CompanyActivity.token , SplashScreen.spNotiToken.getString("noti" , ""));
+        Call<LogOutResponse> call = jsonApi.logOut(LocaleHelper.getLanguage(this), "Bearer "+CompanyActivity.token , SplashScreen.spNotiToken.getString("noti" , ""));
         call.enqueue(new Callback<LogOutResponse>() {
             @Override
             public void onResponse(Call<LogOutResponse> call, Response<LogOutResponse> response) {
@@ -330,7 +331,7 @@ public class CompanyActivity extends BaseActivity {
     }
     public void requestVipCompany(){
         slidingRootNav.closeMenu(true);
-        Call<VipRequestResponse> call = jsonApi.sendVipRequest("Bearer "+CompanyActivity.token);
+        Call<VipRequestResponse> call = jsonApi.sendVipRequest(LocaleHelper.getLanguage(this), "Bearer "+CompanyActivity.token);
         call.enqueue(new Callback<VipRequestResponse>() {
             @Override
             public void onResponse(Call<VipRequestResponse> call, Response<VipRequestResponse> response) {

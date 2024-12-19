@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.CompanyPaymentRecycleViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CompanyPaymentsResponse.CompanyPaymentsResponse;
 import com.qaim.qaim.Models.CompanyPaymentsResponse.DataItem;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -74,7 +75,7 @@ public class CompanyPaymentsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CompanyActivity.dialog.show();
-        Call<CompanyPaymentsResponse> listUserResponseCall = jsonApi.companyPayments("Bearer " + CompanyActivity.token);
+        Call<CompanyPaymentsResponse> listUserResponseCall = jsonApi.companyPayments(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token);
         listUserResponseCall.enqueue(new Callback<CompanyPaymentsResponse>() {
             @Override
             public void onResponse(Call<CompanyPaymentsResponse> call, Response<CompanyPaymentsResponse> response) {

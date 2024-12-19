@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.UserPaymentAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.UserPaymentsResponse.DataItem;
 import com.qaim.qaim.Models.UserPaymentsResponse.UserPaymentsResponse;
@@ -75,7 +76,7 @@ public class UserPaymentsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MainActivity.dialog.show();
-        Call<UserPaymentsResponse> listUserResponseCall = jsonApi.userPayments("Bearer " + MainActivity.token);
+        Call<UserPaymentsResponse> listUserResponseCall = jsonApi.userPayments(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token);
         listUserResponseCall.enqueue(new Callback<UserPaymentsResponse>() {
             @Override
             public void onResponse(Call<UserPaymentsResponse> call, Response<UserPaymentsResponse> response) {

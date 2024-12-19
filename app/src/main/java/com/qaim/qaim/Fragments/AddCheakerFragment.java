@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.hbb20.CountryCodePicker;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.TeamAddParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AddTeamResponse.AddTeamResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
@@ -90,7 +91,7 @@ public class AddCheakerFragment extends Fragment {
                     Toast.makeText(getContext() , R.string.phone_number_incorrect  ,Toast.LENGTH_SHORT).show();
                 }else {
                     CompanyActivity.dialog.show();
-                    Call<AddTeamResponse> call = jsonApi.addTeam("Bearer " + CompanyActivity.token, params);
+                    Call<AddTeamResponse> call = jsonApi.addTeam(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token, params);
                     call.enqueue(new Callback<AddTeamResponse>() {
                         @Override
                         public void onResponse(Call<AddTeamResponse> call, Response<AddTeamResponse> response) {

@@ -118,10 +118,10 @@
     <string name="submitPreviewReports">Submit inspection reports</string>
     <string name="pullBalance">Withdraw balance</string>
     <string name="addLicence">Add tax card</string>
-    <string name="listOfRealstate">List of properties</string>
+    <string name="listOfRealstate">Home</string>
     <string name="sendRateOffer">Send evaluation offer</string>
     <string name="projects">Projects</string>
-    <string name="showDetails">Show details</string>
+    <string name="showDetails">View Details</string>
     <string name="realStateDetails">Property details</string>
     <string name="cost">Evaluation cost</string>
     <string name="Notes">Notes</string>
@@ -172,7 +172,7 @@
     <string name="reportDate">Report date</string>
     <string name="reportVersion">Report version</string>
     <string name="ReportUseAndPublicationAndDistributionRestrictions">Report use, publication, and distribution restrictions</string>
-    <string name="sendRate">Send evaluation</string>
+    <string name="sendRate">Send Rating</string>
     <string name="yourRequestWillAlreadyBeAccepted">Your request will already be accepted</string>
     <string name="cancel">Cancel</string>
     <string name="doYouReallyWantToRejectTheRequest">Do you really want to reject the request?</string>
@@ -202,7 +202,7 @@
     <string name="entermail">Enter email</string>
     <string name="send">Send</string>
     <string name="employeeEdit">Edit employee</string>
-    <string name="realStateTittle">Property title</string>
+    <string name="realStateTittle">Property Name</string>
     <string name="payments">Payments</string>
     <string name="addCost">Add cost value</string>
     <string name="ratingReports">Evaluation reports</string>

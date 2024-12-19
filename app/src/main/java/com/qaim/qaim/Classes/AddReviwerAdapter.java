@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hbb20.CountryCodePicker;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Fragments.CompanySetTeamFragment;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.DeleteTeamResponse.DeleteTeamResponse;
 import com.qaim.qaim.Models.MyListTeamReports.Reviewer;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -103,7 +104,7 @@ public class AddReviwerAdapter extends RecyclerView.Adapter<AddReviwerAdapter.Vi
 
             // buttons click
             deleteBtn.setOnClickListener(view -> {
-                Call<DeleteTeamResponse> call = jsonApi.deleteTeam("Bearer " + CompanyActivity.token  ,new TeamParams(reviewer.getId()));
+                Call<DeleteTeamResponse> call = jsonApi.deleteTeam(LocaleHelper.getLanguage(activity), "Bearer " + CompanyActivity.token  ,new TeamParams(reviewer.getId()));
                 call.enqueue(new Callback<DeleteTeamResponse>() {
                     @Override
                     public void onResponse(Call<DeleteTeamResponse> call, Response<DeleteTeamResponse> response) {
@@ -146,7 +147,7 @@ public class AddReviwerAdapter extends RecyclerView.Adapter<AddReviwerAdapter.Vi
                         }
                         else {
                             CompanyActivity.dialog.show();
-                            Call<UpdateTeamResponse> call = jsonApi.updateTeam("Bearer " + CompanyActivity.token, new TeamUpdateParams(reviewer.getId(),
+                            Call<UpdateTeamResponse> call = jsonApi.updateTeam(LocaleHelper.getLanguage(activity), "Bearer " + CompanyActivity.token, new TeamUpdateParams(reviewer.getId(),
                                     String.valueOf(userName.getText()), String.valueOf(email.getText()), String.valueOf(password.getText())
                                     , "reviewer", countryCodePicker.getSelectedCountryNameCode(), phoneEditText.getText().toString()
                             ));
@@ -193,7 +194,7 @@ public class AddReviwerAdapter extends RecyclerView.Adapter<AddReviwerAdapter.Vi
                         if (emailV.isEmpty()){
                             Toast.makeText(activity , R.string.enter_e_mail_please , Toast.LENGTH_SHORT).show();
                         }else {
-                            Call<TeamSendInfoResponse> call = jsonApi.sendInfo("Bearer " + CompanyActivity.token  ,new TeamParams(reviewer.getId()));
+                            Call<TeamSendInfoResponse> call = jsonApi.sendInfo(LocaleHelper.getLanguage(activity), "Bearer " + CompanyActivity.token  ,new TeamParams(reviewer.getId()));
                             call.enqueue(new Callback<TeamSendInfoResponse>() {
                                 @Override
                                 public void onResponse(Call<TeamSendInfoResponse> call, Response<TeamSendInfoResponse> response) {

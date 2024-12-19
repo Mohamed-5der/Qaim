@@ -137,269 +137,275 @@ import retrofit2.http.PartMap;
 public interface  JsonApi {
     //realstate
     @POST("/api/user/realestate-list")
-    Call<RealstateListUserResponse> getAllRealstateList(@Header("Authorization") String token);
+    Call<RealstateListUserResponse> getAllRealstateList(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/user/realestate-list-paid")
-    Call<UserPaymentsResponse> userPayments(@Header("Authorization") String token);
+    Call<UserPaymentsResponse> userPayments(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/user/realestate-report-markas-completed")
-    Call<ReportCompletedtResponse> completeProject(@Header("Authorization") String token , @Body ShowRealstateUserParams params);
+    Call<ReportCompletedtResponse> completeProject(@Header("language") String language, @Header("Authorization") String token , @Body ShowRealstateUserParams params);
     @POST("/api/user/realestate-report-rate")
-    Call<RateResponse> companyRate(@Header("Authorization") String token , @Body CompanyRateParams params);
+    Call<RateResponse> companyRate(@Header("language") String language, @Header("Authorization") String token , @Body CompanyRateParams params);
     @POST("/api/user/realestate-report-rate")
-    Call<RateResponse> previewerRate(@Header("Authorization") String token , @Body PreviewerRateParams params);
+    Call<RateResponse> previewerRate(@Header("language") String language, @Header("Authorization") String token , @Body PreviewerRateParams params);
     @POST("/api/user/realestate-show")
-    Call<RealstateShowUserResponse> ShowRealstate(@Header("Authorization") String token , @Body ShowRealstateUserParams params);
+    Call<RealstateShowUserResponse> ShowRealstate(@Header("language") String language, @Header("Authorization") String token , @Body ShowRealstateUserParams params);
     @POST("/api/user/realestate-delete")
-    Call<RealstateDeleteUserResponse> deleteRealstate(@Header("Authorization") String token , @Body DeleteRealstateUserParams params); // not work
+    Call<RealstateDeleteUserResponse> deleteRealstate(@Header("language") String language, @Header("Authorization") String token , @Body DeleteRealstateUserParams params); // not work
     @Multipart
     @POST("/api/user/realestate-store")
     Call<RealstateStoreUserResponse> storeRealstate(
+            @Header("language") String language,
             @Header("Authorization") String token,
             @PartMap() Map<String, RequestBody> partMap,
             @Part List<MultipartBody.Part> files);
 @Multipart
 @POST("/api/user/realestate-update")
     Call<RealstateUpdateUserResponse> updateRealstate(
-            @Header("Authorization") String token,
+        @Header("language") String language,
+        @Header("Authorization") String token,
             @PartMap() Map<String, RequestBody> partMap,
             @Part List<MultipartBody.Part> files);
 
     // orders
     @POST("/api/user/requests-list")
-    Call<OrderListUserResponse> getAllOrdersList(@Header("Authorization") String token);
+    Call<OrderListUserResponse> getAllOrdersList(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/user/requests-accept")
-    Call<AcceptedOrderUserResponse> getAcceptedOrdersList(@Header("Authorization") String token ,@Body PaymentParams params);
+    Call<AcceptedOrderUserResponse> getAcceptedOrdersList(@Header("language") String language, @Header("Authorization") String token ,@Body PaymentParams params);
     @POST("/api/user/requests-refused")
-    Call<RefusedOrderUserResponse> getRefusedOrders(@Header("Authorization") String token ,@Body OrderListItemParams params);
+    Call<RefusedOrderUserResponse> getRefusedOrders(@Header("language") String language, @Header("Authorization") String token ,@Body OrderListItemParams params);
     @POST("/api/user/requests-show")
-    Call<ShowOrderUserResponse> showOrders(@Header("Authorization") String token ,@Body OrderListItemParams params);
+    Call<ShowOrderUserResponse> showOrders(@Header("language") String language, @Header("Authorization") String token ,@Body OrderListItemParams params);
     @POST("/api/user/requests-show")
-    Call<ShowOrderUserResponse> showApprovedOrders(@Header("Authorization") String token ,@Body ShowRealstateUserParams params);
+    Call<ShowOrderUserResponse> showApprovedOrders(@Header("language") String language, @Header("Authorization") String token ,@Body ShowRealstateUserParams params);
     @POST("/api/user/realestate-list-approved")
-    Call<ApprovedListResponse> aprovdedList(@Header("Authorization") String token);
+    Call<ApprovedListResponse> aprovdedList(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/user/realestate-report")
-    Call<UserReportResponse> report(@Header("Authorization") String token , @Body ShowRealstateUserParams params);
+    Call<UserReportResponse> report(@Header("language") String language, @Header("Authorization") String token , @Body ShowRealstateUserParams params);
 
 
     // offer
     @Multipart
     @POST("/api/company/send-request")
-    Call<SendOfferResponse> sendOffer(@Header("Authorization") String token  , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document);
+    Call<SendOfferResponse> sendOffer(@Header("language") String language, @Header("Authorization") String token  , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document);
     @POST("/api/company/assign-team")
-    Call<AssingTeamResponse> assignTeam(@Header("Authorization") String token , @Body AssignTeamParamsAll params);
+    Call<AssingTeamResponse> assignTeam(@Header("language") String language, @Header("Authorization") String token , @Body AssignTeamParamsAll params);
     @POST("/api/company/assign-team")
-    Call<AssingTeamResponse> assignTeam(@Header("Authorization") String token , @Body AssignTeamParams params);
+    Call<AssingTeamResponse> assignTeam(@Header("language") String language, @Header("Authorization") String token , @Body AssignTeamParams params);
     @POST("/api/company/assign-team")
-    Call<AssingTeamResponse> assignTeam(@Header("Authorization") String token , @Body AssignTeamParamsPrev params);
+    Call<AssingTeamResponse> assignTeam(@Header("language") String language, @Header("Authorization") String token , @Body AssignTeamParamsPrev params);
     @POST("/api/company/assign-team")
-    Call<AssingTeamResponse> assignTeam(@Header("Authorization") String token , @Body AssignTeamParamsRev params);
+    Call<AssingTeamResponse> assignTeam(@Header("language") String language, @Header("Authorization") String token , @Body AssignTeamParamsRev params);
     @POST("/api/company/finish-order")
-    Call<CompanyFinishOrderResponse> finishOrder(@Header("Authorization") String token ,@Body OrderListItemParams params);
+    Call<CompanyFinishOrderResponse> finishOrder(@Header("language") String language, @Header("Authorization") String token ,@Body OrderListItemParams params);
     @POST("/api/company/request-add-info")
-    Call<AddNotesAndReportsCompanyResponse> addNotesAndReports(@Header("Authorization") String token ,@Body AddNotesAndReportsParams addNotesAndReportsParams);
+    Call<AddNotesAndReportsCompanyResponse> addNotesAndReports(@Header("language") String language, @Header("Authorization") String token ,@Body AddNotesAndReportsParams addNotesAndReportsParams);
 
     // team
     @POST("/api/company/team-add")
-    Call<AddTeamResponse> addTeam(@Header("Authorization") String token ,@Body TeamAddParams params);
+    Call<AddTeamResponse> addTeam(@Header("language") String language, @Header("Authorization") String token ,@Body TeamAddParams params);
     @POST("/api/company/team-update")
-    Call<UpdateTeamResponse> updateTeam(@Header("Authorization") String token , @Body TeamUpdateParams params); // not work
+    Call<UpdateTeamResponse> updateTeam(@Header("language") String language, @Header("Authorization") String token , @Body TeamUpdateParams params); // not work
     @POST("/api/company/team-delete")
-    Call<DeleteTeamResponse> deleteTeam(@Header("Authorization") String token , @Body TeamParams params); // not work
+    Call<DeleteTeamResponse> deleteTeam(@Header("language") String language, @Header("Authorization") String token , @Body TeamParams params); // not work
     @POST("/api/company/team-send")
-    Call<TeamSendInfoResponse> sendInfo(@Header("Authorization") String token ,@Body TeamParams params);
+    Call<TeamSendInfoResponse> sendInfo(@Header("language") String language, @Header("Authorization") String token ,@Body TeamParams params);
     @POST("/api/company/team-previewers")
-    Call<TeamPreviewerListResponse> getTeamPreviewersList(@Header("Authorization") String token ,@Body PrevListParams params);
+    Call<TeamPreviewerListResponse> getTeamPreviewersList(@Header("language") String language, @Header("Authorization") String token ,@Body PrevListParams params);
     @POST("/api/company/team-list")
-    Call<GetTeamListResponse> getTeamList(@Header("Authorization") String token);
+    Call<GetTeamListResponse> getTeamList(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/company/get-balance")
-    Call<GetBalanceResponse> getBalance(@Header("Authorization") String token);
+    Call<GetBalanceResponse> getBalance(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/company/pull-balance")
-    Call<PullBalanceResponse> pullBalance(@Header("Authorization") String token);
+    Call<PullBalanceResponse> pullBalance(@Header("language") String language, @Header("Authorization") String token);
     @Multipart
     @POST("/api/company/make-report")
-    Call<CompanyMakeReportResponse> makeReport(@Header("Authorization") String token, @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document , @Part MultipartBody.Part finalDocument , @Part List<MultipartBody.Part> files);
+    Call<CompanyMakeReportResponse> makeReport(@Header("language") String language, @Header("Authorization") String token, @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document , @Part MultipartBody.Part finalDocument , @Part List<MultipartBody.Part> files);
 
     @POST("/api/upload-file")
-    Call<UploadFileResponse> uplodeFile(@Body String file);
+    Call<UploadFileResponse> uplodeFile(@Header("language") String language, @Body String file);
     // company
 
 
     @POST("/api/previewer/company-report-view")
-    Call<ShowCompanyReportResponse> showCompanyReport(@Header("Authorization") String token , @Body OrderListItemParams params);
+    Call<ShowCompanyReportResponse> showCompanyReport(@Header("language") String language, @Header("Authorization") String token , @Body OrderListItemParams params);
     @POST("/api/previewer/company-report-accept")
-    Call<AcceptCompanyReportResponse> acceptCompanyReport(@Header("Authorization") String token  , @Body StatusReportParams params );
+    Call<AcceptCompanyReportResponse> acceptCompanyReport(@Header("language") String language, @Header("Authorization") String token  , @Body StatusReportParams params );
     @POST("/api/previewer/company-report-refuse")
-    Call<RefusedCompanyReportResponse> rejectCompanyReport(@Header("Authorization") String token  , @Body StatusReportParams params );
+    Call<RefusedCompanyReportResponse> rejectCompanyReport(@Header("language") String language, @Header("Authorization") String token  , @Body StatusReportParams params );
 
 
     @POST("/api/company/profile")
-    Call<CompanyProfileResponse> getCompanyProfile(@Header("Authorization") String token);
+    Call<CompanyProfileResponse> getCompanyProfile(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/company/my-list-paid")
-    Call<CompanyPaymentsResponse> companyPayments(@Header("Authorization") String token);
+    Call<CompanyPaymentsResponse> companyPayments(@Header("language") String language, @Header("Authorization") String token);
     @Multipart
     @POST("/api/company/update")
     Call<UpdateCompanyProfileResponse> updateCompanyProfile(
+            @Header("language") String language,
             @Header("Authorization") String token,
             @PartMap() Map<String, RequestBody> partMap,
             @Part MultipartBody.Part image);
     @POST("/api/company/realestate-list")
-    Call<CompanyRealstateResponse> getAllCompanyRealstateList(@Header("Authorization") String token );
+    Call<CompanyRealstateResponse> getAllCompanyRealstateList(@Header("language") String language, @Header("Authorization") String token );
     @POST("/api/company/realestate-show")
-    Call<ShowCompanyRealstateResponse> showCompanyRealstateList(@Header("Authorization") String token ,@Body CompanyRealstateIdParams params);
+    Call<ShowCompanyRealstateResponse> showCompanyRealstateList(@Header("language") String language, @Header("Authorization") String token ,@Body CompanyRealstateIdParams params);
     @POST("/api/company/my-list")
-    Call<MyRealstateCompanyResponse> myRealstateCompanyList(@Header("Authorization") String token);
+    Call<MyRealstateCompanyResponse> myRealstateCompanyList(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/company/requests-show")
-    Call<MyListDetailsResponse> myListDetails(@Header("Authorization") String token , @Body OrderListItemParams params); // not work
+    Call<MyListDetailsResponse> myListDetails(@Header("language") String language, @Header("Authorization") String token , @Body OrderListItemParams params); // not work
     @POST("/api/company/team-reports")
-    Call<MyListTeamReportResponse> myListTeamReports(@Header("Authorization") String token , @Body OrderListItemParams params); // not work
+    Call<MyListTeamReportResponse> myListTeamReports(@Header("language") String language, @Header("Authorization") String token , @Body OrderListItemParams params); // not work
     @POST("/api/company/com-comments")
-    Call<AllCommentsResponse> myListComments(@Header("Authorization") String token , @Body OrderListItemParams params);
+    Call<AllCommentsResponse> myListComments(@Header("language") String language, @Header("Authorization") String token , @Body OrderListItemParams params);
     @POST("/api/company/com-comments-add")
-    Call<AddCommentsListResponse> addMyListComments(@Header("Authorization") String token ,@Body AddListCommentsParams params);
+    Call<AddCommentsListResponse> addMyListComments(@Header("language") String language, @Header("Authorization") String token ,@Body AddListCommentsParams params);
     @Multipart
     @POST("/api/company/com-comments-add")
-    Call<AddCommentsListResponse> addMyListComments(@Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part file);
+    Call<AddCommentsListResponse> addMyListComments(@Header("language") String language, @Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part file);
     @Multipart
     @POST("/api/company/register")
-    Call<CompanyRegisterResponse> registerCompany(@PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part image);
+    Call<CompanyRegisterResponse> registerCompany(@Header("language") String language, @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part image);
 
     // previewer
     @POST("/api/company/previewer-report-view")
-    Call<ShowCompanyPrevReportResponse> showPreviewerReport(@Header("Authorization") String token  , @Body OrderListItemParams params );
+    Call<ShowCompanyPrevReportResponse> showPreviewerReport(@Header("language") String language, @Header("Authorization") String token  , @Body OrderListItemParams params );
     @POST("/api/company/previewer-report-accept")
-    Call<AcceptPreviewerReportResponse> acceptPreviewerReport(@Header("Authorization") String token  , @Body StatusReportParams params );
+    Call<AcceptPreviewerReportResponse> acceptPreviewerReport(@Header("language") String language, @Header("Authorization") String token  , @Body StatusReportParams params );
     @POST("/api/company/previewer-report-refuse")
-    Call<RefusedPreviewerReportResponse> rejectPreviewerReport(@Header("Authorization") String token  , @Body StatusReportCompanyRejectParams params );
+    Call<RefusedPreviewerReportResponse> rejectPreviewerReport(@Header("language") String language, @Header("Authorization") String token  , @Body StatusReportCompanyRejectParams params );
     @Multipart
     @POST("/api/previewer/register")
-    Call<PreviewerRegisterResponse> registerPreviewer(@PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part image);
+    Call<PreviewerRegisterResponse> registerPreviewer(@Header("language") String language, @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part image);
     @POST("/api/previewer/my-list-paid")
-    Call<PreviewerPaymentsResponse> previwerPayments(@Header("Authorization") String token);
+    Call<PreviewerPaymentsResponse> previwerPayments(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/previewer/profile")
-    Call<PreviewerProfileResponse> getPreviewerProfile(@Header("Authorization") String token);
+    Call<PreviewerProfileResponse> getPreviewerProfile(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/previewer/show-realestate")
-    Call<ShowPrevRealstateResponse> showPreviewerRealstate(@Header("Authorization") String token , @Body OrderListItemParams params );
+    Call<ShowPrevRealstateResponse> showPreviewerRealstate(@Header("language") String language, @Header("Authorization") String token , @Body OrderListItemParams params );
     @Multipart
     @POST("/api/previewer/request-add-info")
-    Call<PreviewerAddNotesResponse> addNotes(@Header("Authorization") String token  , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document);
+    Call<PreviewerAddNotesResponse> addNotes(@Header("language") String language, @Header("Authorization") String token  , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document);
 
     @Multipart
     @POST("/api/previewer/update")
     Call<UpdatePreviewerProfileResponse> updatePreviewerProfile(
-                                                                @Header("Authorization") String token,
+            @Header("language") String language,
+            @Header("Authorization") String token,
                                                                 @PartMap() Map<String, RequestBody> partMap,
                                                                 @Part MultipartBody.Part image);
     @POST("/api/previewer/show-list")
-    Call<MyListPrevDetailsResponse> myListPreviewerDetails(@Header("Authorization") String token , @Body OrderListItemParams params);  // not work
+    Call<MyListPrevDetailsResponse> myListPreviewerDetails(@Header("language") String language, @Header("Authorization") String token , @Body OrderListItemParams params);  // not work
     @POST("/api/previewer/my-list")
-    Call<MyListPrevResponse> myListPreviewer(@Header("Authorization") String token);
+    Call<MyListPrevResponse> myListPreviewer(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/previewer/pre-comments")
-    Call<MyListPrevCommentsResponse> myListCommentsPreviewer(@Header("Authorization") String token , @Body InfoParams params);
+    Call<MyListPrevCommentsResponse> myListCommentsPreviewer(@Header("language") String language, @Header("Authorization") String token , @Body InfoParams params);
     @POST("/api/previewer/pre-comments-add")
-    Call<MyListPrevCommentsAddResponse> myListCommentsAddPreviewer(@Header("Authorization") String token ,@Body AddComentsPreviewerParams params);
+    Call<MyListPrevCommentsAddResponse> myListCommentsAddPreviewer(@Header("language") String language, @Header("Authorization") String token ,@Body AddComentsPreviewerParams params);
     @Multipart
     @POST("/api/previewer/pre-comments-add")
-    Call<MyListPrevCommentsAddResponse> myListCommentsAddPreviewer(@Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part file);
+    Call<MyListPrevCommentsAddResponse> myListCommentsAddPreviewer(@Header("language") String language, @Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part file);
     @POST("/api/previewer/get-balance")
-    Call<GetPreviewerBalanceResponse> getBalancePreviewer(@Header("Authorization") String token);
+    Call<GetPreviewerBalanceResponse> getBalancePreviewer(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/previewer/pull-balance")
-    Call<PullPreviewerBalanceResponse> pullBalancePreviewer(@Header("Authorization") String token);
+    Call<PullPreviewerBalanceResponse> pullBalancePreviewer(@Header("language") String language, @Header("Authorization") String token);
     @Multipart
     @POST("/api/previewer/make-report")
-    Call<PreviewerMakeReportResponse> makeReportPreviewer(@Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document , @Part List<MultipartBody.Part> files);
+    Call<PreviewerMakeReportResponse> makeReportPreviewer(@Header("language") String language, @Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document , @Part List<MultipartBody.Part> files);
 
 //    @Body SendReportParams params);
     @POST("/api/upload-file")
-    Call<UploadFileResponse>uploadFilePreviewer(@Body String file);
+    Call<UploadFileResponse>uploadFilePreviewer(@Header("language") String language, @Body String file);
     @POST("/api/previewer/request-add-info")
-    Call<PreviewerAddNotesResponse> addNotesAndReportsOrderPreviewer(@Header("Authorization") String token ,@Body AddNotesAndReportsPreviewerParams params);// not work
+    Call<PreviewerAddNotesResponse> addNotesAndReportsOrderPreviewer(@Header("language") String language, @Header("Authorization") String token ,@Body AddNotesAndReportsPreviewerParams params);// not work
     @POST("/api/previewer/orders")
-    Call<OrderPrevResponse> getOrdersPreviewer(@Header("Authorization") String token);
+    Call<OrderPrevResponse> getOrdersPreviewer(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/previewer/accept-order")
-    Call<AcceptedOrderPrevResponse> accedptedOrdersPreviewer(@Header("Authorization") String token , @Body OrderListItemParams params);// not work
+    Call<AcceptedOrderPrevResponse> accedptedOrdersPreviewer(@Header("language") String language, @Header("Authorization") String token , @Body OrderListItemParams params);// not work
     @POST("/api/previewer/refused-order")
-    Call<RefusedOrderPrevResponse> refusedOrdersPreviewer(@Header("Authorization") String token , @Body OrderListItemParams params);// not work
+    Call<RefusedOrderPrevResponse> refusedOrdersPreviewer(@Header("language") String language, @Header("Authorization") String token , @Body OrderListItemParams params);// not work
 
 
     // painter AND reviewer
     @POST("/api/employee/profile")
-    Call<EmpolyeeProfileResponse> getEmployeeProfile(@Header("Authorization") String token);
+    Call<EmpolyeeProfileResponse> getEmployeeProfile(@Header("language") String language, @Header("Authorization") String token);
     @Multipart
     @POST("/api/employee/update")
     Call<UpdateEmpolyeeProfileResponse> updateEmployeeProfile(
-                                                              @Header("Authorization") String token,
+            @Header("language") String language,
+            @Header("Authorization") String token,
                                                               @PartMap() Map<String, RequestBody> partMap,
                                                               @Part MultipartBody.Part image);
     @POST("/api/employee/show-list")
-    Call<MyListEmployeeDetailsResponse> myListEmployeeDetails(@Header("Authorization") String token , @Body OrderListItemParams params); // not work
+    Call<MyListEmployeeDetailsResponse> myListEmployeeDetails(@Header("language") String language, @Header("Authorization") String token , @Body OrderListItemParams params); // not work
     @POST("/api/employee/my-list")
-    Call<MyListEmployeeResponse> myListEmployee(@Header("Authorization") String token);
+    Call<MyListEmployeeResponse> myListEmployee(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/employee/emp-comments")
-    Call<EmployeeCommentsResponse> myListEmployeeComments(@Header("Authorization") String token , @Body InfoParams params);
+    Call<EmployeeCommentsResponse> myListEmployeeComments(@Header("language") String language, @Header("Authorization") String token , @Body InfoParams params);
     @POST("/api/employee/emp-comments-add")
-    Call<EmployeeAddCommentsResponse> myListEmployeeAddComments(@Header("Authorization") String token , @Body AddListEmployeeCommentsParams params);
+    Call<EmployeeAddCommentsResponse> myListEmployeeAddComments(@Header("language") String language, @Header("Authorization") String token , @Body AddListEmployeeCommentsParams params);
     @Multipart
     @POST("/api/employee/emp-comments-add")
-    Call<EmployeeAddCommentsResponse> myListEmployeeAddComments(@Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part file);
+    Call<EmployeeAddCommentsResponse> myListEmployeeAddComments(@Header("language") String language, @Header("Authorization") String token , @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part file);
     @Multipart
     @POST("/api/employee/request-add-info")
-    Call<EmployeeAddNotesResponse> employeeAddNotesAndReports(@Header("Authorization") String token ,@PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document);
+    Call<EmployeeAddNotesResponse> employeeAddNotesAndReports(@Header("language") String language, @Header("Authorization") String token ,@PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part document);
     @POST("/api/employee/previewer-report-view")
-    Call<ShowPrevReportEmpResponse> showPreviewerEmpReport(@Header("Authorization") String token  , @Body OrderListItemParams params );
+    Call<ShowPrevReportEmpResponse> showPreviewerEmpReport(@Header("language") String language, @Header("Authorization") String token  , @Body OrderListItemParams params );
     @POST("/api/employee/previewer-report-accept")
-    Call<AcceptPrevReportEmpResponse> acceptPreviewerEmpReport(@Header("Authorization") String token  , @Body StatusReportParams params );
+    Call<AcceptPrevReportEmpResponse> acceptPreviewerEmpReport(@Header("language") String language, @Header("Authorization") String token  , @Body StatusReportParams params );
     @POST("/api/employee/previewer-report-refuse")
-    Call<RefusePrevReportEmpResponse> rejectPreviewerEmpReport(@Header("Authorization") String token  , @Body StatusReportParams params );
+    Call<RefusePrevReportEmpResponse> rejectPreviewerEmpReport(@Header("language") String language, @Header("Authorization") String token  , @Body StatusReportParams params );
 
 
     // profile
     @POST("/api/user/profile")
-    Call<UserProfileResponse> getUserProfile(@Header("Authorization") String token);
+    Call<UserProfileResponse> getUserProfile(@Header("language") String language, @Header("Authorization") String token);
     @Multipart
     @POST("/api/user/update")
     Call<UserUpdateProfileResponse> updateUserProfile(
+            @Header("language") String language,
             @Header("Authorization") String token,
             @PartMap() Map<String, RequestBody> partMap,
             @Part MultipartBody.Part image);
     @POST("/api/user/register")
-    Call<UserRegisterResponse> registerUser(@Body UserRegisterParms parms);
+    Call<UserRegisterResponse> registerUser(@Header("language") String language, @Body UserRegisterParms parms);
 
     @Multipart
     @POST("/api/user/register")
-    Call<CompanyUserRegisterResponse> registerCompanyUser(@PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part image );
+    Call<CompanyUserRegisterResponse> registerCompanyUser(@Header("language") String language, @PartMap() Map<String, RequestBody> partMap, @Part MultipartBody.Part image );
 
     @POST("/api/v1/logout")
-    Call<LogOutResponse> logOut(@Header("Authorization") String token , @Body String player_id);
+    Call<LogOutResponse> logOut(@Header("language") String language, @Header("Authorization") String token , @Body String player_id);
 
     // countries
     @POST("/api/countries")
-    Call<CountriesResponse> getCountries();
+    Call<CountriesResponse> getCountries(@Header("language") String language);
     @POST("/api/cities")
-    Call<CitiesResponse> getCities(@Body CitiesListParams params);
+    Call<CitiesResponse> getCities(@Header("language") String language, @Body CitiesListParams params);
     @POST("/api/delete-file")
-    Call<DeleteFileResponse> deleteFile(@Body FileIdParams parms);
+    Call<DeleteFileResponse> deleteFile(@Header("language") String language, @Body FileIdParams parms);
     @POST("/api/types")
-    Call<GetTypeResponse> getTypes();
+    Call<GetTypeResponse> getTypes(@Header("language") String language);
     @POST("/api/regions")
-    Call<GetRegionResponse> getRegions(@Body RegionParams params);
+    Call<GetRegionResponse> getRegions(@Header("language") String language, @Body RegionParams params);
     @POST("/api/app-info")
-    Call<AppInfoResponse> getAppInfo();
+    Call<AppInfoResponse> getAppInfo(@Header("language") String language);
     @POST("/api/login")
-    Call<LoginResponse> login(@Body LoginParams params);
+    Call<LoginResponse> login(@Header("language") String language, @Body LoginParams params);
     @POST("/api/reset_pass")
-    Call<ResetPasswordResponse> resetPassword(@Body ResetPasswordParams params);
+    Call<ResetPasswordResponse> resetPassword(@Header("language") String language, @Body ResetPasswordParams params);
     @POST("/api/notifications")
-    Call<NotiResponse> notifications(@Header("Authorization") String token);
+    Call<NotiResponse> notifications(@Header("language") String language, @Header("Authorization") String token);
 
     @POST("/api/user/verify-account")
-    Call<OtpResponse> verifyUser(@Header("Authorization") String token, @Body OTPParams params);
+    Call<OtpResponse> verifyUser(@Header("language") String language, @Header("Authorization") String token, @Body OTPParams params);
     @POST("/api/company/verify-account")
-    Call<OtpResponse> verifyCompany(@Header("Authorization") String token, @Body OTPParams params);
+    Call<OtpResponse> verifyCompany(@Header("language") String language, @Header("Authorization") String token, @Body OTPParams params);
     @POST("/api/previewer/verify-account")
-    Call<OtpResponse> verifyPreviewer(@Header("Authorization") String token, @Body OTPParams params);
+    Call<OtpResponse> verifyPreviewer(@Header("language") String language, @Header("Authorization") String token, @Body OTPParams params);
     @POST("/api/send-feedback")
-    Call<FeedBackResponse> sendFeedBack(@Header("Authorization") String token, @Body FeedbackRequest feedbackRequest);
+    Call<FeedBackResponse> sendFeedBack(@Header("language") String language, @Header("Authorization") String token, @Body FeedbackRequest feedbackRequest);
     @POST("/api/company/request-vip")
-    Call<VipRequestResponse> sendVipRequest(@Header("Authorization") String token);
+    Call<VipRequestResponse> sendVipRequest(@Header("language") String language, @Header("Authorization") String token);
     @POST("/api/user/vip-companies")
-    Call<UserCompaniesResponse> userCompanies(@Header("Authorization") String token);
+    Call<UserCompaniesResponse> userCompanies(@Header("language") String language, @Header("Authorization") String token);
 }

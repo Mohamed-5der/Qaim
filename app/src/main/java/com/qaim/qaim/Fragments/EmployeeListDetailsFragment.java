@@ -43,6 +43,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.qaim.qaim.Activities.EmployeeActivity;
 import com.qaim.qaim.Classes.EmpAttributesAdapter;
 import com.qaim.qaim.Classes.OrderListItemParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.EmpolyeeAddNotes.EmployeeAddNotesResponse;
 import com.qaim.qaim.Models.MyListEmployeeDetails.MyListEmployeeDetailsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -170,7 +171,7 @@ public class EmployeeListDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         EmployeeActivity.dialog.show();
-        Call<MyListEmployeeDetailsResponse> call = jsonApi.myListEmployeeDetails("Bearer " + EmployeeActivity.token , new OrderListItemParams(id));
+        Call<MyListEmployeeDetailsResponse> call = jsonApi.myListEmployeeDetails(LocaleHelper.getLanguage(getContext()), "Bearer " + EmployeeActivity.token , new OrderListItemParams(id));
         call.enqueue(new Callback<MyListEmployeeDetailsResponse>() {
             @Override
             public void onResponse(Call<MyListEmployeeDetailsResponse> call, Response<MyListEmployeeDetailsResponse> response) {
@@ -271,7 +272,7 @@ public class EmployeeListDetailsFragment extends Fragment {
 
 
         EmployeeActivity.dialog.show();
-        Call<EmployeeAddNotesResponse> call = jsonApi.employeeAddNotesAndReports("Bearer " + EmployeeActivity.token ,map , body);
+        Call<EmployeeAddNotesResponse> call = jsonApi.employeeAddNotesAndReports(LocaleHelper.getLanguage(getContext()), "Bearer " + EmployeeActivity.token ,map , body);
         call.enqueue(new Callback<EmployeeAddNotesResponse>() {
             @Override
             public void onResponse(Call<EmployeeAddNotesResponse> call, Response<EmployeeAddNotesResponse> response) {

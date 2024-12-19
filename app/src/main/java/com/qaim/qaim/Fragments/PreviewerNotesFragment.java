@@ -21,6 +21,7 @@ import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.CustomNote;
 import com.qaim.qaim.Classes.OrderListItemParams;
 import com.qaim.qaim.Classes.ShowRealstateUserParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.MyListDetails.MyListDetailsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RealstateShowUserResponse.NoteItem;
@@ -96,7 +97,7 @@ public class PreviewerNotesFragment extends Fragment {
 
     private void getCompanyNotes() {
         MainActivity.dialog.show();
-        Call<RealstateShowUserResponse> call = jsonApi.ShowRealstate("Bearer " + MainActivity.token, new ShowRealstateUserParams(Integer.parseInt(companyId)));
+        Call<RealstateShowUserResponse> call = jsonApi.ShowRealstate(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token, new ShowRealstateUserParams(Integer.parseInt(companyId)));
         call.enqueue(new Callback<RealstateShowUserResponse>() {
             @Override
             public void onResponse(Call<RealstateShowUserResponse> call, Response<RealstateShowUserResponse> response) {
@@ -122,7 +123,7 @@ public class PreviewerNotesFragment extends Fragment {
 
     private void getPreviewerNotes() {
         CompanyActivity.dialog.show();
-        Call<MyListDetailsResponse> call = jsonApi.myListDetails("Bearer " + CompanyActivity.token ,new OrderListItemParams(Integer.parseInt(previewerId)));
+        Call<MyListDetailsResponse> call = jsonApi.myListDetails(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token ,new OrderListItemParams(Integer.parseInt(previewerId)));
         call.enqueue(new Callback<MyListDetailsResponse>() {
             @Override
             public void onResponse(Call<MyListDetailsResponse> call, Response<MyListDetailsResponse> response) {

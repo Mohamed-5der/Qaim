@@ -24,6 +24,7 @@ import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.AddListCommentsParams;
 import com.qaim.qaim.Classes.CommentsCompanyAdapter;
 import com.qaim.qaim.Classes.OrderListItemParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AddListComments.AddCommentsListResponse;
 import com.qaim.qaim.Models.AllCommentsResponse.AllCommentsResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -119,7 +120,7 @@ public class CompanyCommentsFragment extends Fragment {
 
     public void addComment(){
         CompanyActivity.dialog.show();
-        Call<AddCommentsListResponse> call = jsonApi.addMyListComments("Bearer " + CompanyActivity.token , new AddListCommentsParams(id ,
+        Call<AddCommentsListResponse> call = jsonApi.addMyListComments(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token , new AddListCommentsParams(id ,
                 String.valueOf(comment.getText())
         ));
         call.enqueue(new Callback<AddCommentsListResponse>() {
@@ -174,7 +175,7 @@ public class CompanyCommentsFragment extends Fragment {
         map.put("name", RequestBody.create(MultipartBody.FORM , "" + id));
 
         CompanyActivity.dialog.show();
-        Call<AddCommentsListResponse> call = jsonApi.addMyListComments("Bearer " + CompanyActivity.token , map, body);
+        Call<AddCommentsListResponse> call = jsonApi.addMyListComments(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token , map, body);
         call.enqueue(new Callback<AddCommentsListResponse>() {
             @Override
             public void onResponse(Call<AddCommentsListResponse> call, Response<AddCommentsListResponse> response) {
@@ -199,7 +200,7 @@ public class CompanyCommentsFragment extends Fragment {
 
     public void getComments(){
         CompanyActivity.dialog.show();
-        Call<AllCommentsResponse> call = jsonApi.myListComments("Bearer " + CompanyActivity.token , new OrderListItemParams(id));
+        Call<AllCommentsResponse> call = jsonApi.myListComments(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token , new OrderListItemParams(id));
         call.enqueue(new Callback<AllCommentsResponse>() {
             @Override
             public void onResponse(Call<AllCommentsResponse> call, Response<AllCommentsResponse> response) {

@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.qaim.qaim.Activities.PreviewerActivity;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.GetPreviewerBalance.GetPreviewerBalanceResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.PullPreviewerBalance.PullPreviewerBalanceResponse;
@@ -62,7 +63,7 @@ public class PreviewerBalance extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Call<GetPreviewerBalanceResponse> call = jsonApi.getBalancePreviewer("Bearer " + PreviewerActivity.token);
+        Call<GetPreviewerBalanceResponse> call = jsonApi.getBalancePreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token);
         call.enqueue(new Callback<GetPreviewerBalanceResponse>() {
             @Override
             public void onResponse(Call<GetPreviewerBalanceResponse> call, Response<GetPreviewerBalanceResponse> response) {
@@ -110,7 +111,7 @@ public class PreviewerBalance extends Fragment {
 
     public void callPullBalanceAPI(){
         PreviewerActivity.dialog.show();
-        Call<PullPreviewerBalanceResponse> call = jsonApi.pullBalancePreviewer("Bearer " + PreviewerActivity.token);
+        Call<PullPreviewerBalanceResponse> call = jsonApi.pullBalancePreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token);
         call.enqueue(new Callback<PullPreviewerBalanceResponse>() {
             @Override
             public void onResponse(Call<PullPreviewerBalanceResponse> call, Response<PullPreviewerBalanceResponse> response) {

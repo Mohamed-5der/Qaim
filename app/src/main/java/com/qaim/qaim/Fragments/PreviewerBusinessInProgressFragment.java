@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.PreviewerBusinessInProgressRecycleViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.MtListPreviewer.MyListPrevResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
@@ -85,7 +86,7 @@ public class PreviewerBusinessInProgressFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
         PreviewerActivity.dialog.show();
-        Call<MyListPrevResponse> call = jsonApi.myListPreviewer("Bearer " + PreviewerActivity.token);
+        Call<MyListPrevResponse> call = jsonApi.myListPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token);
         call.enqueue(new Callback<MyListPrevResponse>() {
             @Override
             public void onResponse(Call<MyListPrevResponse> call, Response<MyListPrevResponse> response) {

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.qaim.qaim.Activities.SplashScreen;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.ReportCompleted.sendFeedBack.FeedBackResponse;
 import com.qaim.qaim.Models.ReportCompleted.sendFeedBack.FeedbackRequest;
@@ -109,7 +110,7 @@ public class SendFeedBackFragment extends Fragment {
         FeedbackRequest feedbackRequest = new FeedbackRequest(content, subject, selectItem);
 
         // Make the API call
-        Call<FeedBackResponse> call = jsonApi.sendFeedBack("Bearer " + SplashScreen.sToken.getString("token_key", ""), feedbackRequest);
+        Call<FeedBackResponse> call = jsonApi.sendFeedBack(LocaleHelper.getLanguage(getContext()), "Bearer " + SplashScreen.sToken.getString("token_key", ""), feedbackRequest);
         call.enqueue(new Callback<FeedBackResponse>() {
             @Override
             public void onResponse(Call<FeedBackResponse> call, Response<FeedBackResponse> response) {

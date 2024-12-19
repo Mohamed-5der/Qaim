@@ -41,6 +41,7 @@ import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
 import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Helper.Alert;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.CompanyRegister.CompanyRegisterResponse;
 import com.qaim.qaim.Models.CompanyUserRegisterResponse.CompanyUserRegisterResponse;
@@ -244,7 +245,7 @@ public class CompnayUserRegisterActivity extends BaseActivity {
                     map.put("player_id", RequestBody.create(MultipartBody.FORM, spNotiToken.getString(NOTI_KEY , "")));
 
                     dialog.show();
-                    Call<CompanyUserRegisterResponse> companyUserRegisterParmsCall = jsonApi.registerCompanyUser(map, body);
+                    Call<CompanyUserRegisterResponse> companyUserRegisterParmsCall = jsonApi.registerCompanyUser(LocaleHelper.getLanguage(this), map, body);
                     companyUserRegisterParmsCall.enqueue(new Callback<CompanyUserRegisterResponse>() {
                         @Override
                         public void onResponse(Call<CompanyUserRegisterResponse> call, Response<CompanyUserRegisterResponse> response) {
@@ -288,7 +289,7 @@ public class CompnayUserRegisterActivity extends BaseActivity {
                     map.put("about", RequestBody.create(MultipartBody.FORM, addnotestxt.getText().toString()));
 
                     dialog.show();
-                    Call<CompanyRegisterResponse> companyUserRegisterParmsCall = jsonApi.registerCompany(map, body);
+                    Call<CompanyRegisterResponse> companyUserRegisterParmsCall = jsonApi.registerCompany(LocaleHelper.getLanguage(this), map, body);
                     companyUserRegisterParmsCall.enqueue(new Callback<CompanyRegisterResponse>() {
                         @Override
                         public void onResponse(Call<CompanyRegisterResponse> call, Response<CompanyRegisterResponse> response) {
@@ -460,7 +461,7 @@ public class CompnayUserRegisterActivity extends BaseActivity {
     }
 
     public void getCountries() {
-        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries(LocaleHelper.getLanguage(this));
         countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
@@ -495,7 +496,7 @@ public class CompnayUserRegisterActivity extends BaseActivity {
     }
 
     public void getCities(int countryId) {
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(LocaleHelper.getLanguage(this), new CitiesListParams(countryId));
         citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {

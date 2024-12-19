@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Fragments.CompanyChooseTeamFragment;
 import com.qaim.qaim.Fragments.ShowPainterProfileFragment;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AssignTeam.AssingTeamResponse;
 import com.qaim.qaim.Models.MyListTeamReports.Painter;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -64,7 +65,7 @@ public class PainterListAdapter extends RecyclerView.Adapter<PainterListAdapter.
 
         holder.choose.setOnClickListener(view -> {
             CompanyActivity.dialog.show();
-            Call<AssingTeamResponse> call = jsonApi.assignTeam("Bearer " + CompanyActivity.token ,new AssignTeamParams(
+            Call<AssingTeamResponse> call = jsonApi.assignTeam(LocaleHelper.getLanguage(activity), "Bearer " + CompanyActivity.token ,new AssignTeamParams(
                     orderId ,painter.getId()));
             call.enqueue(new Callback<AssingTeamResponse>() {
                 @Override

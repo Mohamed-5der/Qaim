@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.AssignTeamParamsAll;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AssignTeam.AssingTeamResponse;
 import com.qaim.qaim.Models.AssignTeam.Painter;
 import com.qaim.qaim.Models.AssignTeam.Previewer;
@@ -176,7 +177,7 @@ public class CompanyChooseTeamFragment extends Fragment {
 
     public void teamListAPICal(){
         CompanyActivity.dialog.show();
-        Call<AssingTeamResponse> call = jsonApi.assignTeam("Bearer " + CompanyActivity.token ,new AssignTeamParamsAll(preId));
+        Call<AssingTeamResponse> call = jsonApi.assignTeam(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token ,new AssignTeamParamsAll(preId));
         call.enqueue(new Callback<AssingTeamResponse>() {
             @Override
             public void onResponse(Call<AssingTeamResponse> call, Response<AssingTeamResponse> response) {

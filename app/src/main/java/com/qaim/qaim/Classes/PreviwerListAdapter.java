@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Fragments.CompanyChooseTeamFragment;
 import com.qaim.qaim.Fragments.ShowPreviewerProfileFragment;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AssignTeam.AssingTeamResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.TeamPreviewerList.DataItem;
@@ -71,7 +72,7 @@ public class PreviwerListAdapter extends RecyclerView.Adapter<PreviwerListAdapte
 
         holder.choose.setOnClickListener(view -> {
             CompanyActivity.dialog.show();
-            Call<AssingTeamResponse> call = jsonApi.assignTeam("Bearer " + CompanyActivity.token ,new AssignTeamParamsPrev(
+            Call<AssingTeamResponse> call = jsonApi.assignTeam(LocaleHelper.getLanguage(activity), "Bearer " + CompanyActivity.token ,new AssignTeamParamsPrev(
                     order_id ,previewer.getId()));
             call.enqueue(new Callback<AssingTeamResponse>() {
                 @Override

@@ -27,6 +27,7 @@ import com.qaim.qaim.Classes.CustomCityAdapter;
 import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Classes.UserRegisterParms;
 import com.qaim.qaim.Helper.Alert;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -132,7 +133,7 @@ public class ClientUserActivity extends BaseActivity {
                         "user_user", countryId , cityId , spNotiToken.getString(NOTI_KEY , ""));
 
                 dialog.show();
-                Call<UserRegisterResponse> callUserRegister = jsonApi.registerUser(userRegisterParms);
+                Call<UserRegisterResponse> callUserRegister = jsonApi.registerUser(LocaleHelper.getLanguage(this), userRegisterParms);
                 callUserRegister.enqueue(new Callback<UserRegisterResponse>() {
                     @Override
                     public void onResponse(Call<UserRegisterResponse> call, Response<UserRegisterResponse> response) {
@@ -171,7 +172,7 @@ public class ClientUserActivity extends BaseActivity {
     }
 
     public void getCountries() {
-        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries(LocaleHelper.getLanguage(this));
         countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
@@ -206,7 +207,7 @@ public class ClientUserActivity extends BaseActivity {
     }
 
     public void getCities(int countryId) {
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(LocaleHelper.getLanguage(this), new CitiesListParams(countryId));
         citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {

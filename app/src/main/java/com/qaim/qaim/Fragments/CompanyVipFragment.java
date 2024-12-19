@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.CompanyFragmentRecyceViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.UserCompaniesResponse.UserCompaniesResponse;
 import com.qaim.qaim.R;
@@ -55,7 +56,7 @@ public class CompanyVipFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MainActivity.dialog.show();
-        Call<UserCompaniesResponse> call = jsonApi.userCompanies("Bearer " + MainActivity.token);
+        Call<UserCompaniesResponse> call = jsonApi.userCompanies(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token);
         call.enqueue(new Callback<UserCompaniesResponse>() {
             @Override
             public void onResponse(Call<UserCompaniesResponse> call, Response<UserCompaniesResponse> response) {

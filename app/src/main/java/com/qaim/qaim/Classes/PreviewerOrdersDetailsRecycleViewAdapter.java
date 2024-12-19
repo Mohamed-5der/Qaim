@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Fragments.PrevRealstateDetailsFragment;
 import com.qaim.qaim.Fragments.PreviewerOrdersFragment;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.GetAcceptedOrderPrev.AcceptedOrderPrevResponse;
 import com.qaim.qaim.Models.GetOrdersPreviewer.DataItem;
 import com.qaim.qaim.Models.GetRefusedOrders.RefusedOrderPrevResponse;
@@ -109,7 +110,7 @@ public class PreviewerOrdersDetailsRecycleViewAdapter extends RecyclerView.Adapt
        }
         public void callAcceptedOrderAPI(int id){
             PreviewerActivity.dialog.show();
-            Call<AcceptedOrderPrevResponse> call = jsonApi.accedptedOrdersPreviewer("Bearer " + PreviewerActivity.token ,new OrderListItemParams(id));
+            Call<AcceptedOrderPrevResponse> call = jsonApi.accedptedOrdersPreviewer(LocaleHelper.getLanguage(activity), "Bearer " + PreviewerActivity.token ,new OrderListItemParams(id));
             call.enqueue(new Callback<AcceptedOrderPrevResponse>() {
                 @Override
                 public void onResponse(Call<AcceptedOrderPrevResponse> call, Response<AcceptedOrderPrevResponse> response) {
@@ -133,7 +134,7 @@ public class PreviewerOrdersDetailsRecycleViewAdapter extends RecyclerView.Adapt
         }
         public void callRefusedOrderAPI(int id){
             PreviewerActivity.dialog.show();
-            Call<RefusedOrderPrevResponse> call = jsonApi.refusedOrdersPreviewer("Bearer " + PreviewerActivity.token ,new OrderListItemParams(id));
+            Call<RefusedOrderPrevResponse> call = jsonApi.refusedOrdersPreviewer(LocaleHelper.getLanguage(activity), "Bearer " + PreviewerActivity.token ,new OrderListItemParams(id));
             call.enqueue(new Callback<RefusedOrderPrevResponse>() {
                 @Override
                 public void onResponse(Call<RefusedOrderPrevResponse> call, Response<RefusedOrderPrevResponse> response) {

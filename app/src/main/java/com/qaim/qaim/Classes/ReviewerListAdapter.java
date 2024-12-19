@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Fragments.CompanyChooseTeamFragment;
 import com.qaim.qaim.Fragments.ShowReviewerProfileFragment;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AssignTeam.AssingTeamResponse;
 import com.qaim.qaim.Models.MyListTeamReports.Reviewer;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -65,7 +66,7 @@ public class ReviewerListAdapter extends RecyclerView.Adapter<ReviewerListAdapte
 
         holder.choose.setOnClickListener(view -> {
 
-            Call<AssingTeamResponse> call = jsonApi.assignTeam("Bearer " + CompanyActivity.token ,new AssignTeamParamsRev(
+            Call<AssingTeamResponse> call = jsonApi.assignTeam(LocaleHelper.getLanguage(activity), "Bearer " + CompanyActivity.token ,new AssignTeamParamsRev(
                     id ,reviewer.getId()));
             call.enqueue(new Callback<AssingTeamResponse>() {
                 @Override

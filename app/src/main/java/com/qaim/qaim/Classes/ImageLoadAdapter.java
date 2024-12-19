@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Delete.DeleteFileResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RealstateShowUserResponse.FilesItem;
@@ -74,7 +75,7 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.View
         public void onBind(FilesItem filesItem){
             Picasso.get().load(filesItem.getFile()).into(imageView);
             cancel.setOnClickListener(view -> {
-                Call<DeleteFileResponse> call = jsonApi.deleteFile(new FileIdParams(filesItem.getId()));
+                Call<DeleteFileResponse> call = jsonApi.deleteFile(LocaleHelper.getLanguage(activity), new FileIdParams(filesItem.getId()));
                 call.enqueue(new Callback<DeleteFileResponse>() {
                     @Override
                     public void onResponse(Call<DeleteFileResponse> call, Response<DeleteFileResponse> response) {

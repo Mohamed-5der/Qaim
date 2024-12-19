@@ -29,6 +29,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.CustomPrevAttributed;
 import com.qaim.qaim.Classes.OrderListItemParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.GetAcceptedOrderPrev.AcceptedOrderPrevResponse;
 import com.qaim.qaim.Models.GetRefusedOrders.RefusedOrderPrevResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -117,7 +118,7 @@ public class PrevRealstateDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 PreviewerActivity.dialog.show();
-                Call<AcceptedOrderPrevResponse> call = jsonApi.accedptedOrdersPreviewer("Bearer " + PreviewerActivity.token ,new OrderListItemParams(id));
+                Call<AcceptedOrderPrevResponse> call = jsonApi.accedptedOrdersPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token ,new OrderListItemParams(id));
                 call.enqueue(new Callback<AcceptedOrderPrevResponse>() {
                     @Override
                     public void onResponse(Call<AcceptedOrderPrevResponse> call, Response<AcceptedOrderPrevResponse> response) {
@@ -144,7 +145,7 @@ public class PrevRealstateDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 PreviewerActivity.dialog.show();
-                Call<RefusedOrderPrevResponse> call = jsonApi.refusedOrdersPreviewer("Bearer " + PreviewerActivity.token ,new OrderListItemParams(id));
+                Call<RefusedOrderPrevResponse> call = jsonApi.refusedOrdersPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token ,new OrderListItemParams(id));
                 call.enqueue(new Callback<RefusedOrderPrevResponse>() {
                     @Override
                     public void onResponse(Call<RefusedOrderPrevResponse> call, Response<RefusedOrderPrevResponse> response) {
@@ -178,7 +179,7 @@ public class PrevRealstateDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         PreviewerActivity.dialog.show();
-        Call<ShowPrevRealstateResponse> call = jsonApi.showPreviewerRealstate("Bearer " + PreviewerActivity.token , new OrderListItemParams(id));
+        Call<ShowPrevRealstateResponse> call = jsonApi.showPreviewerRealstate(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token , new OrderListItemParams(id));
         call.enqueue(new Callback<ShowPrevRealstateResponse>() {
             @Override
             public void onResponse(Call<ShowPrevRealstateResponse> call, Response<ShowPrevRealstateResponse> response) {

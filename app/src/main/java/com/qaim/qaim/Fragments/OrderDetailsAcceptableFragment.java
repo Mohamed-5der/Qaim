@@ -35,6 +35,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.CustomAttributed;
 import com.qaim.qaim.Classes.ShowRealstateUserParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RealstateShowUserResponse.FilesItem;
 import com.qaim.qaim.Models.RealstateShowUserResponse.RealstateShowUserResponse;
@@ -145,7 +146,7 @@ public class OrderDetailsAcceptableFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MainActivity.dialog.show();
-        Call<RealstateShowUserResponse> call = jsonApi.ShowRealstate("Bearer " + MainActivity.token  , new ShowRealstateUserParams(id));
+        Call<RealstateShowUserResponse> call = jsonApi.ShowRealstate(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token  , new ShowRealstateUserParams(id));
         call.enqueue(new Callback<RealstateShowUserResponse>() {
             @Override
             public void onResponse(Call<RealstateShowUserResponse> call, Response<RealstateShowUserResponse> response) {
@@ -280,7 +281,7 @@ public class OrderDetailsAcceptableFragment extends Fragment {
 
 
     private void callCompletedProjectAPI(){
-        Call<ReportCompletedtResponse> projectCompletedCall = jsonApi.completeProject("Bearer " + MainActivity.token  , new ShowRealstateUserParams(id));
+        Call<ReportCompletedtResponse> projectCompletedCall = jsonApi.completeProject(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token  , new ShowRealstateUserParams(id));
         projectCompletedCall.enqueue(new Callback<ReportCompletedtResponse>() {
             @Override
             public void onResponse(Call<ReportCompletedtResponse> call, Response<ReportCompletedtResponse> response) {

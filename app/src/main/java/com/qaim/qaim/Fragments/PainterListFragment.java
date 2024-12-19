@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.PainterListAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.TeamList.GetTeamListResponse;
 import com.qaim.qaim.R;
@@ -89,7 +90,7 @@ public class PainterListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CompanyActivity.dialog.show();
-        Call<GetTeamListResponse> call = jsonApi.getTeamList("Bearer "+ CompanyActivity.token);
+        Call<GetTeamListResponse> call = jsonApi.getTeamList(LocaleHelper.getLanguage(getContext()), "Bearer "+ CompanyActivity.token);
         call.enqueue(new Callback<GetTeamListResponse>() {
             @Override
             public void onResponse(Call<GetTeamListResponse> call, Response<GetTeamListResponse> response) {

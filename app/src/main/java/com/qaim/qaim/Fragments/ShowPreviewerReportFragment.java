@@ -37,6 +37,7 @@ import com.qaim.qaim.Classes.CustomAttributedAdapterReport;
 import com.qaim.qaim.Classes.OrderListItemParams;
 import com.qaim.qaim.Classes.StatusReportCompanyRejectParams;
 import com.qaim.qaim.Classes.StatusReportParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AcceptPreviewerReport.AcceptPreviewerReportResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RefusedPreviewerReport.RefusedPreviewerReportResponse;
@@ -189,7 +190,7 @@ public class ShowPreviewerReportFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 CompanyActivity.dialog.show();
-                Call<AcceptPreviewerReportResponse> acceptPreviewerReportResponseCall = jsonApi.acceptPreviewerReport("Bearer " + CompanyActivity.token , new StatusReportParams(reportId));
+                Call<AcceptPreviewerReportResponse> acceptPreviewerReportResponseCall = jsonApi.acceptPreviewerReport(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token , new StatusReportParams(reportId));
                 acceptPreviewerReportResponseCall.enqueue(new Callback<AcceptPreviewerReportResponse>() {
                     @Override
                     public void onResponse(Call<AcceptPreviewerReportResponse> call, Response<AcceptPreviewerReportResponse> response) {
@@ -269,7 +270,7 @@ public class ShowPreviewerReportFragment extends Fragment {
 
     public void rejectReport(String reason) {
         CompanyActivity.dialog.show();
-        Call<RefusedPreviewerReportResponse> acceptPreviewerReportResponseCall = jsonApi.rejectPreviewerReport("Bearer " + CompanyActivity.token , new StatusReportCompanyRejectParams(reportId, reason));
+        Call<RefusedPreviewerReportResponse> acceptPreviewerReportResponseCall = jsonApi.rejectPreviewerReport(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token , new StatusReportCompanyRejectParams(reportId, reason));
         acceptPreviewerReportResponseCall.enqueue(new Callback<RefusedPreviewerReportResponse>() {
             @Override
             public void onResponse(Call<RefusedPreviewerReportResponse> call, Response<RefusedPreviewerReportResponse> response) {
@@ -294,7 +295,7 @@ public class ShowPreviewerReportFragment extends Fragment {
 
     public void callReportAPI(){
         CompanyActivity.dialog.show();
-        Call<ShowCompanyPrevReportResponse> call = jsonApi.showPreviewerReport("Bearer " + CompanyActivity.token , new OrderListItemParams(id));
+        Call<ShowCompanyPrevReportResponse> call = jsonApi.showPreviewerReport(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token , new OrderListItemParams(id));
         call.enqueue(new Callback<ShowCompanyPrevReportResponse>() {
             @Override
             public void onResponse(Call<ShowCompanyPrevReportResponse> call, Response<ShowCompanyPrevReportResponse> response) {

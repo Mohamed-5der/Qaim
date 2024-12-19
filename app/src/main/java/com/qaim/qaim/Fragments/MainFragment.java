@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.CompanyProjectRecycleViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RealsteatListUserResponse.DataItem;
 import com.qaim.qaim.Models.RealsteatListUserResponse.RealstateListUserResponse;
@@ -108,7 +109,7 @@ public class MainFragment extends Fragment {
     }
     public void calListRealestate(){
         MainActivity.dialog.show();
-        Call<RealstateListUserResponse> listUserResponseCall = jsonApi.getAllRealstateList("Bearer " + token);
+        Call<RealstateListUserResponse> listUserResponseCall = jsonApi.getAllRealstateList(LocaleHelper.getLanguage(getContext()),"Bearer " + token);
         listUserResponseCall.enqueue(new Callback<RealstateListUserResponse>() {
             @Override
             public void onResponse(Call<RealstateListUserResponse> call, Response<RealstateListUserResponse> response) {

@@ -38,6 +38,7 @@ import com.qaim.qaim.Classes.CustomCityAdapter;
 import com.qaim.qaim.Classes.CustomCountryAdapter;
 import com.qaim.qaim.Classes.CustomRegionAdapter;
 import com.qaim.qaim.Classes.RegionParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CitiesResponse.CitiesResponse;
 import com.qaim.qaim.Models.CountriesResponse.CountriesResponse;
 import com.qaim.qaim.Models.GetProviewerProfile.PreviewerProfileResponse;
@@ -187,7 +188,7 @@ public class EditPreviewerProfileFragment extends Fragment {
 
     public void callProffileAPI(){
         PreviewerActivity.dialog.show();
-        Call<PreviewerProfileResponse> call = jsonApi.getPreviewerProfile("Bearer " + PreviewerActivity.token);
+        Call<PreviewerProfileResponse> call = jsonApi.getPreviewerProfile(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token);
         call.enqueue(new Callback<PreviewerProfileResponse>() {
             @Override
             public void onResponse(Call<PreviewerProfileResponse> call, Response<PreviewerProfileResponse> response) {
@@ -301,7 +302,7 @@ public class EditPreviewerProfileFragment extends Fragment {
             map.put("years", RequestBody.create(MultipartBody.FORM , yearsOfWork.getText().toString()));
             map.put("experience", RequestBody.create(MultipartBody.FORM , experiance.getText().toString()));
             PreviewerActivity.dialog.show();
-            Call<UpdatePreviewerProfileResponse> call = jsonApi.updatePreviewerProfile("Bearer " + PreviewerActivity.token ,map , body);
+            Call<UpdatePreviewerProfileResponse> call = jsonApi.updatePreviewerProfile(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token ,map , body);
             call.enqueue(new Callback<UpdatePreviewerProfileResponse>() {
                 @Override
                 public void onResponse(Call<UpdatePreviewerProfileResponse> call, Response<UpdatePreviewerProfileResponse> response) {
@@ -333,7 +334,7 @@ public class EditPreviewerProfileFragment extends Fragment {
     }
 
     public void callRegionstype(int id){
-        Call<GetRegionResponse> getRegionResponseCall = jsonApi.getRegions(new RegionParams(id));
+        Call<GetRegionResponse> getRegionResponseCall = jsonApi.getRegions(LocaleHelper.getLanguage(getContext()), new RegionParams(id));
         getRegionResponseCall.enqueue(new Callback<GetRegionResponse>() {
             @Override
             public void onResponse(Call<GetRegionResponse> call, Response<GetRegionResponse> response) {
@@ -490,7 +491,7 @@ public class EditPreviewerProfileFragment extends Fragment {
     }
 
     public void getCountries() {
-        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries();
+        Call<CountriesResponse> countriesResponseCall = jsonApi.getCountries(LocaleHelper.getLanguage(getContext()));
         countriesResponseCall.enqueue(new Callback<CountriesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CountriesResponse> call, @NonNull Response<CountriesResponse> response) {
@@ -525,7 +526,7 @@ public class EditPreviewerProfileFragment extends Fragment {
     }
 
     public void getCities(int countryId) {
-        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(new CitiesListParams(countryId));
+        Call<CitiesResponse> citiesResponseCall = jsonApi.getCities(LocaleHelper.getLanguage(getContext()), new CitiesListParams(countryId));
         citiesResponseCall.enqueue(new Callback<CitiesResponse>() {
             @Override
             public void onResponse(@NonNull Call<CitiesResponse> call, @NonNull Response<CitiesResponse> response) {

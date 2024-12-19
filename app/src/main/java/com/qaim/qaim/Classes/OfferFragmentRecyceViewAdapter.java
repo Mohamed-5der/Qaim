@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Activities.MoyasrPaymenyActivity;
 import com.qaim.qaim.Fragments.OrderDetailsFragment;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.OrderListUserResponse.DataItem;
 import com.qaim.qaim.Models.RefusedOrderUserResponse.RefusedOrderUserResponse;
@@ -154,7 +155,7 @@ int id ;
         }
         public void onRejectedBtnPressed(int id){
             MainActivity.dialog.show();
-            Call<RefusedOrderUserResponse> call = jsonApi.getRefusedOrders("Bearer " + MainActivity.token, new OrderListItemParams(id));
+            Call<RefusedOrderUserResponse> call = jsonApi.getRefusedOrders(LocaleHelper.getLanguage(activity), "Bearer " + MainActivity.token, new OrderListItemParams(id));
             call.enqueue(new Callback<RefusedOrderUserResponse>() {
                 @Override
                 public void onResponse(Call<RefusedOrderUserResponse> call, Response<RefusedOrderUserResponse> response) {

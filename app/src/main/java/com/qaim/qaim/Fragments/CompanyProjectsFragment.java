@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.CompanyMyListRealstateRecycleViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.MyRealstateCompanyList.DataItem;
 import com.qaim.qaim.Models.MyRealstateCompanyList.MyRealstateCompanyResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
@@ -84,7 +85,7 @@ public class CompanyProjectsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CompanyActivity.dialog.show();
-        Call<MyRealstateCompanyResponse> call = jsonApi.myRealstateCompanyList("Bearer " + CompanyActivity.token);
+        Call<MyRealstateCompanyResponse> call = jsonApi.myRealstateCompanyList(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token);
         call.enqueue(new Callback<MyRealstateCompanyResponse>() {
             @Override
             public void onResponse(Call<MyRealstateCompanyResponse> call, Response<MyRealstateCompanyResponse> response) {

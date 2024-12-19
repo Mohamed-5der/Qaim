@@ -47,6 +47,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.ImageAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.CompanyMakeReport.CompanyMakeReportResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
@@ -823,7 +824,7 @@ public class CompanyWriterReportsFragment extends Fragment {
 
 
                 CompanyActivity.dialog.show();
-                Call<CompanyMakeReportResponse> call = jsonApi.makeReport("Bearer "+ CompanyActivity.token , map, body , body_final_file , imgs);
+                Call<CompanyMakeReportResponse> call = jsonApi.makeReport(LocaleHelper.getLanguage(getContext()), "Bearer "+ CompanyActivity.token , map, body , body_final_file , imgs);
 
                 call.enqueue(new Callback<CompanyMakeReportResponse>() {
                     @Override

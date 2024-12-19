@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.qaim.qaim.Activities.MainActivity;
 import com.qaim.qaim.Classes.CustomAttributed;
 import com.qaim.qaim.Classes.ShowRealstateUserParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.RealstateShowUserResponse.RealstateShowUserResponse;
 import com.qaim.qaim.R;
@@ -129,7 +130,7 @@ public class ShowRealstateUserFragment extends Fragment implements OnMapReadyCal
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MainActivity.dialog.show();
-        Call<RealstateShowUserResponse> call = jsonApi.ShowRealstate("Bearer " + MainActivity.token , new ShowRealstateUserParams(id));
+        Call<RealstateShowUserResponse> call = jsonApi.ShowRealstate(LocaleHelper.getLanguage(getContext()), "Bearer " + MainActivity.token , new ShowRealstateUserParams(id));
         call.enqueue(new Callback<RealstateShowUserResponse>() {
             @Override
             public void onResponse(Call<RealstateShowUserResponse> call, Response<RealstateShowUserResponse> response) {

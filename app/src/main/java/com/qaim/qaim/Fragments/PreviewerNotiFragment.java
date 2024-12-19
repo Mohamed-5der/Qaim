@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.NotificationAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.Notification.NotiResponse;
 import com.qaim.qaim.Models.Notification.NotificationsItem;
@@ -72,7 +73,7 @@ public class PreviewerNotiFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         PreviewerActivity.dialog.show();
-        Call<NotiResponse> call = jsonApi.notifications("Bearer " + PreviewerActivity.token);
+        Call<NotiResponse> call = jsonApi.notifications(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token);
         call.enqueue(new Callback<NotiResponse>() {
             @Override
             public void onResponse(Call<NotiResponse> call, Response<NotiResponse> response) {

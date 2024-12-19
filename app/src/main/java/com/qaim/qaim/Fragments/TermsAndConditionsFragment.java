@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.AppInfo.AppInfoResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.R;
@@ -55,7 +56,7 @@ public class TermsAndConditionsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Call<AppInfoResponse> call = jsonApi.getAppInfo();
+        Call<AppInfoResponse> call = jsonApi.getAppInfo(LocaleHelper.getLanguage(getContext()));
         call.enqueue(new Callback<AppInfoResponse>() {
             @Override
             public void onResponse(Call<AppInfoResponse> call, Response<AppInfoResponse> response) {

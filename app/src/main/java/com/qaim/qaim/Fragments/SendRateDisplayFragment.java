@@ -42,6 +42,7 @@ import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.qaim.qaim.Activities.CompanyActivity;
 import com.qaim.qaim.Classes.CompanyRealstateIdParams;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.MyRealstateCompanyList.FilesItem;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.SendOfferResponse.SendOfferResponse;
@@ -313,7 +314,7 @@ public class SendRateDisplayFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CompanyActivity.dialog.show();
-        Call<ShowCompanyRealstateResponse> call = jsonApi.showCompanyRealstateList("Bearer " + CompanyActivity.token , new CompanyRealstateIdParams(id));
+        Call<ShowCompanyRealstateResponse> call = jsonApi.showCompanyRealstateList(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token , new CompanyRealstateIdParams(id));
         call.enqueue(new Callback<ShowCompanyRealstateResponse>() {
             @Override
             public void onResponse(Call<ShowCompanyRealstateResponse> call, Response<ShowCompanyRealstateResponse> response) {
@@ -431,7 +432,7 @@ public class SendRateDisplayFragment extends Fragment {
 
 
             CompanyActivity.dialog.show();
-            Call<SendOfferResponse> call = jsonApi.sendOffer("Bearer " + CompanyActivity.token ,map , body);
+            Call<SendOfferResponse> call = jsonApi.sendOffer(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token ,map , body);
             call.enqueue(new Callback<SendOfferResponse>() {
                 @Override
                 public void onResponse(Call<SendOfferResponse> call, Response<SendOfferResponse> response) {

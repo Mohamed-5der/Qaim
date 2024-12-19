@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.qaim.qaim.Activities.PreviewerActivity;
 import com.qaim.qaim.Classes.PaymentRecycleViewAdapter;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.PreviwerPayments.DataItem;
 import com.qaim.qaim.Models.PreviwerPayments.PreviewerPaymentsResponse;
@@ -60,7 +61,7 @@ public class PreviewerPaymentsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Call<PreviewerPaymentsResponse> listUserResponseCall = jsonApi.previwerPayments("Bearer " + PreviewerActivity.token);
+        Call<PreviewerPaymentsResponse> listUserResponseCall = jsonApi.previwerPayments(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token);
         listUserResponseCall.enqueue(new Callback<PreviewerPaymentsResponse>() {
             @Override
             public void onResponse(Call<PreviewerPaymentsResponse> call, Response<PreviewerPaymentsResponse> response) {

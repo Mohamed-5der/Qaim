@@ -35,6 +35,7 @@ import com.qaim.qaim.Fragments.OrdersFragment;
 import com.qaim.qaim.Fragments.TermsAndConditionsFragment;
 import com.qaim.qaim.Fragments.UserPaymentsFragment;
 import com.qaim.qaim.Helper.Alert;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.LogoutRespone.LogOutResponse;
 import com.qaim.qaim.Models.Networks.JsonApi;
 import com.qaim.qaim.Models.UserProfileResponse.User;
@@ -197,7 +198,7 @@ public class MainActivity extends BaseActivity implements MainFragment.AddRealst
                 .inject();
         onSlideRootMenuItemClick();
         MainActivity.dialog.show();
-        Call<UserProfileResponse> call = jsonApi.getUserProfile("Bearer "+MainActivity.token);
+        Call<UserProfileResponse> call = jsonApi.getUserProfile(LocaleHelper.getLanguage(this), "Bearer "+MainActivity.token);
         call.enqueue(new Callback<UserProfileResponse>() {
             @Override
             public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
@@ -342,7 +343,7 @@ public class MainActivity extends BaseActivity implements MainFragment.AddRealst
 
 
     private void logOutCallAPI(){
-        Call<LogOutResponse> call = jsonApi.logOut("Bearer "+MainActivity.token , SplashScreen.spNotiToken.getString("noti" , ""));
+        Call<LogOutResponse> call = jsonApi.logOut(LocaleHelper.getLanguage(this), "Bearer "+MainActivity.token , SplashScreen.spNotiToken.getString("noti" , ""));
         call.enqueue(new Callback<LogOutResponse>() {
             @Override
             public void onResponse(Call<LogOutResponse> call, Response<LogOutResponse> response) {
