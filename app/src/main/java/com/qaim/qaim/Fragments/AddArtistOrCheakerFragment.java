@@ -102,37 +102,33 @@ public class AddArtistOrCheakerFragment extends Fragment {
                         type, countryCode.getSelectedCountryNameCode(), phoneEditText.getText().toString()
                 );
 
-                if (countryCode.isValidFullNumber() == false) {
-                    Toast.makeText(getContext() , R.string.phone_number_incorrect  ,Toast.LENGTH_SHORT).show();
-                } else {
-                    CompanyActivity.dialog.show();
-                    Call<AddTeamResponse> call = jsonApi.addTeam(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token, params);
-                    call.enqueue(new Callback<AddTeamResponse>() {
-                        @Override
-                        public void onResponse(Call<AddTeamResponse> call, Response<AddTeamResponse> response) {
-                            CompanyActivity.dialog.dismiss();
-                            AddTeamResponse addTeamResponse = response.body();
-                            if (addTeamResponse.getCode() == 200) {
-                                CompanyActivity.alert.crateMsg(response.body().getMessage() , getContext());
+                CompanyActivity.dialog.show();
+                Call<AddTeamResponse> call = jsonApi.addTeam(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token, params);
+                call.enqueue(new Callback<AddTeamResponse>() {
+                    @Override
+                    public void onResponse(Call<AddTeamResponse> call, Response<AddTeamResponse> response) {
+                        CompanyActivity.dialog.dismiss();
+                        AddTeamResponse addTeamResponse = response.body();
+                        if (addTeamResponse.getCode() == 200) {
+                            CompanyActivity.alert.crateMsg(response.body().getMessage(), getContext());
 //                                Toast.makeText(getContext(), addTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                CompanySetTeamFragment fragment = new CompanySetTeamFragment();
+                            CompanySetTeamFragment fragment = new CompanySetTeamFragment();
 
-                                getActivity()
-                                        .getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.frameLayout, fragment)
-                                        .commit();
-                            } else {
-                                CompanyActivity.alert.crateMsg(response.body().getMessage() , getContext());
-                            }
+                            getActivity()
+                                    .getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.frameLayout, fragment)
+                                    .commit();
+                        } else {
+                            CompanyActivity.alert.crateMsg(response.body().getMessage(), getContext());
                         }
+                    }
 
-                        @Override
-                        public void onFailure(Call<AddTeamResponse> call, Throwable t) {
-                            Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+                    @Override
+                    public void onFailure(Call<AddTeamResponse> call, Throwable t) {
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 

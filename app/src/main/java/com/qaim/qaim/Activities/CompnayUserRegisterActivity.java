@@ -35,6 +35,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
 import com.hbb20.CountryCodePicker;
@@ -94,7 +95,6 @@ public class CompnayUserRegisterActivity extends BaseActivity {
     RelativeLayout pdfFile ;
     TextView lblFileName , lblcompany_info;
     private String pdfPath;
-    ActivityResultLauncher<Intent> resultLauncher;
     String type ;
     String fName ;
     MultipartBody.Part body = null;
@@ -135,26 +135,7 @@ public class CompnayUserRegisterActivity extends BaseActivity {
         userName = findViewById(R.id.userName);
         licenceName = findViewById(R.id.licenceName);
         addPDF = findViewById(R.id.addPolicy);
-        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(
-                            ActivityResult result) {
-                        Intent data = result.getData();
-                        // check condition
-                        if (data != null) {
 
-
-                            try {
-                                uploadFile( data.getData());
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-
-
-                        }
-                    }
-                });
         proflieName = findViewById(R.id.profileEditText);
         proflieEmail = findViewById(R.id.emailEditText);
         profliePhone = findViewById(R.id.phoneEditText);
@@ -190,26 +171,7 @@ public class CompnayUserRegisterActivity extends BaseActivity {
         confirmprofliePassword =findViewById(R.id.confirmPasswordEditText);
         singUp = findViewById(R.id.signUp);
         addPDF.setOnClickListener(view -> {
-            if (ActivityCompat.checkSelfPermission(
-                   getApplicationContext(),
-                    Manifest.permission
-                            .READ_EXTERNAL_STORAGE)
-                    != PackageManager
-                    .PERMISSION_GRANTED) {
-                // When permission is not granted
-                // Result permission
-                ActivityCompat.requestPermissions(
-                         CompnayUserRegisterActivity.this,
-                        new String[] {
-                                Manifest.permission
-                                        .READ_EXTERNAL_STORAGE },
-                        1);
-            }
-            else {
-                // When permission is granted
-                // Create method
-                selectPDF();
-            }
+            selectPDF();
         });
         pdfFile = findViewById(R.id.pdfFile);
         lblFileName = findViewById(R.id.lblFileName);
@@ -232,9 +194,7 @@ public class CompnayUserRegisterActivity extends BaseActivity {
 
 
         singUp.setOnClickListener(view -> {
-            if (contryCod.isValidFullNumber() == false) {
-                Toast.makeText(getApplicationContext(), R.string.phone_number_incorrect, Toast.LENGTH_SHORT).show();
-            } else if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
+            if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
                 Toast.makeText(getApplicationContext(), R.string.password_does_not_match, Toast.LENGTH_SHORT).show();
             } else {
                 if (type.equals("user_company")){
@@ -428,40 +388,28 @@ public class CompnayUserRegisterActivity extends BaseActivity {
         }
         return count;
     }
+
     private void selectPDF()
     {
-        // Initialize intent
-        Intent intent
-                = new Intent(Intent.ACTION_GET_CONTENT);
-        // set type
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/pdf");
-        // Launch intent
-        resultLauncher.launch(intent);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, 1111);
     }
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults)
-    {
-        super.onRequestPermissionsResult(
-                requestCode, permissions, grantResults);
 
-        // check condition
-        if (requestCode == 1 && grantResults.length > 0
-                && grantResults[0]
-                == PackageManager.PERMISSION_GRANTED) {
-            // When permission is granted
-            // Call method
-            selectPDF();
-        }
-        else {
-            // When permission is denied
-            // Display toast
-            Toast
-                    .makeText(this,
-                            "Permission Denied",
-                            Toast.LENGTH_SHORT)
-                    .show();
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1111 && resultCode == RESULT_OK && data != null) {
+            // check condition
+            if (data.getData() != null) {
+                try {
+                    uploadFile(data.getData());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
         }
     }
 

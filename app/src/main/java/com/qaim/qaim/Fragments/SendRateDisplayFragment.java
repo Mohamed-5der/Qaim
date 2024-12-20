@@ -1,5 +1,7 @@
 package com.qaim.qaim.Fragments;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -75,7 +77,6 @@ public class SendRateDisplayFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
 
-    ActivityResultLauncher<Intent> resultLauncher;
     private int id;
     Retrofit retrofit ;
     JsonApi jsonApi ;
@@ -151,40 +152,9 @@ public class SendRateDisplayFragment extends Fragment {
         arrayList = new ArrayList<>();
         addCost = v.findViewById(R.id.addCost);
         lblFileName = v.findViewById(R.id.lblFileName);
-        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(
-                            ActivityResult result) {
-                        Intent data = result.getData();
-                        // check condition
-                        if (data != null) {
-
-                            try {
-                                uploadFile( data.getData());
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-
-
-                        }
-                    }
-                });
-
-
-        //cheak permission
-//        if (ContextCompat.checkSelfPermission(getContext() , Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED
-//        ){ActivityCompat.requestPermissions(getActivity() ,
-//                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE , Manifest.permission.READ_EXTERNAL_STORAGE} , 1
-//                    );}
-//        else {
-//
-//        }
-
 
         return v ;
     }
-
 
     public void uploadFile(Uri uri) throws IOException {
         if (uri != null) {
@@ -275,41 +245,28 @@ public class SendRateDisplayFragment extends Fragment {
 
     private void selectPDF()
     {
-        // Initialize intent
-        Intent intent
-                = new Intent(Intent.ACTION_GET_CONTENT);
-        // set type
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/pdf");
-        // Launch intent
-        resultLauncher.launch(intent);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, 1111);
     }
+
     @Override
-    public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults)
-    {
-        super.onRequestPermissionsResult(
-                requestCode, permissions, grantResults);
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1111 && resultCode == RESULT_OK && data != null) {
+            // check condition
+            if (data.getData() != null) {
+                try {
+                    uploadFile(data.getData());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
-        // check condition
-        if (requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // When permission is granted
-            // Call method
-            selectPDF();
-        }
-        else {
-            // When permission is denied
-            // Display toast
-            Toast
-                    .makeText(getActivity(),
-                            "Permission Denied",
-                            Toast.LENGTH_SHORT)
-                    .show();
         }
     }
-
-
-
+    
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -354,53 +311,14 @@ public class SendRateDisplayFragment extends Fragment {
                                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                                 dialog.getWindow().getAttributes().windowAnimations = R.style.ImageDialogAnimation ;
                                 dialog.getWindow().setGravity(Gravity.BOTTOM);
-
                             }
                         });
-
                     }
 
-
-                    openFile.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            if (Build.VERSION.SDK_INT < 23){
-                                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
-
-                                    return;
-                                }
-                            }else {
-                                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
-                                    ActivityCompat.requestPermissions(getActivity() ,new  String [] {Manifest.permission.READ_EXTERNAL_STORAGE} ,1);
-
-                                }else {
-                                    selectPDF();
-                                }
-                            }
-
-//                            if (ContextCompat.checkSelfPermission(
-//                                    getContext(),
-//                                    Manifest.permission
-//                                            .READ_EXTERNAL_STORAGE)
-//                                    != PackageManager
-//                                    .PERMISSION_GRANTED) {
-//                                // When permission is not granted
-//                                // Result permission
-//                                ActivityCompat.requestPermissions(
-//                                        getActivity(),
-//                                        new String[] {
-//                                                Manifest.permission
-//                                                        .READ_EXTERNAL_STORAGE },
-//                                        1);
-//                            }
-//                            else {
-//                                // When permission is granted
-//                                // Create method
-//                                selectPDF();
-//                            }
-                        }
+                    openFile.setOnClickListener(view1 -> {
+                        selectPDF();
                     });
+
                     sendRateOffer.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -418,10 +336,6 @@ public class SendRateDisplayFragment extends Fragment {
 
             }
         });
-
-
-
-
     }
     public void sendRateOfferBtnPressed(int id , String cost , String notes){
         HashMap<String, RequestBody> map = new HashMap<>();
@@ -429,7 +343,6 @@ public class SendRateDisplayFragment extends Fragment {
             map.put("real_estate_id", RequestBody.create(MultipartBody.FORM , "" +id ));
             map.put("cost", RequestBody.create(MultipartBody.FORM , "" +cost ));
             map.put("notes", RequestBody.create(MultipartBody.FORM , "" +notes ));
-
 
             CompanyActivity.dialog.show();
             Call<SendOfferResponse> call = jsonApi.sendOffer(LocaleHelper.getLanguage(getContext()), "Bearer " + CompanyActivity.token ,map , body);

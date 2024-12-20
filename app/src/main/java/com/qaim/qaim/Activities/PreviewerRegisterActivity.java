@@ -34,6 +34,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 
@@ -92,7 +93,6 @@ public class PreviewerRegisterActivity extends BaseActivity {
     TextView lblFileName;
     RelativeLayout addPDF ;
     ImageView image ;
-    ActivityResultLauncher<Intent> resultLauncher;
     private String pdfPath;
     String type ;
     MultipartBody.Part body = null;
@@ -118,24 +118,7 @@ public class PreviewerRegisterActivity extends BaseActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);
-        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(
-                            ActivityResult result) {
-                        Intent data = result.getData();
-                        // check condition
-                        if (data != null) {
-                            try {
-                                uploadFile( data.getData());
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
 
-
-                        }
-                    }
-                });
         ImageButton imageButton = findViewById(R.id.imageBtn);
         imageButton.setOnClickListener(view -> {
             startActivity(new Intent(PreviewerRegisterActivity.this , CreateNewAccountActivity.class));
@@ -146,26 +129,7 @@ public class PreviewerRegisterActivity extends BaseActivity {
         lblFileName = findViewById(R.id.lblFileName);
         image = findViewById(R.id.image);
         addPDF.setOnClickListener(view -> {
-            if (ActivityCompat.checkSelfPermission(
-                    getApplicationContext(),
-                    Manifest.permission
-                            .READ_EXTERNAL_STORAGE)
-                    != PackageManager
-                    .PERMISSION_GRANTED) {
-                // When permission is not granted
-                // Result permission
-                ActivityCompat.requestPermissions(
-                        PreviewerRegisterActivity.this,
-                        new String[] {
-                                Manifest.permission
-                                        .READ_EXTERNAL_STORAGE },
-                        1);
-            }
-            else {
-                // When permission is granted
-                // Create method
-                selectPDF();
-            }
+            selectPDF();
         });
 
         countrySpinner = findViewById(R.id.countrySpinner);
@@ -250,23 +214,18 @@ public class PreviewerRegisterActivity extends BaseActivity {
         Button confirm = findViewById(R.id.confirm);
 
         termsChecker = findViewById(R.id.termsChecker);
-        termsChecker.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (termsChecker.isChecked()){
-                    alert.creatTermsDialog(retrofit , jsonApi , confirm , PreviewerRegisterActivity.this);
-                }else {
-                    confirm.setEnabled(false);
-                    confirm.setBackgroundResource(R.drawable.custom_sign_up_btn_terms);
-                    return;
-                }
+        termsChecker.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (termsChecker.isChecked()){
+                alert.creatTermsDialog(retrofit , jsonApi , confirm , PreviewerRegisterActivity.this);
+            }else {
+                confirm.setEnabled(false);
+                confirm.setBackgroundResource(R.drawable.custom_sign_up_btn_terms);
+                return;
             }
         });
 
         confirm.setOnClickListener(view -> {
-            if (contryCod.isValidFullNumber() == false) {
-                Toast.makeText(getApplicationContext(), R.string.phone_number_incorrect, Toast.LENGTH_SHORT).show();
-            } else if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
+            if (!profliePassword.getText().toString().equals(confirmprofliePassword.getText().toString())) {
                 Toast.makeText(getApplicationContext(),R.string.password_does_not_match, Toast.LENGTH_SHORT).show();
             } else {
                 HashMap<String, RequestBody> map = new HashMap<>();
@@ -419,38 +378,25 @@ public class PreviewerRegisterActivity extends BaseActivity {
     }
     private void selectPDF()
     {
-        // Initialize intent
-        Intent intent
-                = new Intent(Intent.ACTION_GET_CONTENT);
-        // set type
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/pdf");
-        // Launch intent
-        resultLauncher.launch(intent);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, 1111);
     }
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults)
-    {
-        super.onRequestPermissionsResult(
-                requestCode, permissions, grantResults);
 
-        // check condition
-        if (requestCode == 1 && grantResults.length > 0
-                && grantResults[0]
-                == PackageManager.PERMISSION_GRANTED) {
-            // When permission is granted
-            // Call method
-            selectPDF();
-        }
-        else {
-            // When permission is denied
-            // Display toast
-            Toast
-                    .makeText(this,
-                            "Permission Denied",
-                            Toast.LENGTH_SHORT)
-                    .show();
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1111 && resultCode == RESULT_OK && data != null) {
+            // check condition
+            if (data.getData() != null) {
+                try {
+                    uploadFile(data.getData());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
         }
     }
 

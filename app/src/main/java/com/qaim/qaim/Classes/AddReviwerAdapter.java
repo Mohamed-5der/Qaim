@@ -134,44 +134,42 @@ public class AddReviwerAdapter extends RecyclerView.Adapter<AddReviwerAdapter.Vi
                 EditText userName = dialog.findViewById(R.id.profileEditText);
                 EditText password = dialog.findViewById(R.id.passwordEditText);
                 EditText phoneEditText = dialog.findViewById(R.id.phoneEditText);
+                EditText addAdttionalDataEditText = dialog.findViewById(R.id.addAdttionalDataEditText);
                 CountryCodePicker countryCodePicker = dialog.findViewById(R.id.countryCode);
                 countryCodePicker.registerCarrierNumberEditText(phoneEditText);
                 email.setText(reviewer.getEmail());
                 userName.setText(reviewer.getName());
+                phoneEditText.setText(reviewer.getPhone());
+                addAdttionalDataEditText.setText(reviewer.getNotes());
                 Button comnfirm = dialog.findViewById(R.id.signUp);
                 comnfirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (countryCodePicker.isValidFullNumber() == false){
-                            Toast.makeText(email.getContext(), R.string.phone_number_incorrect , Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            CompanyActivity.dialog.show();
-                            Call<UpdateTeamResponse> call = jsonApi.updateTeam(LocaleHelper.getLanguage(activity), "Bearer " + CompanyActivity.token, new TeamUpdateParams(reviewer.getId(),
-                                    String.valueOf(userName.getText()), String.valueOf(email.getText()), String.valueOf(password.getText())
-                                    , "reviewer", countryCodePicker.getSelectedCountryNameCode(), phoneEditText.getText().toString()
-                            ));
-                            call.enqueue(new Callback<UpdateTeamResponse>() {
-                                @Override
-                                public void onResponse(Call<UpdateTeamResponse> call, Response<UpdateTeamResponse> response) {
-                                    CompanyActivity.dialog.dismiss();
-                                    UpdateTeamResponse updateTeamResponse = response.body();
-                                    if (updateTeamResponse.getCode() == 200) {
-                                        dialog.dismiss();
-                                        Toast.makeText(activity.getBaseContext(), updateTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(activity.getBaseContext(), updateTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-
+                        CompanyActivity.dialog.show();
+                        Call<UpdateTeamResponse> call = jsonApi.updateTeam(LocaleHelper.getLanguage(activity), "Bearer " + CompanyActivity.token, new TeamUpdateParams(reviewer.getId(),
+                                String.valueOf(userName.getText()), String.valueOf(email.getText()), String.valueOf(password.getText())
+                                , "reviewer", countryCodePicker.getSelectedCountryNameCode(), phoneEditText.getText().toString(),
+                                addAdttionalDataEditText.getText().toString()
+                        ));
+                        call.enqueue(new Callback<UpdateTeamResponse>() {
+                            @Override
+                            public void onResponse(Call<UpdateTeamResponse> call, Response<UpdateTeamResponse> response) {
+                                CompanyActivity.dialog.dismiss();
+                                UpdateTeamResponse updateTeamResponse = response.body();
+                                if (updateTeamResponse.getCode() == 200) {
+                                    dialog.dismiss();
+                                    Toast.makeText(activity.getBaseContext(), updateTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(activity.getBaseContext(), updateTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
 
-                                @Override
-                                public void onFailure(Call<UpdateTeamResponse> call, Throwable t) {
-                                    Toast.makeText(activity.getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
+                            }
 
+                            @Override
+                            public void onFailure(Call<UpdateTeamResponse> call, Throwable t) {
+                                Toast.makeText(activity.getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
                 dialog.show();

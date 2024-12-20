@@ -13,6 +13,9 @@ public class Reviewer{
 	@SerializedName("name")
 	private String name;
 
+	@SerializedName("phone")
+	private String phone;
+
 	@SerializedName("id")
 	private int id;
 
@@ -94,4 +97,12 @@ public class Reviewer{
 			",token = '" + token + '\'' + 
 			"}";
 		}
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

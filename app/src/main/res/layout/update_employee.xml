@@ -199,6 +199,41 @@
         </LinearLayout>
 
         <!--        // password filed-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/addAddtionalData"
+                android:gravity="right"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:background="@drawable/custom_edittext_field"
+                android:orientation="horizontal"
+                android:layoutDirection="rtl">
+
+
+                <EditText
+                    android:id="@+id/addAdttionalDataEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:background="#00000000" />
+            </LinearLayout>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -212,7 +247,7 @@
                 android:background="@drawable/custom_sign_up_btn"
                 android:id="@+id/signUp"
                 android:textColor="#FFF"
-                android:text="@string/confirm"
+                android:text="@string/save"
                 android:layout_marginBottom="8dp"
                 />
         </LinearLayout>

@@ -17,6 +17,7 @@
     <string name="welcome">Welcome</string>
     <string name="display">Display</string>
     <string name="confirm">Confirm</string>
+    <string name="save">Save</string>
     <string name="accepted">Accepted</string>
     <string name="accept">Accept</string>
     <string name="contactData">Contact information</string>

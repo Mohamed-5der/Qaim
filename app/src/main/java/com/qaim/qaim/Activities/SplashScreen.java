@@ -77,7 +77,8 @@ public class SplashScreen extends BaseActivity {
             if (sign.isEmpty() || !verified) {
                 showLoginDialog();
             } else {
-                startBio();
+//                startBio();
+                checkRedirect();
             }
 
         }, 0);

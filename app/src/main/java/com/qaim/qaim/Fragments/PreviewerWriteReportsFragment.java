@@ -78,7 +78,6 @@ public class PreviewerWriteReportsFragment extends Fragment {
     Button uploadImage;
     LinearLayout uploadFile1;
     TextView lblFileName;
-    ActivityResultLauncher<Intent> resultLauncher;
     MultipartBody.Part body = null;
     private static final int BUFFER_SIZE = 1024 * 2;
     private static final String PDF_DIRECTORY = "/demonuts_upload_gallery";
@@ -173,35 +172,7 @@ public class PreviewerWriteReportsFragment extends Fragment {
             PreviewerBusinessInProgressFragment mainFragment = new PreviewerBusinessInProgressFragment();
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, mainFragment).commit();
         });
-        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(
-                            ActivityResult result) {
-                        Intent data = result.getData();
-                        // check condition
-                        if (data != null) {
-                            // Akl code
-//                            Uri uri = data.getData();
-//                            pdfPath = getFilePathFromURI(uri);
-//
-//                            // When data is not equal to empty
-//                            // Get PDf uri
-////                            Uri sUri = data.getData();
-////                            String sPath = sUri.getPath();
-////                            Toast.makeText(getActivity() , sUri + "" , Toast.LENGTH_SHORT).show();
-////                            Toast.makeText(getActivity() , sPath + "" , Toast.LENGTH_SHORT).show();
 
-                            try {
-                                uploadFile(data.getData());
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-
-
-                        }
-                    }
-                });
         uploadFile1 = v.findViewById(R.id.uploadFile);
         lblFileName = v.findViewById(R.id.lblFileName);
         imageRecycleView = v.findViewById(R.id.imageRecycleView);
@@ -216,25 +187,7 @@ public class PreviewerWriteReportsFragment extends Fragment {
         uploadFile1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(
-                        getActivity(),
-                        Manifest.permission
-                                .READ_EXTERNAL_STORAGE)
-                        != PackageManager
-                        .PERMISSION_GRANTED) {
-                    // When permission is not granted
-                    // Result permission
-                    ActivityCompat.requestPermissions(
-                            getActivity(),
-                            new String[]{
-                                    Manifest.permission
-                                            .READ_EXTERNAL_STORAGE},
-                            1);
-                } else {
-                    // When permission is granted
-                    // Create method
-                    selectPDF();
-                }
+                selectPDF();
             }
         });
 
@@ -818,43 +771,14 @@ public class PreviewerWriteReportsFragment extends Fragment {
         }
         return count;
     }
+
     private void selectPDF()
     {
-        // Initialize intent
-        Intent intent
-                = new Intent(Intent.ACTION_GET_CONTENT);
-        // set type
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/pdf");
-        // Launch intent
-        resultLauncher.launch(intent);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, 1111);
     }
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults)
-    {
-        super.onRequestPermissionsResult(
-                requestCode, permissions, grantResults);
-
-        // check condition
-        if (requestCode == 1 && grantResults.length > 0
-                && grantResults[0]
-                == PackageManager.PERMISSION_GRANTED) {
-            // When permission is granted
-            // Call method
-            selectPDF();
-        }
-        else {
-            // When permission is denied
-            // Display toast
-            Toast
-                    .makeText(getActivity(),
-                            "Permission Denied",
-                            Toast.LENGTH_SHORT)
-                    .show();
-        }
-    }
-
 
     // select images
     public void openGallory(){
@@ -889,8 +813,17 @@ public class PreviewerWriteReportsFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // check condition
-        if (requestCode==100 && resultCode==RESULT_OK && data!=null)
+        if (requestCode == 1111 && resultCode == RESULT_OK && data != null) {
+            // check condition
+            if (data.getData() != null) {
+                try {
+                    uploadFile(data.getData());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+        } else if (requestCode==100 && resultCode==RESULT_OK && data!=null)
         {
             // when result is ok
             // initialize uri

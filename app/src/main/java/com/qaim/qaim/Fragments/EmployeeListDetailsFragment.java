@@ -1,5 +1,7 @@
 package com.qaim.qaim.Fragments;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
@@ -88,7 +90,6 @@ public class EmployeeListDetailsFragment extends Fragment {
     ImageSlider imageSlider ;
     ArrayList<SlideModel> arrayList ;
 
-    ActivityResultLauncher<Intent> resultLauncher;
     private String pdfPath;
     private static final int BUFFER_SIZE = 1024 * 2;
     private static final String PDF_DIRECTORY = "/demonuts_upload_gallery";
@@ -126,27 +127,7 @@ public class EmployeeListDetailsFragment extends Fragment {
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frameLayout , fragment).commit();
         });
-        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(
-                            ActivityResult result) {
-                        Intent data = result.getData();
-                        // check condition
-                        if (data != null) {
-                            // Akl code
-                            Uri uri = data.getData();
-                            pdfPath = getFilePathFromURI(uri);
 
-                            // When data is not equal to empty
-                            // Get PDf uri
-//                            Uri sUri = data.getData();
-//                            String sPath = sUri.getPath();
-//                            Toast.makeText(getActivity() , sUri + "" , Toast.LENGTH_SHORT).show();
-//                            Toast.makeText(getActivity() , sPath + "" , Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://qaimha.com")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -229,26 +210,7 @@ public class EmployeeListDetailsFragment extends Fragment {
         openFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(
-                        getActivity(),
-                        Manifest.permission
-                                .READ_EXTERNAL_STORAGE)
-                        != PackageManager
-                        .PERMISSION_GRANTED) {
-                    // When permission is not granted
-                    // Result permission
-                    ActivityCompat.requestPermissions(
-                            getActivity(),
-                            new String[] {
-                                    Manifest.permission
-                                            .READ_EXTERNAL_STORAGE },
-                            1);
-                }
-                else {
-                    // When permission is granted
-                    // Create method
-                    selectPDF();
-                }
+                selectPDF();
             }
         });
         addNotes.setOnClickListener(new View.OnClickListener() {
@@ -385,42 +347,23 @@ public class EmployeeListDetailsFragment extends Fragment {
         return mRequestBodyForPDF;
     }
 
-
-
     private void selectPDF()
     {
-        // Initialize intent
-        Intent intent
-                = new Intent(Intent.ACTION_GET_CONTENT);
-        // set type
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/pdf");
-        // Launch intent
-        resultLauncher.launch(intent);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, 1111);
     }
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults)
-    {
-        super.onRequestPermissionsResult(
-                requestCode, permissions, grantResults);
 
-        // check condition
-        if (requestCode == 1 && grantResults.length > 0
-                && grantResults[0]
-                == PackageManager.PERMISSION_GRANTED) {
-            // When permission is granted
-            // Call method
-            selectPDF();
-        }
-        else {
-            // When permission is denied
-            // Display toast
-            Toast
-                    .makeText(getActivity(),
-                            "Permission Denied",
-                            Toast.LENGTH_SHORT)
-                    .show();
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1111 && resultCode == RESULT_OK && data != null) {
+            // check condition
+            if (data.getData() != null) {
+                Uri uri = data.getData();
+                pdfPath = getFilePathFromURI(uri);
+            }
         }
     }
 }

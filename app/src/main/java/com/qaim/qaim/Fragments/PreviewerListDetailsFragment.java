@@ -1,5 +1,7 @@
 package com.qaim.qaim.Fragments;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -262,31 +264,10 @@ public class PreviewerListDetailsFragment extends Fragment implements OnMapReady
             }
         });
 
-
-
         openFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(
-                        getActivity(),
-                        Manifest.permission
-                                .READ_EXTERNAL_STORAGE)
-                        != PackageManager
-                        .PERMISSION_GRANTED) {
-                    // When permission is not granted
-                    // Result permission
-                    ActivityCompat.requestPermissions(
-                            getActivity(),
-                            new String[] {
-                                    Manifest.permission
-                                            .READ_EXTERNAL_STORAGE },
-                            1);
-                }
-                else {
-                    // When permission is granted
-                    // Create method
-                    selectPDF();
-                }
+                selectPDF();
             }
         });
 
@@ -299,11 +280,7 @@ public class PreviewerListDetailsFragment extends Fragment implements OnMapReady
                 );
             }
         });
-
-
     }
-
-
 
     public void sendRateOfferBtnPressed(int id , String notes){
         HashMap<String, RequestBody> map = new HashMap<>();
@@ -431,38 +408,25 @@ public class PreviewerListDetailsFragment extends Fragment implements OnMapReady
 
     private void selectPDF()
     {
-        // Initialize intent
-        Intent intent
-                = new Intent(Intent.ACTION_GET_CONTENT);
-        // set type
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/pdf");
-        // Launch intent
-        resultLauncher.launch(intent);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, 1111);
     }
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults)
-    {
-        super.onRequestPermissionsResult(
-                requestCode, permissions, grantResults);
 
-        // check condition
-        if (requestCode == 1 && grantResults.length > 0
-                && grantResults[0]
-                == PackageManager.PERMISSION_GRANTED) {
-            // When permission is granted
-            // Call method
-            selectPDF();
-        }
-        else {
-            // When permission is denied
-            // Display toast
-            Toast
-                    .makeText(getActivity(),
-                            "Permission Denied",
-                            Toast.LENGTH_SHORT)
-                    .show();
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1111 && resultCode == RESULT_OK && data != null) {
+            // check condition
+            if (data.getData() != null) {
+                try {
+                    uploadFile(data.getData());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
         }
     }
 }
