@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,7 +95,7 @@ public class EditPreviewerProfileFragment extends Fragment {
     String imageURL ;
     Bitmap bitmap ;
     PreviewerProfileResponse profileResponse;
-
+    Boolean isPasswordVisible = false;
 
     public EditPreviewerProfileFragment() {
         // Required empty public constructor
@@ -125,12 +126,9 @@ public class EditPreviewerProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_edit_previewer_profile, container, false);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PreviewerBusinessInProgressFragment mainFragment = new PreviewerBusinessInProgressFragment ();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            PreviewerBusinessInProgressFragment mainFragment = new PreviewerBusinessInProgressFragment ();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
         });
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -157,19 +155,26 @@ public class EditPreviewerProfileFragment extends Fragment {
         region2Spinner = v.findViewById(R.id.Area2spinner);
         region3Spinner= v.findViewById(R.id.Area3spinner);
         confirm= v.findViewById(R.id.confirm);
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (proflieName.isEnabled()){
-                    onEditProfileCallAPI();
-
-                }else {
-                    enable();
-
-                }
+        confirm.setOnClickListener(view -> {
+            if (proflieName.isEnabled()){
+                onEditProfileCallAPI();
+            }else {
+                enable();
             }
         });
         contryCod = v.findViewById(R.id.countryCode);
+
+        ImageView showHidePassword = v.findViewById(R.id.showHidePassword);
+        showHidePassword.setOnClickListener(v1 -> {
+            if (isPasswordVisible) {
+                profliePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            } else {
+                profliePassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }
+            profliePassword.setSelection(profliePassword.getText().length()); // Keep cursor at the end
+            isPasswordVisible = !isPasswordVisible;
+        });
+
         callProffileAPI();
         return v;
     }

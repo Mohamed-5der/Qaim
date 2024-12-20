@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,7 @@ public class EmployeeProfileFragment extends Fragment {
     ImageView imageView ;
     String imageURL ;
     Bitmap bitmap ;
+    Boolean isPasswordVisible = false;
 
     public EmployeeProfileFragment() {
         // Required empty public constructor
@@ -100,12 +102,9 @@ public class EmployeeProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_employee_profile, container, false);
         ImageButton imageButton = v.findViewById(R.id.imageBtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EmployeeMainFragment mainFragment = new EmployeeMainFragment ();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
-            }
+        imageButton.setOnClickListener(view -> {
+            EmployeeMainFragment mainFragment = new EmployeeMainFragment ();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout , mainFragment).commit();
         });
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -131,6 +130,18 @@ public class EmployeeProfileFragment extends Fragment {
         addPassword.setEnabled(false);
         addEmail.setEnabled(false);
         imageView.setEnabled(false);
+
+        ImageView showHidePassword = v.findViewById(R.id.showHidePassword);
+        showHidePassword.setOnClickListener(v1 -> {
+            if (isPasswordVisible) {
+                addPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            } else {
+                addPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }
+            addPassword.setSelection(addPassword.getText().length()); // Keep cursor at the end
+            isPasswordVisible = !isPasswordVisible;
+        });
+
         return v ;
     }
 

@@ -1,12 +1,14 @@
 package com.qaim.qaim.Fragments;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,11 +38,11 @@ public class AddCheakerFragment extends Fragment {
     String type ;
     Retrofit retrofit ;
     JsonApi jsonApi ;
-    String nameV  , emailV , passwordV ;
+    Boolean isPasswordVisible = false;
+
     public AddCheakerFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,6 +73,16 @@ public class AddCheakerFragment extends Fragment {
         addBtn = v.findViewById(R.id.confirm);
         phoneEditText = v.findViewById(R.id.phoneEditText);
         countryCode = v.findViewById(R.id.countryCode);
+        ImageView showHidePassword = v.findViewById(R.id.showHidePassword);
+        showHidePassword.setOnClickListener(v1 -> {
+            if (isPasswordVisible) {
+                password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            } else {
+                password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }
+            password.setSelection(password.getText().length()); // Keep cursor at the end
+            isPasswordVisible = !isPasswordVisible;
+        });
         countryCode.registerCarrierNumberEditText(phoneEditText);
         return v ;
     }

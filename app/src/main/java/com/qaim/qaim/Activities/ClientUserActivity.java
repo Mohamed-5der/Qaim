@@ -8,6 +8,7 @@ import static com.qaim.qaim.Activities.SplashScreen.tokenEditor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -53,6 +54,12 @@ public class ClientUserActivity extends BaseActivity {
     int cityId ;
     public static PregressDialog dialog;
     Alert alert ;
+
+    EditText profliePassword;
+    EditText confirmprofliePassword;
+    Boolean isPasswordVisible = false;
+    Boolean isConfirmPasswordVisible = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,8 +105,8 @@ public class ClientUserActivity extends BaseActivity {
         });
 
 //        EditText proflieLicense = findViewById(R.id.licenceEditText);
-        EditText profliePassword = findViewById(R.id.passwordEditText);
-        EditText confirmprofliePassword = findViewById(R.id.confirmPasswordEditText);
+        profliePassword = findViewById(R.id.passwordEditText);
+        confirmprofliePassword = findViewById(R.id.confirmPasswordEditText);
         Button singUp = findViewById(R.id.signUp);
 
         termsChecker = findViewById(R.id.termsChecker);
@@ -237,5 +244,25 @@ public class ClientUserActivity extends BaseActivity {
                 Toast.makeText(getApplicationContext() , t.getMessage() , Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void showHidePassword(View view) {
+        if (isPasswordVisible) {
+            profliePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        } else {
+            profliePassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        }
+        profliePassword.setSelection(profliePassword.getText().length()); // Keep cursor at the end
+        isPasswordVisible = !isPasswordVisible;
+    }
+
+    public void showHideConfirmPassword(View view) {
+        if (isConfirmPasswordVisible) {
+            confirmprofliePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        } else {
+            confirmprofliePassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        }
+        confirmprofliePassword.setSelection(confirmprofliePassword.getText().length()); // Keep cursor at the end
+        isConfirmPasswordVisible = !isConfirmPasswordVisible;
     }
 }

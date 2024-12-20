@@ -292,17 +292,12 @@
                         android:layout_height="match_parent"
                         android:background="#DDD"
                         />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="8dp"
-                        android:gravity="center_vertical"
-                        android:textDirection="rtl"
-                        >
+
                         <EditText
                             android:id="@+id/EditProfilePasswordEditText"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:inputType="textPassword"
                             android:padding="8dp"
                             android:textSize="16sp"
@@ -310,16 +305,14 @@
                             android:textDirection="rtl"
                             android:layout_marginLeft="16dp"
                             />
-                        <ImageButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/fi_sr_eye_crossed"
-                            android:background="#00000000"
-                            android:id="@+id/showPassword"
-                            />
-                    </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/showHidePassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/fi_sr_eye_crossed"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="12dp"
+                        android:clickable="true"/>
                 </LinearLayout>
             </LinearLayout>
 

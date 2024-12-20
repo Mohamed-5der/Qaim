@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -56,6 +57,8 @@ public class LoginActivity extends BaseActivity {
     Retrofit retrofit ;
     JsonApi jsonApi ;
     public static PregressDialog dialog;
+    EditText password;
+    Boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +124,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
         EditText email = findViewById(R.id.emailEditText);
-        EditText password = findViewById(R.id.passwordEditText);
+        password = findViewById(R.id.passwordEditText);
         Button login =  findViewById(R.id.signUp);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -315,5 +318,15 @@ public class LoginActivity extends BaseActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finishAffinity(); // Finish current activity
+    }
+
+    public void showHidePassword(View view) {
+        if (isPasswordVisible) {
+            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        } else {
+            password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        }
+        password.setSelection(password.getText().length()); // Keep cursor at the end
+        isPasswordVisible = !isPasswordVisible;
     }
 }

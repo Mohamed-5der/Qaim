@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,6 +84,7 @@ public class EditProfileFragment extends Fragment {
     String imageURL ;
     Bitmap bitmap ;
     CustomCountryAdapter countryAdapter ;
+    Boolean isPasswordVisible = false;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -147,6 +149,17 @@ public class EditProfileFragment extends Fragment {
         countrySpinner = v.findViewById(R.id.countrySpinner);
         citySpinner = v.findViewById(R.id.citySpinner);
         editBtn = v.findViewById(R.id.confirm);
+
+        ImageView showHidePassword = v.findViewById(R.id.showHidePassword);
+        showHidePassword.setOnClickListener(v1 -> {
+            if (isPasswordVisible) {
+                addPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            } else {
+                addPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }
+            addPassword.setSelection(addPassword.getText().length()); // Keep cursor at the end
+            isPasswordVisible = !isPasswordVisible;
+        });
 
         return v;
     }

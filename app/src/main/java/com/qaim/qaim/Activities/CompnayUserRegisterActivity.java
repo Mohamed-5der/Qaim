@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -99,6 +100,10 @@ public class CompnayUserRegisterActivity extends BaseActivity {
     MultipartBody.Part body = null;
     private static final int BUFFER_SIZE = 1024 * 2;
     private static final String PDF_DIRECTORY = "/demonuts_upload_gallery";
+
+    Boolean isPasswordVisible = false;
+    Boolean isConfirmPasswordVisible = false;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -528,4 +533,23 @@ public class CompnayUserRegisterActivity extends BaseActivity {
         });
     }
 
+    public void showHidePassword(View view) {
+        if (isPasswordVisible) {
+            profliePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        } else {
+            profliePassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        }
+        profliePassword.setSelection(profliePassword.getText().length()); // Keep cursor at the end
+        isPasswordVisible = !isPasswordVisible;
+    }
+
+    public void showHideConfirmPassword(View view) {
+        if (isConfirmPasswordVisible) {
+            confirmprofliePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        } else {
+            confirmprofliePassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        }
+        confirmprofliePassword.setSelection(confirmprofliePassword.getText().length()); // Keep cursor at the end
+        isConfirmPasswordVisible = !isConfirmPasswordVisible;
+    }
 }

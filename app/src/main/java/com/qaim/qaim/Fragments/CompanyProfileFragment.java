@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +80,7 @@ public class CompanyProfileFragment extends Fragment {
     ImageView imageView ;
     String imageURL ;
     Bitmap bitmap ;
-
+    Boolean isPasswordVisible = false;
     private String mParam1;
     private String mParam2;
 
@@ -147,6 +148,17 @@ public class CompanyProfileFragment extends Fragment {
         imageView.setEnabled(false);
         citySpinner = v.findViewById(R.id.citySpinner);
         countrySpinner = v.findViewById(R.id.countrySpinner);
+
+        ImageView showHidePassword = v.findViewById(R.id.showHidePassword);
+        showHidePassword.setOnClickListener(v1 -> {
+            if (isPasswordVisible) {
+                addPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            } else {
+                addPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }
+            addPassword.setSelection(addPassword.getText().length()); // Keep cursor at the end
+            isPasswordVisible = !isPasswordVisible;
+        });
 
         citySpinner.setAdapter(cityAdapter);
         citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -484,5 +496,4 @@ public class CompanyProfileFragment extends Fragment {
             }
         });
     }
-
 }
