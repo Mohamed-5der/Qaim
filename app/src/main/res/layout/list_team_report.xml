@@ -10,7 +10,7 @@
         android:textSize="16sp"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
-        android:textDirection="rtl"
+
         android:text="@string/teamReports"
         />
     <RelativeLayout
@@ -56,7 +56,7 @@
                 android:textSize="16sp"
                 android:textColor="#313131"
                 android:text="@string/tittle"
-                android:textDirection="rtl"
+
                 android:maxLines="1"
                 />
             <TextView
@@ -67,7 +67,7 @@
                 android:textSize="12dp"
                 android:textColor="#585858"
                 android:text="@string/description"
-                android:textDirection="rtl"
+
                 android:maxLines="1"
                 />
 

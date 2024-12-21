@@ -131,12 +131,12 @@
     <string name="city">City</string>
     <string name="additionalDetalisForRealStateAdreess">Additional details about property address</string>
     <string name="chooseTeam">Choose team</string>
-    <string name="writeRates">Write evaluation</string>
+    <string name="writeRates">Write the Rating</string>
     <string name="sendFile">Send file</string>
     <string name="endProject">End project</string>
     <string name="draft">Company profile / Attachments</string>
     <string name="sendRateDisplay">Send evaluation offer</string>
-    <string name="choosePreviewer">Choose property inspector</string>
+    <string name="choosePreviewer">Choose Previewer</string>
     <string name="chooseArtist">Choose artist</string>
     <string name="chooseChecker">Choose reviewer</string>
     <string name="setTeam">Assign team</string>
@@ -151,7 +151,7 @@
     <string name="Addreviwer">Add reviewer</string>
     <string name="rate">Evaluation</string>
     <string name="teamReports">Team reports</string>
-    <string name="previewerReport">Property inspector report</string>
+    <string name="previewerReport">Previewer report</string>
     <string name="show">Show</string>
     <string name="artistReport">Artist report</string>
     <string name="download">Download</string>
@@ -209,8 +209,8 @@
     <string name="ratingReports">Evaluation reports</string>
     <string name="printRating">Print evaluation</string>
     <string name="companyRate">Company rating</string>
-    <string name="previewerRate">Property inspector rating</string>
-    <string name="addpreviewer">Add property inspector</string>
+    <string name="previewerRate">Previewer rating</string>
+    <string name="addpreviewer">Add Previewer</string>
     <string name="choose">Choose</string>
     <string name="showProfile">View account</string>
     <string name="showReport">View report</string>
@@ -236,7 +236,7 @@
     <string name="conflict_interest">Disclosure in case of conflict of interest</string>
     <string name="measurement">Measurement</string>
     <string name="preview">Preview</string>
-    <string name="previewerNotes">General notes of the property inspector</string>
+    <string name="previewerNotes">General notes of the Previewer</string>
     <string name="reportCurrency">Valuation currency</string>
     <string name="own_assumptions">Own assumptions</string>
     <string name="reliable_data">Reliable data used</string>
@@ -266,7 +266,7 @@
     <string name="licenceNum">Tax number</string>
     <string name="allRealstate">All properties</string>
     <string name="add_location">Add location</string>
-    <string name="previewer_notes">Property inspector notes</string>
+    <string name="previewer_notes">Previewer notes</string>
     <string name="company_notes">Company notes</string>
     <string name="send_feed">Send complaint</string>
     <string name="send_offer_note">If "Company Information" is not added, they can go to the profile</string>
@@ -293,7 +293,7 @@
     <string name="Then_text_0">"Then text 0"</string>
     <string name="some_text1">Some texts 1\n</string>
     <string name="main_text">Main text</string>
-    <string name="View_the_inspection_report">View the property inspector report</string>
+    <string name="View_the_inspection_report">View the Previewer report</string>
     <string name="who_We_Are_Qaim">Who are we "Qaim"</string>
     <string name="Who_We_Are">Who we are</string>
     <string name="Our_Services">Our services</string>
@@ -307,7 +307,7 @@
     <string name="water">Water</string>
     <string name="_50">50</string>
     <string name="Choose_a_painter">Choose a painter</string>
-    <string name="Choose_a_viewer">Choose a property inspector</string>
+    <string name="Choose_a_viewer">Choose a Previewer</string>
     <string name="company_">Company</string>
     <string name="Previewer">Previewer</string>
     <string name="email">Email:</string>
@@ -347,7 +347,7 @@
     <string name="Company">Company</string>
     <string name="cost_">Cost: </string>
     <string name="evaluation_company_name">Evaluation company name: </string>
-    <string name="Property_Inspector_Report">Property Inspector Report</string>
+    <string name="Property_Inspector_Report">Previewer Report</string>
     <string name="permission_denied">Permission Denied</string>
     <string name="enter_password">Enter password</string>
     <string name="the_offer_is_rejected">The offer is rejected</string>

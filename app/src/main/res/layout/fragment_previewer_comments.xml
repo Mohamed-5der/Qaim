@@ -78,7 +78,7 @@
                 android:id="@+id/addComment"
                 android:layout_toRightOf="@+id/sendFile"
                 android:layout_centerVertical="true"
-                android:textDirection="rtl"
+
                 android:backgroundTint="#00000000"
                 />
 

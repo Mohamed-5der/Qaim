@@ -33,6 +33,7 @@ import androidx.fragment.app.Fragment;
 import com.hbb20.CountryCodePicker;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.qaim.qaim.Activities.EmployeeActivity;
+import com.qaim.qaim.Activities.SplashScreen;
 import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.Models.EmployeeProfile.Employee;
 import com.qaim.qaim.Models.EmployeeProfile.EmpolyeeProfileResponse;
@@ -46,6 +47,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
+import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -70,7 +72,6 @@ public class EmployeeProfileFragment extends Fragment {
     CountryCodePicker countryCodePicker ;
     Uri fileUri;
     ImageView imageView ;
-    String imageURL ;
     Bitmap bitmap ;
     Boolean isPasswordVisible = false;
 
@@ -142,7 +143,22 @@ public class EmployeeProfileFragment extends Fragment {
             isPasswordVisible = !isPasswordVisible;
         });
 
+        v.findViewById(R.id.changeLanguage).setOnClickListener(v1 -> {
+            if (LocaleHelper.getLanguage(getActivity()).equals("en")) {
+                LocaleHelper.setLocale(getActivity(), "ar");
+            } else {
+                LocaleHelper.setLocale(getActivity(), "en");
+            }
+            restartApp(); // Restart activity to apply language changes
+        });
         return v ;
+    }
+
+    private void restartApp() {
+        Intent intent = new Intent(getActivity(), SplashScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().finishAffinity(); // Finish current activity
     }
 
     @Override
@@ -174,79 +190,71 @@ public class EmployeeProfileFragment extends Fragment {
                 Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
             }
         });
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGallory();
-            }
-        });
-        editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (addName.isEnabled()){
+        imageView.setOnClickListener(view1 -> selectImage());
+        editBtn.setOnClickListener(view2 -> {
+            if (addName.isEnabled()){
 //                    File file = new File(imageURL);
 //                    RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
 //                    MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
 //                    RequestBody model = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
 //
 //                    SendImage sendImage = new SendImage(body , model) ;
-                    MultipartBody.Part body = null;
-                    String name = String.valueOf(addName.getText());
-                    String phone = String.valueOf(addPhone.getText());
-                    String email = String.valueOf(addEmail.getText());
-                    String password = String.valueOf(addPassword.getText());
+                MultipartBody.Part body = null;
+                String name = String.valueOf(addName.getText());
+                String phone = String.valueOf(addPhone.getText());
+                String email = String.valueOf(addEmail.getText());
+                String password = String.valueOf(addPassword.getText());
 
 //                    if (name.isEmpty() || phone.isEmpty() || password.isEmpty() || email.isEmpty()  || countryCodePicker.isSelected()){
 //                        Toast.makeText(getContext()  , "ادخل جميع الحقول ", Toast.LENGTH_SHORT ).show();
 //                    }
 //                    else {
-                    if (fileUri != null && getPath(fileUri) != null) {
-                        File file = new File(getPath(fileUri));
-                        RequestBody requestFile =
-                                RequestBody.create(
-                                        MediaType.parse(getContext().getContentResolver().getType(fileUri)),
-                                        file
+                if (fileUri != null && getPath(fileUri) != null) {
+                    File file = new File(getPath(fileUri));
+                    RequestBody requestFile =
+                            RequestBody.create(
+                                    MediaType.parse(getContext().getContentResolver().getType(fileUri)),
+                                    file
 
-                                );
-                        body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-                    }
-                    if (password.isEmpty()){
-                        Toast.makeText(getContext() , R.string.enter_password ,Toast.LENGTH_SHORT).show();
-                    }else {
-                        HashMap<String, RequestBody> map = new HashMap<>();
-                        map.put("name", RequestBody.create(MultipartBody.FORM , addName.getText().toString()));
-                        map.put("phone", RequestBody.create(MultipartBody.FORM , addPhone.getText().toString()));
-                        map.put("email", RequestBody.create(MultipartBody.FORM , addEmail.getText().toString()));
-                        map.put("password", RequestBody.create(MultipartBody.FORM , addPassword.getText().toString()));
-                        map.put("country_code", RequestBody.create(MultipartBody.FORM , countryCodePicker.getSelectedCountryNameCode()));
-
-                        EmployeeActivity.dialog.show();
-                        Call<UpdateEmpolyeeProfileResponse> call = jsonApi.updateEmployeeProfile(LocaleHelper.getLanguage(getContext()), "Bearer "+ EmployeeActivity.token ,
-                                map, body );
-                        call.enqueue(new Callback<UpdateEmpolyeeProfileResponse>() {
-                            @Override
-                            public void onResponse(Call<UpdateEmpolyeeProfileResponse> call, Response<UpdateEmpolyeeProfileResponse> response) {
-                                EmployeeActivity.dialog.dismiss();
-                                UpdateEmpolyeeProfileResponse response1 = response.body();
-                                Toast.makeText(getContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
-                                if (response.code() == 200) {
-                                    setEnabled(false);
-                                    Intent i = new Intent(getContext() , EmployeeActivity.class);
-                                    startActivity(i);
-//                                    Toast.makeText(getContext() , response1.getMessage() , Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            @Override
-                            public void onFailure(Call<UpdateEmpolyeeProfileResponse> call, Throwable t) {
-
-                            }
-                        });
-                    }
-                } else {
-                    setEnabled(true);
+                            );
+                    body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
                 }
+                if (password.isEmpty()){
+                    Toast.makeText(getContext() , R.string.enter_password ,Toast.LENGTH_SHORT).show();
+                }else {
+                    HashMap<String, RequestBody> map = new HashMap<>();
+                    map.put("name", RequestBody.create(MultipartBody.FORM , addName.getText().toString()));
+                    map.put("phone", RequestBody.create(MultipartBody.FORM , addPhone.getText().toString()));
+                    map.put("email", RequestBody.create(MultipartBody.FORM , addEmail.getText().toString()));
+                    map.put("password", RequestBody.create(MultipartBody.FORM , addPassword.getText().toString()));
+                    map.put("country_code", RequestBody.create(MultipartBody.FORM , countryCodePicker.getSelectedCountryNameCode()));
 
+                    EmployeeActivity.dialog.show();
+                    Call<UpdateEmpolyeeProfileResponse> call1 = jsonApi.updateEmployeeProfile(LocaleHelper.getLanguage(getContext()), "Bearer "+ EmployeeActivity.token ,
+                            map, body );
+                    call1.enqueue(new Callback<UpdateEmpolyeeProfileResponse>() {
+                        @Override
+                        public void onResponse(Call<UpdateEmpolyeeProfileResponse> call1, Response<UpdateEmpolyeeProfileResponse> response) {
+                            EmployeeActivity.dialog.dismiss();
+                            UpdateEmpolyeeProfileResponse response1 = response.body();
+                            Toast.makeText(getContext(), response1.getMessage(), Toast.LENGTH_SHORT).show();
+                            if (response.code() == 200) {
+                                setEnabled(false);
+                                Intent i = new Intent(getContext() , EmployeeActivity.class);
+                                startActivity(i);
+//                                    Toast.makeText(getContext() , response1.getMessage() , Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<UpdateEmpolyeeProfileResponse> call1, Throwable t) {
+
+                        }
+                    });
+                }
+            } else {
+                setEnabled(true);
             }
+
         });
 
     }
@@ -263,90 +271,25 @@ public class EmployeeProfileFragment extends Fragment {
         imageView.setEnabled(isEnabled);
     }
 
-    public void openGallory(){
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
-        {
-            // when permission is nor granted
-            // request permission
-            ActivityCompat.requestPermissions(getActivity()
-                    , new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
-
-        }
-        else
-        {
-            // when permission
-            // is granted
-            // create method
-            selectImage();
-        }
-
-    }
     private void selectImage() {
-        // clear previous data
-        imageView.setImageBitmap(null);
-        // Initialize intent
-        Intent intent=new Intent(Intent.ACTION_PICK);
-        // set type
-        intent.setType("image/*");
-        // start activity result
-        startActivityForResult(Intent.createChooser(intent,getString(R.string.select_image)),100);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull  String[] permissions, @NonNull  int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        // check condition
-        if (requestCode==100 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
-        {
-            // when permission
-            // is granted
-            // call method
-            selectImage();
-        }
-        else
-        {
-            // when permission is denied
-            Toast.makeText(getContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(getActivity(), ImageSelectActivity.class);
+        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CROP, true);//default is false
+        startActivityForResult(intent, 1213);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check condition
-        if (requestCode==100 && resultCode==RESULT_OK && data!=null)
-        {
-            // when result is ok
-            // initialize uri
-            Uri uri=data.getData();
-            // Initialize bitmap
-            try {
-                fileUri = uri;
-                bitmap= MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),uri);
-                Toast.makeText(getContext() , bitmap + "" , Toast.LENGTH_LONG).show();
-                // initialize byte stream
-                ByteArrayOutputStream stream=new ByteArrayOutputStream();
-                // compress Bitmap
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-                // Initialize byte array
-                byte[] bytes=stream.toByteArray();
-                // get base64 encoded string
-                imageURL= Base64.encodeToString(bytes,Base64.DEFAULT);
-                // set encoded text on textview
-                bytes=Base64.decode(imageURL,Base64.DEFAULT);
-                // Initialize bitmap
-                bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                // set bitmap on imageView
-                imageView.setImageBitmap(bitmap);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (requestCode==1213 && resultCode==RESULT_OK && data!=null) {
+            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+            bitmap = BitmapFactory.decodeFile(filePath);
+            fileUri = Uri.fromFile(new File(filePath));
+            imageView.setImageBitmap(bitmap);
         }
-//        MultipartBody.Part body ;
-//        RequestBody model ;
     }
     @NonNull
     private MultipartBody.Part prepareFilePart(String partName, Uri fileUri) {

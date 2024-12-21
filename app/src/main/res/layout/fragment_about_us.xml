@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Who_We_Are"
                 android:textSize="20sp"
-                android:textDirection="rtl"
+
                 android:textStyle="bold"
                 android:textColor="#303030"
                 android:layout_below="@id/imageCard"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Who_We_Are"
                 android:textSize="18sp"
-                android:textDirection="rtl"
+
                 android:textColor="#525252"
                 android:layout_below="@id/whoUs"
                 android:layout_marginTop="8dp"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Our_Services"
                 android:textSize="20sp"
-                android:textDirection="rtl"
+
                 android:textStyle="bold"
                 android:textColor="#303030"
                 android:layout_below="@id/whoUsTxt"
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Our_Services"
                 android:textSize="18sp"
-                android:textDirection="rtl"
+
                 android:textColor="#525252"
                 android:layout_below="@id/service"
                 android:layout_marginTop="8dp"

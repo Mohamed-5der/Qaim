@@ -28,7 +28,7 @@
                 />
 
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_text_view_status"
                 android:layout_alignParentTop="true"
@@ -65,7 +65,7 @@
            android:textColor="#000"
            android:textSize="20sp"
            android:text="@string/name"
-           android:textDirection="rtl"
+
            android:maxLines="1"
            android:paddingRight="8dp"
            android:paddingLeft="8dp"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000"
             android:textSize="16sp"
-            android:textDirection="rtl"
+
             android:text="@string/description"
             android:layout_marginBottom="8dp"
             android:maxLines="2"

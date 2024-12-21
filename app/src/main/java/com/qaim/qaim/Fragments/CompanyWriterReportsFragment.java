@@ -65,6 +65,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -136,7 +137,6 @@ public class CompanyWriterReportsFragment extends Fragment {
 
     List<Uri> fileUris = new ArrayList<>();
     ImageView imageView ;
-    List<String> imageURLs = new ArrayList<>();
     List<Bitmap> bitmaps = new ArrayList<>();
     RecyclerView imageRecycleView ;
     ImageAdapter imageAdapter ;
@@ -237,42 +237,28 @@ public class CompanyWriterReportsFragment extends Fragment {
 
         imageRecycleView = v.findViewById(R.id.imageRecycleView);
         addEstatePhoto = v.findViewById(R.id.addEstatePhoto);
-        addEstatePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGallory();
-            }
-        });
+        addEstatePhoto.setOnClickListener(view -> selectImage());
 
+        ratingDataBtn.setOnClickListener(view -> {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
 
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    // on below line we are passing context.
+                    getActivity(),
+                    (view1, year1, monthOfYear, dayOfMonth) -> {
+                        // on below line we are setting date to our text view.
+                        rateDate = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year1;
+                        ratingDataBtn.setText(rateDate + "");
 
-        ratingDataBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
+                    },
+                    // on below line we are passing year,
+                    // month and day for selected date in our date picker.
+                    year, month, day);
+            datePickerDialog.show();
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
-                        getActivity(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // on below line we are setting date to our text view.
-                                rateDate = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
-                                ratingDataBtn.setText(rateDate + "");
-
-                            }
-                        },
-                        // on below line we are passing year,
-                        // month and day for selected date in our date picker.
-                        year, month, day);
-                datePickerDialog.show();
-
-            }
         });
         dateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -778,38 +764,15 @@ public class CompanyWriterReportsFragment extends Fragment {
 //        });
 //    }
 
-
-
-
-    public void openGallory(){
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
-        {
-            // when permission is nor granted
-            // request permission
-            ActivityCompat.requestPermissions(getActivity()
-                    , new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
-
-        }
-        else
-        {
-            // when permission
-            // is granted
-            // create method
-            selectImage();
-        }
-
-    }
     private void selectImage() {
-        // clear previous data
-//        imageView.setImageBitmap(null);
-        // Initialize intent
-        Intent intent=new Intent(Intent.ACTION_PICK);
-        // set type
-        intent.setType("image/*");
-        // start activity result
-        startActivityForResult(Intent.createChooser(intent,getString(R.string.select_image)),100);
+        Intent intent = new Intent(getActivity(), ImageSelectActivity.class);
+        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CROP, true);//default is false
+        startActivityForResult(intent, 1213);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -822,49 +785,17 @@ public class CompanyWriterReportsFragment extends Fragment {
                     throw new RuntimeException(e);
                 }
             }
-        } else if (requestCode==100 && resultCode==RESULT_OK && data!=null)
-        {
-            // when result is ok
-            // initialize uri
-            Uri uri=data.getData();
-            // Initialize bitmap
-            try {
-                fileUris.add(uri);// = uri;
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),uri);
-                Toast.makeText(getContext() , bitmap + "" , Toast.LENGTH_LONG).show();
-                // initialize byte stream
-                ByteArrayOutputStream stream=new ByteArrayOutputStream();
-                // compress Bitmap
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-                // Initialize byte array
-                byte[] bytes=stream.toByteArray();
-                // get base64 encoded string
-                String imageURL= Base64.encodeToString(bytes,Base64.DEFAULT);
-                // set encoded text on textview
-                bytes=Base64.decode(imageURL,Base64.DEFAULT);
-                // Initialize bitmap
-                bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                // set bitmap on imageView
-//                .setImageBitmap(bitmap);
-//                imageView
-                bitmaps.add(bitmap);
-
-                imageURLs.add(imageURL);
-                imageAdapter = new ImageAdapter(bitmaps);
-                LinearLayoutManager lm = new LinearLayoutManager(getContext() ,LinearLayoutManager.HORIZONTAL , true);
-                imageRecycleView.setLayoutManager(lm);
-                imageRecycleView.setHasFixedSize(true);
-                imageRecycleView.setAdapter(imageAdapter);
-//                imageAdapter.notifyDataSetChanged();
-
-                // reload
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } else if (requestCode==1213 && resultCode==RESULT_OK && data!=null) {
+            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+            fileUris.add(Uri.fromFile(new File(filePath)));
+            bitmaps.add(selectedImage);
+            imageAdapter = new ImageAdapter(bitmaps);
+            LinearLayoutManager lm = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true);
+            imageRecycleView.setLayoutManager(lm);
+            imageRecycleView.setHasFixedSize(true);
+            imageRecycleView.setAdapter(imageAdapter);
         }
-//        MultipartBody.Part body ;
-//        RequestBody model ;
     }
 
     public String getPath(Uri uri)

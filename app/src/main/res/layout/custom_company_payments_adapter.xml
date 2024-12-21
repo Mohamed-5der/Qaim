@@ -66,7 +66,7 @@
                 android:textColor="#303030"
                 android:textSize="14sp"
                 android:layout_marginLeft="8dp"
-                android:textDirection="rtl"
+
                 android:maxLines="1"
                 />
         </LinearLayout>

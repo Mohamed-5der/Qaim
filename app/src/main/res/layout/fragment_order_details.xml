@@ -77,7 +77,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginLeft="16dp"
-                        android:textDirection="rtl"
+
                         />
                     <TextView
                         android:id="@+id/descriptionOfOrderDetails"
@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#000"
                         android:textSize="16sp"
-                        android:textDirection="rtl"
+
                         android:text="@string/description"
                         android:layout_marginRight="16dp"
                         android:layout_marginLeft="16dp"

@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/previewerReport"
-                    android:gravity="right"
+
                     android:textColor="#303030"
                     android:textSize="14sp"
                     android:layout_marginTop="8dp"
@@ -123,7 +123,7 @@
                                     android:layout_toLeftOf="@id/imageCard"
                                     android:layout_marginRight="8dp"
                                     android:layout_centerVertical="true"
-                                    android:textDirection="rtl"
+
                                     >
                                     <TextView
                                         android:layout_width="match_parent"
@@ -187,7 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/artistReport"
-                    android:gravity="right"
+
                     android:textColor="#303030"
                     android:textSize="14sp"
                     android:layout_marginTop="8dp"
@@ -250,7 +250,7 @@
                                     android:layout_toLeftOf="@id/imageCard2"
                                     android:layout_marginRight="8dp"
                                     android:layout_centerVertical="true"
-                                    android:textDirection="rtl"
+
                                     >
                                     <TextView
                                         android:layout_width="match_parent"
@@ -315,7 +315,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/checkerReport"
-                    android:gravity="right"
+
                     android:textColor="#303030"
                     android:textSize="14sp"
                     android:layout_marginTop="8dp"
@@ -378,7 +378,7 @@
                                     android:layout_toLeftOf="@id/imageCard3"
                                     android:layout_marginRight="8dp"
                                     android:layout_centerVertical="true"
-                                    android:textDirection="rtl"
+
                                     >
                                     <TextView
                                         android:layout_width="match_parent"

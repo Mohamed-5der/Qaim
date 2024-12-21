@@ -39,15 +39,16 @@ public class CompanyPaymentRecycleViewAdapter extends RecyclerView.Adapter<Compa
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         DataItem details = orderDetails.get(position);
-        List<FilesItem> files = details.getRealEstate().getFiles();
-        if (files != null && !files.isEmpty()){
-            Picasso.get().load(files.get(0).getFile()).fit().into(holder.imageView);
+        if (details != null && details.getRealEstate() != null && details.getRealEstate().getFiles() != null) {
+            List<FilesItem> files = details.getRealEstate().getFiles();
+            if (files != null && !files.isEmpty()) {
+                Picasso.get().load(files.get(0).getFile()).fit().into(holder.imageView);
+            }
+            holder.status.setText(details.getStatusText());
+            holder.orderNameTv.setText(details.getRealEstate().getTitle());
+            holder.lblPaymentDescription.setText(details.getPaymentDescription());
+            holder.orderDiscriptionTv.setText(details.getCost());
         }
-
-        holder.status.setText(details.getStatusText());
-        holder.orderNameTv.setText(details.getRealEstate().getTitle());
-        holder.lblPaymentDescription.setText(details.getPaymentDescription());
-        holder.orderDiscriptionTv.setText(details.getCost());
     }
 
     @Override

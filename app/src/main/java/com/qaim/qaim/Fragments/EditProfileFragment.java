@@ -34,6 +34,7 @@ import androidx.fragment.app.Fragment;
 
 import com.hbb20.CountryCodePicker;
 import com.qaim.qaim.Activities.MainActivity;
+import com.qaim.qaim.Activities.SplashScreen;
 import com.qaim.qaim.Classes.CitiesListParams;
 import com.qaim.qaim.Classes.CustomCityAdapter;
 import com.qaim.qaim.Classes.CustomCountryAdapter;
@@ -52,6 +53,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
+import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -81,7 +83,6 @@ public class EditProfileFragment extends Fragment {
     int cityId ;
     Uri fileUri;
     ImageView imageView ;
-    String imageURL ;
     Bitmap bitmap ;
     CustomCountryAdapter countryAdapter ;
     Boolean isPasswordVisible = false;
@@ -161,7 +162,22 @@ public class EditProfileFragment extends Fragment {
             isPasswordVisible = !isPasswordVisible;
         });
 
-        return v;
+        v.findViewById(R.id.changeLanguage).setOnClickListener(v1 -> {
+            if (LocaleHelper.getLanguage(getActivity()).equals("en")) {
+                LocaleHelper.setLocale(getActivity(), "ar");
+            } else {
+                LocaleHelper.setLocale(getActivity(), "en");
+            }
+            restartApp(); // Restart activity to apply language changes
+        });
+        return v ;
+    }
+
+    private void restartApp() {
+        Intent intent = new Intent(getActivity(), SplashScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().finishAffinity(); // Finish current activity
     }
 
     @Override
@@ -255,7 +271,7 @@ public class EditProfileFragment extends Fragment {
           }
 
        });
-        imageView.setOnClickListener(view1 -> openGallory());
+        imageView.setOnClickListener(view1 -> selectImage());
 
     }
 
@@ -286,91 +302,26 @@ public class EditProfileFragment extends Fragment {
         imageView.setEnabled(isEnabled);
     }
 
-
-    public void openGallory(){
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
-        {
-            // when permission is nor granted
-            // request permission
-            ActivityCompat.requestPermissions(getActivity()
-                    , new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
-
-        }
-        else
-        {
-            // when permission
-            // is granted
-            // create method
-            selectImage();
-        }
-
-    }
     private void selectImage() {
-        // clear previous data
-        imageView.setImageBitmap(null);
-        // Initialize intent
-        Intent intent=new Intent(Intent.ACTION_PICK);
-        // set type
-        intent.setType("image/*");
-        // start activity result
-        startActivityForResult(Intent.createChooser(intent,getString(R.string.select_image)),100);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull  String[] permissions, @NonNull  int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        // check condition
-        if (requestCode==100 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
-        {
-            // when permission
-            // is granted
-            // call method
-            selectImage();
-        }
-        else
-        {
-            // when permission is denied
-            Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(getActivity(), ImageSelectActivity.class);
+        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CROP, true);//default is false
+        startActivityForResult(intent, 1213);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check condition
-        if (requestCode==100 && resultCode==RESULT_OK && data!=null)
+        if (requestCode==1213 && resultCode==RESULT_OK && data!=null)
         {
-            // when result is ok
-            // initialize uri
-            Uri uri=data.getData();
-            // Initialize bitmap
-            try {
-                fileUri = uri;
-                bitmap= MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),uri);
-                Toast.makeText(getContext() , bitmap + "" , Toast.LENGTH_LONG).show();
-                // initialize byte stream
-                ByteArrayOutputStream stream=new ByteArrayOutputStream();
-                // compress Bitmap
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-                // Initialize byte array
-                byte[] bytes=stream.toByteArray();
-                // get base64 encoded string
-                imageURL= Base64.encodeToString(bytes,Base64.DEFAULT);
-                // set encoded text on textview
-                bytes=Base64.decode(imageURL,Base64.DEFAULT);
-                // Initialize bitmap
-                bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                // set bitmap on imageView
-                imageView.setImageBitmap(bitmap);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+            bitmap = BitmapFactory.decodeFile(filePath);
+            fileUri = Uri.fromFile(new File(filePath));
+            imageView.setImageBitmap(bitmap);
         }
-//        MultipartBody.Part body ;
-//        RequestBody model ;
     }
 
     public void getCountries() {

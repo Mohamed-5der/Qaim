@@ -1,5 +1,6 @@
 package com.qaim.qaim.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.qaim.qaim.Activities.SplashScreen;
+import com.qaim.qaim.LocaleHelper;
 import com.qaim.qaim.R;
 import com.squareup.picasso.Picasso;
 
@@ -102,7 +105,22 @@ public class ShowPreviewerProfileFragment extends Fragment {
         tvRegions = v.findViewById(R.id.region1);
         tvExtra = v.findViewById(R.id.info);
         lblRate = v.findViewById(R.id.lbl_rate);
+        v.findViewById(R.id.changeLanguage).setOnClickListener(v1 -> {
+            if (LocaleHelper.getLanguage(getActivity()).equals("en")) {
+                LocaleHelper.setLocale(getActivity(), "ar");
+            } else {
+                LocaleHelper.setLocale(getActivity(), "en");
+            }
+            restartApp(); // Restart activity to apply language changes
+        });
         return v ;
+    }
+
+    private void restartApp() {
+        Intent intent = new Intent(getActivity(), SplashScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().finishAffinity(); // Finish current activity
     }
 
     @Override

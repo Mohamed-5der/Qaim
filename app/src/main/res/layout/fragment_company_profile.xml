@@ -32,6 +32,19 @@
                 android:textSize="25sp"
                 android:id="@+id/tittle"
                 />
+
+            <ImageView
+                android:id="@+id/changeLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/world"
+                android:clickable="true"
+                android:focusable="true"/>
+
             <ImageButton
                 android:id="@+id/imageBtn"
                 android:layout_width="wrap_content"
@@ -80,7 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/name"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -123,7 +136,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/client_company_email"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -163,7 +176,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/client_company_phone"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -208,7 +221,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/chooseCountry"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -237,7 +250,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/chooseCity"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -260,13 +273,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="8dp"
-                    android:textDirection="rtl"
+
                     >
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/licenceNum"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:id="@+id/licenceName"
@@ -285,7 +298,7 @@
                             android:padding="8dp"
                             android:textSize="16sp"
                             android:gravity="center_vertical"
-                            android:textDirection="rtl"
+
                             android:background="#00000000"
                             />
                     </LinearLayout>
@@ -300,7 +313,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/addInfo"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -323,7 +336,7 @@
                                 android:padding="8dp"
                                 android:textSize="16sp"
                                 android:background="#00000000"
-                                android:textDirection="rtl"
+
                                 android:hint="@string/addInfo"
                                 />
                         </RelativeLayout>
@@ -340,7 +353,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/password"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -370,7 +383,7 @@
                                 android:padding="8dp"
                                 android:textSize="16sp"
                                 android:background="#00000000"
-                                android:textDirection="rtl"
+
                                 android:layout_marginLeft="16dp"
                                 />
 

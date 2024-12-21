@@ -50,7 +50,7 @@
             android:layout_margin="8dp"
             android:maxLength="400"
             android:textColor="#303030"
-            android:textDirection="rtl"
+
             android:textSize="16dp" />
 
         <androidx.cardview.widget.CardView
@@ -71,7 +71,7 @@
                     android:layout_margin="8dp"
                     android:maxLength="400"
                     android:textColor="#303030"
-                    android:textDirection="rtl"
+
                     android:textSize="16dp" />
 
                 <ImageView

@@ -85,7 +85,7 @@
                         android:text="@string/name"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:textDirection="rtl"
+
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textDirection="rtl"
+
                 android:textColor="#585858"
                 android:text="@string/cost"
                 android:layout_marginTop="16dp"
@@ -102,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textDirection="rtl"
+
                 android:textColor="#303030"
                 android:text="@string/cost"
                 android:id="@+id/cost"
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textDirection="rtl"
+
                 android:textColor="#585858"
                 android:text="@string/description"
                 android:layout_marginTop="16dp"
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textDirection="rtl"
+
                 android:textColor="#303030"
                 android:text="@string/description"
                 android:id="@+id/description"
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="12sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#585858"
                     android:text="@string/RealStateArea"
                     />
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="12sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#585858"
                     android:text="@string/realStateType"
                     />
@@ -165,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="14sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#313131"
                     android:id="@+id/realStateArea"
                     android:text="@string/RealStateArea"
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="14sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#313131"
                     android:id="@+id/realStateType"
                     android:text="@string/realStateType"
@@ -193,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="12sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#585858"
                     android:text="@string/neighborhood"
                     />
@@ -202,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="12sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#585858"
                     android:text="@string/city"
                     />
@@ -219,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="14sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#313131"
                     android:id="@+id/neighborhood"
                     android:text="@string/neighborhood"
@@ -229,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="14sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#313131"
                     android:id="@+id/city"
                     android:text="@string/city"
@@ -242,13 +242,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textDirection="rtl"
+
                 >
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/recycleView"
-                    android:textDirection="rtl"
+
                     android:layout_marginBottom="104dp"
                     />
             </RelativeLayout>
@@ -277,7 +277,7 @@
             <!--                android:layout_width="match_parent"-->
             <!--                android:layout_height="wrap_content"-->
             <!--                android:textSize="12sp"-->
-            <!--                android:textDirection="rtl"-->
+            <!--                -->
             <!--                android:textColor="#585858"-->
             <!--                android:text="@string/Notes"-->
             <!--                android:layout_marginTop="16dp"-->
@@ -292,7 +292,7 @@
             <!--                    android:layout_width="match_parent"-->
             <!--                    android:layout_height="75dp"-->
             <!--                    android:textSize="12sp"-->
-            <!--                    android:textDirection="rtl"-->
+            <!--                    -->
             <!--                    android:textColor="#313131"-->
             <!--                    android:text="@string/Notes"-->
             <!--                    android:id="@+id/addnotestxt"-->
@@ -379,7 +379,7 @@
             <!--                android:layout_width="match_parent"-->
             <!--                android:layout_height="wrap_content"-->
             <!--                android:textSize="12sp"-->
-            <!--                android:textDirection="rtl"-->
+            <!--                -->
             <!--                android:textColor="#585858"-->
             <!--                android:text="@string/sendFile"-->
             <!--                android:layout_marginTop="16dp"-->

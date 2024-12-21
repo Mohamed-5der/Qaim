@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:gravity="right"
+
                 android:text="@string/registerAsIndividual"
                 android:textSize="30sp"
                 android:textColor="#000"
@@ -75,7 +75,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+
+                    android:text="@string/user_name"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:id="@+id/userName"
@@ -119,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/client_company_email"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -165,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/phone"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -212,7 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseCountry"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -241,7 +242,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseCity"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -270,7 +271,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/licenceNum"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:visibility="gone"
@@ -308,7 +309,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/password"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -363,7 +364,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/confirm_password"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -414,7 +415,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textDirection="rtl"
+
                 android:textColor="#585858"
                 android:text="@string/company_info"
                 android:layout_marginTop="16dp"
@@ -431,7 +432,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:textSize="14sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#313131"
                     android:hint="@string/company_info"
                     android:id="@+id/addnotestxt"

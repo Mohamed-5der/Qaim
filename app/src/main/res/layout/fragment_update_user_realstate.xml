@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/realStateTittle"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -75,7 +75,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"
+
                     android:id = "@+id/tittle"
                     android:backgroundTint="#00000000"
                     />
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/TypeRealState"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/RealStateArea"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -128,7 +128,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"
+
                     android:inputType="number"
                     android:hint="@string/addRealStateArea"
                     />
@@ -144,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseCountry"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -175,7 +175,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseCity"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -209,7 +209,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseNeighborhood"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
@@ -237,7 +237,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/someAddtionalDetails"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -256,7 +256,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"
+
                     android:id="@+id/addAddtionalDetails"
                     android:hint="@string/addAddtionalDetails"
                     />

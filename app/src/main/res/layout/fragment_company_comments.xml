@@ -76,7 +76,7 @@
                     android:layout_toLeftOf="@id/sendBtn"
                     android:id="@+id/addComment"
                     android:layout_centerVertical="true"
-                    android:textDirection="rtl"
+
                     android:layout_toRightOf="@+id/sendFile"
                     android:backgroundTint="#00000000"
                     />

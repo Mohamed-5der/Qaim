@@ -53,7 +53,7 @@
                     android:textSize="20sp"
                     android:text="@string/name"
                     android:layout_marginBottom="8dp"
-                    android:textDirection="rtl"
+
                     />
                 <TextView
                     android:id="@+id/descriptionOforder"
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000"
                     android:textSize="16sp"
-                    android:textDirection="rtl"
+
                     android:text="@string/description"
                     android:maxLines="2"
                     />

@@ -43,6 +43,17 @@
             android:layout_marginRight="16dp"
             />
 
+        <ImageView
+            android:id="@+id/changeLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/world"
+            android:clickable="true"
+            android:focusable="true"/>
 
     </RelativeLayout>
 
@@ -117,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/name"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -160,7 +171,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/client_company_email"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -203,7 +214,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/client_company_phone"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -251,7 +262,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/password"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -305,7 +316,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/addInfo"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -328,7 +339,7 @@
                             android:padding="8dp"
                             android:textSize="16sp"
                             android:background="#00000000"
-                            android:textDirection="rtl"
+
                             android:hint="@string/addInfo"
                             />
                     </RelativeLayout>
@@ -347,7 +358,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseCountry"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -377,7 +388,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseCity"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -409,7 +420,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseArea"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -446,7 +457,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/chooseArea"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -479,7 +490,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/chooseArea"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -512,7 +523,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/fess"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -535,7 +546,7 @@
                             android:padding="8dp"
                             android:textSize="16sp"
                             android:background="#00000000"
-                            android:textDirection="rtl"
+
                             android:hint="@string/addFess"
                             />
                     </RelativeLayout>
@@ -553,7 +564,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/addId"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -599,7 +610,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/experienceField"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -622,7 +633,7 @@
                             android:padding="8dp"
                             android:textSize="16sp"
                             android:background="#00000000"
-                            android:textDirection="rtl"
+
                             android:hint="@string/addExperienceField"
                             />
                     </RelativeLayout>
@@ -640,7 +651,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/yearsOfWork"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -663,7 +674,7 @@
                             android:padding="8dp"
                             android:textSize="16sp"
                             android:background="#00000000"
-                            android:textDirection="rtl"
+
                             android:hint="@string/addyearsOfWork"
                             />
                     </RelativeLayout>

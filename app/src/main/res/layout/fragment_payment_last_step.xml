@@ -69,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/cardNumber"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:textColor="#585858"
@@ -91,7 +91,7 @@
                         android:gravity="center_vertical"
                         android:background="#00000000"
                         android:inputType="number"
-                        android:textDirection="rtl"
+
                         android:textColor="#313131"
                         />
                 </LinearLayout>
@@ -99,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/endDate"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:textColor="#585858"
@@ -118,7 +118,7 @@
                         android:textSize="16sp"
                         android:gravity="center_vertical"
                         android:background="@drawable/custom_edittext_field"
-                        android:textDirection="rtl"
+
                         android:textColor="#313131"
                         android:layout_margin="4dp"
                         android:hint="@string/Year"
@@ -132,7 +132,7 @@
                         android:textSize="16sp"
                         android:gravity="center_vertical"
                         android:background="@drawable/custom_edittext_field"
-                        android:textDirection="rtl"
+
                         android:layout_margin="4dp"
                         android:textColor="#313131"
                         android:hint="@string/Month"
@@ -144,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/cvv"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:textColor="#585858"
@@ -164,7 +164,7 @@
                         android:gravity="center_vertical"
                         android:background="#00000000"
                         android:inputType="numberPassword"
-                        android:textDirection="rtl"
+
                         android:textColor="#313131"
                         />
                 </LinearLayout>

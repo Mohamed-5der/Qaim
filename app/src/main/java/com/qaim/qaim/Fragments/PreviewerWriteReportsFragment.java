@@ -64,6 +64,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -108,7 +109,7 @@ public class PreviewerWriteReportsFragment extends Fragment {
 
     // second section
 
-    EditText north ,northTall , south, southTall, east, eastTall,
+    EditText north, northTall, south, southTall, east, eastTall,
             west, westTall, in_range, attributed, building_condition,
             general_description, theNumberOfTurns,
             landRate, buildingRate, marketing_value,
@@ -119,21 +120,20 @@ public class PreviewerWriteReportsFragment extends Fragment {
     // first section
     EditText realeStateCode, general_description_realestate, description_location, instrument_number,
             realStateType;
-    Button ratingDataBtn , dateBtn;
+    Button ratingDataBtn, dateBtn;
     RadioButton yes, no;
-    CheckBox phone ,out ,elc ,water ;
-    int phoneTx , outTx ,elcTx ,waterTx ;
-    EditText realState_age ;
-    String rateDate , his_date , Infrastructure = null;
-    RadioButton ready , under_construction , space ;
+    CheckBox phone, out, elc, water;
+    int phoneTx, outTx, elcTx, waterTx;
+    EditText realState_age;
+    String rateDate, his_date, Infrastructure = null;
+    RadioButton ready, under_construction, space;
     String ready_for_user;
 
-    EditText number ,piece_number ,
-            source ,entry_type ,distance ;
+    EditText number, piece_number,
+            source, entry_type, distance;
 
     List<Uri> fileUris = new ArrayList<>();
     ImageView imageView;
-    List<String> imageURLs = new ArrayList<>();
     List<Bitmap> bitmaps = new ArrayList<>();
     RecyclerView imageRecycleView;
     ImageAdapter imageAdapter;
@@ -177,19 +177,9 @@ public class PreviewerWriteReportsFragment extends Fragment {
         lblFileName = v.findViewById(R.id.lblFileName);
         imageRecycleView = v.findViewById(R.id.imageRecycleView);
         addEstatePhoto = v.findViewById(R.id.addEstatePhoto);
-        addEstatePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGallory();
-            }
-        });
+        addEstatePhoto.setOnClickListener(view -> selectImage());
 
-        uploadFile1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectPDF();
-            }
-        });
+        uploadFile1.setOnClickListener(view -> selectPDF());
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         retrofit = new Retrofit.Builder()
@@ -269,75 +259,65 @@ public class PreviewerWriteReportsFragment extends Fragment {
 //        Button ratingDataBtn , dateBtn  ;
 //        CheckBox yes , no ;
 
-        ratingDataBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
+        ratingDataBtn.setOnClickListener(view -> {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
-                        getActivity(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // on below line we are setting date to our text view.
-                                rateDate = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
-                                ratingDataBtn.setText(rateDate + "");
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    // on below line we are passing context.
+                    getActivity(),
+                    (view1, year1, monthOfYear, dayOfMonth) -> {
+                        // on below line we are setting date to our text view.
+                        rateDate = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year1;
+                        ratingDataBtn.setText(rateDate + "");
 
-                            }
-                        },
-                        // on below line we are passing year,
-                        // month and day for selected date in our date picker.
-                        year, month, day);
-                datePickerDialog.show();
+                    },
+                    // on below line we are passing year,
+                    // month and day for selected date in our date picker.
+                    year, month, day);
+            datePickerDialog.show();
 
-            }
         });
-        dateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
+        dateBtn.setOnClickListener(view -> {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
-                        getActivity(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // on below line we are setting date to our text view.
-                                his_date = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
-                                dateBtn.setText(his_date + "");
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    // on below line we are passing context.
+                    getActivity(),
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                            // on below line we are setting date to our text view.
+                            his_date = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                            dateBtn.setText(his_date + "");
 
-                            }
-                        },
-                        // on below line we are passing year,
-                        // month and day for selected date in our date picker.
-                        year, month, day);
-                datePickerDialog.show();
+                        }
+                    },
+                    // on below line we are passing year,
+                    // month and day for selected date in our date picker.
+                    year, month, day);
+            datePickerDialog.show();
 
-            }
         });
         yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (yes.isChecked()){
-                    Infrastructure = "yes" ;
+                if (yes.isChecked()) {
+                    Infrastructure = "yes";
                 }
             }
         });
         no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (no.isChecked()){
-                    Infrastructure = "no" ;
+                if (no.isChecked()) {
+                    Infrastructure = "no";
                 }
             }
         });
@@ -349,30 +329,30 @@ public class PreviewerWriteReportsFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                if (phone.isChecked()){
-                    phoneTx = 1 ;
-                }else {
-                    phoneTx = 0 ;
+                if (phone.isChecked()) {
+                    phoneTx = 1;
+                } else {
+                    phoneTx = 0;
                 }
             }
         });
         out.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (out.isChecked()){
-                    outTx = 1 ;
-                }else {
-                    outTx = 0 ;
+                if (out.isChecked()) {
+                    outTx = 1;
+                } else {
+                    outTx = 0;
                 }
             }
         });
         elc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (elc.isChecked()){
-                    elcTx = 1 ;
-                }else {
-                    elcTx = 0 ;
+                if (elc.isChecked()) {
+                    elcTx = 1;
+                } else {
+                    elcTx = 0;
                 }
 
             }
@@ -380,10 +360,10 @@ public class PreviewerWriteReportsFragment extends Fragment {
         water.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (water.isChecked()){
-                    waterTx = 1 ;
-                }else {
-                    waterTx = 0 ;
+                if (water.isChecked()) {
+                    waterTx = 1;
+                } else {
+                    waterTx = 0;
                 }
             }
         });
@@ -392,30 +372,29 @@ public class PreviewerWriteReportsFragment extends Fragment {
         ready.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (ready.isChecked()){
-                    ready_for_user = "جاهز" ;
+                if (ready.isChecked()) {
+                    ready_for_user = "جاهز";
                 }
             }
         });
         under_construction.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (under_construction.isChecked()){
-                    ready_for_user = "تحت الانشاء" ;
+                if (under_construction.isChecked()) {
+                    ready_for_user = "تحت الانشاء";
                 }
             }
         });
         space.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (space.isChecked()){
-                    ready_for_user = "فضاء" ;
+                if (space.isChecked()) {
+                    ready_for_user = "فضاء";
                 }
             }
         });
         return v;
     }
-
 
 
     @Override
@@ -438,102 +417,97 @@ public class PreviewerWriteReportsFragment extends Fragment {
                             );
 //
 //               // MultipartBody.Part is used to send also the actual file name
-                    MultipartBody.Part body1 = MultipartBody.Part.createFormData("images["+i+"]", file.getName(), requestFile);
+                    MultipartBody.Part body1 = MultipartBody.Part.createFormData("images[" + i + "]", file.getName(), requestFile);
                     imgs.add(body1);
                 }
 
 
-
-
                 HashMap<String, RequestBody> map = new HashMap<>();
-                map.put("info_id", RequestBody.create(MultipartBody.FORM , "" + id ));
+                map.put("info_id", RequestBody.create(MultipartBody.FORM, "" + id));
                 // first section
 //                EditText realeStateCode , general_description_realestate
 //                        ,description_location , instrument_number,
 //                        realStateType;
 
 
-                map.put("realeStateCode", RequestBody.create(MultipartBody.FORM , "" + realeStateCode.getText().toString() ));
-                map.put("general_description_realestate", RequestBody.create(MultipartBody.FORM , "" + general_description_realestate.getText().toString() ));
-                map.put("description_location", RequestBody.create(MultipartBody.FORM , "" + description_location.getText().toString() ));
-                map.put("instrument_number", RequestBody.create(MultipartBody.FORM , "" + instrument_number.getText().toString() ));
-                map.put("infrastructure", RequestBody.create(MultipartBody.FORM , "" + Infrastructure));
-                map.put("rateDate", RequestBody.create(MultipartBody.FORM , "" + rateDate));
-                map.put("his_date", RequestBody.create(MultipartBody.FORM , "" + his_date));
-                map.put("realState_type", RequestBody.create(MultipartBody.FORM , "" + realStateType.getText().toString()));
-                map.put("realState_age", RequestBody.create(MultipartBody.FORM , "" + realState_age.getText().toString()));
+                map.put("realeStateCode", RequestBody.create(MultipartBody.FORM, "" + realeStateCode.getText().toString()));
+                map.put("general_description_realestate", RequestBody.create(MultipartBody.FORM, "" + general_description_realestate.getText().toString()));
+                map.put("description_location", RequestBody.create(MultipartBody.FORM, "" + description_location.getText().toString()));
+                map.put("instrument_number", RequestBody.create(MultipartBody.FORM, "" + instrument_number.getText().toString()));
+                map.put("infrastructure", RequestBody.create(MultipartBody.FORM, "" + Infrastructure));
+                map.put("rateDate", RequestBody.create(MultipartBody.FORM, "" + rateDate));
+                map.put("his_date", RequestBody.create(MultipartBody.FORM, "" + his_date));
+                map.put("realState_type", RequestBody.create(MultipartBody.FORM, "" + realStateType.getText().toString()));
+                map.put("realState_age", RequestBody.create(MultipartBody.FORM, "" + realState_age.getText().toString()));
 //                String phoneTx , outTx ,elcTx ,waterTx ;
-                map.put("there_phone", RequestBody.create(MultipartBody.FORM , "" + phoneTx));
-                map.put("there_out", RequestBody.create(MultipartBody.FORM , "" + outTx));
-                map.put("there_electricity", RequestBody.create(MultipartBody.FORM , "" + elcTx));
-                map.put("there_water", RequestBody.create(MultipartBody.FORM , "" + waterTx));
-                map.put("ready_for_user", RequestBody.create(MultipartBody.FORM , "" + ready_for_user));
-                map.put("number", RequestBody.create(MultipartBody.FORM , "" + number.getText().toString()));
-                map.put("piece_number", RequestBody.create(MultipartBody.FORM , "" + piece_number.getText().toString()));
-                map.put("source", RequestBody.create(MultipartBody.FORM , "" + source.getText().toString()));
-                map.put("entry_type", RequestBody.create(MultipartBody.FORM , "" + entry_type.getText().toString()));
-                map.put("distance", RequestBody.create(MultipartBody.FORM , "" + distance.getText().toString()));
+                map.put("there_phone", RequestBody.create(MultipartBody.FORM, "" + phoneTx));
+                map.put("there_out", RequestBody.create(MultipartBody.FORM, "" + outTx));
+                map.put("there_electricity", RequestBody.create(MultipartBody.FORM, "" + elcTx));
+                map.put("there_water", RequestBody.create(MultipartBody.FORM, "" + waterTx));
+                map.put("ready_for_user", RequestBody.create(MultipartBody.FORM, "" + ready_for_user));
+                map.put("number", RequestBody.create(MultipartBody.FORM, "" + number.getText().toString()));
+                map.put("piece_number", RequestBody.create(MultipartBody.FORM, "" + piece_number.getText().toString()));
+                map.put("source", RequestBody.create(MultipartBody.FORM, "" + source.getText().toString()));
+                map.put("entry_type", RequestBody.create(MultipartBody.FORM, "" + entry_type.getText().toString()));
+                map.put("distance", RequestBody.create(MultipartBody.FORM, "" + distance.getText().toString()));
 
 //                EditText number ,piece_number ,
 //                        source ,entry_type ,distance ;
 
                 // second section
-                map.put("north", RequestBody.create(MultipartBody.FORM , "" + north.getText().toString()));
-                map.put("northTall", RequestBody.create(MultipartBody.FORM , "" + northTall.getText().toString()));
-                map.put("south", RequestBody.create(MultipartBody.FORM , "" + south.getText().toString()));
-                map.put("southTall", RequestBody.create(MultipartBody.FORM , "" + southTall.getText().toString()));
-                map.put("east", RequestBody.create(MultipartBody.FORM , "" + east.getText().toString()));
-                map.put("eastTall", RequestBody.create(MultipartBody.FORM , "" + eastTall.getText().toString()));
-                map.put("west", RequestBody.create(MultipartBody.FORM , "" + west.getText().toString()));
-                map.put("westTall", RequestBody.create(MultipartBody.FORM , "" + westTall.getText().toString()));
-                map.put("in_range", RequestBody.create(MultipartBody.FORM , "" + in_range.getText().toString()));
-                map.put("attributed", RequestBody.create(MultipartBody.FORM , "" + attributed.getText().toString()));
-                map.put("building_condition", RequestBody.create(MultipartBody.FORM , "" + building_condition.getText().toString()));
-                map.put("general_description", RequestBody.create(MultipartBody.FORM , "" + general_description.getText().toString()));
-                map.put("theNumberOfTurns", RequestBody.create(MultipartBody.FORM , "" + theNumberOfTurns.getText().toString()));
-                map.put("landRate", RequestBody.create(MultipartBody.FORM , "" + landRate.getText().toString()));
-                map.put("buildingRate", RequestBody.create(MultipartBody.FORM , "" + buildingRate.getText().toString()));
-                map.put("marketing_value", RequestBody.create(MultipartBody.FORM , "" + marketing_value.getText().toString()));
-                map.put("totalCost", RequestBody.create(MultipartBody.FORM , "" + totalCost.getText().toString()));
-                map.put("realestate_comparing", RequestBody.create(MultipartBody.FORM , "" + realestate_comparing.getText().toString()));
-                map.put("conflict_interest", RequestBody.create(MultipartBody.FORM , "" + conflict_interest.getText().toString()));
-                map.put("measurement", RequestBody.create(MultipartBody.FORM , "" + measurement.getText().toString()));
-                map.put("preview", RequestBody.create(MultipartBody.FORM , "" + preview.getText().toString()));
-                map.put("notes", RequestBody.create(MultipartBody.FORM , "" +  notes));
-
+                map.put("north", RequestBody.create(MultipartBody.FORM, "" + north.getText().toString()));
+                map.put("northTall", RequestBody.create(MultipartBody.FORM, "" + northTall.getText().toString()));
+                map.put("south", RequestBody.create(MultipartBody.FORM, "" + south.getText().toString()));
+                map.put("southTall", RequestBody.create(MultipartBody.FORM, "" + southTall.getText().toString()));
+                map.put("east", RequestBody.create(MultipartBody.FORM, "" + east.getText().toString()));
+                map.put("eastTall", RequestBody.create(MultipartBody.FORM, "" + eastTall.getText().toString()));
+                map.put("west", RequestBody.create(MultipartBody.FORM, "" + west.getText().toString()));
+                map.put("westTall", RequestBody.create(MultipartBody.FORM, "" + westTall.getText().toString()));
+                map.put("in_range", RequestBody.create(MultipartBody.FORM, "" + in_range.getText().toString()));
+                map.put("attributed", RequestBody.create(MultipartBody.FORM, "" + attributed.getText().toString()));
+                map.put("building_condition", RequestBody.create(MultipartBody.FORM, "" + building_condition.getText().toString()));
+                map.put("general_description", RequestBody.create(MultipartBody.FORM, "" + general_description.getText().toString()));
+                map.put("theNumberOfTurns", RequestBody.create(MultipartBody.FORM, "" + theNumberOfTurns.getText().toString()));
+                map.put("landRate", RequestBody.create(MultipartBody.FORM, "" + landRate.getText().toString()));
+                map.put("buildingRate", RequestBody.create(MultipartBody.FORM, "" + buildingRate.getText().toString()));
+                map.put("marketing_value", RequestBody.create(MultipartBody.FORM, "" + marketing_value.getText().toString()));
+                map.put("totalCost", RequestBody.create(MultipartBody.FORM, "" + totalCost.getText().toString()));
+                map.put("realestate_comparing", RequestBody.create(MultipartBody.FORM, "" + realestate_comparing.getText().toString()));
+                map.put("conflict_interest", RequestBody.create(MultipartBody.FORM, "" + conflict_interest.getText().toString()));
+                map.put("measurement", RequestBody.create(MultipartBody.FORM, "" + measurement.getText().toString()));
+                map.put("preview", RequestBody.create(MultipartBody.FORM, "" + preview.getText().toString()));
+                map.put("notes", RequestBody.create(MultipartBody.FORM, "" + notes));
 
 
                 PreviewerActivity.dialog.show();
-                Call<PreviewerMakeReportResponse> call = jsonApi.makeReportPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token , map, body , imgs);
+                Call<PreviewerMakeReportResponse> call = jsonApi.makeReportPreviewer(LocaleHelper.getLanguage(getContext()), "Bearer " + PreviewerActivity.token, map, body, imgs);
                 call.enqueue(new Callback<PreviewerMakeReportResponse>() {
                     @Override
                     public void onResponse(Call<PreviewerMakeReportResponse> call, Response<PreviewerMakeReportResponse> response) {
                         PreviewerActivity.dialog.dismiss();
                         PreviewerMakeReportResponse previewerReportsResponse = response.body();
-                        if (previewerReportsResponse.getCode() == 200){
-                            PreviewerActivity.alert.creatDialog(response.body().getMessage() , getContext());
+                        if (previewerReportsResponse.getCode() == 200) {
+                            PreviewerActivity.alert.creatDialog(response.body().getMessage(), getContext());
 //                            Toast.makeText(getContext() ,previewerReportsResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             getActivity().recreate();
-                        }
-                        else {
-                            PreviewerActivity.alert.creatDialog(response.body().getMessage() , getContext());
+                        } else {
+                            PreviewerActivity.alert.creatDialog(response.body().getMessage(), getContext());
 //                            Toast.makeText(getContext() ,previewerReportsResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<PreviewerMakeReportResponse> call, Throwable t) {
-                        Toast.makeText(getContext() , t.getMessage() , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
 
 
-
     }
 
-    public void beforCallAPI(){
+    public void beforCallAPI() {
         // olds
 //        widgt =String.valueOf(widgtV.getText());
 //        realstateLimits = String.valueOf(realstateLimitsV.getText()) ;
@@ -569,11 +543,12 @@ public class PreviewerWriteReportsFragment extends Fragment {
 //        infoSources =String.valueOf(infoSourcesV.getText()) ;
 
 
-        notes =String.valueOf(notesV.getText()) ;
+        notes = String.valueOf(notesV.getText());
 
 
     }
-    public void inflateViews (View v){
+
+    public void inflateViews(View v) {
         // olds
 //        widgtV = v.findViewById(R.id.EditProfileNameEditText) ;
 //        cityV = v.findViewById(R.id.citySpinnerspinner) ;
@@ -620,54 +595,53 @@ public class PreviewerWriteReportsFragment extends Fragment {
 //      infoSourcesV= v.findViewById() ;
 
         // first section
-        realeStateCode = v.findViewById(R.id.realeStateCode) ;
-        general_description_realestate = v.findViewById(R.id.general_description_realestate) ;
-        description_location = v.findViewById(R.id.description_location) ;
-        instrument_number = v.findViewById(R.id.instrument_number) ;
-        realStateType = v.findViewById(R.id.realStateType) ;
-        ratingDataBtn = v.findViewById(R.id.ratingDataBtn) ;
-        dateBtn = v.findViewById(R.id.dateBtn) ;
-        yes = v.findViewById(R.id.yes) ;
-        no = v.findViewById(R.id.no) ;
-        phone = v.findViewById(R.id.phone) ;
-        out = v.findViewById(R.id.out) ;
-        elc = v.findViewById(R.id.elc) ;
-        water = v.findViewById(R.id.water) ;
-        realState_age = v.findViewById(R.id.realState_age) ;
-        ready = v.findViewById(R.id.ready) ;
-        under_construction = v.findViewById(R.id.under_construction) ;
-        space = v.findViewById(R.id.space) ;
-        number = v.findViewById(R.id.number) ;
-        piece_number = v.findViewById(R.id.piece_number) ;
-        source = v.findViewById(R.id.source) ;
-        entry_type = v.findViewById(R.id.entry_type) ;
-        distance = v.findViewById(R.id.distance) ;
-
+        realeStateCode = v.findViewById(R.id.realeStateCode);
+        general_description_realestate = v.findViewById(R.id.general_description_realestate);
+        description_location = v.findViewById(R.id.description_location);
+        instrument_number = v.findViewById(R.id.instrument_number);
+        realStateType = v.findViewById(R.id.realStateType);
+        ratingDataBtn = v.findViewById(R.id.ratingDataBtn);
+        dateBtn = v.findViewById(R.id.dateBtn);
+        yes = v.findViewById(R.id.yes);
+        no = v.findViewById(R.id.no);
+        phone = v.findViewById(R.id.phone);
+        out = v.findViewById(R.id.out);
+        elc = v.findViewById(R.id.elc);
+        water = v.findViewById(R.id.water);
+        realState_age = v.findViewById(R.id.realState_age);
+        ready = v.findViewById(R.id.ready);
+        under_construction = v.findViewById(R.id.under_construction);
+        space = v.findViewById(R.id.space);
+        number = v.findViewById(R.id.number);
+        piece_number = v.findViewById(R.id.piece_number);
+        source = v.findViewById(R.id.source);
+        entry_type = v.findViewById(R.id.entry_type);
+        distance = v.findViewById(R.id.distance);
 
 
         // second section
-        north = v.findViewById(R.id.north) ;
-        northTall = v.findViewById(R.id.northTall) ;
-        south = v.findViewById(R.id.south) ;
-        southTall = v.findViewById(R.id.southTall) ;
-        east = v.findViewById(R.id.east) ;
-        eastTall = v.findViewById(R.id.eastTall) ;
-        west = v.findViewById(R.id.west) ;
-        westTall = v.findViewById(R.id.westTall) ;
-        in_range = v.findViewById(R.id.in_range) ;
-        attributed = v.findViewById(R.id.attributed) ;
-        building_condition = v.findViewById(R.id.building_condition) ;
-        general_description = v.findViewById(R.id.general_description) ;
-        theNumberOfTurns = v.findViewById(R.id.theNumberOfTurns) ;
-        landRate = v.findViewById(R.id.landRate) ;
-        buildingRate = v.findViewById(R.id.buildingRate) ;
-        marketing_value = v.findViewById(R.id.marketing_value) ;
-        totalCost = v.findViewById(R.id.totalCost) ;
-        realestate_comparing = v.findViewById(R.id.realestate_comparing) ;
-        conflict_interest = v.findViewById(R.id.conflict_interest) ;
-        measurement = v.findViewById(R.id.measurement) ;
-        preview = v.findViewById(R.id.preview) ;
-        notesV = v.findViewById(R.id.addNotes) ;
+        north = v.findViewById(R.id.north);
+        northTall = v.findViewById(R.id.northTall);
+        south = v.findViewById(R.id.south);
+        southTall = v.findViewById(R.id.southTall);
+        east = v.findViewById(R.id.east);
+        eastTall = v.findViewById(R.id.eastTall);
+        west = v.findViewById(R.id.west);
+        westTall = v.findViewById(R.id.westTall);
+        in_range = v.findViewById(R.id.in_range);
+        attributed = v.findViewById(R.id.attributed);
+        building_condition = v.findViewById(R.id.building_condition);
+        general_description = v.findViewById(R.id.general_description);
+        theNumberOfTurns = v.findViewById(R.id.theNumberOfTurns);
+        landRate = v.findViewById(R.id.landRate);
+        buildingRate = v.findViewById(R.id.buildingRate);
+        marketing_value = v.findViewById(R.id.marketing_value);
+        totalCost = v.findViewById(R.id.totalCost);
+        realestate_comparing = v.findViewById(R.id.realestate_comparing);
+        conflict_interest = v.findViewById(R.id.conflict_interest);
+        measurement = v.findViewById(R.id.measurement);
+        preview = v.findViewById(R.id.preview);
+        notesV = v.findViewById(R.id.addNotes);
 //        neighborhoodSpinnerV2 = v.findViewById(R.id.neiborhood2);
 //        cityV2 = v.findViewById(R.id.citySpinnerspinner2);
         sendRate = v.findViewById(R.id.sendReport);
@@ -695,13 +669,14 @@ public class PreviewerWriteReportsFragment extends Fragment {
 
     public void uploadFile(Uri uri) throws IOException {
         if (uri != null) {
-            File file =getFile(getActivity(),uri);
+            File file = getFile(getActivity(), uri);
             //Create a file object using file path
             String fName = file.getName();
             lblFileName.setText(fName);
             body = MultipartBody.Part.createFormData("document", fName, RequestBody.create(MediaType.parse("*/*"), file));
         }
     }
+
     private static String queryName(Context context, Uri uri) {
         Cursor returnCursor =
                 context.getContentResolver().query(uri, null, null, null, null);
@@ -712,6 +687,7 @@ public class PreviewerWriteReportsFragment extends Fragment {
         returnCursor.close();
         return name;
     }
+
     public static void createFileFromStream(InputStream ins, File destination) {
         try (OutputStream os = new FileOutputStream(destination)) {
             byte[] buffer = new byte[4096];
@@ -725,6 +701,7 @@ public class PreviewerWriteReportsFragment extends Fragment {
             ex.printStackTrace();
         }
     }
+
     public static File getFile(Context context, Uri uri) throws IOException {
         File destinationFilename = new File(context.getFilesDir().getPath() + File.separatorChar + queryName(context, uri));
         try (InputStream ins = context.getContentResolver().openInputStream(uri)) {
@@ -735,6 +712,7 @@ public class PreviewerWriteReportsFragment extends Fragment {
         }
         return destinationFilename;
     }
+
     public String getFileName(Uri uri) {
         if (uri == null) return null;
         String fileName = null;
@@ -745,6 +723,7 @@ public class PreviewerWriteReportsFragment extends Fragment {
         }
         return fileName;
     }
+
     public static int copystream(InputStream input, OutputStream output) throws Exception, IOException {
         byte[] buffer = new byte[BUFFER_SIZE];
 
@@ -772,46 +751,24 @@ public class PreviewerWriteReportsFragment extends Fragment {
         return count;
     }
 
-    private void selectPDF()
-    {
+    private void selectPDF() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/pdf");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(intent, 1111);
     }
 
-    // select images
-    public void openGallory(){
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
-        {
-            // when permission is nor granted
-            // request permission
-            ActivityCompat.requestPermissions(getActivity()
-                    , new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
-
-        }
-        else
-        {
-            // when permission
-            // is granted
-            // create method
-            selectImage();
-        }
-
-    }
     private void selectImage() {
-        // clear previous data
-//        imageView.setImageBitmap(null);
-        // Initialize intent
-        Intent intent=new Intent(Intent.ACTION_PICK);
-        // set type
-        intent.setType("image/*");
-        // start activity result
-        startActivityForResult(Intent.createChooser(intent,getString(R.string.select_image)),100);
+        Intent intent = new Intent(getActivity(), ImageSelectActivity.class);
+        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CROP, true);//default is false
+        startActivityForResult(intent, 1213);
     }
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable  Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1111 && resultCode == RESULT_OK && data != null) {
             // check condition
@@ -823,62 +780,27 @@ public class PreviewerWriteReportsFragment extends Fragment {
                 }
             }
 
-        } else if (requestCode==100 && resultCode==RESULT_OK && data!=null)
-        {
-            // when result is ok
-            // initialize uri
-            Uri uri=data.getData();
-            // Initialize bitmap
-            try {
-                fileUris.add(uri);// = uri;
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),uri);
-                Toast.makeText(getContext() , bitmap + "" , Toast.LENGTH_LONG).show();
-                // initialize byte stream
-                ByteArrayOutputStream stream=new ByteArrayOutputStream();
-                // compress Bitmap
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-                // Initialize byte array
-                byte[] bytes=stream.toByteArray();
-                // get base64 encoded string
-                String imageURL= Base64.encodeToString(bytes,Base64.DEFAULT);
-                // set encoded text on textview
-                bytes=Base64.decode(imageURL,Base64.DEFAULT);
-                // Initialize bitmap
-                bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                // set bitmap on imageView
-//                .setImageBitmap(bitmap);
-//                imageView
-                bitmaps.add(bitmap);
-
-                imageURLs.add(imageURL);
-                imageAdapter = new ImageAdapter(bitmaps);
-                LinearLayoutManager lm = new LinearLayoutManager(getContext() ,LinearLayoutManager.HORIZONTAL , true);
-                imageRecycleView.setLayoutManager(lm);
-                imageRecycleView.setHasFixedSize(true);
-                imageRecycleView.setAdapter(imageAdapter);
-//                imageAdapter.notifyDataSetChanged();
-
-                // reload
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } else if (requestCode == 1213 && resultCode == RESULT_OK && data != null) {
+            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+            fileUris.add(Uri.fromFile(new File(filePath)));
+            bitmaps.add(selectedImage);
+            imageAdapter = new ImageAdapter(bitmaps);
+            LinearLayoutManager lm = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true);
+            imageRecycleView.setLayoutManager(lm);
+            imageRecycleView.setHasFixedSize(true);
+            imageRecycleView.setAdapter(imageAdapter);
         }
-//        MultipartBody.Part body ;
-//        RequestBody model ;
     }
 
-    public String getPath(Uri uri)
-    {
-        String[] projection = { MediaStore.Images.Media.DATA };
+    public String getPath(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = getContext().getContentResolver().query(uri, projection, null, null, null);
         if (cursor == null) return null;
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
-        String s=cursor.getString(column_index);
+        String s = cursor.getString(column_index);
         cursor.close();
         return s;
     }
-
-
 }

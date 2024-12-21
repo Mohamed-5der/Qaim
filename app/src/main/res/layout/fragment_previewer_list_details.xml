@@ -84,7 +84,7 @@
                         android:textSize="16sp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:textDirection="rtl"
+
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textDirection="rtl"
+
                 android:textColor="#303030"
                 android:id="@+id/description"
                 android:layout_marginTop="8dp"
@@ -118,7 +118,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textDirection="rtl"
+
                     android:id="@+id/recyclerview"
                     android:layout_marginBottom="8dp"
                     />
@@ -127,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textDirection="rtl"
+
                 android:textColor="#585858"
                 android:text="@string/Notes"
                 android:layout_marginTop="16dp"
@@ -142,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:textSize="12sp"
-                    android:textDirection="rtl"
+
                     android:textColor="#313131"
                     android:hint="@string/Notes"
                     android:id="@+id/addnotestxt"
@@ -155,7 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textDirection="rtl"
+
                 android:textColor="#585858"
                 android:text="@string/sendFile"
                 android:layout_marginTop="16dp"

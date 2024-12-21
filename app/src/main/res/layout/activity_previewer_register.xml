@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:gravity="right"
+
                 android:text="@string/registerAsPreviewer"
                 android:textSize="30sp"
                 android:textColor="#000"
@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/name"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -119,7 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/client_company_email"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -162,7 +162,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/client_company_phone"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -203,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/fess"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -235,7 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/password"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -290,7 +290,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/confirm_password"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -344,7 +344,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseCountry"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -373,7 +373,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseCity"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -395,7 +395,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/chooseRegion"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -430,7 +430,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="@string/chooseRegion"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         />
@@ -439,7 +439,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="@string/chooseRegion"
-                        android:gravity="right"
+
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="8dp"
@@ -501,7 +501,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/addId"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
@@ -546,7 +546,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/Add_a_certificate_of_accreditation"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />

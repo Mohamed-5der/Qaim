@@ -61,6 +61,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -97,7 +98,6 @@ public class UpdateUserRealstateFragment extends Fragment {
 
     List<Uri> fileUris = new ArrayList<>();
     ImageView imageView ;
-    List<String> imageURLs = new ArrayList<>();
     List<Bitmap> bitmaps = new ArrayList<>();
     RecyclerView imageRecycleView  , imageAddRecycleView;
     ImageAdapter imageAdapter ;
@@ -248,12 +248,7 @@ public class UpdateUserRealstateFragment extends Fragment {
 
 
         });
-        addPhotoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGallory();
-            }
-        });
+        addPhotoBtn.setOnClickListener(view1 -> selectImage());
     }
 
     public void callRegionstype(int id){
@@ -313,79 +308,30 @@ public class UpdateUserRealstateFragment extends Fragment {
             }
         });
     }
-    public void openGallory(){
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
-        {
-            // when permission is nor granted
-            // request permission
-            ActivityCompat.requestPermissions(getActivity()
-                    , new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
 
-        }
-        else
-        {
-            // when permission
-            // is granted
-            // create method
-            selectImage();
-        }
-
-    }
     private void selectImage() {
-        // clear previous data
-//        imageView.setImageBitmap(null);
-        // Initialize intent
-        Intent intent=new Intent(Intent.ACTION_PICK);
-        // set type
-        intent.setType("image/*");
-        // start activity result
-        startActivityForResult(Intent.createChooser(intent,getString(R.string.select_image)),100);
+        Intent intent = new Intent(getActivity(), ImageSelectActivity.class);
+        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+        intent.putExtra(ImageSelectActivity.FLAG_CROP, true);//default is false
+        startActivityForResult(intent, 1213);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check condition
-        if (requestCode==100 && resultCode==RESULT_OK && data!=null)
-        {
-            // when result is ok
-            // initialize uri
-            Uri uri=data.getData();
-            // Initialize bitmap
-            try {
-                fileUris.add(uri);// = uri;
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),uri);
-                Toast.makeText(getContext() , bitmap + "" , Toast.LENGTH_LONG).show();
-                // initialize byte stream
-                ByteArrayOutputStream stream=new ByteArrayOutputStream();
-                // compress Bitmap
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-                // Initialize byte array
-                byte[] bytes=stream.toByteArray();
-                // get base64 encoded string
-                String imageURL= Base64.encodeToString(bytes,Base64.DEFAULT);
-                // set encoded text on textview
-                bytes=Base64.decode(imageURL,Base64.DEFAULT);
-                // Initialize bitmap
-                bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                // set bitmap on imageView
-//                .setImageBitmap(bitmap);
-//                imageView
-                bitmaps.add(bitmap);
-
-                imageURLs.add(imageURL);
-                imageAdapter = new ImageAdapter(bitmaps);
-                LinearLayoutManager lm = new LinearLayoutManager(getContext() ,LinearLayoutManager.HORIZONTAL , true);
-                imageAddRecycleView.setLayoutManager(lm);
-                imageAddRecycleView.setHasFixedSize(true);
-                imageAddRecycleView.setAdapter(imageAdapter);
-//                imageAdapter.notifyDataSetChanged();
-
-                // reload
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (requestCode == 1213 && resultCode == RESULT_OK && data != null) {
+            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+            fileUris.add(Uri.fromFile(new File(filePath)));
+            bitmaps.add(selectedImage);
+            imageAdapter = new ImageAdapter(bitmaps);
+            LinearLayoutManager lm = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true);
+            imageAddRecycleView.setLayoutManager(lm);
+            imageAddRecycleView.setHasFixedSize(true);
+            imageAddRecycleView.setAdapter(imageAdapter);
         }
     }
 

@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/realeStateCode"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -65,7 +65,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/realeStateCode"
                     android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                     android:inputType="number"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            Rating Date-->
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rateDate"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -92,7 +92,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/ratingDataBtn"
                     android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            general_description_realestate-->
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/general_description_realestate"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -118,7 +118,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/general_description_realestate"
                     android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            description_location-->
@@ -135,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/description_location"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -144,7 +144,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/description_location"
                     android:layout_width="match_parent"
@@ -153,7 +153,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            instrument number-->
@@ -161,7 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/instrument_number"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -170,7 +170,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/instrument_number"
                     android:layout_width="match_parent"
@@ -179,7 +179,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            his Date-->
@@ -187,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/his_date"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -196,7 +196,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/dateBtn"
                     android:layout_width="match_parent"
@@ -205,7 +205,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            real estate Type-->
@@ -213,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/realStateType"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -222,7 +222,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/realStateType"
                     android:layout_width="match_parent"
@@ -231,7 +231,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
             <!--            Infrastructure-->
             <LinearLayout
@@ -239,7 +239,7 @@
                 android:layout_height="90dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp"
-                android:textDirection="rtl">
+                >
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -287,7 +287,7 @@
                 android:textSize="18sp"
                 android:textColor="#303030"
                 android:text="@string/service"
-                android:textDirection="rtl"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -296,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp"
-                android:textDirection="rtl">
+                >
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -353,7 +353,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/realState_age"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -362,7 +362,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/realState_age"
                     android:layout_width="match_parent"
@@ -371,7 +371,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            ready for use-->
@@ -381,7 +381,7 @@
                 android:textSize="18sp"
                 android:textColor="#303030"
                 android:text="@string/readyForUse"
-                android:textDirection="rtl"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -390,7 +390,7 @@
                 android:layout_height="150dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp"
-                android:textDirection="rtl">
+                >
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -444,7 +444,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/number"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -453,7 +453,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/number"
                     android:layout_width="match_parent"
@@ -462,7 +462,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            piece_number-->
@@ -470,7 +470,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/piece_number"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -479,7 +479,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/piece_number"
                     android:layout_width="match_parent"
@@ -488,7 +488,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            source-->
@@ -496,7 +496,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/source"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -505,7 +505,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/source"
                     android:layout_width="match_parent"
@@ -514,7 +514,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            entry_type-->
@@ -522,7 +522,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/entry_type"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -531,7 +531,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/entry_type"
                     android:layout_width="match_parent"
@@ -540,7 +540,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            distance-->
@@ -548,7 +548,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/distance"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -557,7 +557,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/distance"
                     android:layout_width="match_parent"
@@ -566,7 +566,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            north-->
@@ -576,7 +576,7 @@
                 android:textSize="18sp"
                 android:textColor="#303030"
                 android:text="@string/realStateLimits"
-                android:textDirection="rtl"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -590,7 +590,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/tall"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
@@ -601,7 +601,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/north"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="4dp"
@@ -612,7 +612,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
 
 
                 <LinearLayout
@@ -622,7 +622,7 @@
                     android:orientation="horizontal"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/custom_edittext_field"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -643,7 +643,7 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layout_marginLeft="4dp"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -670,7 +670,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/tall"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
@@ -680,7 +680,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/south"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="4dp"
@@ -691,7 +691,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -700,7 +700,7 @@
                     android:orientation="horizontal"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/custom_edittext_field"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -720,7 +720,7 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layout_marginLeft="4dp"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -747,7 +747,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/tall"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
@@ -757,7 +757,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/east"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="4dp"
@@ -768,7 +768,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -776,7 +776,7 @@
                     android:orientation="horizontal"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/custom_edittext_field"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -797,7 +797,7 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layout_marginLeft="4dp"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -824,7 +824,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/tall"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
@@ -835,7 +835,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/west"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="4dp"
@@ -846,7 +846,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -855,7 +855,7 @@
                     android:orientation="horizontal"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/custom_edittext_field"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -876,7 +876,7 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layout_marginLeft="4dp"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -897,7 +897,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/in_range"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -906,7 +906,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/in_range"
                     android:layout_width="match_parent"
@@ -915,7 +915,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            attributed-->
@@ -923,7 +923,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/attributes"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -932,7 +932,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/attributed"
                     android:layout_width="match_parent"
@@ -941,7 +941,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            building condition-->
@@ -949,7 +949,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/building_condition"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -958,7 +958,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/building_condition"
                     android:layout_width="match_parent"
@@ -967,7 +967,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            General description of the finish-->
@@ -975,7 +975,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/general_description"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -984,7 +984,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/general_description"
                     android:layout_width="match_parent"
@@ -993,7 +993,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            The number of turns -->
@@ -1001,7 +1001,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/theNumberOfTurns"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1010,7 +1010,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/theNumberOfTurns"
                     android:layout_width="match_parent"
@@ -1020,7 +1020,7 @@
                     android:inputType="number"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            land rate -->
@@ -1028,7 +1028,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/landRate"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1037,7 +1037,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/landRate"
                     android:layout_width="match_parent"
@@ -1047,7 +1047,7 @@
                     android:inputType="number"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            building rate -->
@@ -1055,7 +1055,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/buildingRate"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1064,7 +1064,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/buildingRate"
                     android:layout_width="match_parent"
@@ -1074,7 +1074,7 @@
                     android:inputType="number"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            total cost real estate-->
@@ -1088,7 +1088,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/marketing_value"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="4dp"
@@ -1098,7 +1098,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/totalCost"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
@@ -1109,7 +1109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -1117,7 +1117,7 @@
                     android:background="@drawable/custom_edittext_field"
                     android:orientation="horizontal"
                     android:layout_marginLeft="4dp"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -1138,7 +1138,7 @@
                     android:orientation="horizontal"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/custom_edittext_field"
-                    android:textDirection="rtl">
+                    >
 
                     <EditText
                         android:layout_width="match_parent"
@@ -1159,7 +1159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/realestate_comparing"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1168,7 +1168,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/realestate_comparing"
                     android:layout_width="match_parent"
@@ -1177,14 +1177,14 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
             <!--            Conflict of interest -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/conflict_interest"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1193,7 +1193,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/conflict_interest"
                     android:layout_width="match_parent"
@@ -1202,7 +1202,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            measurement -->
@@ -1210,7 +1210,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/measurement"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1219,7 +1219,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/measurement"
                     android:layout_width="match_parent"
@@ -1228,7 +1228,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            preview -->
@@ -1236,7 +1236,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/preview"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1245,7 +1245,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/preview"
                     android:layout_width="match_parent"
@@ -1254,7 +1254,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 <!--            Company -->
             <!--            the direction -->
@@ -1262,7 +1262,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/theDirectionWhichReportDirected"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1271,7 +1271,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/direction"
                     android:layout_width="match_parent"
@@ -1280,7 +1280,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            the purpose -->
@@ -1288,7 +1288,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/thePurposeOf"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1297,7 +1297,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/thePurposeOf"
                     android:layout_width="match_parent"
@@ -1306,7 +1306,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            the valueBasis -->
@@ -1314,7 +1314,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/valueBasis"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1323,7 +1323,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/valueBasis"
                     android:layout_width="match_parent"
@@ -1332,7 +1332,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            report currency -->
@@ -1340,7 +1340,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/reportCurrency"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1349,7 +1349,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/reportCurrency"
                     android:layout_width="match_parent"
@@ -1358,7 +1358,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            measurement -->
@@ -1366,7 +1366,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/measurement"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1375,7 +1375,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/measurement2"
                     android:layout_width="match_parent"
@@ -1384,7 +1384,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            own assumptions -->
@@ -1392,7 +1392,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/own_assumptions"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1401,7 +1401,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/own_assumptions"
                     android:layout_width="match_parent"
@@ -1410,7 +1410,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            Reliable data -->
@@ -1418,7 +1418,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/reliable_data"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1427,7 +1427,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/reliable_data"
                     android:layout_width="match_parent"
@@ -1436,7 +1436,7 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
 
             <!--            company opinion -->
@@ -1444,7 +1444,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/company_opinion"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -1453,7 +1453,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/custom_edittext_field"
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
                 <EditText
                     android:id="@+id/company_opinion"
                     android:layout_width="match_parent"
@@ -1462,13 +1462,13 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"
                     android:background="#00000000"
-                    android:textDirection="rtl"/>
+                    />
             </LinearLayout>
             <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/Schemeandwidget"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1487,7 +1487,7 @@
 <!--                    android:hint="@string/Schemeandwidget"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"/>-->
+<!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <LinearLayout-->
 <!--                android:layout_width="match_parent"-->
@@ -1499,7 +1499,7 @@
 <!--                    android:layout_weight="1"-->
 <!--                    android:layout_height="wrap_content"-->
 <!--                    android:text="@string/chooseNeighborhood"-->
-<!--                    android:gravity="right"-->
+<!--                    -->
 <!--                    android:layout_marginTop="8dp"-->
 <!--                    android:layout_marginBottom="8dp"-->
 <!--                    android:layout_marginLeft="8dp"-->
@@ -1510,7 +1510,7 @@
 <!--                    android:layout_weight="1"-->
 <!--                    android:layout_height="wrap_content"-->
 <!--                    android:text="@string/chooseCity"-->
-<!--                    android:gravity="right"-->
+<!--                    -->
 <!--                    android:layout_marginTop="8dp"-->
 <!--                    android:layout_marginBottom="8dp"-->
 <!--                    />-->
@@ -1566,7 +1566,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/realStateLimits"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1585,13 +1585,13 @@
 <!--                    android:hint="@string/addRealStateLimits"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"/>-->
+<!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/generalRealStateLocation"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1610,13 +1610,13 @@
 <!--                    android:hint="@string/addGeneralRealStateLocation"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"/>-->
+<!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/attributed"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1635,13 +1635,13 @@
 <!--                    android:hint="@string/addAttributed"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"/>-->
+<!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/service"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1660,13 +1660,13 @@
 <!--                    android:hint="@string/addService"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"/>-->
+<!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/theNameOfTheNearestCommercialStreet"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1685,14 +1685,14 @@
 <!--                    android:hint="@string/addtheNameOfTheNearestCommercialStreet"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/howFarRealstateRatting"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1711,14 +1711,14 @@
 <!--                    android:hint="@string/addHowFarRealstateRation"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/howFarRealstateFromCityCenter"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1737,14 +1737,14 @@
 <!--                    android:hint="@string/addHowFarRealstateFromCityCenter"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/theViews"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1763,7 +1763,7 @@
 <!--                    android:hint="@string/addTheViews"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <LinearLayout-->
@@ -1776,7 +1776,7 @@
 <!--                    android:layout_weight="1"-->
 <!--                    android:layout_height="wrap_content"-->
 <!--                    android:text="@string/chooseNeighborhood"-->
-<!--                    android:gravity="right"-->
+<!--                    -->
 <!--                    android:layout_marginTop="8dp"-->
 <!--                    android:layout_marginBottom="8dp"-->
 <!--                    android:layout_marginLeft="8dp"-->
@@ -1787,7 +1787,7 @@
 <!--                    android:layout_weight="1"-->
 <!--                    android:layout_height="wrap_content"-->
 <!--                    android:text="@string/chooseCity"-->
-<!--                    android:gravity="right"-->
+<!--                    -->
 <!--                    android:layout_marginTop="8dp"-->
 <!--                    android:layout_marginBottom="8dp"-->
 <!--                    />-->
@@ -1841,7 +1841,7 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                android:textSize="20sp"-->
 <!--                android:text="@string/clientData"-->
-<!--                android:textDirection="rtl"-->
+<!--                -->
 <!--                android:textColor="#000"-->
 <!--                android:layout_marginTop="8dp"-->
 <!--                />-->
@@ -1850,7 +1850,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/theDirectionWhichReportDirected"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1868,14 +1868,14 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/reportUser"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1893,14 +1893,14 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/thePurposeOf"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -1918,7 +1918,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 <!--&lt;!&ndash;            real state data&ndash;&gt;-->
@@ -1927,7 +1927,7 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                android:textSize="20sp"-->
 <!--                android:text="@string/realStateData"-->
-<!--                android:textDirection="rtl"-->
+<!--                -->
 <!--                android:textColor="#000"-->
 <!--                android:layout_marginTop="8dp"-->
 <!--                />-->
@@ -1960,7 +1960,7 @@
 <!--                    android:layout_weight="1"-->
 <!--                    android:layout_height="wrap_content"-->
 <!--                    android:text="@string/realStateType"-->
-<!--                    android:gravity="right"-->
+<!--                    -->
 <!--                    android:layout_marginTop="8dp"-->
 <!--                    android:layout_marginBottom="8dp"-->
 <!--                    android:layout_marginLeft="8dp"-->
@@ -2032,7 +2032,7 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                android:textSize="20sp"-->
 <!--                android:text="@string/rateData"-->
-<!--                android:textDirection="rtl"-->
+<!--                -->
 <!--                android:textColor="#000"-->
 <!--                android:layout_marginTop="8dp"-->
 <!--                />-->
@@ -2042,7 +2042,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/valueBasis"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2060,7 +2060,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2068,7 +2068,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/rateDate"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2086,7 +2086,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2094,7 +2094,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/previewDate"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2112,7 +2112,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2120,7 +2120,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/rateTechniques"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2138,7 +2138,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2146,7 +2146,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/approvedStyleAndMethod"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2164,7 +2164,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2172,7 +2172,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/valueHypothesis"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2190,7 +2190,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2199,7 +2199,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/evaluationCriteria"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2217,7 +2217,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2225,7 +2225,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/independentConflictOfInterest"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2243,7 +2243,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2251,7 +2251,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/referenceNumber"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2269,7 +2269,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2277,7 +2277,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/reportType"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2295,7 +2295,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2303,7 +2303,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/reportDate"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2321,7 +2321,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2329,7 +2329,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/reportVersion"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2347,7 +2347,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2355,7 +2355,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:text="@string/ReportUseAndPublicationAndDistributionRestrictions"-->
-<!--                android:gravity="right"-->
+<!--                -->
 <!--                android:layout_marginTop="8dp"-->
 <!--                android:layout_marginBottom="8dp"-->
 <!--                />-->
@@ -2373,7 +2373,7 @@
 <!--                    android:textSize="12sp"-->
 <!--                    android:gravity="center_vertical"-->
 <!--                    android:background="#00000000"-->
-<!--                    android:textDirection="rtl"-->
+<!--                    -->
 <!--                    />-->
 <!--            </LinearLayout>-->
 
@@ -2382,7 +2382,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Notes"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -2400,7 +2400,7 @@
                     android:textSize="12sp"
                     android:gravity="top"
                     android:background="#00000000"
-                    android:textDirection="rtl"
+
                     />
             </LinearLayout>
 
@@ -2409,7 +2409,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/reportVersion"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />
@@ -2450,7 +2450,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/endReport"
-                android:gravity="right"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 />

@@ -61,7 +61,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/Schemeandwidget"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -79,7 +79,7 @@
                 <!--                    android:hint="@string/Schemeandwidget"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"/>-->
+                <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <LinearLayout-->
                 <!--                android:layout_width="match_parent"-->
@@ -91,7 +91,7 @@
                 <!--                    android:layout_weight="1"-->
                 <!--                    android:layout_height="wrap_content"-->
                 <!--                    android:text="@string/chooseCity"-->
-                <!--                    android:gravity="right"-->
+                <!--                    -->
                 <!--                    android:layout_marginTop="8dp"-->
                 <!--                    android:layout_marginBottom="8dp"-->
                 <!--                    />-->
@@ -100,7 +100,7 @@
                 <!--                    android:layout_weight="1"-->
                 <!--                    android:layout_height="wrap_content"-->
                 <!--                    android:text="@string/chooseNeighborhood"-->
-                <!--                    android:gravity="right"-->
+                <!--                    -->
                 <!--                    android:layout_marginTop="8dp"-->
                 <!--                    android:layout_marginBottom="8dp"-->
                 <!--                    android:layout_marginLeft="8dp"-->
@@ -126,7 +126,7 @@
                 <!--                        android:layout_height="wrap_content"-->
                 <!--                        android:layout_margin="12dp"-->
                 <!--                        android:id = "@+id/neiborhood"-->
-                <!--                        android:gravity="right"-->
+                <!--                        -->
 
                 <!--                        />-->
 
@@ -153,7 +153,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/realStateLimits"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -170,13 +170,13 @@
                 <!--                    android:textSize="16sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"/>-->
+                <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <TextView-->
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/generalRealStateLocation"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -194,13 +194,13 @@
                 <!--                    android:hint="@string/addGeneralRealStateLocation"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"/>-->
+                <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <TextView-->
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/attributed"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -217,13 +217,13 @@
                 <!--                    android:textSize="16sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"/>-->
+                <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <TextView-->
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/service"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -241,13 +241,13 @@
                 <!--                    android:hint="@string/addService"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"/>-->
+                <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <TextView-->
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/theNameOfTheNearestCommercialStreet"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -265,14 +265,14 @@
                 <!--                    android:hint="@string/addtheNameOfTheNearestCommercialStreet"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <TextView-->
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/howFarRealstateRatting"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -290,14 +290,14 @@
                 <!--                    android:hint="@string/addHowFarRealstateRation"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <TextView-->
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/howFarRealstateFromCityCenter"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -315,14 +315,14 @@
                 <!--                    android:hint="@string/addHowFarRealstateFromCityCenter"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <TextView-->
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/theViews"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -340,7 +340,7 @@
                 <!--                    android:hint="@string/addTheViews"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <LinearLayout-->
@@ -353,7 +353,7 @@
                 <!--                    android:layout_weight="1"-->
                 <!--                    android:layout_height="wrap_content"-->
                 <!--                    android:text="@string/chooseCity"-->
-                <!--                    android:gravity="right"-->
+                <!--                    -->
                 <!--                    android:layout_marginTop="8dp"-->
                 <!--                    android:layout_marginBottom="8dp"-->
                 <!--                    />-->
@@ -362,7 +362,7 @@
                 <!--                    android:layout_weight="1"-->
                 <!--                    android:layout_height="wrap_content"-->
                 <!--                    android:text="@string/chooseNeighborhood"-->
-                <!--                    android:gravity="right"-->
+                <!--                    -->
                 <!--                    android:layout_marginTop="8dp"-->
                 <!--                    android:layout_marginBottom="8dp"-->
                 <!--                    android:layout_marginLeft="8dp"-->
@@ -388,7 +388,7 @@
                 <!--                        android:layout_height="wrap_content"-->
                 <!--                        android:layout_margin="12dp"-->
                 <!--                        android:id = "@+id/neiborhood2"-->
-                <!--                        android:gravity="right"-->
+                <!--                        -->
                 <!--                        />-->
 
                 <!--                </LinearLayout>-->
@@ -415,7 +415,7 @@
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:textSize="20sp"-->
                 <!--                android:text="@string/clientData"-->
-                <!--                android:textDirection="rtl"-->
+                <!--                -->
                 <!--                android:textColor="#000"-->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                />-->
@@ -424,7 +424,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/theDirectionWhichReportDirected"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -441,14 +441,14 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <TextView-->
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/reportUser"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -465,14 +465,14 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            <TextView-->
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/thePurposeOf"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -489,7 +489,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
                 <!--            &lt;!&ndash;            real state data&ndash;&gt;-->
@@ -498,7 +498,7 @@
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:textSize="20sp"-->
                 <!--                android:text="@string/realStateData"-->
-                <!--                android:textDirection="rtl"-->
+                <!--                -->
                 <!--                android:textColor="#000"-->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                />-->
@@ -531,7 +531,7 @@
                 <!--                    android:layout_weight="1"-->
                 <!--                    android:layout_height="wrap_content"-->
                 <!--                    android:text="@string/realStateType"-->
-                <!--                    android:gravity="right"-->
+                <!--                    -->
                 <!--                    android:id="@+id/realStateType"-->
                 <!--                    android:layout_marginTop="8dp"-->
                 <!--                    android:layout_marginBottom="8dp"-->
@@ -600,7 +600,7 @@
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:textSize="20sp"-->
                 <!--                android:text="@string/rateData"-->
-                <!--                android:textDirection="rtl"-->
+                <!--                -->
                 <!--                android:textColor="#000"-->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                />-->
@@ -610,7 +610,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/valueBasis"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -627,7 +627,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -635,7 +635,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/rateDate"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -652,7 +652,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -660,7 +660,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/previewDate"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -677,7 +677,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -685,7 +685,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/rateTechniques"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -702,7 +702,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -710,7 +710,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/approvedStyleAndMethod"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -727,7 +727,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -735,7 +735,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/valueHypothesis"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -752,7 +752,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -761,7 +761,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/evaluationCriteria"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -778,7 +778,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -786,7 +786,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/independentConflictOfInterest"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -803,7 +803,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -811,7 +811,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/referenceNumber"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -828,7 +828,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -836,7 +836,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/reportType"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -853,7 +853,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
 
@@ -861,7 +861,7 @@
                 <!--                android:layout_width="match_parent"-->
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:text="@string/reportDate"-->
-                <!--                android:gravity="right"-->
+                <!--                -->
                 <!--                android:layout_marginTop="8dp"-->
                 <!--                android:layout_marginBottom="8dp"-->
                 <!--                />-->
@@ -878,7 +878,7 @@
                 <!--                    android:textSize="12sp"-->
                 <!--                    android:gravity="center_vertical"-->
                 <!--                    android:background="#00000000"-->
-                <!--                    android:textDirection="rtl"-->
+                <!--                    -->
                 <!--                    />-->
                 <!--            </LinearLayout>-->
                 <RelativeLayout
@@ -893,7 +893,7 @@
                         android:layout_height="match_parent"
                         android:background="#00000000"
                         android:gravity="center_vertical"
-                        android:textDirection="rtl" />
+                         />
                 </RelativeLayout>
 
 
@@ -912,7 +912,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/reportVersion"
-                    android:gravity="right"
+
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />

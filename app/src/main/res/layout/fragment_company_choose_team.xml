@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/addpreviewer"
-                    android:gravity="right"
+
                     android:textColor="#303030"
                     android:textSize="14sp"
                     android:layout_marginTop="8dp"
@@ -110,7 +110,7 @@
                             android:layout_toLeftOf="@id/prevImageCard"
                             android:layout_marginRight="8dp"
                             android:layout_centerVertical="true"
-                            android:textDirection="rtl"
+
                             >
                             <TextView
                                 android:layout_width="match_parent"
@@ -146,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/addPainter"
-                    android:gravity="right"
+
                     android:textColor="#303030"
                     android:textSize="14sp"
                     android:layout_marginTop="8dp"
@@ -194,7 +194,7 @@
                             android:layout_toLeftOf="@id/imageCard"
                             android:layout_marginRight="8dp"
                             android:layout_centerVertical="true"
-                            android:textDirection="rtl"
+
                             >
                             <TextView
                                 android:layout_width="match_parent"
@@ -229,7 +229,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/Addreviwer"
-                    android:gravity="right"
+
                     android:textColor="#303030"
                     android:textSize="14sp"
                     android:layout_marginTop="8dp"
@@ -278,7 +278,7 @@
                             android:layout_toLeftOf="@id/revImageCard"
                             android:layout_marginRight="8dp"
                             android:layout_centerVertical="true"
-                            android:textDirection="rtl"
+
                             >
                             <TextView
                                 android:layout_width="match_parent"

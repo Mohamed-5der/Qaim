@@ -43,7 +43,7 @@
                 android:textSize="16sp"
                 android:textColor="#313131"
                 android:text="@string/tittle"
-                android:textDirection="rtl"
+
                 android:maxLines="1"
                 />
             <TextView
@@ -54,7 +54,7 @@
                 android:textSize="12dp"
                 android:textColor="#585858"
                 android:text="@string/description"
-                android:textDirection="rtl"
+
                 android:maxLines="1"
                 />
 

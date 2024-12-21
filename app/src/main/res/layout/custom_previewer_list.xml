@@ -46,15 +46,15 @@
                 android:maxLines="1"
                 android:text="@string/tittle"
                 android:textColor="#313131"
-                android:textDirection="rtl"
+
                 android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+
                 android:orientation="horizontal"
-                android:textDirection="rtl">
+                >
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
                         android:maxLines="1"
                         android:text="@string/Inspectionـfees"
                         android:textColor="#585858"
-                        android:textDirection="rtl"
+
                         android:textSize="12dp" />
 
                     <TextView
@@ -87,7 +87,7 @@
                         android:maxLines="1"
                         android:text="@string/ـ400ـriyals"
                         android:textColor="#02A609"
-                        android:textDirection="rtl"
+
                         android:textSize="12dp" />
                 </RelativeLayout>
             </LinearLayout>

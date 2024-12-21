@@ -45,7 +45,7 @@
                     android:layout_toLeftOf="@id/imageCard"
                     android:layout_marginRight="8dp"
                     android:layout_centerVertical="true"
-                    android:textDirection="rtl"
+
                     >
                     <TextView
                         android:layout_width="match_parent"
