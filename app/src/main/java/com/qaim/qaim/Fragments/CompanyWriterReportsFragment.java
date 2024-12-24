@@ -486,17 +486,19 @@ public class CompanyWriterReportsFragment extends Fragment {
                 List<MultipartBody.Part> imgs = new ArrayList<>();
 
                 for (int i = 0; i < fileUris.size(); i++) {
-                    File file = new File(getPath(fileUris.get(i)));
-                    // create RequestBody instance from file
-                    RequestBody requestFile =
-                            RequestBody.create(
-                                    MediaType.parse(getContext().getContentResolver().getType(fileUris.get(i))),
-                                    file
-                            );
+                    if (fileUris.get(i) != null && getPath(fileUris.get(i)) != null) {
+                        File file = new File(getPath(fileUris.get(i)));
+                        // create RequestBody instance from file
+                        RequestBody requestFile =
+                                RequestBody.create(
+                                        MediaType.parse(getContext().getContentResolver().getType(fileUris.get(i))),
+                                        file
+                                );
 //
 //               // MultipartBody.Part is used to send also the actual file name
-                    MultipartBody.Part body1 = MultipartBody.Part.createFormData("images["+i+"]", file.getName(), requestFile);
-                    imgs.add(body1);
+                        MultipartBody.Part body1 = MultipartBody.Part.createFormData("images[" + i + "]", file.getName(), requestFile);
+                        imgs.add(body1);
+                    }
                 }
                 HashMap<String, RequestBody> map = new HashMap<>();
                 map.put("order_id", RequestBody.create(MultipartBody.FORM , "" + id ));

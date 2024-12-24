@@ -109,7 +109,7 @@ public class AddArtistOrCheakerFragment extends Fragment {
                     public void onResponse(Call<AddTeamResponse> call, Response<AddTeamResponse> response) {
                         CompanyActivity.dialog.dismiss();
                         AddTeamResponse addTeamResponse = response.body();
-                        if (addTeamResponse.getCode() == 200) {
+                        if (addTeamResponse != null && addTeamResponse.getCode() == 200) {
                             CompanyActivity.alert.crateMsg(response.body().getMessage(), getContext());
 //                                Toast.makeText(getContext(), addTeamResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             CompanySetTeamFragment fragment = new CompanySetTeamFragment();

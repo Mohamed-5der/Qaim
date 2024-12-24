@@ -195,20 +195,21 @@ public class UpdateUserRealstateFragment extends Fragment {
                 HashMap<String, RequestBody> map = new HashMap<>();
                                List<MultipartBody.Part> imgs = new ArrayList<>();
 
-                    if (bitmaps != null){
+                    if (bitmaps != null) {
                         for (int i = 0; i < fileUris.size(); i++) {
-                            file = new File(getPath(fileUris.get(i)));
-                            // create RequestBody instance from file
-                            requestFile =
-                                    RequestBody.create(
-                                            MediaType.parse(getContext().getContentResolver().getType(fileUris.get(i))),
-                                            file
-                                    );
-                            body = MultipartBody.Part.createFormData("files["+i+"]", file.getName(), requestFile);
-                            imgs.add(body);
+                            if (fileUris.get(i) != null && getPath(fileUris.get(i)) != null) {
+                                file = new File(getPath(fileUris.get(i)));
+                                // create RequestBody instance from file
+                                requestFile =
+                                        RequestBody.create(
+                                                MediaType.parse(getContext().getContentResolver().getType(fileUris.get(i))),
+                                                file
+                                        );
+                                body = MultipartBody.Part.createFormData("files[" + i + "]", file.getName(), requestFile);
+                                imgs.add(body);
+                            }
                         }
                     }
-
 
                 map.put("real_estate_id", RequestBody.create(MultipartBody.FORM , id+""));
                 map.put("title", RequestBody.create(MultipartBody.FORM , tittle.getText().toString()));

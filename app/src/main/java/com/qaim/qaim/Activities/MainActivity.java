@@ -78,8 +78,9 @@ public class MainActivity extends BaseActivity implements MainFragment.AddRealst
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         jsonApi = retrofit.create(JsonApi.class);
-        token = sToken.getString("token_key" , "");
-
+        if (sToken != null) {
+            token = sToken.getString("token_key", "");
+        }
 
         // Main full screen hide status bar
         if (Build.VERSION.SDK_INT < 16)
